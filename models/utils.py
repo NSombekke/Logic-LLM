@@ -4,7 +4,9 @@ import os
 import asyncio
 from typing import Any
 
-from transformers import pipeline, AutoModelForCausalLM, AutoTokenizer
+from transformers import pipeline
+from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import StoppingCriteria, StoppingCriteriaList
 
 
 # Backoff decorator -> Retry function when RateLimitError is raised
@@ -179,6 +181,15 @@ class OpenAIModel:
         return generated_text
 
 
+class StoppingCriteriaToken(StoppingCriteria):
+    def __init__(self, stop_token_id):
+        super().__init__()
+        self.stop_token_id = stop_token_id
+
+    def __call__(self, input_ids, scores):
+        return input_ids[0][-1] == self.stop_token_id
+
+
 class HuggingFaceModel:
     def __init__(
         self, API_KEY, model_name, stop_words, max_new_tokens, temperature=0.0
@@ -186,11 +197,20 @@ class HuggingFaceModel:
         self.api_key = API_KEY
         self.model_name = model_name
 
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
+
         self.model = AutoModelForCausalLM.from_pretrained(
-            self.model_name, device_map="auto"
+            self.model_name, device_map="auto", torch_dtype="auto"
         )
-        self.tokenizer = AutoTokenizer.from_pretrained(
-            self.model_name, device_map="auto"
+
+        stop_token_ids = [
+            self.tokenizer(stop_token, return_tensors="pt", add_special_tokens=False)[
+                "input_ids"
+            ].squeeze()
+            for stop_token in stop_words.split(" ")
+        ]
+        stopping_criteria = StoppingCriteriaList(
+            [StoppingCriteriaToken(stop_token_id) for stop_token_id in stop_token_ids]
         )
 
         self.pipe = pipeline(
@@ -203,6 +223,7 @@ class HuggingFaceModel:
             device_map="auto",
             do_sample=False,
             return_full_text=False,
+            stopping_criteria=stopping_criteria,
         )
 
     def generate(self, input_string):
@@ -238,7 +259,9 @@ class HuggingFaceModel:
         response = self.pipe(
             input_string,
         )
+        response_ids = self.pipe(input_string, return_tensors=True)
         generated_text = response[0]["generated_text"].strip()
+        # show generated text word for word with token id behind it for debugging
         return generated_text
 
     def batch_generate(self, input_string):
@@ -270,12 +293,16 @@ class HuggingFaceModel:
         responses = self.pipe(
             inputs_list,
         )
-        generated_text = [response["generated_text"].strip() for response in responses]
+        generated_text = [
+            response[0]["generated_text"].strip() for response in responses
+        ]
         return generated_text
 
     def batch_prompt_generate(self, input_strings):
         responses = self.pipe(
             input_strings,
         )
-        generated_text = [response["generated_text"].strip() for response in responses]
+        generated_text = [
+            response[0]["generated_text"].strip() for response in responses
+        ]
         return generated_text

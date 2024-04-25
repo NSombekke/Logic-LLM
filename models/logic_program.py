@@ -109,7 +109,7 @@ class LogicProgramGenerator:
         print(f"Loaded {len(raw_dataset)} examples from {self.split} split.")
 
         outputs = []
-        for example in tqdm(raw_dataset[:1]):
+        for example in tqdm(raw_dataset):
             # create prompt
             try:
                 full_prompt = self.prompt_creator[self.dataset_name](example)
@@ -223,7 +223,7 @@ def parse_args():
     parser.add_argument("--api_key", type=str, default="KEY")
     parser.add_argument("--model_name", type=str, default="text-davinci-003")
     parser.add_argument("--framework", type=str.lower, default="openai")
-    parser.add_argument("--stop_words", type=str, default="------")
+    parser.add_argument("--stop_words", type=str, default="------\n")
     parser.add_argument("--max_new_tokens", type=int, default=1024)
     args = parser.parse_args()
     return args
