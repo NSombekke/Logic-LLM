@@ -259,9 +259,7 @@ class HuggingFaceModel:
         response = self.pipe(
             input_string,
         )
-        response_ids = self.pipe(input_string, return_tensors=True)
         generated_text = response[0]["generated_text"].strip()
-        # show generated text word for word with token id behind it for debugging
         return generated_text
 
     def batch_generate(self, input_string):

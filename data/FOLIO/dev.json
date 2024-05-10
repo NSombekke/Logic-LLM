@@ -67,7 +67,7 @@
   },
   {
     "id": "FOLIO_dev_6",
-    "context": "Monkeypox is an infectious disease caused by the monkeypox virus. Monkeypox virus can occur in certain animals, including humans. Humans are mammals. Mammals are animals. Symptons of Monkeypox include fever, headache, muscle pains, feeling tired, and so on. People feel tired when they get a glu.",
+    "context": "Monkeypox is an infectious disease caused by the monkeypox virus. Monkeypox virus can occur in certain animals, including humans. Humans are mammals. Mammals are animals. Symptons of Monkeypox include fever, headache, muscle pains, feeling tired, and so on. People feel tired when they get a flu.",
     "question": "Based on the above information, is the following statement true, false, or uncertain? There is an animal.",
     "options": [
       "A) True",
@@ -78,7 +78,7 @@
   },
   {
     "id": "FOLIO_dev_7",
-    "context": "Monkeypox is an infectious disease caused by the monkeypox virus. Monkeypox virus can occur in certain animals, including humans. Humans are mammals. Mammals are animals. Symptons of Monkeypox include fever, headache, muscle pains, feeling tired, and so on. People feel tired when they get a glu.",
+    "context": "Monkeypox is an infectious disease caused by the monkeypox virus. Monkeypox virus can occur in certain animals, including humans. Humans are mammals. Mammals are animals. Symptons of Monkeypox include fever, headache, muscle pains, feeling tired, and so on. People feel tired when they get a flu.",
     "question": "Based on the above information, is the following statement true, false, or uncertain? No one gets flu.",
     "options": [
       "A) True",
@@ -89,7 +89,7 @@
   },
   {
     "id": "FOLIO_dev_8",
-    "context": "Monkeypox is an infectious disease caused by the monkeypox virus. Monkeypox virus can occur in certain animals, including humans. Humans are mammals. Mammals are animals. Symptons of Monkeypox include fever, headache, muscle pains, feeling tired, and so on. People feel tired when they get a glu.",
+    "context": "Monkeypox is an infectious disease caused by the monkeypox virus. Monkeypox virus can occur in certain animals, including humans. Humans are mammals. Mammals are animals. Symptons of Monkeypox include fever, headache, muscle pains, feeling tired, and so on. People feel tired when they get a flu.",
     "question": "Based on the above information, is the following statement true, false, or uncertain? Symptons of Monkeypox include coughing.",
     "options": [
       "A) True",

@@ -3,28 +3,43 @@ import os
 from tqdm import tqdm
 from collections import OrderedDict
 from typing import Dict, List, Tuple
-from models.utils import OpenAIModel
+from utils import OpenAIModel, HuggingFaceModel
+from huggingface_hub import login
 import argparse
 
 
-class GPT3_Reasoning_Graph_Baseline:
+class Model_Baseline:
     def __init__(self, args):
         self.args = args
         self.data_path = args.data_path
         self.dataset_name = args.dataset_name
         self.split = args.split
         self.model_name = args.model_name
-        self.save_path = args.save_path
+        self.save_path = os.path.join(args.save_path, args.dataset_name)
         self.demonstration_path = args.demonstration_path
         self.mode = args.mode
 
-        self.openai_api = OpenAIModel(
-            args.api_key, args.model_name, args.stop_words, args.max_new_tokens
-        )
-        self.prompt_creator = self.prompt_LSAT
+        self.api_key = args.api_key
+        login(token=args.api_key)
+        if args.framework == "openai":
+            self.model = OpenAIModel(
+                args.model_name, args.stop_words, args.max_new_tokens
+            )
+        elif args.framework == "huggingface":
+            self.model = HuggingFaceModel(
+                args.api_key, args.model_name, args.stop_words, args.max_new_tokens
+            )
+        else:
+            raise ValueError(
+                "Invalid framework. Please choose from [openai, huggingface]"
+            )
+        print(f"Running on {self.model.pipe.device}")
+        self.prompt_creator = self.prompt
         self.label_phrase = "The correct option is:"
+        # replace "/" with "-" in model name for saving
+        self.model_name = self.model_name.replace("/", "-")
 
-    def prompt_LSAT(self, in_context_example, test_example):
+    def prompt(self, in_context_example, test_example):
         full_prompt = in_context_example
         context = test_example["context"].strip()
         question = test_example["question"].strip()
@@ -64,7 +79,7 @@ class GPT3_Reasoning_Graph_Baseline:
 
             # create prompt
             full_prompt = self.prompt_creator(in_context_examples, example)
-            output = self.openai_api.generate(full_prompt)
+            output = self.model.generate(full_prompt)
 
             # get the answer
             label_phrase = self.label_phrase
@@ -111,7 +126,7 @@ class GPT3_Reasoning_Graph_Baseline:
                 self.prompt_creator(in_context_examples, example) for example in chunk
             ]
             try:
-                batch_outputs = self.openai_api.batch_generate(full_prompts)
+                batch_outputs = self.model.batch_generate(full_prompts)
                 # create output
                 for sample, output in zip(chunk, batch_outputs):
                     # get the answer
@@ -121,7 +136,7 @@ class GPT3_Reasoning_Graph_Baseline:
                 # generate one by one if batch generation fails
                 for sample, full_prompt in zip(chunk, full_prompts):
                     try:
-                        output = self.openai_api.generate(full_prompt)
+                        output = self.model.generate(full_prompt)
                         # get the answer
                         dict_output = self.update_answer(sample, output)
                         outputs.append(dict_output)
@@ -154,21 +169,22 @@ class GPT3_Reasoning_Graph_Baseline:
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data_path", type=str, default="../data")
+    parser.add_argument("--data_path", type=str, default="./data")
     parser.add_argument("--dataset_name", type=str)
     parser.add_argument("--split", type=str)
-    parser.add_argument("--save_path", type=str, default="./results")
-    parser.add_argument("--demonstration_path", type=str, default="./icl_examples")
+    parser.add_argument("--save_path", type=str, default="./models/outputs/baselines")
+    parser.add_argument("--demonstration_path", type=str, default="./models/prompts")
     parser.add_argument("--api_key", type=str)
     parser.add_argument("--model_name", type=str)
-    parser.add_argument("--stop_words", type=str, default="------")
+    parser.add_argument("--framework", type=str, default="openai")
+    parser.add_argument("--stop_words", type=str, default="------\n")
     parser.add_argument("--mode", type=str)
-    parser.add_argument("--max_new_tokens", type=int)
+    parser.add_argument("--max_new_tokens", type=int, default=1024)
     args = parser.parse_args()
     return args
 
 
 if __name__ == "__main__":
     args = parse_args()
-    gpt3_problem_reduction = GPT3_Reasoning_Graph_Baseline(args)
-    gpt3_problem_reduction.batch_reasoning_graph_generation(batch_size=10)
+    model_baseline = Model_Baseline(args)
+    model_baseline.batch_reasoning_graph_generation(batch_size=10)

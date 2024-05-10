@@ -8,6 +8,8 @@ from typing import Dict, List, Tuple
 from utils import OpenAIModel, HuggingFaceModel
 import argparse
 
+from huggingface_hub import login
+
 
 class LogicProgramGenerator:
     def __init__(self, args):
@@ -16,7 +18,8 @@ class LogicProgramGenerator:
         self.dataset_name = args.dataset_name
         self.split = args.split
         self.model_name = args.model_name
-        self.save_path = args.save_path
+        self.save_path = os.path.join(args.save_path, args.dataset_name)
+        login(token=args.api_key)
         if args.framework == "openai":
             self.model = OpenAIModel(
                 args.model_name, args.stop_words, args.max_new_tokens
@@ -36,6 +39,7 @@ class LogicProgramGenerator:
             "ProofWriter": self.prompt_proofwriter,
             "LogicalDeduction": self.prompt_logicaldeduction,
             "AR-LSAT": self.prompt_arlsat,
+            "LTL": self.prompt_ltl,
         }
         self.load_prompt_templates()
         # replace "/" with "-" in model name for saving
@@ -96,6 +100,14 @@ class LogicProgramGenerator:
         full_prompt = full_prompt.replace("[[CHOICES]]", choices_str)
         return full_prompt
 
+    def prompt_ltl(self, test_data):  # TO DO adjust this functio for the LTL dev.json
+        problem = test_data["context"]
+        question = test_data["question"].strip()
+        full_prompt = self.prompt_template.replace("[[PROBLEM]]", problem).replace(
+            "[[QUESTION]]", question
+        )
+        return full_prompt
+
     def load_raw_dataset(self, split):
         with open(
             os.path.join(self.data_path, self.dataset_name, f"{split}.json")
@@ -114,7 +126,8 @@ class LogicProgramGenerator:
             try:
                 full_prompt = self.prompt_creator[self.dataset_name](example)
                 output = self.model.generate(full_prompt)
-                # print(full_prompt)
+                if self.args.stop_words:
+                    output = output[: -len(self.args.stop_words)]
                 programs = [output]
 
                 # create output
@@ -129,7 +142,7 @@ class LogicProgramGenerator:
                 outputs.append(output)
             except Exception as e:
                 print("Error in generating logic programs for example: ", example["id"])
-                print("Error:", e)
+                print(e)
 
         # save outputs
         with open(
@@ -165,6 +178,8 @@ class LogicProgramGenerator:
                 batch_outputs = self.model.batch_generate(full_prompts)
                 # create output
                 for sample, output in zip(chunk, batch_outputs):
+                    if self.args.stop_words:
+                        output = output[: -len(self.args.stop_words)]
                     programs = [output]
                     output = {
                         "id": sample["id"],
@@ -232,4 +247,4 @@ def parse_args():
 if __name__ == "__main__":
     args = parse_args()
     logic_program_generator = LogicProgramGenerator(args)
-    logic_program_generator.logic_program_generation()
+    logic_program_generator.batch_logic_program_generation()

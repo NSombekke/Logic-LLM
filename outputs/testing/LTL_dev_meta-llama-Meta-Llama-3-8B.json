@@ -1,0 +1,52 @@
+[
+  {
+    "id": "LTL_dev_0",
+    "context": "Every a is eventually followed by a e.",
+    "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
+    "answer": "G(a -> F e)",
+    "options": [],
+    "raw_logic_programs": [
+      "Explanation: \n\"Every\" from the input sentence refers to the temporal operator \"G\", meaning that the subsequent part of the input must hold at every point in time, i.e., globally.\n\"eventually\" from the input sentence translates to the temporal operator \"F\". \"a followed by a e\" means that after \"a\" holds, \"e\" has to hold as well, i.e., translating to an implication.\nThus, \"a eventually followed by a e\" translates to \"a -> F e\".\nExplanation dictionary: \n{\"Every\": \"G\", \"eventually\": \"F\", \"a\": \"a\", \"e\": \"e\", \"a followed by a e\": \"a -> e\", \"a eventually followed by a e\": \"a -> F e\"}\nConclusion:\nG (a -> F e).FINISH\n------"
+    ]
+  },
+  {
+    "id": "LTL_dev_1",
+    "context": "It is never the case that a and b hold at the same time.",
+    "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
+    "answer": "G(!(a & b))",
+    "options": [],
+    "raw_logic_programs": [
+      "Explanation: \n\"never\" from the input translates to the temporal operator \"F\", meaning that the subsequent part of the input must never hold, i.e., it translates to \"F\".\n\"a and b\" from the input translates to the conjunction of atomic propositions a,b, i.e., it translates to \"a & b\".\n\"at the same time\" from the input translates to the temporal operator \"U\", meaning that the subsequent part of the input must hold until the end of the input, i.e., it translates to \"U\".\nThus, \"a and b at the same time\" translates to \"a & b U\".\nThe input additionally requires that \"it is never the case\", which means that the negation of the above formula must hold, i.e., it translates to \"F(~(a & b U))\".\nExplanation dictionary:\n{\"never\": \"F\", \"a and b\": \"a & b\", \"at the same time\": \"U\", \"it is never the case\": \"F\", \"a and b at the same time\": \"a & b U\", \"F(~(a & b U))\": \"F(~(a & b U))\"}\nConclusion:\nF(~(a & b U)).FINISH\n------"
+    ]
+  },
+  {
+    "id": "LTL_dev_2",
+    "context": "Whenever a is enabled, b is enabled three steps later.",
+    "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
+    "answer": "G(a -> X (X (X b)))",  
+    "options": [],
+    "raw_logic_programs": [
+      "Explanation: \n\"Whenever\" from the input sentence translates to the temporal operator \"G\", meaning that the subsequent part of the input must hold at every point in time, i.e., globally.\n\"a is enabled\" from the input sentence translates to the atomic proposition \"a\".\n\"b is enabled three steps later\" from the input sentence translates to the temporal operator \"F\", meaning that the subsequent part of the input must hold at some point in time, i.e., eventually.\nThe input additionally requires that \"b is enabled three steps later\" must hold after \"a is enabled\", i.e., it translates to \"a -> F b\".\nExplanation dictionary:\n{\"Whenever\": \"G\", \"a is enabled\": \"a\", \"b is enabled three steps later\": \"F b\", \"a is enabled, b is enabled three steps later\": \"a -> F b\"}\nConclusion:\nG (a -> F b).FINISH\n------"
+    ]
+  },
+  {
+    "id": "LTL_dev_3",
+    "context": "e must hold everywhere until from some point on, d holds infinitely often.",
+    "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
+    "answer": "e U (G (F d))", 
+    "options": [],
+    "raw_logic_programs": [
+      "Explanation: \n\"e must hold everywhere\" from the input translates to the temporal operator \"G\", meaning that the subsequent part of the input must hold at every point in time, i.e., globally.\n\"until from some point on\" from the input translates to the temporal operator \"U\", meaning that the subsequent part of the input must hold until some point in time, i.e., until.\n\"infinitely often\" from the input translates to the temporal operator \"F\", meaning that the subsequent part of the input must hold infinitely often, i.e., finally.\nThus, \"d holds infinitely often\" translates to \"F d\".\nExplanation dictionary:\n{\"e must hold everywhere\": \"G\", \"until from some point on\": \"U\", \"infinitely often\": \"F\", \"d holds infinitely often\": \"F d\"}\nConclusion:\nG e U F d.FINISH\n------"
+    ]
+  },
+  {
+    "id": "LTL_dev_4",
+    "context": "If b holds at some point, a has to hold somewhere beforehand.",
+    "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
+    "answer": "(F b) -> (!b U (a & !b))",
+    "options": [],
+    "raw_logic_programs": [
+      "Explanation: \n\"if b holds at some point\" from the input translates to the temporal behavior that b holds at some point in time, i.e., \"F b\".\nThe input additionally requires that \"a has to hold somewhere beforehand\", which means that a has to hold at some point in time before b, i.e., it translates to \"F a U b\".\nExplanation dictionary:\n{\"if b holds at some point\": \"F b\", \"a has to hold somewhere beforehand\": \"F a U b\"}\nConclusion:\nF b & F a U b.FINISH\n------"
+    ]
+  }
+]
