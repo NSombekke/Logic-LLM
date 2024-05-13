@@ -226,77 +226,17 @@ class HuggingFaceModel:
             stopping_criteria=stopping_criteria,
         )
 
+        if self.pipe.tokenizer.pad_token_id is None:
+            self.pipe.tokenizer.pad_token_id = self.pipe.model.config.eos_token_id
+
     def generate(self, input_string):
-        if self.model_name in [
-            "meta-llama/Meta-Llama-3-8B",
-            "meta-llama/Meta-Llama-3-70B",
-            "mistralai/Mixtral-8x7B-v0.1",
-            "mistralai/Mixtral-8x22B-v0.1",
-        ]:
-            return self.prompt_generate(input_string)
-        elif self.model_name in [
-            "meta-llama/Meta-Llama-3-8B-Instruct",
-            "meta-llama/Meta-Llama-3-70B-Instruct",
-            "mistralai/Mixtral-8x7B-Instruct-v0.1",
-            "mistralai/Mixtral-8x22B-Instruct-v0.1",
-        ]:
-            return self.chat_generate(input_string)
-        else:
-            raise Exception("Model name not recognized")
-
-    def chat_generate(self, input_string):
-        message = [{"role": "user", "content": input_string}]
-        inputs = self.pipe.tokenizer.apply_chat_template(
-            message, tokenize=False, add_generation_prompt=True
-        )
-        response = self.pipe(
-            inputs,
-        )
-        generated_text = response[0]["generated_text"].strip()
-        return generated_text
-
-    def prompt_generate(self, input_string):
         response = self.pipe(
             input_string,
         )
         generated_text = response[0]["generated_text"].strip()
         return generated_text
 
-    def batch_generate(self, input_string):
-        if self.model_name in [
-            "meta-llama/Meta-Llama-3-8B",
-            "meta-llama/Meta-Llama-3-70B",
-            "mistralai/Mixtral-8x7B-v0.1",
-            "mistralai/Mixtral-8x22B-v0.1",
-        ]:
-            return self.batch_prompt_generate(input_string)
-        elif self.model_name in [
-            "meta-llama/Meta-Llama-3-8B-Instruct",
-            "meta-llama/Meta-Llama-3-70B-Instruct",
-            "mistralai/Mixtral-8x7B-Instruct-v0.1",
-            "mistralai/Mixtral-8x22B-Instruct-v0.1",
-        ]:
-            return self.batch_chat_generate(input_string)
-        else:
-            raise Exception("Model name not recognized")
-
-    def batch_chat_generate(self, input_strings):
-        inputs_list = []
-        for input_string in input_strings:
-            message = [{"role": "user", "content": input_string}]
-            inputs = self.pipe.tokenizer.apply_chat_template(
-                message, tokenize=False, add_generation_prompt=True
-            )
-            inputs_list.append(inputs)
-        responses = self.pipe(
-            inputs_list,
-        )
-        generated_text = [
-            response[0]["generated_text"].strip() for response in responses
-        ]
-        return generated_text
-
-    def batch_prompt_generate(self, input_strings):
+    def batch_generate(self, input_strings):
         responses = self.pipe(
             input_strings,
         )

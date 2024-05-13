@@ -121,7 +121,7 @@ class LogicProgramGenerator:
         print(f"Loaded {len(raw_dataset)} examples from {self.split} split.")
 
         outputs = []
-        for example in tqdm(raw_dataset):
+        for example in tqdm(raw_dataset[:1]):
             # create prompt
             try:
                 full_prompt = self.prompt_creator[self.dataset_name](example)

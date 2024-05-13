@@ -1,7 +1,29 @@
 import re
 import json
+from tqdm import tqdm
+import random
 import os
 import argparse
+
+
+def extract_number(string):
+    # Remove all characters except digits, decimal point and negative sign
+    try:
+        num_string = re.sub(r"[^\d.-]", "", string)
+        num_string = num_string.replace("$", "")
+        return float(num_string)
+    except:
+        try:
+            return float(random.randint(0, 100))
+            # return float(w2n.word_to_num(string))
+        except:
+            # print('Error: ', string)
+            print("Error")
+            return float(random.randint(0, 100))
+
+
+def argmax(iterable):
+    return max(enumerate(iterable), key=lambda x: x[1])[0]
 
 
 # these functions are heavily influenced by the HF squad_metrics.py script
@@ -87,22 +109,19 @@ def get_choice(answer_str):
     for c in choices:
         if answer_str.startswith(c):
             return c.replace(")", "")
-
-    if answer_str.startswith(":"):
-        return answer_str.replace(":", "").replace(".", "").strip()
     return None
 
 
-def evaluate_QA(QA_results):
+def evaluate_QA(result_file):
+    with open(result_file, "r") as f:
+        QA_results = json.load(f)
+
     total_em = 0.0
+    total_f1 = 0.0
     count = 0
     for sample in QA_results:
         gold_answer = sample["answer"].replace("(", "").replace(")", "").strip()
-        answer_str = (
-            sample["predicted_answer"].strip()
-            if sample["predicted_answer"] is not None
-            else ""
-        )
+        answer_str = sample["predicted_answer"].strip()
         prediction = get_choice(answer_str)
 
         indicators = [
@@ -119,49 +138,38 @@ def evaluate_QA(QA_results):
                     prediction = get_choice(answer_str)
                     break
 
-        # if prediction is None:
-        #     print(answer_str)
-        # print(f"prediction: {prediction} \t gold_answers: {gold_answer} \t match: {prediction == gold_answer}")
+        if prediction is None:
+            print(answer_str)
+
+        print(
+            f"prediction: {prediction} \t gold_answers: {gold_answer} \t match: {prediction == gold_answer}"
+        )
 
         em_score = 1.0 if prediction == gold_answer else 0.0
         total_em += em_score
         count += 1
 
     avg_em = total_em / count
-    # print(f"Accuracy: {avg_em}")
-    return avg_em
-
-
-def full_evaluation(result_file):
-    with open(result_file, "r") as f:
-        all_samples = json.load(f)
-
-    executable_samples = [
-        sample for sample in all_samples if sample["flag"] == "success"
-    ]
-    print(f"Overall accuracy: {evaluate_QA(all_samples)}")
-    print(f"Executable rate (Exe_Rate): {len(executable_samples)/len(all_samples)}")
-    print(f"Executable accuracy (Exe_Acc): {evaluate_QA(executable_samples)}")
+    print(f"EM: {avg_em}")
 
 
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset_name", type=str)
-    parser.add_argument("--model_name", type=str, default="text-davinci-003")
+    parser.add_argument("--model_name", type=str)
+    parser.add_argument("--mode", type=str)
     parser.add_argument("--split", type=str, default="dev")
-    parser.add_argument("--backup", type=str, default="random")
+    parser.add_argument("--result_path", type=str, default="./outputs/baselines/")
     args = parser.parse_args()
     return args
 
 
 if __name__ == "__main__":
     args = parse_args()
-    result_path = f"./outputs/logic_inference"
     model_name = args.model_name.replace("/", "-")
     result_file = os.path.join(
-        result_path,
+        args.result_path,
         args.dataset_name,
-        f"{args.dataset_name}_{args.split}_{model_name}_backup-{args.backup}.json",
+        f"{args.mode}_{args.dataset_name}_{args.split}_{model_name}.json",
     )
-    # evaluate_QA(result_file)
-    full_evaluation(result_file)
+    evaluate_QA(result_file)

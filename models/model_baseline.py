@@ -38,6 +38,9 @@ class Model_Baseline:
         self.label_phrase = "The correct option is:"
         # replace "/" with "-" in model name for saving
         self.model_name = self.model_name.replace("/", "-")
+        # save outputs
+        if not os.path.exists(self.save_path):
+            os.makedirs(self.save_path)
 
     def prompt(self, in_context_example, test_example):
         full_prompt = in_context_example
@@ -80,21 +83,11 @@ class Model_Baseline:
             # create prompt
             full_prompt = self.prompt_creator(in_context_examples, example)
             output = self.model.generate(full_prompt)
-
-            # get the answer
-            label_phrase = self.label_phrase
-            generated_answer = output.split(label_phrase)[-1].strip()
-            generated_reasoning = output.split(label_phrase)[0].strip()
-
+            if self.args.stop_words:
+                output = output[: -len(self.args.stop_words)]
             # create output
-            output = {
-                "id": example["id"],
-                "question": question,
-                "answer": example["answer"],
-                "predicted_reasoning": generated_reasoning,
-                "predicted_answer": generated_answer,
-            }
-            outputs.append(output)
+            dict_output = self.update_answer(example, output)
+            outputs.append(dict_output)
 
         # save outputs
         with open(
@@ -129,6 +122,8 @@ class Model_Baseline:
                 batch_outputs = self.model.batch_generate(full_prompts)
                 # create output
                 for sample, output in zip(chunk, batch_outputs):
+                    if self.args.stop_words:
+                        output = output[: -len(self.args.stop_words)]
                     # get the answer
                     dict_output = self.update_answer(sample, output)
                     outputs.append(dict_output)
@@ -137,6 +132,8 @@ class Model_Baseline:
                 for sample, full_prompt in zip(chunk, full_prompts):
                     try:
                         output = self.model.generate(full_prompt)
+                        if self.args.stop_words:
+                            output = output[: -len(self.args.stop_words)]
                         # get the answer
                         dict_output = self.update_answer(sample, output)
                         outputs.append(dict_output)
@@ -172,7 +169,7 @@ def parse_args():
     parser.add_argument("--data_path", type=str, default="./data")
     parser.add_argument("--dataset_name", type=str)
     parser.add_argument("--split", type=str)
-    parser.add_argument("--save_path", type=str, default="./models/outputs/baselines")
+    parser.add_argument("--save_path", type=str, default="./outputs/baselines")
     parser.add_argument("--demonstration_path", type=str, default="./models/prompts")
     parser.add_argument("--api_key", type=str)
     parser.add_argument("--model_name", type=str)
@@ -187,4 +184,4 @@ def parse_args():
 if __name__ == "__main__":
     args = parse_args()
     model_baseline = Model_Baseline(args)
-    model_baseline.batch_reasoning_graph_generation(batch_size=10)
+    model_baseline.batch_reasoning_graph_generation()
