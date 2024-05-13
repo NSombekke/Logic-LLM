@@ -20,11 +20,16 @@ class SelfRefinementEngine:
         self.split = args.split
         self.framework = args.framework
         self.model_name = args.model_name
+        self.model_name = self.model_name.replace("/", "-")
         self.dataset_name = args.dataset_name
         self.backup_strategy = args.backup_strategy
         if self.framework == "huggingface":
             self.model = HuggingFaceModel(
-                args.api_key, args.model_name, args.stop_words, args.max_new_tokens
+                args.api_key,
+                args.model_name,
+                args.stop_words,
+                args.max_new_tokens,
+                args.is_AWQ,
             )
         elif self.framework == "openai":
             self.model = OpenAIModel(
@@ -138,7 +143,7 @@ class SelfRefinementEngine:
             os.makedirs("./outputs/logic_programs")
 
         # save outputs
-        save_path = f"./outputs/logic_programs/{self.model_name}/self-refine-{self.current_round}_{self.dataset_name}_{self.split}_{self.model_name}.json"
+        save_path = f"./outputs/logic_programs/{self.dataset_name}/self-refine-{self.current_round}_{self.dataset_name}_{self.split}_{self.model_name}.json"
         with open(save_path, "w") as f:
             json.dump(outputs, f, indent=2, ensure_ascii=False)
 
@@ -159,6 +164,7 @@ def parse_args():
     parser.add_argument("--api_key", type=str)
     parser.add_argument("--stop_words", type=str, default="------\n")
     parser.add_argument("--max_new_tokens", type=int, default=1024)
+    parser.add_argument("--is_AWQ", action="store_true", default=False)
     args = parser.parse_args()
     return args
 

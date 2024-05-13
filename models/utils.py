@@ -8,6 +8,8 @@ from transformers import pipeline
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import StoppingCriteria, StoppingCriteriaList
 
+from awq import AutoAWQForCausalLM
+
 
 # Backoff decorator -> Retry function when RateLimitError is raised
 @backoff.on_exception(backoff.expo, openai.error.RateLimitError)
@@ -192,16 +194,26 @@ class StoppingCriteriaToken(StoppingCriteria):
 
 class HuggingFaceModel:
     def __init__(
-        self, API_KEY, model_name, stop_words, max_new_tokens, temperature=0.0
+        self, API_KEY, model_name, stop_words, max_new_tokens, is_AWQ, temperature=0.0
     ) -> None:
         self.api_key = API_KEY
         self.model_name = model_name
 
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
 
-        self.model = AutoModelForCausalLM.from_pretrained(
-            self.model_name, device_map="auto", torch_dtype="auto"
-        )
+        if is_AWQ:
+            model = AutoAWQForCausalLM.from_quantized(
+                model_name,
+                fuse_layers=True,
+                device_map="auto",
+                trust_remote_code=False,
+                safetensors=True,
+            )
+            self.model = model.model
+        else:
+            self.model = AutoModelForCausalLM.from_pretrained(
+                self.model_name, device_map="auto", torch_dtype="auto"
+            )
 
         stop_token_ids = [
             self.tokenizer(stop_token, return_tensors="pt", add_special_tokens=False)[

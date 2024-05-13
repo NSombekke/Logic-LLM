@@ -27,7 +27,11 @@ class Model_Baseline:
             )
         elif args.framework == "huggingface":
             self.model = HuggingFaceModel(
-                args.api_key, args.model_name, args.stop_words, args.max_new_tokens
+                args.api_key,
+                args.model_name,
+                args.stop_words,
+                args.max_new_tokens,
+                args.is_AWQ,
             )
         else:
             raise ValueError(
@@ -177,6 +181,7 @@ def parse_args():
     parser.add_argument("--stop_words", type=str, default="------\n")
     parser.add_argument("--mode", type=str)
     parser.add_argument("--max_new_tokens", type=int, default=1024)
+    parser.add_argument("--is_AWQ", action="store_true", default=False)
     args = parser.parse_args()
     return args
 

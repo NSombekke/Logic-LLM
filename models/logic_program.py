@@ -26,7 +26,11 @@ class LogicProgramGenerator:
             )
         elif args.framework == "huggingface":
             self.model = HuggingFaceModel(
-                args.api_key, args.model_name, args.stop_words, args.max_new_tokens
+                args.api_key,
+                args.model_name,
+                args.stop_words,
+                args.max_new_tokens,
+                args.is_AWQ,
             )
         else:
             raise ValueError(
@@ -240,6 +244,7 @@ def parse_args():
     parser.add_argument("--framework", type=str.lower, default="openai")
     parser.add_argument("--stop_words", type=str, default="------\n")
     parser.add_argument("--max_new_tokens", type=int, default=1024)
+    parser.add_argument("--is_AWQ", action="store_true", default=False)
     args = parser.parse_args()
     return args
 
@@ -247,4 +252,4 @@ def parse_args():
 if __name__ == "__main__":
     args = parse_args()
     logic_program_generator = LogicProgramGenerator(args)
-    logic_program_generator.batch_logic_program_generation()
+    logic_program_generator.logic_program_generation()
