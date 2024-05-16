@@ -120,4 +120,124 @@
     "answer": "B",
     "question_raw_ltl":"F ( landmark_1 & !red_room )"
   },
-
+  {
+    "id": "LTL_dev_41",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the second floor while always avoiding the green room. Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) Go to the yellow room then go to the green room",
+      "B) First move to the orange room and then move down one floor",
+      "C) First go to the orange room and then move to the purple room"
+    ],
+    "answer": "B",
+    "question_raw_ltl":"F ( second_floor & ! green_room )"
+  },
+  {
+    "id": "LTL_dev_42",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Avoid the purple room until after going to the third floor. Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) Starting from the purple room move to landmark one and then stay at the third floor",
+      "B) From the first floor move down one floor and visit the green room",
+      "C) First move to the orange room and then go to the purple room"
+    ],
+    "answer": "C",
+    "question_raw_ltl":"! ( purple_room ) U ( third_floor )"
+  },
+  {
+    "id": "LTL_dev_43",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the first floor and then go to the purple room. Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) Starting from the green room move to the purple room after visiting the orange room",
+      "B) Move from the red room to the yellow room and go the the purple room afterwards",
+      "C) First go to the purple room and then go to the red or yellow room"
+    ],
+    "answer": "B",
+    "question_raw_ltl":"F ( first_floor & F ( purple_room ) )"
+  },
+  {
+    "id": "LTL_dev_44",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Navigate to the orange room, always avoiding the green room. Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) From the orange room go to the green room after going through the yellow room",
+      "B) First go to the yellow room and then move to the purple froom afterwards",
+      "C) Go from the yellow or red room to the orange room while passing the second floor"
+    ],
+    "answer": "C",
+    "question_raw_ltl":"F ( orange_room & ! green_room )"
+  },
+  {
+    "id": "LTL_dev_45",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Always avoid the purple room , go to the first floor. Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) Move to the red room after visiting the green room or the third floor",
+      "B) Go up one floor from the green room and go to the orange room",
+      "C) From the second floor move to the purple room and then go to the yellow room"
+    ],
+    "answer": "A",
+    "question_raw_ltl":"F ( first_floor & ! purple_room )"
+  },
+  {
+    "id": "LTL_dev_46",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the orange room before going to the green room. Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) Start in the green room and move to the orange room after going to landmark one",
+      "B) From the third floor move to the second floor and go into the green room",
+      "C) Starting in the purple room move to the orange room and go down to the green room"
+    ],
+    "answer": "C",
+    "question_raw_ltl":"F ( orange_room & F ( green_room ) )"
+  },
+  {
+    "id": "LTL_dev_47",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to landmark one but do not enter the green room first. Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) Start on the second floor and go to landmark one after going to the green room",
+      "B) First visit landmark one and then move to the green room",
+      "C) After going to the third floor go to the yellow room"
+    ],
+    "answer": "B",
+    "question_raw_ltl":"! ( green_room ) U ( landmark_1 )"
+  },
+  {
+    "id": "LTL_dev_48",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Navigate to the green room always avoiding the red room. Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) From the first floor move to the second floor and go into the green room",
+      "B) Move to landmark one and go into the purple room or the second floor",
+      "C) First move from the first floor to the red room and go towards the green room afterwards"
+    ],
+    "answer": "A",
+    "question_raw_ltl":"F ( green_room & ! red_room )"
+  },
+  {
+    "id": "LTL_dev_49",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go through the orange room before going to the third floor. Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) Start at the orange room and stay on the same floor",
+      "B) Move to the third floor and visit landmark one before going to the orange room",
+      "C) From the yellow room go to the green room without going to the orange room"
+    ],
+    "answer": "A",
+    "question_raw_ltl":"F ( orange_room & F ( third_floor ) )"
+  },
+  {
+    "id": "LTL_dev_50",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the yellow room without going to the orange room. if you reached the yellow room, now you can go to the orange room. Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) Move from the green room to the red room or go to the red room directly",
+      "B) Go to the yellow room from the orange room and then move back to the orange room",
+      "C) From the third floor move into the yellow room after going into the purple room"
+    ],
+    "answer": "C",
+    "question_raw_ltl":"! ( orange_room ) U ( yellow_room )"
+  }
+]
