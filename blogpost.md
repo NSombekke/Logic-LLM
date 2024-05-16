@@ -45,11 +45,135 @@ The authors of Logic-LM pointed out a crucial constraint, stating that “the mo
 
 
 ## <a name="results">Results</a>
-*Results of your work (link that part with the code in the jupyter notebook)*
+### <a name="general results">Main results</a>
+<table align="center">
+	<tr align="center">
+		<th align="left">Dataset</th>
+		<th>Standard</th>
+		<th>GoT</th>
+		<th>Logic-LM</th>
+	</tr>
+	<tr align="center">
+		<td align="left">ProntoQA</td>
+		<td>48.80</td>
+		<td><b>81.00</b></td>
+		<td>67.40</td>
+	</tr>
+	<tr align="center">
+		<td align="left">Proofwriter</td>
+		<td>34.33</td>
+		<td><b>49.17</b></td>
+		<td>37.83</td>
+	</tr>
+	<tr align="center">
+		<td align="left">FOLIO</td>
+		<td><b>51.96</b></td>
+		<td>51.00</td>
+		<td>36.27</td>
+	</tr>
+	<tr align="center">
+		<td align="left">LogicalDeduction</td>
+		<td>35.33</td>
+		<td>39.00</td>
+		<td><b>60.67</b></td>
+	</tr>
+	<tr align="center">
+		<td align="left">AR-LSAT</td>
+		<td><b>24.68</b></td>
+		<td>20.80</td>
+		<td>15.15</td>
+	</tr>
+	<tr align="left">
+		<td colspan=7><b>Table 1.</b> Accuracy of standard prompting (Standard), chain-of-thought prompting (CoT), and our method (LOGICLM, without self-refinement) across five reasoning datasets using the Llama-3 model. The best results for each base LLM are highlighted.</td>
+	</tr>
+</table>
 
+Table 1 shows the results of the experiments with the open-source model.  It displays that Logic-LM only scored highest on the LogicalDeduction dataset, where it scored 60.67 compared to 35.33 and 39.00 for Standard and CoT respectively. For the other datasets Logic-LM got outperformed by either the Standard or the CoT model.
+
+Comparing these results to the GPT model results, we observe that Llama generally performs worse than the GPT models. Logic-LM has significantly lower scores compared to all GPT models for the Proofwriter, FOLIO and AR-LSAT dataset and slight lower scores for the LogicalDeduction dataset. Only on the PrOntoQA Llama achieved a higher score than gpt-3.5-turbo, while still having worse scores when using the other GPT models. For the Standard and CoT method we observe similar performance to gpt-3.5-turbo while also being outperformed by the other GPT models.
+
+
+### <a name="sr results">Self-refinement</a>
+<table align="center">
+	<tr align="center">
+		<th align="left">Dataset</th>
+		<th>Refinement</th>
+		<th>Exec-rate</th>
+		<th>Exec-acc</th>
+	</tr>
+	<tr align="center">
+		<td align="left">ProntoQA</td>
+		<td>-</td>
+		<td>91.60</td>
+		<td>69.65</td>
+	</tr>
+	<tr align="center">
+		<td ></td>
+		<td>+</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr align="center">
+		<td align="left">Proofwriter</td>
+		<td>-</td>
+		<td>13.00</td>
+		<td>70.51</td>
+	</tr>
+	<tr align="center">
+		<td ></td>
+		<td>+</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr align="center">
+		<td align="left">FOLIO</td>
+		<td>-</td>
+		<td>37.25</td>
+		<td>48.68</td>
+	</tr>
+	<tr align="center">
+		<td ></td>
+		<td>+</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr align="center">
+		<td align="left">LogicalDeduction</td>
+		<td>-</td>
+		<td>100.00</td>
+		<td>60.67</td>
+	</tr>
+	<tr align="center">
+		<td ></td>
+		<td>+</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr align="center">
+		<td align="left">AR-LSAT</td>
+		<td>-</td>
+		<td>20.35</td>
+		<td>21.28</td>
+	</tr>
+	<tr align="center">
+		<td ></td>
+		<td>+</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr align="left">
+		<td colspan=7><b>Table 2.</b>  TODO: Give title.</td>
+	</tr>
+</table>
+Table 2 displays a comparison of self-refinement
 
 
 ## <a name="conclusion">Conclusion</a>
+Our experiments show that it is possible to use Logic-LM with open-source language models. However the achieved performance with one SoTA open-source language model (Llama-3) is clearly lower than the performance of the paid GPT models. The GPT models scored better on all datasets except PrOntoQA, where Llama performed better than ChatGPT. Interestingly with the Standard and CoT method similar performance was achieved to ChatGPT and GPT 3.5, so only Logic-LM really drops in performance with the open-source model. It should be noted that once better open-source models become available, they could perform equally as good or better than paid models, since performance is clearly related to the used language model. 
+
+Using Llama-3 we observed that the performance of Logic-LM is significantly worse than the Standard and CoT methods, except on the LogicalDeduction dataset, where Logic-LM performed slightly better. This contradicts the findings of **the original authors**, since they found Logic-LM to outperform the other 2 methods on almost all datasets with all three GPT models. This is likely due to a difference in performance of the open-source language model itself. Moreover the difference could lead to wrong input for the logic solvers, making them unable to correctly solve the problems. 
+
+
 
 
 
