@@ -1,297 +1,110 @@
 [
   
   {
-    "id": "LTL_dev_35",
-    "context": "a holds until b holds or always a holds",
-    "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-    "options": [],
-    "answer": "(a U b) || G a"
+    "id": "LTL_dev_1",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "First either go to the second floor or the red room and then go to the first floor. Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) First go to the green room and then move the red room",
+      "B) First go to the third floor and stay there",
+      "C) Go to the second floor and then move to the purple room"
+    ],
+    "answer": "A",
+    "question_raw_ltl":"F((second_floor || red_room) & F(first_floor))"
   },
   {
-    "id": "LTL_dev_36",
-    "context": "Always, if an email is sent through the network, then it will eventually be delivered.",
-    "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-    "options": [],
-    "answer": "G (send_email -> F delivered)"
+    "id": "LTL_dev_2",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the green room after entering the second floor. Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) Go to the purple room and then move to the second floor",
+      "B) Only visit the green room",
+      "C) Go to the red room and then move to the orange room passing the second floor"
+    ],
+    "answer": "B",
+    "question_raw_ltl":"F((second_floor & F(green_room)))"
   },
   {
-    "id": "LTL_dev_37",
-    "context": "If a car is parked and the meter has expired, then at the next moment it will be ticketed.",
-    "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-    "options": [],
-    "answer": "(parked && meter_expired) -> X ticket_for_violation"
+    "id": "LTL_dev_3",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Move to landmark 1 without entering the purple room. Then you may stay at landmark 1 or go to the purple room. Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) Enter the purple room and then go to landmark one",
+      "B) Go to the purple room without entering landmark one",
+      "C) Go to the third floor passing landmark one and then go to the purple room"
+    ],
+    "answer": "C",
+    "question_raw_ltl":"!purple_room U (landmark_1)"
   },
   {
-    "id": "LTL_dev_38",
-    "context": "The university library never closes.",
-    "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-    "options": [],
-    "answer": "G library_open"
+    "id": "LTL_dev_4",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the orange room but avoid landmark one. if you reached to the orange room then you can head to landmark one or stay put . Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) Go to the orange room and then move to the green room",
+      "B) Go to landmark one and then move to the orange room and stay there",
+      "C) Go to the orange room and stay there"
+    ],
+    "answer": "C",
+    "question_raw_ltl":"!(landmark_1) U (orange_room)"
   },
   {
-    "id": "LTL_dev_39",
-    "context": "Always, after the machine gets a coin and the user press a button, it gives coffee or tea.",
-    "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step." ,
-    "options": [],
-    "answer": "G ((coin && X press_Button) -> F (serve_Coffee || serve_Tea))"
+    "id": "LTL_dev_5",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "go through the third floor and navigate to the green room . Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) Go to landmark one passing the third floor and then move to the green room",
+      "B) Go inside the red room and then move to the green room",
+      "C) From the second floor go to the green room and stay there"
+    ],
+    "answer": "A",
+    "question_raw_ltl":"F ( third_floor & F ( green_room ) )"
   },
   {
-    "id": "LTL_dev_40",
-    "context": "Always, after pressing a button the machine will serve coffee and then tea immediately afterward.",
-    "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-    "options": [],
-    "answer": "G (press_Button -> (serve_Coffee && X serve_Tea))"
+    "id": "LTL_dev_6",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "always avoid the green room and navigate to the third floor. Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) From the third floor go to the green room and stay there",
+      "B) Go inside the red room and then move to the green room",
+      "C) Go to the second floor passing the yellow room and then go to the third floor"
+    ],
+    "answer": "C",
+    "question_raw_ltl":"F ( third_floor & ! green_room )"
   },
   {
-    "id": "LTL_dev_41",
-    "context": "The gate remains closed until the train leaves the crossing.",
-    "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-    "options": [],
-    "answer": "gate_closed U train_exits"
-  }
-]
-
-// {
-//   "id": "LTL_dev_0",
-//   "context": "Every a is eventually followed by a e.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G(a -> F e)"
-// },
-// {
-//   "id": "LTL_dev_1",
-//   "context": "It is never the case that a and b hold at the same time.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G(!(a & b))"
-// },
-// {
-//   "id": "LTL_dev_2",
-//   "context": "Whenever a is enabled, b is enabled three steps later.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G(a -> X (X (X b)))"
-// },
-// {
-//   "id": "LTL_dev_3",
-//   "context": "e must hold everywhere until from some point on, d holds infinitely often.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "e U (G (F d))"
-// },
-// {
-//   "id": "LTL_dev_4",
-//   "context": "If b holds at some point, a has to hold somewhere beforehand.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "(F b) -> (!b U (a & !b))"
-// },
-// {
-//   "id": "LTL_dev_5",
-//   "context": "Whenever a holds, b holds as well.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G(a -> b)"
-// },
-// {
-//   "id": "LTL_dev_6",
-//   "context": "Both a and b hold in every time step.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G (a && b)"
-// },
-// {
-//   "id": "LTL_dev_7",
-//   "context": "a holds always and whenever b holds, c does not hold.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G a && G(b -> !c)"
-// },
-// {
-//   "id": "LTL_dev_8",
-//   "context": "If it is the case that every a is eventually followed by a b, then c needs to holds infinitely often.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G(a -> F b) -> G F c"
-// },
-// {
-//   "id": "LTL_dev_9",
-//   "context": "If a holds infinitely often, then b holds infinitely often as well.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G F a -> G F b"
-// },
-// {
-//   "id": "LTL_dev_10",
-//   "context": "Either a or b holds infinitely often",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G F a || G F b"
-// },
-// {
-//   "id": "LTL_dev_11",
-//   "context": "a never holds from some point in time on.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "F G ! a"
-// },
-// {
-//   "id": "LTL_dev_12",
-//   "context": "Whenever a and b do not hold, c holds eventually.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "answer": "G (!(a && b) -> F c)"
-// },
-// {
-//   "id": "LTL_dev_13",
-//   "context": "a and b never occur at the same time but one of them holds in every time step.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G(!(a &&b)) && G(a || b)"
-// },
-// {
-//   "id": "LTL_dev_14",
-//   "context": "Whenever the inputs a and b are the same, the outputs c and d are the same.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G ((a <-> b) -> (c <-> d))"
-// },
-// {
-//   "id": "LTL_dev_15",
-//   "context": "a can only happen if b happend before",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "(! a) U b"
-// },
-// {
-//   "id": "LTL_dev_16",
-//   "context": "Once a happened, b will not happen again.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G (a -> X G ! b)"
-// },
-// {
-//   "id": "LTL_dev_17",
-//   "context": "a releases b",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "(b U (b & ! a)) | G b"
-// },
-// {
-//   "id": "LTL_dev_18",
-//   "context": "a and b will not occur at the same time",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G !(a & b)"
-// },
-// {
-//   "id": "LTL_dev_19",
-//   "context": "Whenever a holds and b holds in the next step, then c holds one step after b.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G (a && X b -> X X c)"
-// },
-// {
-//   "id": "LTL_dev_20",
-//   "context": "Whenever a holds, b must hold eventually from the next step on.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G (a -> X F b)"
-// },
-// {
-//   "id": "LTL_dev_21",
-//   "context": "a holds in every fifth step.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "a && G (a -> X ! a && X X ! a && X X X ! a && X X X X ! a && X X X X X a)"
-// },
-// {
-//   "id": "LTL_dev_22",
-//   "context": "Either a holds infinitely often or b holds in the next step.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G F a || X b"
-// },
-// {
-//   "id": "LTL_dev_23",
-//   "context": "a will hold at all instances.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G (a)"
-// },
-// {
-//   "id": "LTL_dev_24",
-//   "context": "Whenever a holds, b must hold in the next two steps",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G (a -> (b | X b))"
-// },
-// {
-//   "id": "LTL_dev_25",
-//   "context": "One of the following aps will hold at all instances: a,b,c",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G (a | b | c)"
-// },
-// {
-//   "id": "LTL_dev_26",
-//   "context": "If a holds b will eventually hold",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G (a -> F b)"
-// },
-// {
-//   "id": "LTL_dev_27",
-//   "context": "a must always hold, but if is execeeds, it allow two timestamps to recover.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "! G (! (a && X a))"
-// },
-// {
-//   "id": "LTL_dev_28",
-//   "context": "not a holds at most two timestamps;",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "! G (! (a && X a))"
-// },
-// {
-//   "id": "LTL_dev_29",
-//   "context": "a can only hold every three timestamps",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G ( a -> (X !a | XX !a | XXX !a))"
-// },
-// {
-//   "id": "LTL_dev_30",
-//   "context": "Every a is followed by a b.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G ( a -> X b)"
-// },
-// {
-//   "id": "LTL_dev_31",
-//   "context": "Eventually a and b hold.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "F (a && b)"
-// },
-// {
-//   "id": "LTL_dev_32",
-//   "context": "Both a and b hold eventually.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "F a && F b"
-// },
-// {
-//   "id": "LTL_dev_33",
-//   "context": "It is always the case that a is the same as b in the next step.",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "G (a <-> X b)"
-// },
-// {
-//   "id": "LTL_dev_34",
-//   "context": "If b holds then, in the next step, c holds until a holds or always c holds",
-//   "question": "The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula and explain your translation step by step.",
-//   "options": [],
-//   "answer": "b -> X ((c U a) || G c)"
-// },
+    "id": "LTL_dev_7",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "go through the yellow room to the second floor. Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) From the third floor go to the yellow room then move to the green room",
+      "B) Visit the second floor after going to the red room",
+      "C) Go to the red room and finally go to the yellow room"
+    ],
+    "answer": "A",
+    "question_raw_ltl":"F ( yellow_room & F ( second_floor ) )"
+  },
+  {
+    "id": "LTL_dev_7",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "go through the yellow room to the second floor. Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) From the third floor go to the yellow room then move to the green room",
+      "B) Visit the second floor after going to the red room",
+      "C) Go to the red room and finally go to the yellow room"
+    ],
+    "answer": "A",
+    "question_raw_ltl":"F ( yellow_room & F ( second_floor ) )"
+  },
+  {
+    "id": "LTL_dev_8",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "go through the yellow room to the second floor. Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) From the third floor go to the yellow room then move to the green room",
+      "B) Visit the second floor after going to the red room",
+      "C) Go to the red room and finally go to the yellow room"
+    ],
+    "answer": "A",
+    "question_raw_ltl":"F ( yellow_room & F ( second_floor ) )"
+  },
