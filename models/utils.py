@@ -8,6 +8,8 @@ from transformers import pipeline
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import StoppingCriteria, StoppingCriteriaList
 
+from awq import AutoAWQForCausalLM
+
 
 # Backoff decorator -> Retry function when RateLimitError is raised
 @backoff.on_exception(backoff.expo, openai.error.RateLimitError)
@@ -192,16 +194,26 @@ class StoppingCriteriaToken(StoppingCriteria):
 
 class HuggingFaceModel:
     def __init__(
-        self, API_KEY, model_name, stop_words, max_new_tokens, temperature=0.0
+        self, API_KEY, model_name, stop_words, max_new_tokens, is_AWQ, temperature=0.0
     ) -> None:
         self.api_key = API_KEY
         self.model_name = model_name
 
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
 
-        self.model = AutoModelForCausalLM.from_pretrained(
-            self.model_name, device_map="auto", torch_dtype="auto"
-        )
+        if is_AWQ:
+            model = AutoAWQForCausalLM.from_quantized(
+                model_name,
+                fuse_layers=True,
+                device_map="auto",
+                trust_remote_code=False,
+                safetensors=True,
+            )
+            self.model = model.model
+        else:
+            self.model = AutoModelForCausalLM.from_pretrained(
+                self.model_name, device_map="auto", torch_dtype="auto"
+            )
 
         stop_token_ids = [
             self.tokenizer(stop_token, return_tensors="pt", add_special_tokens=False)[
@@ -226,79 +238,17 @@ class HuggingFaceModel:
             stopping_criteria=stopping_criteria,
         )
 
+        if self.pipe.tokenizer.pad_token_id is None:
+            self.pipe.tokenizer.pad_token_id = self.pipe.model.config.eos_token_id
+
     def generate(self, input_string):
-        if self.model_name in [
-            "meta-llama/Meta-Llama-3-8B",
-            "meta-llama/Meta-Llama-3-70B",
-            "mistralai/Mixtral-8x7B-v0.1",
-            "mistralai/Mixtral-8x22B-v0.1",
-        ]:
-            return self.prompt_generate(input_string)
-        elif self.model_name in [
-            "meta-llama/Meta-Llama-3-8B-Instruct",
-            "meta-llama/Meta-Llama-3-70B-Instruct",
-            "mistralai/Mixtral-8x7B-Instruct-v0.1",
-            "mistralai/Mixtral-8x22B-Instruct-v0.1",
-        ]:
-            return self.chat_generate(input_string)
-        else:
-            raise Exception("Model name not recognized")
-
-    def chat_generate(self, input_string):
-        message = [{"role": "user", "content": input_string}]
-        inputs = self.pipe.tokenizer.apply_chat_template(
-            message, tokenize=False, add_generation_prompt=True
-        )
-        response = self.pipe(
-            inputs,
-        )
-        generated_text = response[0]["generated_text"].strip()
-        return generated_text
-
-    def prompt_generate(self, input_string):
         response = self.pipe(
             input_string,
         )
-        response_ids = self.pipe(input_string, return_tensors=True)
         generated_text = response[0]["generated_text"].strip()
-        # show generated text word for word with token id behind it for debugging
         return generated_text
 
-    def batch_generate(self, input_string):
-        if self.model_name in [
-            "meta-llama/Meta-Llama-3-8B",
-            "meta-llama/Meta-Llama-3-70B",
-            "mistralai/Mixtral-8x7B-v0.1",
-            "mistralai/Mixtral-8x22B-v0.1",
-        ]:
-            return self.batch_prompt_generate(input_string)
-        elif self.model_name in [
-            "meta-llama/Meta-Llama-3-8B-Instruct",
-            "meta-llama/Meta-Llama-3-70B-Instruct",
-            "mistralai/Mixtral-8x7B-Instruct-v0.1",
-            "mistralai/Mixtral-8x22B-Instruct-v0.1",
-        ]:
-            return self.batch_chat_generate(input_string)
-        else:
-            raise Exception("Model name not recognized")
-
-    def batch_chat_generate(self, input_strings):
-        inputs_list = []
-        for input_string in input_strings:
-            message = [{"role": "user", "content": input_string}]
-            inputs = self.pipe.tokenizer.apply_chat_template(
-                message, tokenize=False, add_generation_prompt=True
-            )
-            inputs_list.append(inputs)
-        responses = self.pipe(
-            inputs_list,
-        )
-        generated_text = [
-            response[0]["generated_text"].strip() for response in responses
-        ]
-        return generated_text
-
-    def batch_prompt_generate(self, input_strings):
+    def batch_generate(self, input_strings):
         responses = self.pipe(
             input_strings,
         )
