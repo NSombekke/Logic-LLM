@@ -213,4 +213,4 @@ Using Llama-3 we observed that the performance of Logic-LM is significantly wors
 
 [2] Murray Shanahan. 2022. Talking about large language models. CoRR, abs/2212.03551.
 
-[3] ...
+[3] Francesco Fuggitti. 2019. LTLf2DFA (Version 1.0.3). Zenodo. DOI: 10.5281/zenodo.3888410. Available at: https://github.com/whitemech/LTLf2DFA and http://ltlf2dfa.diag.uniroma1.it.
