@@ -86,12 +86,18 @@ The trace-based satisfiability reasoning enhances the framework's ability to han
 - Model checking for the validity of traces
  
 ![Example Image](Untitled_Diagram.jpg)
+#### Syntax Checker
+Check the safety of the LTL formula using a syntax checker.
 
 #### <a name="ltl">Drone Planning Domain</a>
 We evaluate the extension of Logic_LM on a dataset create for a Drone Planning domain. 
 - Drone navigation command in natural language into an LTL expression
 - Different paper feeds this LTL expression in to a trajectory planner that can plan the task in a predefined environment.
-- Instead, we add the predefined environment in Natural Langauge to the multiple Choice questions. 
+- Instead, we add the predefined environment in Natural Langauge to the multiple Choice questions.
+
+#### Language Grounding Results
+We aim to test how well the few shot learning performs the natural language to LTL conversion. 
+TO DO. 
 
 ## <a name="contribution">Novel contribution</a>
 *Describe your novel contribution.*
