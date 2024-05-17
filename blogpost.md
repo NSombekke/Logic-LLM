@@ -28,7 +28,7 @@ The Logic-LM decomposes a logical reasoning problem into three stages: stages: *
 | First-Order Logic      | FOL         | A Czech person wrote a book in 1946.                                        | ∃x₂∃x₁(Czech(x₁) ∧ Author(x₂, x₁) ∧ Book(x₂) ∧ Publish(x₂, 1946)) | Prover9           | FOLIO                 |
 | Constraint Satisfaction| CSP         | On a shelf, there are five books. The blue book is to the right of the yellow book. | blue_book ∈ {1, 2, 3, 4, 5} yellow_book ∈ {1, 2, 3, 4, 5} blue_book > yellow_book | python-constraint | LogicalDeduction      |
 | Analytical Reasoning   | SAT         | Xena and exactly three other technicians repair radios                      | repairs(Xena, radios) ∧ Count([t:technicians], t ≠ Xena ∧ repairs(t, radios)) == 3 | Z3                | AR-LSAT               |
-| Temporal reasoning  | LTL         | Xena and exactly three other technicians repair radios                      | To Do | Buchi Automaton                | Manual              |
+| Temporal reasoning  | LTL         | Go through the red room to the second floor.                    |F(red_room ∧ F (second_floor)) | Buchi Automaton                | Manual              |
 
 **Table 1**: A summary of the symbolic formulations and symbolic solvers we use for cateogies of logical reasoning in our study.
 
@@ -55,9 +55,12 @@ The authors of Logic-LM pointed out a crucial constraint, stating that “the mo
 ## <a name="ltl">Linear Temporal Logic</a>
 Introduction to the grammar of LTL. Linear-time Temporal Logic (LTL) 
 Natural language-to-LTL.
+
 ### <a name="ltl">Symbolic Reasoner</a>
 ### Buchi Automaton 
-For temporal reasoning, we incorporate a libary for translating LTL formulas with finite-trace semantics to automato. This allows for satisfiability and validity reasoning over finite traces. 
+For temporal reasoning, we incorporate a libary for translating LTL formulas (in CNF form) with finite-trace semantics into a minimal Deterministic Finite state Automaton (DFA) using MONA [3]. This DFA captures the temporal constraints specified by the LTL formula and enables efficient reasoning over finite traces.
+The trace-based satisfiability reasoning enhances the framework's ability to handle temporal aspects of logical reasoning problems. 
+
 #### <a name="ltl">Drone Planning Domain</a>
 - Drone navigation command in natural language into an LTL expression
 - Different paper feeds this LTL expression in to a trajectory planner that can plan the task in a predefined environment.
