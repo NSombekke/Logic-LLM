@@ -77,13 +77,17 @@ TO DO - **explain the grammar**
 
 ### <a name="ltl">Symbolic Reasoner</a>
 ### Buchi Automaton 
+
 For temporal reasoning, we incorporate a libary for translating LTL formulas (in CNF form) with finite-trace semantics into a minimal Deterministic Finite state Automaton (DFA) using MONA [3]. This DFA captures the temporal constraints specified by the LTL formula and enables efficient reasoning over finite traces.
 The trace-based satisfiability reasoning enhances the framework's ability to handle temporal aspects of logical reasoning problems. 
+
+- Using few shot learning we create a mapping between natural language commands and their associated LTL formula. For example, *Every a is eventually followed by an e,* may be parsed into *G(a -> Fe)*. And *The gate remains closed untill the train leaves the crossing* can be translated to *gate-closed U train-exists*. Given a prompt, an open source LLM can be instructed to create such LTL formulae from natural langauge. 
 - Traces are possible executions
 - Model checking for the validity of traces
 - 
 
 #### <a name="ltl">Drone Planning Domain</a>
+We evaluate the extension of Logic_LM on a dataset create for a Drone Planning domain. 
 - Drone navigation command in natural language into an LTL expression
 - Different paper feeds this LTL expression in to a trajectory planner that can plan the task in a predefined environment.
 - Instead, we add the predefined environment in Natural Langauge to the multiple Choice questions. 
