@@ -84,7 +84,8 @@ The trace-based satisfiability reasoning enhances the framework's ability to han
 - Using few shot learning we create a mapping between natural language commands and their associated LTL formula. For example, *Every a is eventually followed by an e,* may be parsed into *G(a -> Fe)*. And *The gate remains closed untill the train leaves the crossing* can be translated to *gate-closed U train-exists*. Given a prompt, an open source LLM can be instructed to create such LTL formulae from natural langauge. 
 - Traces are possible executions
 - Model checking for the validity of traces
-- 
+ 
+![Example Image](Untitled_Diagram.jpg)
 
 #### <a name="ltl">Drone Planning Domain</a>
 We evaluate the extension of Logic_LM on a dataset create for a Drone Planning domain. 
