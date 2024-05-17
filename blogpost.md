@@ -56,7 +56,8 @@ The authors of Logic-LM pointed out a crucial constraint, stating that “the mo
 Introduction to the grammar of LTL. Linear-time Temporal Logic (LTL) 
 Natural language-to-LTL.
 ### <a name="ltl">Symbolic Reasoner</a>
-*Buchi Automaton* For temporal reasoning, we incorporate a libary for translating LTL formulas with finite-trace semantics to automato. This allows for satisfiability and validity reasoning over finite traces. 
+### Buchi Automaton 
+For temporal reasoning, we incorporate a libary for translating LTL formulas with finite-trace semantics to automato. This allows for satisfiability and validity reasoning over finite traces. 
 #### <a name="ltl">Drone Planning Domain</a>
 - Drone navigation command in natural language into an LTL expression
 - Different paper feeds this LTL expression in to a trajectory planner that can plan the task in a predefined environment.
@@ -211,3 +212,5 @@ Using Llama-3 we observed that the performance of Logic-LM is significantly wors
 [1] Pan, L., Albalak, A., Wang, X., & Wang, W. Y. (2023). Logic-lm: Empowering large language models with symbolic solvers for faithful logical reasoning. arXiv preprint arXiv:2305.12295.
 
 [2] Murray Shanahan. 2022. Talking about large language models. CoRR, abs/2212.03551.
+
+[3] ...
