@@ -1,0 +1,11 @@
+@software{fuggitti-ltlf2dfa,
+  author       = {Francesco Fuggitti},
+  title        = {LTLf2DFA},
+  month        = {March},
+  year         = {2019},
+  publisher    = {Zenodo},
+  version      = {1.0.3},
+  doi          = {10.5281/zenodo.3888410},
+  url_code    = {https://github.com/whitemech/LTLf2DFA},
+  url_website = {http://ltlf2dfa.diag.uniroma1.it},
+}
