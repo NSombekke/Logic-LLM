@@ -53,8 +53,14 @@ The authors of Logic-LM pointed out a crucial constraint, stating that “the mo
 
 
 ## <a name="ltl">Linear Temporal Logic</a>
-Introduction to the grammar of LTL. 
+Introduction to the grammar of LTL. Linear-time Temporal Logic (LTL) 
 Natural language-to-LTL.
+### <a name="ltl">Symbolic Reasoner</a>
+*Buchi Automaton* For temporal reasoning, we incorporate a libary for translating LTL formulas with finite-trace semantics to automato. This allows for satisfiability and validity reasoning over finite traces. 
+#### <a name="ltl">Drone Planning Domain</a>
+- Drone navigation command in natural language into an LTL expression
+- Different paper feeds this LTL expression in to a trajectory planner that can plan the task in a predefined environment.
+- Instead, we add the predefined environment in Natural Langauge to the multiple Choice questions. 
 
 ## <a name="contribution">Novel contribution</a>
 *Describe your novel contribution.*
