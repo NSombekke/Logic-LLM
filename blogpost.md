@@ -55,11 +55,33 @@ The authors of Logic-LM pointed out a crucial constraint, stating that “the mo
 ## <a name="ltl">Linear Temporal Logic</a>
 Introduction to the grammar of LTL. Linear-time Temporal Logic (LTL) 
 Natural language-to-LTL.
+The langauge allows for the expression of linear time properties. Linear mean that each time step has a well-defined successor.
+LTL extends standard propositional logic to express properties that hold over trajectories across time. LTL adheres to the following grammar:
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mi>φ</mi> <mo>::=</mo> <mi>p</mi> 
+  <mo>|</mo> <mo>¬</mo> <mi>p</mi> 
+  <mo>|</mo> <mi>φ</mi><msub>1</msub> <mo>∧</mo> <mi>φ</mi><msub>2</msub> 
+  <mo>|</mo> <mi>φ</mi><msub>1</msub> <mo>∨</mo> <mi>φ</mi><msub>2</msub> 
+  <mo>|</mo> <mi>G</mi><mi>φ</mi> 
+  <mo>|</mo> <mi>F</mi><mi>φ</mi> 
+  <mo>|</mo> <mi>φ</mi><msub>1</msub> <mo>U</mo> <mi>φ</mi><msub>2</msub>
+</math>
+Where p is an atomic proposition. U  
+TO DO - **explain the grammar**
+- Always p
+- Eventually p
+- p untill q
+- Always eventually p
+
 
 ### <a name="ltl">Symbolic Reasoner</a>
 ### Buchi Automaton 
 For temporal reasoning, we incorporate a libary for translating LTL formulas (in CNF form) with finite-trace semantics into a minimal Deterministic Finite state Automaton (DFA) using MONA [3]. This DFA captures the temporal constraints specified by the LTL formula and enables efficient reasoning over finite traces.
 The trace-based satisfiability reasoning enhances the framework's ability to handle temporal aspects of logical reasoning problems. 
+- Traces are possible executions
+- Model checking for the validity of traces
+- 
 
 #### <a name="ltl">Drone Planning Domain</a>
 - Drone navigation command in natural language into an LTL expression
