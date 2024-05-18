@@ -56,10 +56,8 @@ The authors of Logic-LM pointed out a crucial constraint, stating that “the mo
 Our first extension is making Logic-LM work with open-source language models, instead of closed-source models like ChatGPT. To make the application as flexible as possible, this was appplied by using models from the Huggingface library TODO:Add link. This library contains a large variety of pre-trained open-source language models. For this project two versions of Meta's Llama-3 model were used, since these are current state-of-the-art open-source models (add ref). The first model is the 8B version of Llama-3 and the second is the 70B version. The former is a smaller version of the model, while the second is significantly larger and thus should have better performance. These models will be compared with the GPT models used by the original author to see how SoTA open-source models compare to closed-source models. By using two versions of this model we can also research the difference in performance between smaller and more complex models. 
 
 ## <a name="ltl">Linear Temporal Logic</a>
-Introduction to the grammar of LTL. Linear-time Temporal Logic (LTL) 
-Natural language-to-LTL.
-The langauge allows for the expression of linear time properties. Linear mean that each time step has a well-defined successor.
-LTL extends standard propositional logic to express properties that hold over trajectories across time. LTL adheres to the following grammar:
+We extend the Logic-LLM by introducing Linear-time Temporal Logic (LTL). 
+ Linear-time Temporal Logic extends standard propositional logic to express properties that hold over trajectories across time. LTL adheres to the following grammar:
 
 
 | Syntax        | Description           |
