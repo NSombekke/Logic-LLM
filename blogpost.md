@@ -187,20 +187,20 @@ We assess the proficiency of LLM in transforming a provided problem into the sym
 
 | Temporal Property                                               | Temporal Logic Formula                                      | LLAMA output |
 |-----------------------------------------------------------------|--------------------------------------------------------------|---|
-| Every a is eventually followed by a e                           | \(G(a \rightarrow F e)\)                                   |   |
-| It is never the case that a and b hold at the same time         | \(G(\neg(a \land b))\)                                     |   |
-| Whenever a is enabled, b is enabled three steps later           | \(G(a \rightarrow X(X(Xb)))\)                               |   |
-| e must hold everywhere until from some point on, d holds infinitely often | \(e \mathcal{U} (G(Fd))\)                             |   |
-| If b holds at some point, a has to hold somewhere beforehand     | \((Fb) \rightarrow (\neg b \mathcal{U} (a \land \neg b))\) |   |
-| Whenever a holds, b holds as well                               | \(G(a \rightarrow b)\)                                     |   |
-| Both a and b hold in every time step                            | \(G(a \land b)\)                                           |   |
-| a holds always and whenever b holds, c does not hold            | \(Ga \land G(b \rightarrow \neg c)\)                       |   |
-| If every a is eventually followed by a b, then c needs to holds infinitely often | \(G(a \rightarrow Fb) \rightarrow GFc\)           |   |
-| If a holds infinitely often, then b holds infinitely often as well | \(G(Fa) \rightarrow G(Fb)\)                           |   |
-| Either a or b holds infinitely often                            | \(GFa \lor GFb\)                                           |   |
-| a never holds from some point in time on                        | \(F G \neg a\)                                             |   |
-| Whenever a and b do not hold, c holds eventually                | \(G(\neg(a \land b) \rightarrow Fc)\)                      |   |
-| a and b never occur at the same time but one of them holds in every time step | \(G(\neg(a \land b)) \land G(a \lor b)\)         |   |
+| Every a is eventually followed by a e                           | $G(a \rightarrow F e)$                                 |   |
+| It is never the case that a and b hold at the same time         | $G(\neg(a \land b))$                                    |   |
+| Whenever a is enabled, b is enabled three steps later           | $G(a \rightarrow X(X(Xb)))$                               |   |
+| e must hold everywhere until from some point on, d holds infinitely often | $e \mathcal{U} (G(Fd))$                             |   |
+| If b holds at some point, a has to hold somewhere beforehand     | $(Fb) \rightarrow (\neg b \mathcal{U} (a \land \neg b))$ |   |
+| Whenever a holds, b holds as well                               | $G(a \rightarrow b)$                                    |   |
+| Both a and b hold in every time step                            | $G(a \land b)$                                           |   |
+| a holds always and whenever b holds, c does not hold            | $Ga \land G(b \rightarrow \neg c)$                       |   |
+| If every a is eventually followed by a b, then c needs to holds infinitely often | $G(a \rightarrow Fb) \rightarrow GFc$           |   |
+| If a holds infinitely often, then b holds infinitely often as well | $G(Fa) \rightarrow G(Fb)$                          |   |
+| Either a or b holds infinitely often                            | $GFa \lor GFb$                                          |   |
+| a never holds from some point in time on                        | $F G \neg a$                                            |   |
+| Whenever a and b do not hold, c holds eventually                | $G(\neg(a \land b) \rightarrow Fc)\)                      |   |
+| a and b never occur at the same time but one of them holds in every time step | $G(\neg(a \land b)) \land G(a \lor b)\)         |   |
 | Whenever the inputs a and b are the same, the outputs c and d are the same | \(G((a \leftrightarrow b) \rightarrow (c \leftrightarrow d))\) |   |
 | a can only happen if b happened before                          | \(\neg a \mathcal{U} b\)                                   |   |
 | Once a happened, b will not happen again                        | \(G(a \rightarrow X G \neg b)\)                            |   |
