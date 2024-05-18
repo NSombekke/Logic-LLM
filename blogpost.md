@@ -424,30 +424,30 @@ Table 2 displays a comparison of self-refinement
     <tr align="center">
         <td>FOLIO</td>
         <td>0</td>
-        <td>0.6</td>
-        <td>1.0</td>
-        <td>0.6</td>
+        <td>60.0</td>
+        <td>100.0</td>
+        <td>60.0</td>
     </tr>
     <tr align="center">
         <td>AR-LSAT</td>
         <td>5</td>
-        <td>0.2</td>
+        <td>20.0</td>
         <td>0.0</td>
         <td>-</td>
     </tr>
     <tr align="center">
         <td>LogicalDeduction</td>
         <td>5</td>
-        <td>0.4</td>
+        <td>40.0</td>
         <td>0.0</td>
         <td>-</td>
     </tr>
     <tr align="center">
         <td>ProofWriter</td>
         <td>4</td>
-        <td>0.4</td>
-        <td>0.2</td>
-        <td>1.0</td>
+        <td>40.0</td>
+        <td>20.0</td>
+        <td>100.0</td>
     </tr>
 	<tr align="left">
 		<td colspan=7><b>Table 3.</b>  TODO: Chat-GPT results</td>
