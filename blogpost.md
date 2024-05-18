@@ -86,6 +86,36 @@ Using few shot learning we create a mapping between natural language commands an
 | The gate remains closed untill the train leaves the crossing| gate-closed until train-leaves  | gate-closed U train-exists| 
 
 
+<table align="center">
+  <tr align="center">
+      <td><img src="pipeline.jpg" width=800></td>
+  </tr>
+  <tr align="left">
+    <td colspan=2><b>Figure 1.</b> Pipeline.</td>
+  </tr>
+</table>
+
+### <a name="ltl">Symbolic Reasoner</a>
+### Buchi Automaton 
+
+We incorporate a *Flloat* python library for translating LTL formulas (in CNF form) with finite-trace semantics into a minimal Deterministic Finite state Automaton (DFA) using MONA [3]. This DFA captures the temporal constraints specified by the LTL formula and enables efficient reasoning over finite traces. The trace-based satisfiability reasoning enhances the framework's ability to handle temporal aspects of logical reasoning problems. 
+
+Traces are possible executions representing the sequence of states that the system can go through. Model checking for the validity of traces involves verifying whether a given trace satisfies the specified LTL formula. We prompt the LLM to generate a trace corresponding to each of the multiple-choice descriptions. Traces are either accepted or rejected based on their compliance with the LTL formula, and consequently, the model selects one of the multiple-choice answers. The language of a formula defines a set of infinite traces that the DFA can recognize, ensuring the logical consistency of temporal behaviors.
+
+Step 5 in Figure 1 shows an example output of traces corresponding to options (A) and (B). In this step, the generated traces are evaluated against the associated Determininistic Finite state Automaton $M_{\phi}$ to determine their validity. 
+
+
+**Definition 1: (Büchi automaton)**: A deterministic Büchi automaton (DBA) is a tuple $B = (Q, \sum, \Delta, Q_0, F)$ where:
+- $Q$ is a finite set of states,
+- $\sum$ is a finite alphabet,
+- $\Delta \subseteq Q \times \sum \times Q$ is the transition relation,
+- $Q_o \subseteq Q$ is the set of initial stats
+- $F \subseteq Q$ is the set of accepting state. 
+
+
+
+
+
 ------
 **Example Prompt**
 
@@ -118,45 +148,6 @@ Options:*
 (C) Go to the second floor passing the yellow room and then go to the third floor
 
 ------
-
-### <a name="ltl">Symbolic Reasoner</a>
-### Buchi Automaton 
-
-For temporal reasoning, we incorporate a library for translating LTL formulas (in CNF form) with finite-trace semantics into a minimal Deterministic Finite state Automaton (DFA) using MONA [3]. This DFA captures the temporal constraints specified by the LTL formula and enables efficient reasoning over finite traces. The trace-based satisfiability reasoning enhances the framework's ability to handle temporal aspects of logical reasoning problems. 
-
-- Co-safe LTL formulae can be translated into $M_{\phi}$ using the model checking tool Flloat based on Mesa. 
-
-
-- Traces are possible executions
-- Model checking for the validity of traces
-
-Generate a trace with *atomic propositions* $p_i : V \rightarrow \{ false, true \}$ for each $i \in P$. Denote the set of atomic propositions as $AP(s) := { p_a(s) | a \in P_i, i = 1, ..., N}$.
-
-For example $p_a(s)$ being true might describe that the drone is located in the *red room*. 
-
-
-
-**Definition 1: (Büchi automaton)**: A deterministic Büchi automaton (DBA) is a tuple $B = (Q, \sum, \Delta, Q_0, F)$ where:
-- $Q$ is a finite set of states,
-- $\sum$ is a finite alphabet,
-- $\Delta \subseteq Q \times \sum \times Q$ is the transition relation,
-- $Q_o \subseteq Q$ is the set of initial stats
-- $F \subseteq Q$ is the set of accepting state. 
-
-
-A Buchi Automaton $M_{\phi} recognizes a language that consistss of infinite words over the alphabet $\sum$.
-<table align="center">
-  <tr align="center">
-      <td><img src="pipeline.jpg" width=800></td>
-  </tr>
-  <tr align="left">
-    <td colspan=2><b>Figure 1.</b> Pipeline.</td>
-  </tr>
-</table>
-
-The language of a formula defines a set of infinite traces. 
-Traces are either accepted or rejected. 
- 
 
 #### <a name="ltl">Environment Setup: Drone Planning Domain</a>
 
