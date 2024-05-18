@@ -162,7 +162,15 @@ Always avoid the green room and navigate to the third floor. Which one of the fo
 ------
 
 #### Language Grounding Results
+The evaluation consists of two stages: first, the conversion of the question into LTL, and then the subsequent conversion of the LTL formula into traces. 
 #### Effectiveness of Problem Formulator
+To evaluate the effectiveness of our problem formulator, we aim to assess how well the few-shot learning approach performs the conversion of natural language queries into Linear Temporal Logic (LTL) formulas. Given the inherent ambiguity of natural language, this task poses a significant challenge.
+
+To ensure a rigorous evaluation, we utilize a set of 36 benchmark instances created by experts in the nl2spec study, providing a diverse range of scenarios to test the performance of our approach. These instances are not domain specific) (we test by replacing the propositions a, b, c, and d. ) 
+
+#### Effectiveness of trace geneation
+We plan to measure the accuracy of these conversions over a variety of LTL formulae. 
+
 We aim to test how well the few shot learning performs the natural language to LTL conversion. **(say how conversions can be ambigious) -  inerherent ambiguity of natural language,**
 We assess the proficiency of LLM in transforming a provided problem into the symbolic representation (LTL) employed by the Buchi Automaton. The following table reports the accuracy over a variety of LTL formulae. 
 
@@ -172,7 +180,7 @@ In order to evaluate the effectivenss of XXXX we evaluate on the 36 benchmark in
 
 | Temporal Property                                               | Temporal Logic Formula                                      | LLAMA output |
 |-----------------------------------------------------------------|--------------------------------------------------------------|---|
-| Every a is eventually followed by a e                           | $G(a \rightarrow F e)$                                 |   |
+| Every a is eventually followed by an e                           | $G(a \rightarrow F e)$                                 |   |
 | It is never the case that a and b hold at the same time         | $G(\neg(a \land b))$                                    |   |
 | Whenever a is enabled, b is enabled three steps later           | $G(a \rightarrow X(X(Xb)))$                               |   |
 | e must hold everywhere until from some point on, d holds infinitely often | $e \mathcal{U} (G(Fd))$                             |   |
