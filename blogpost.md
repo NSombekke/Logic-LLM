@@ -185,6 +185,46 @@ TO DO.
 We assess the proficiency of LLM in transforming a provided problem into the symbolic representation (LTL) employed by the Buchi Automaton. The following table reports the accuracy over a variety of LTL formulae. 
 **TO DO**
 
+| Temporal Property                                               | Temporal Logic Formula                                      | LLAMA output |
+|-----------------------------------------------------------------|--------------------------------------------------------------|---|
+| Every a is eventually followed by a e                           | \(G(a \rightarrow F e)\)                                   |   |
+| It is never the case that a and b hold at the same time         | \(G(\neg(a \land b))\)                                     |   |
+| Whenever a is enabled, b is enabled three steps later           | \(G(a \rightarrow X(X(Xb)))\)                               |   |
+| e must hold everywhere until from some point on, d holds infinitely often | \(e \mathcal{U} (G(Fd))\)                             |   |
+| If b holds at some point, a has to hold somewhere beforehand     | \((Fb) \rightarrow (\neg b \mathcal{U} (a \land \neg b))\) |   |
+| Whenever a holds, b holds as well                               | \(G(a \rightarrow b)\)                                     |   |
+| Both a and b hold in every time step                            | \(G(a \land b)\)                                           |   |
+| a holds always and whenever b holds, c does not hold            | \(Ga \land G(b \rightarrow \neg c)\)                       |   |
+| If every a is eventually followed by a b, then c needs to holds infinitely often | \(G(a \rightarrow Fb) \rightarrow GFc\)           |   |
+| If a holds infinitely often, then b holds infinitely often as well | \(G(Fa) \rightarrow G(Fb)\)                           |   |
+| Either a or b holds infinitely often                            | \(GFa \lor GFb\)                                           |   |
+| a never holds from some point in time on                        | \(F G \neg a\)                                             |   |
+| Whenever a and b do not hold, c holds eventually                | \(G(\neg(a \land b) \rightarrow Fc)\)                      |   |
+| a and b never occur at the same time but one of them holds in every time step | \(G(\neg(a \land b)) \land G(a \lor b)\)         |   |
+| Whenever the inputs a and b are the same, the outputs c and d are the same | \(G((a \leftrightarrow b) \rightarrow (c \leftrightarrow d))\) |   |
+| a can only happen if b happened before                          | \(\neg a \mathcal{U} b\)                                   |   |
+| Once a happened, b will not happen again                        | \(G(a \rightarrow X G \neg b)\)                            |   |
+| a releases b                                                    | \((b \mathcal{U} (b \land \neg a)) \lor Gb\)              |   |
+| a and b will not occur at the same time                         | \(\neg(a \land b)\)                                        |   |
+| Whenever a holds and b holds in the next step, then c holds one step after b | \(G(a \land Xb \rightarrow XXc)\)                         |   |
+| Whenever a holds, b holds eventually from the next step on      | \(G(a \rightarrow XFb)\)                                   |   |
+| a holds in every fifth step                                     | \(a \land G(a \rightarrow X!a \land XX!a \land XXX!a \land XXXX!a \land XXXXXa)\) |   |
+| Either a holds infinitely often or b holds in the next step     | \(GFa \lor Xb\)                                             |   |
+| a will hold at all instances                                    | \(Ga\)                                                      |   |
+| Whenever a holds, b must hold in the next two steps             | \(G(a \rightarrow (b \lor Xb))\)                            |   |
+| One of the following aps will hold at all instances: a, b, c    | \(G(a \lor b \lor c)\)                                      |   |
+| If a holds b will eventually hold                               | \(G(a \rightarrow Fb)\)                                     |   |
+| a must always hold, but if it exceeds, it allows two timestamps to recover | \(!G(\neg(a \land Xa))\)                                |   |
+| not a holds at most two timestamps                             | \(!G(\neg(a \land Xa))\)                                    |   |
+| a can only hold every three timestamps                         | \(G(a \rightarrow (X\neg a \lor XX\neg a \lor XXX\neg a))\) |   |
+| Every a is followed by a b                                      | \(G(a \rightarrow Xb)\)                                     |   |
+| Eventually a and b hold                                         | \(F(a \land b)\)                                            |   |
+| Both a and b hold eventually                                    | \(F a \land F b\)                                           |   |
+| It is always the case that a is the same as b in the next step  | \(G(a \leftrightarrow Xb)\)                                |   |
+| If b holds then, in the next step, c holds until a holds or always c holds | \(b \rightarrow X((c \mathcal{U} a) \lor Gc)\)          |   |
+| a holds until b holds or always a holds                        | \((a \mathcal{U} b) \lor Ga\)                              |   |
+
+
 [NL2LTL](https://github.com/realChrisHahn2/nl2spec/blob/main/experiments/nl2spec-paper_experiment_results.csv)
 
 
