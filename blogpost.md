@@ -58,42 +58,103 @@ Natural language-to-LTL.
 The langauge allows for the expression of linear time properties. Linear mean that each time step has a well-defined successor.
 LTL extends standard propositional logic to express properties that hold over trajectories across time. LTL adheres to the following grammar:
 
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <mi>φ</mi> <mo>::=</mo> <mi>p</mi> 
-  <mo>|</mo> <mo>¬</mo> <mi>p</mi> 
-  <mo>|</mo> <mi>φ</mi><msub>1</msub> <mo>∧</mo> <mi>φ</mi><msub>2</msub> 
-  <mo>|</mo> <mi>φ</mi><msub>1</msub> <mo>∨</mo> <mi>φ</mi><msub>2</msub> 
-  <mo>|</mo> <mi>G</mi><mi>φ</mi> 
-  <mo>|</mo> <mi>F</mi><mi>φ</mi> 
-  <mo>|</mo> <mi>φ</mi><msub>1</msub> <mo>U</mo> <mi>φ</mi><msub>2</msub>
-</math>
-Where p is an atomic proposition. U  
-TO DO - **explain the grammar**
-- Always p
-- Eventually p
-- p untill q
-- Always eventually p
 
+| Syntax        | Description           |
+|---------------|-----------------------|
+| $p_a$      | Atomic Proposition    |
+|$\neg \phi$ | Negation              |
+| $\phi \land \psi$ | And                |
+| $\phi \lor \psi$ | Or                 |
+| $\phi \Rightarrow \psi$ | Imply            |
+| $\phi U \psi$ | $\phi$ Until $\psi$      |
+| $F \phi$    | Eventually           |
+| $X \phi$    | Next                 |
+| $G \phi$    | Always               |
+
+
+We employ open source large language models (LLM) to convert natural language into Linear Temporal Logic (LTL) tasks based on the attributes in the planning domain. **(Mention the methodology for prompting)**
+
+Consider the Natural language command $\mu$ : *Without stepping outside the orange room, go to landmark one*, where the terms *orange room* and *landmark one* belong to the predicates in the predetermined planning domain. Using the LLM to translate $\mu$ into an LTL formula in CNF $\phi_{\mu}$ = F(landmark_1) & G (orange_room), and its associated Determininistic Finite state Automaton $M_{\phi}$.
+
+
+From the given context, the LLM is able to identify and determine the relevant predicates such as the room and/or floor description. 
+
+Large language models are predominantly trained on natural language and may encounter difficulties when processing text transcriptions of Linear Temporal Logic (LTL) formulas. The syntax of LTL (e.g. U and F) is quite different from typical natural language constructs. To address this distribution shift, a study [X] proposes creating a "canonical" representation that aligns more closely with natural language. In the prompt we ask the LLM to turn $\mu$ into an intermediate 'canoncial form' before mapping the the sentence into an LTL formula.
+
+
+------
+**Example Prompt**
+
+*Given a context, question and options. The task is to first parse the question into a canonical formular and then from this formula to raw LTL formula. Also the options need to parsed into traces.
+Below an explanaition is given of all the input you will recieve and what you should do with it.
+Context: Declares the scene in which the question needs to be answered. Use this knowledge to parse the question and the options.*
+
+*Question: Contains the question that needs to be answered. The task is to parse the question into a canonical formula and then based on the canonical formular to a raw LTL formula.*
+
+*Your raw LTL formula answers always need to follow the following output format and you always have to try to provide a LTL formula. You may repeat your answers.*
+
+*Remember that U means "until", G means "globally", F means "finally", which means GF means "infinitely often".*
+
+*The formula should only contain atomic propositions or operators ||, &, !, U, G, F.*
+
+*Options: The options need to be parsed into traces. These traces need to be a list ([]) containing dictionaries for each timestep ({}). In each dictionary the state of the corresponding timestep is given.*
+
+------
+##### Context:
+*Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1.* *The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.*
+
+*Question:*
+*always avoid the green room and navigate to the third floor. Which one of the following is a possible path for the drone to follow?
+Options:*
+*(A) From the third floor go to the green room and stay there,
+(B) Go inside the red room and then move to the green room,
+(C) Go to the second floor passing the yellow room and then go to the third floor*
+
+
+##### Canonical formular of the question: 
+*finally ( and ( the third floor , not ( the green room ) ) )*
+##### Raw LTL formula of the question:
+*F ( third_floor & ! green_room )*
+
+------
 
 ### <a name="ltl">Symbolic Reasoner</a>
 ### Buchi Automaton 
 
-For temporal reasoning, we incorporate a libary for translating LTL formulas (in CNF form) with finite-trace semantics into a minimal Deterministic Finite state Automaton (DFA) using MONA [3]. This DFA captures the temporal constraints specified by the LTL formula and enables efficient reasoning over finite traces.
+For temporal reasoning, we incorporate a library for translating LTL formulas (in CNF form) with finite-trace semantics into a minimal Deterministic Finite state Automaton (DFA) using MONA [3]. This DFA captures the temporal constraints specified by the LTL formula and enables efficient reasoning over finite traces.
+
 The trace-based satisfiability reasoning enhances the framework's ability to handle temporal aspects of logical reasoning problems. 
+- Co-safe LTL formulae can be translated into $M_{\phi}$ using the model checking tool Flloat based on Mesa. 
 
 - Using few shot learning we create a mapping between natural language commands and their associated LTL formula. For example, *Every a is eventually followed by an e,* may be parsed into *G(a -> Fe)*. And *The gate remains closed untill the train leaves the crossing* can be translated to *gate-closed U train-exists*. Given a prompt, an open source LLM can be instructed to create such LTL formulae from natural langauge. 
 - Traces are possible executions
 - Model checking for the validity of traces
+
+Generate a trace with *atomic propositions* $p_i : V \rightarrow \{ false, true \}$ for each $i \in P$. Denote the set of atomic propositions as $AP(s) := { p_a(s) | a \in P_i, i = 1, ..., N}$.
+
+For example $p_a(s)$ being true might describe that the drone is located in the *red room*. 
+
+
+
+**Definition 1: (Büchi automaton)**: A deterministic Büchi automaton (DBA) is a tuple B = (Q, Σ, δ, q₀, F) where:
+- Q is a finite set of states,
+- Σ is the input alphabet,
+- δ : Q × Σ → Q is the transition function,
+- q₀ ∈ Q is the initial state, and
+- F is the acceptance condition.
+
  
 ![Example Image](Untitled_Diagram.jpg)
-#### Syntax Checker
-Check the safety of the LTL formula using a syntax checker.
+
+
 
 #### <a name="ltl">Drone Planning Domain</a>
 We evaluate the extension of Logic_LM on a dataset create for a Drone Planning domain. 
 - Drone navigation command in natural language into an LTL expression
 - Different paper feeds this LTL expression in to a trajectory planner that can plan the task in a predefined environment.
 - Instead, we add the predefined environment in Natural Langauge to the multiple Choice questions.
+- We are dealing with two levels of abstraction, the floor and the room. Being in the red room implies being on the first floor.  
+
 
 #### Language Grounding Results
 We aim to test how well the few shot learning performs the natural language to LTL conversion. 
