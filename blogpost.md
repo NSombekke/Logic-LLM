@@ -133,6 +133,25 @@ Context: Declares the scene in which the question needs to be answered. Use this
 
 *Options: The options need to be parsed into traces. These traces need to be a list ([]) containing dictionaries for each timestep ({}). In each dictionary the state of the corresponding timestep is given.*
 
+[Few shot examples]
+
+------
+
+The prompt outline above embodies our methodology, showcasing its structural components. The prompt is structured into three main components: the LTL specifcation, and the few shot example. (**ADD MORE**)
+
+#### <a name="ltl">Environment Setup: Drone Planning Domain</a>
+
+<table align="center">
+  <tr align="center">
+      <td><img src="domain.png" width=800></td>
+  </tr>
+  <tr align="left">
+    <td colspan=2><b>Figure 2.</b> (caption) source: https://github.com/UM-ARM-Lab/Efficient-Eng-2-LTL/tree/main .</td>
+  </tr>
+</table>
+
+We utilize a test set comprising examples derived from the planning domain introduced by Oh et al. [4], which features a 3D grid world $\epsilon_1$ consisting of three floors, six rooms, and a single landmark. These elements are organized into levels of abstraction, with floors representing level 2, rooms as level 1, and the landmark designated as level 0. Each natural language specification in our investigation is constrained to a single sentence and a predefined set of atomic propositions. While there is no explicit limitation on the set of atomic propositions, the task description outlines specific guidelines. We assess the effectiveness of extending Logic_LM on a dataset tailored for Drone Planning, focusing on tasks such as translating drone navigation commands from natural language into LTL expressions. Instead of utilizing a trajectory planner fed with LTL expressions, as done in prior works, we introduce the predefined environment directly into the multiple-choice questions in natural language format, under context.
+
 ------
 ##### Context:
 *Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1.* *The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.*
@@ -148,20 +167,6 @@ Context: Declares the scene in which the question needs to be answered. Use this
 (C) Go to the second floor passing the yellow room and then go to the third floor
 
 ------
-The prompt above embodies our methodology, showcasing its structural components. The prompt is structured into three main components: the LTL specifcation, and the few shot example. (**ADD MORE**)
-
-#### <a name="ltl">Environment Setup: Drone Planning Domain</a>
-
-<table align="center">
-  <tr align="center">
-      <td><img src="domain.png" width=800></td>
-  </tr>
-  <tr align="left">
-    <td colspan=2><b>Figure 2.</b> (caption) source: https://github.com/UM-ARM-Lab/Efficient-Eng-2-LTL/tree/main .</td>
-  </tr>
-</table>
-
-We utilize a test set comprising examples derived from the planning domain introduced by Oh et al. [4], which features a 3D grid world $\epsilon_1$ consisting of three floors, six rooms, and a single landmark. These elements are organized into levels of abstraction, with floors representing level 2, rooms as level 1, and the landmark designated as level 0. Each natural language specification in our investigation is constrained to a single sentence and a predefined set of atomic propositions. While there is no explicit limitation on the set of atomic propositions, the task description outlines specific guidelines. We assess the effectiveness of extending Logic_LM on a dataset tailored for Drone Planning, focusing on tasks such as translating drone navigation commands from natural language into LTL expressions. Instead of utilizing a trajectory planner fed with LTL expressions, as done in prior works, we introduce the predefined environment directly into the multiple-choice questions in natural language format, under context.
 
 #### Language Grounding Results
 #### Effectiveness of Problem Formulator
