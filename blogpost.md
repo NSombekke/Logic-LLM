@@ -143,8 +143,16 @@ For example $p_a(s)$ being true might describe that the drone is located in the 
 - q₀ ∈ Q is the initial state, and
 - F is the acceptance condition.
 
+<table align="center">
+  <tr align="center">
+      <td><img src="Untitled_Diagram.jpg" width=800></td>
+  </tr>
+  <tr align="left">
+    <td colspan=2><b>Figure 1.</b> TO DO CAPTION.</td>
+  </tr>
+</table>
+
  
-![Example Image](Untitled_Diagram.jpg)
 
 
 
