@@ -11,7 +11,7 @@ The task is to parse the problem into Linear Temporal Logic formulars. Translate
 Explanation: 
 "Every" from the input sentence refers to the temporal operator "G", meaning that the subsequent part of the input must hold at every point in time, i.e., globally.
 "eventually" from the input sentence translates to the temporal operator "F". "a followed by a e" means that after "a" holds, "e" has to hold as well, i.e., translating to an implication.
-Thus, "a eventually followed by a e" translates to "a -> F e".
+Thus, "a eventually followed by an e" translates to "a -> F e".
 Explanation dictionary: 
 {'Every': 'G', 'eventually': 'F', 'a': 'a', 'e': 'e', 'a followed by a e': 'a -> e', 'a eventually followed by a e': 'a -> F e'}
 Conclusion:
