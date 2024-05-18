@@ -79,6 +79,12 @@ Consider the Natural language command $\mu$ : *Without stepping outside the oran
 
 Since Large language models are predominantly trained on natural language and may encounter difficulties when processing text transcriptions of Linear Temporal Logic (LTL) formulas. The syntax of LTL (e.g. U and F) is quite different from typical natural language constructs. To address this distribution shift, a study [X] proposes creating a "canonical" representation that aligns more closely with natural language. In the prompt we ask the LLM to turn $\mu$ into an intermediate 'canoncial form' before mapping the the sentence into an LTL formula.
 
+
+| Canonical form      | Raw LTL form     |
+|-----------------------------------------|-------------------------------------|
+| finally ( and ( the third floor , not ( the green room ) ) ) | F ( third_floor & ! green_room ) |
+
+
 ------
 **Example Prompt**
 
@@ -111,10 +117,7 @@ Options:*
 (C) Go to the second floor passing the yellow room and then go to the third floor
 
 
-##### Canonical formular of the question: 
-*finally ( and ( the third floor , not ( the green room ) ) )*
-##### Raw LTL formula of the question:
-*F ( third_floor & ! green_room )*
+
 
 ------
 
