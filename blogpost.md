@@ -187,8 +187,14 @@ In addition we evaluate the LLMS NltoLTL conversion in the Drone Planning domain
 - Mention how the few-shot prompting affect the results
 **Insert an accuracy table with results per model out of 36x4**
 
-As pointed out by Cosler et al. [5], their dataset contains two types of ambiguities. The first type arises from the inherent limitations of natural language, such as operator precedence. The second type stems from semantic ambiguities within natural language. An illustration of the first is *a holds until b holds or always a holds* which their human experts initially translated to $(a U b) | G a$. Our model shows: XXX
+As pointed out by Cosler et al. [5], their dataset contains two types of ambiguities. The first type arises from the inherent limitations of natural language, such as operator precedence. The second type stems from semantic ambiguities within natural language. An illustration of the first is *a holds until b holds or always a holds* which their human experts initially translated to $(a U b) | G a$. GPT3 returns: p U (s | G p), with the accompanying explaination: {"The party is on": "p", "until": "U", "the speaker is broken": "s", "or": "|", "always the party is on": "G p", "The party is on until the speaker is broken or always the party is on": "p U (s | G p)"}
+
+
+
 An example of the second type is, *Whenever a holds, b must hold in the next two steps*, mapped to $G (a \rightarrow (b | X b))$
+
+
+
 
 #### LTL Results TO DO
 
