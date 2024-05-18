@@ -83,7 +83,7 @@ Using few shot learning we create a mapping between natural language commands an
 |-----------------------------------------|-----------------------------------------|-------------------------------------|
 |Always avoid the green room and navigate to the third floor. | finally ( and ( the third floor , not ( the green room ) ) ) | F ( third_floor & ! green_room ) |
 |Every a is eventually followed by an e | globally ( a -> finally ( e ) )| G(a -> Fe)|
-| The gate remains closed untill the train leaves the crossing| globally ( gate-closed until ( train-leaves ) )| gate-closed U train-exists| 
+| The gate remains closed untill the train leaves the crossing| gate-closed until train-leaves  | gate-closed U train-exists| 
 
 
 ------
