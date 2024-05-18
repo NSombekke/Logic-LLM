@@ -1,4 +1,4 @@
-ID,Question,Formula,Answer, Description
+ID,Question,Formula,GPT-3 Answer, Description
 LTL_dev_1,"Every time hunger strikes, eating eventually follows.","G(hunger -> F eating)","","{'Every time': 'G', 'hunger strikes': 'hunger', 'eating eventually follows': 'F eating', 'hunger strikes, eating eventually follows': 'G(hunger -> F eating)'}"
 LTL_dev_2,"It's never the case that rain and sunshine occur at the same time.","G(!(rain & sunshine))","",""
 LTL_dev_3,"Whenever the engine starts, acceleration kicks in three steps later.","G(engine_start -> X (X (X acceleration_on)))","",""
