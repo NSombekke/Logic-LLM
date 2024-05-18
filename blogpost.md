@@ -145,7 +145,7 @@ For example $p_a(s)$ being true might describe that the drone is located in the 
 
 <table align="center">
   <tr align="center">
-      <td><img src="Untitled_Diagram.jpg" width=800></td>
+      <td><img src="pipeline.jpg" width=800></td>
   </tr>
   <tr align="left">
     <td colspan=2><b>Figure 1.</b> TO DO CAPTION.</td>
