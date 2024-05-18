@@ -72,7 +72,7 @@ We extend the Logic-LLM by introducing Linear-time Temporal Logic (LTL).
 | $X \phi$    | Next                 |
 | $G \phi$    | Always               |
 
-Denote the set of traces as $TR = (s^{|P|})^{w}$. For trace $t \in TR$, we denote the the i-th state in the trace by $t[i]$. Each state is a set of propositions. A trace of lenth $n$ can be defines as: t[0]t[1]t[2]...t[n].
+Denote the set of traces as $TR = (s^{|P|})^{w}$. For trace $t \in TR$, we denote the the i-th state in the trace by $t[i]$. Each state is a set of propositions. A trace of lenth $n$ can be defines as: $t[0]t[1]t[2]...t[n]$.
 
 $$
 \begin{align*}
