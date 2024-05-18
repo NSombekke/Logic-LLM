@@ -114,8 +114,6 @@ Step 5 in Figure 1 shows an example output of traces corresponding to options (A
 
 
 
-
-
 ------
 **Example Prompt**
 
@@ -176,7 +174,20 @@ We assess the proficiency of LLM in transforming a provided problem into the sym
 
 In order to evaluate the effectivenss of XXXX we evaluate on the 36 benchmark instances created by experts in the *nl2spec* study [].
 
-**TO DO**
+To assess the effectiveness of the natural language to LTL conversion performed by the LLM, we plan to measure its accuracy over a variety of LTL formulae. However, it's important to note that such conversions can sometimes be ambiguous due to the inherent ambiguity of natural language. Different interpretations of the same sentence can lead to different LTL formulae.
+
+We aim to evaluate how well the LLM performs the conversion task, especially in cases where it needs to generalize from few examples (few-shot learning). The accuracy of the conversions will be reported over the 36 benchmark inctances crafted by experts in the nl2spec study [5]. We use their formatted intances and prompt the LLM to replaced the propositions a,b,c,d. It's worth noting that these sentences are not specific to any domain, allowing us to test the LLM's capability to generalize across different problem domains. 
+Through this evaluation, we seek to understand how well the LLM can handle the translation from natural language to LTL, including its strengths and limitations, and to provide insights into potential areas for improvement in future iterations of such models.
+
+
+| Natural Language Sentence                                        | Canonical Form                | LTL Formula                           |
+|------------------------------------------------------------------|-------------------------------|---------------------------------------|
+| Every meal is eventually followed by dessert.                    |            | G (meal -> F dessert)                 |
+| It is never the case that sunshine and rain occur at the same time. |         | G ~(sunshine & rain)                  |
+| Whenever a car starts, the engine revs three steps later.        |  | G (car_starts -> X X X engine_revs) |
+| Happiness must prevail everywhere until from some point on, sadness occurs infinitely often. |  | G (happiness U (G F sadness))        |
+| If hunger strikes at some point, eating must happen beforehand.  |          | G (hunger -> F eating)                |
+
 
 #### Examples with a,b,c,d replaced
 - Every meal is eventually followed by dessert.
@@ -189,7 +200,7 @@ In order to evaluate the effectivenss of XXXX we evaluate on the 36 benchmark in
 - Birds chirp always, and whenever reading happens, writing does not occur.
 - If every journey is eventually followed by an adventure, then excitement needs to happen infinitely often.
 - If exercise happens infinitely often, then relaxation follows infinitely often as well.
-- 
+  
 
 | Temporal Property                                               | Temporal Logic Formula                                      | LLAMA output |
 |-----------------------------------------------------------------|--------------------------------------------------------------|---|
