@@ -1,0 +1,24 @@
+[ {
+    "id": "LTL_dev_1",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "First either go to the second floor or the red room and then go to the first floor. Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) First go to the green room and then move the red room",
+      "B) First go to the third floor and stay there",
+      "C) Go to the second floor and then move to the purple room"
+    ],
+    "answer": "A",
+    "question_raw_ltl":"F((second_floor || red_room) & F(first_floor))"
+  },
+  {
+    "id": "LTL_dev_2",
+    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the green room after entering the second floor. Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) Go to the purple room and then move to the second floor",
+      "B) Only visit the green room",
+      "C) Go to the red room and then move to the orange room passing the second floor"
+    ],
+    "answer": "B",
+    "question_raw_ltl":"F((second_floor & F(green_room)))"
+  },]
