@@ -24,7 +24,7 @@ Question:
 ###
 Explanation: 
 "a and b" from the input translates to the conjunction of atomic propositions a,b, i.e., it translates to "a & b".
-"a and b never occur" from the input translates to the temporal behavior that at all positions, i.e., globally, neither a nor b hold, i.e., "G(~(a & b))".
+"a and b never occur" from the input translates to the temporal behavior that at all positions, i.e., globally, neither a nor b hold, i.e., "G(!(a & b))".
 The input additionally requires that "one of them holds in every time step", which means that a or b hold globally, i.e., it translates to "G(a | b)".
 Explanation dictionary:
 {'a and b': 'a & b', 'a and b never occur': 'G(!(a & b))', 'one of them holds in every time step': 'G(a | b)'}
