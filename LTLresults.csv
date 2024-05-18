@@ -37,8 +37,8 @@ Natural Language,Formula,GPT-3,Description
 "a holds until b holds or always a holds.","(a U b) || G a",,
 
 ID,Question,Formula, nswer
-LTL_dev_1,"Every time hunger strikes, eating eventually follows.  ","G(hunger -> F eating)", 
-LTL_dev_2,"It's never the case that rain and sunshine occur at the same time.  ","G(!(rain & sunshine))", 
+LTL_dev_1,"Every time hunger strikes, eating eventually follows.  ","G(hunger -> F eating)", G(hunger -> F eating).FINISH, {"Every time": "G", "hunger strikes": "hunger", "eventually": "F", "eating follows": "eating", "hunger strikes, eating eventually follows": "hunger -> F eating"}
+LTL_dev_2,"It's never the case that rain and sunshine occur at the same time.  ","G(!(rain & sunshine))", G(~(rain & sunshine)).FINISH ,{"never": "G", "rain": "rain", "sunshine": "sunshine", "rain and sunshine": "rain & sunshine", "never the case that rain and sunshine occur at the same time": "G(~(rain & sunshine))"}
 LTL_dev_3,"Whenever the engine starts, acceleration kicks in three steps later.  ","G(engine_start -> X (X (X acceleration_on)))", 
 LTL_dev_4,"I am a student must hold everywhere until from some point on, I am graduated holds infinitely often.  ","student U (G (F graduated))", 
 LTL_dev_5,"Whenever an exam is scheduled, studying occurs beforehand.  ","(F exam_scheduled) -> (!exam_scheduled U (studying & !exam_scheduled))", 
