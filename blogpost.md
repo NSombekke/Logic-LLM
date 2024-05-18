@@ -166,7 +166,7 @@ For example $p_a(s)$ being true might describe that the drone is located in the 
     <td colspan=2><b>Figure 2.</b> (caption) source: https://github.com/UM-ARM-Lab/Efficient-Eng-2-LTL/tree/main .</td>
   </tr>
 </table>
-We use the same planning domain as introduced by 
+We use the same planning domain as introduced by Oh et al. [4].
 A 3D grid world $\Epsilon_1$ comprised of three floors, six rooms, and a single landmark. Both rooms, floor, and the landmark form levels of abstraction. The landmark is of level 0, the rooms of level 1, and the floor at level 2. 
 
 We evaluate the extension of Logic_LM on a dataset create for a Drone Planning domain. 
