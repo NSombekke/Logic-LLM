@@ -1,0 +1,20 @@
+Explanation dictionary:
+{'It's never the case that': 'G(!())', 'rain and sunshine occur at the same time': '!(rain & sunshine)', 'It's never the case that rain and sunshine occur at the same time': 'G(!(rain & sunshine))'}
+
+Conclusion:
+G(!(rain & sunshine)).
+
+Explanation dictionary:
+{'Whenever': 'G', 'the engine starts': 'engine_start', 'acceleration kicks in three steps later': 'X X X acceleration'}
+Conclusion:
+G(engine_start -> X X X acceleration).FINISH
+
+Explanation dictionary:
+{'I am a student': 'student', 'I am graduated': 'graduated', 'I am a student must hold everywhere until I am graduated holds infinitely often': 'student U (G graduated)'}
+Conclusion:
+student U (G graduated).FINISH
+
+
+
+
+
