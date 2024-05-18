@@ -178,6 +178,19 @@ In order to evaluate the effectivenss of XXXX we evaluate on the 36 benchmark in
 
 **TO DO**
 
+#### Examples with a,b,c,d replaced
+- Every meal is eventually followed by dessert.
+- It is never the case that sunshine and rain occur at the same time.
+- Whenever a car starts, the engine revs three steps later.
+- Happiness must prevail everywhere until from some point on, sadness occurs infinitely often.
+- If hunger strikes at some point, eating must happen beforehand.
+- Whenever laughter echoes, joy ensues.
+- Both work and relaxation happen in every time step.
+- Birds chirp always, and whenever reading happens, writing does not occur.
+- If every journey is eventually followed by an adventure, then excitement needs to happen infinitely often.
+- If exercise happens infinitely often, then relaxation follows infinitely often as well.
+- 
+
 | Temporal Property                                               | Temporal Logic Formula                                      | LLAMA output |
 |-----------------------------------------------------------------|--------------------------------------------------------------|---|
 | Every a is eventually followed by an e                           | $G(a \rightarrow F e)$                                 |   |
