@@ -200,13 +200,13 @@ An example of the second type is, *Whenever a holds, b must hold in the next two
 
 #### LTL Results TO DO
 
-
+Accuracies over test sets
 | Dataset | GPT-4| Folio | Column 4 |
 |----------|----------|----------|----------|
 | no domain | X/36 (%) | X/36 (%) |X/36 (%) |
 | predicates only | X/36 (%) | X/36 (%)| X/36 (%) |
-| drone planning | Row 3, C2 | Row 3, C3 | Row 3, C4 |
-| Row 4, C1 | Row 4, C2 | Row 4, C3 | Row 4, C4 |
+| drone planning | X/36 (%) |X/36 (%) | X/36 (%) |
+| Row 4, C1 | X/36 (%)| X/36 (%) | X/36 (%) |
 
 
 |
