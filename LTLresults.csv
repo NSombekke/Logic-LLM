@@ -1,4 +1,4 @@
-Natural Language,Formula,GPT-3,Description, Extra
+Natural Language,Formula,GPT-3,Description
 "Every a is eventually followed by a e.","G(a -> F e)",,
 "It is never the case that a and b hold at the same time.","G(!(a & b))",,
 "Whenever a is enabled, b is enabled three steps later.","G(a -> X (X (X b)))",,
