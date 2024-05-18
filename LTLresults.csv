@@ -35,7 +35,7 @@ Natural Language,Formula,GPT-3,Description, More
 "It is always the case that a is the same as b in the next step.","G (a <-> X b)",,,
 "If b holds then, in the next step, c holds until a holds or always c holds.","b -> X ((c U a) || G c)",,,
 "a holds until b holds or always a holds.","(a U b) || G a",,,
-ID,Question,Formula, Answer,
+ID,Question,Formula, Answer,,
 LTL_dev_1,"Every time hunger strikes, eating eventually follows.","G(hunger -> F eating)", G(hunger -> F eating).FINISH,,
 LTL_dev_2,"It's never the case that rain and sunshine occur at the same time.  ","G(!(rain & sunshine))", G(~(rain & sunshine)).FINISH ,,
 LTL_dev_3,"Whenever the engine starts, acceleration kicks in three steps later.  ","G(engine_start -> X (X (X acceleration_on)))", ,
