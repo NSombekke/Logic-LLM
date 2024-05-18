@@ -130,8 +130,309 @@
     ],
     "answer": "A",
     "question_raw_ltl": "G F store_open || G F online_website_accessible"
-  }
+  },
+    {
+    "id": "LTL_dev_12",
+    "context": "",
+    "question": "Form some point in time on I am always not childless. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "F G ! childless"
+  },
+    {
+    "id": "LTL_dev_13",
+    "context": "",
+    "question": "Whenever these is no peace and no prosperity, conflict arises eventually. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G (!(peace && prosperity) -> F conflict)"
+  },
+    {
+    "id": "LTL_dev_14",
+    "context": "",
+    "question": "Happiness and sadness never coincide, but one of them is experienced at every moment in life. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G(!(happiness && sadness)) && G(happiness || sadness)"
+  },
+     {
+    "id": "LTL_dev_15",
+    "context": "",
+    "question": "Whenever the ingredients sugar and flour are equal in quantity, the resulting cake's taste and texture are equally good. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G ((sugar <-> flower) -> (taste <-> texture))"
+  },
+      {
+    "id": "LTL_dev_16",
+    "context": "",
+    "question": "A meeting can only be scheduled if a room reservation has been made beforehand. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "(! schedule_meeting) U room_reservation"
+  },
+       {
+    "id": "LTL_dev_17",
+    "context": "",
+    "question": "After the shipment is delivered, a return request won't be processed again. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G (shipment_delivered -> X G ! processed_return)"
+  },
+  {
+    "id": "LTL_dev_18",
+    "context": "",
+    "question": "After the valve is opened, water flows freely. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "(water_flow U (water_flow & ! open_valve)) | G water_flow"
+  },
+    {
+    "id": "LTL_dev_19",
+    "context": "",
+    "question": "Music practice and anyone sleeping won't happen simultaneously. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G !(music_practise & anyone_sleeping)"
+  },
+       {
+    "id": "LTL_dev_20",
+    "context": "",
+    "question": "Whenever the oven preheats and the timer beeps for the next step, then the aroma of freshly baked cookies fills the kitchen one step after the timer beeps.  Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G (oven_preheats && X times_beeps -> X X aroma)"
+  },
+       {
+    "id": "LTL_dev_21",
+    "context": "",
+    "question": "Whenever the seeds are planted, the flowers bloom eventually from the next step onward. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G (seeds_planted -> X F flowers_bloom)"
+  },
+       {
+    "id": "LTL_dev_22",
+    "context": "",
+    "question": "We work every fifth day. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "work && G (work -> X ! work && X X ! work && X X X ! work && X X X X ! work && X X X X X work)"
+  },
+      {
+    "id": "LTL_dev_23",
+    "context": "",
+    "question": "Either failed my exam holds infinitely often or passed the exam holds in the next step. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G F failed_exam || X passed_exam"
+  },
+     {
+    "id": "LTL_dev_24",
+    "context": "",
+    "question": "Sam is taller than Ben will hold at all instances. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G (sam_taller_than_ben)"
+  },
+     {
+    "id": "LTL_dev_25",
+    "context": "",
+    "question": "Whenever the food is hot, the food is cold in the next two steps. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G (hot_food -> (cold_food | X cold_food))"
+  },
+     {
+    "id": "LTL_dev_26",
+    "context": "",
+    "question": "At all times, one of the following apps will be running: messaging, navigation, or music.. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G (messaging | navigation | music)"
+  },
+     {
+    "id": "LTL_dev_27",
+    "context": "",
+    "question": "If the alarm rings, someone will eventually wake up. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G (alarm_ring -> F wake_up)"
+  },
+     {
+    "id": "LTL_dev_28",
+    "context": "",
+    "question": "The temperature must always be within a normal range, but if it exceeds that range, it allows for two time intervals to return to normal. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "! G (! (temperature_normal && X temperature_normal))"
+  },
+     {
+    "id": "LTL_dev_29",
+    "context": "",
+    "question": "not a holds at most two timestamps. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "! G (! (a && X a))"
+  },
+    {
+    "id": "LTL_dev_30",
+    "context": "",
+    "question": "a can only hold every three timestamps. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G ( a -> (X !a | XX !a | XXX !a))"
+  },
+    {
+    "id": "LTL_dev_31",
+    "context": "",
+    "question": "Every a is followed by a b. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G ( a -> X b)"
+  },
+    {
+    "id": "LTL_dev_32",
+    "context": "",
+    "question": "Eventually a and b hold. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "F (a && b)"
+  },
+      {
+    "id": "LTL_dev_33",
+    "context": "",
+    "question": "Both a and b hold eventually. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "F a && F b"
+  },
+       {
+    "id": "LTL_dev_34",
+    "context": "",
+    "question": "It is always the case that a is the same as b in the next step. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G (a <-> X b)"
+  },
+      {
+    "id": "LTL_dev_35",
+    "context": "",
+    "question": "If b holds then, in the next step, c holds until a holds or always c holds. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "b -> X ((c U a) || G c)"
+  },
+      {
+    "id": "LTL_dev_36",
+    "context": "",
+    "question": "a holds until b holds or always a holds. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "(a U b) || G a"
+  },
 ]
+
     
 
 
