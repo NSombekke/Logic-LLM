@@ -2,209 +2,215 @@
     {
         "id": "LTL_dev_1",
         "context": "",
+        "question": "Every a is eventually followed by an e.",
+        "question_raw_ltl": "G(a -> F e)"
+    },
+    {
+        "id": "LTL_dev_2",
+        "context": "",
         "question": "It is never the case that a and b hold at the same time.",
         "question_raw_ltl": "G(!(a & b))"
     },
     {
-        "id": "LTL_dev_2",
+        "id": "LTL_dev_3",
         "context": "",
         "question": "Whenever a is enabled, b is enabled three steps later.",
         "question_raw_ltl": "G(a -> X (X (X b)))"
     },
     {
-        "id": "LTL_dev_3",
+        "id": "LTL_dev_4",
         "context": "",
         "question": "e must hold everywhere until from some point on, d holds infinitely often.",
         "question_raw_ltl": "e U (G (F d))"
     },
     {
-        "id": "LTL_dev_4",
+        "id": "LTL_dev_5",
         "context": "",
         "question": "If b holds at some point, a has to hold somewhere beforehand.",
         "question_raw_ltl": "(F b) -> (!b U (a & !b))"
     },
     {
-        "id": "LTL_dev_5",
+        "id": "LTL_dev_6",
         "context": "",
         "question": "Whenever a holds, b holds as well.",
         "question_raw_ltl": "G(a -> b)"
     },
     {
-        "id": "LTL_dev_6",
+        "id": "LTL_dev_7",
         "context": "",
         "question": "Both a and b hold in every time step.",
         "question_raw_ltl": "G (a && b)"
     },
     {
-        "id": "LTL_dev_7",
+        "id": "LTL_dev_8",
         "context": "",
         "question": "a holds always and whenever b holds, c does not hold.",
         "question_raw_ltl": "G a && G(b -> !c)"
     },
     {
-        "id": "LTL_dev_8",
+        "id": "LTL_dev_9",
         "context": "",
         "question": "If it is the case that every a is eventually followed by a b, then c needs to holds infinitely often.",
         "question_raw_ltl": "G(a -> F b) -> G F c"
     },
     {
-        "id": "LTL_dev_9",
+        "id": "LTL_dev_10",
         "context": "",
         "question": "If a holds infinitely often, then b holds infinitely often as well.",
         "question_raw_ltl": "G F a -> G F b"
     },
     {
-        "id": "LTL_dev_10",
+        "id": "LTL_dev_11",
         "context": "",
         "question": "Either a or b holds infinitely often",
         "question_raw_ltl": "G F a || G F b"
     },
     {
-        "id": "LTL_dev_11",
+        "id": "LTL_dev_12",
         "context": "",
         "question": "a never holds from some point in time on.",
         "question_raw_ltl": "F G ! a"
     },
     {
-        "id": "LTL_dev_12",
+        "id": "LTL_dev_13",
         "context": "",
         "question": "Whenever a and b do not hold, c holds eventually.",
         "question_raw_ltl": "G (!(a && b) -> F c)"
     },
     {
-        "id": "LTL_dev_13",
+        "id": "LTL_dev_14",
         "context": "",
         "question": "a and b never occur at the same time but one of them holds in every time step.",
         "question_raw_ltl": "G(!(a &&b)) && G(a || b)"
     },
     {
-        "id": "LTL_dev_14",
+        "id": "LTL_dev_15",
         "context": "",
         "question": "Whenever the inputs a and b are the same, the outputs c and d are the same.",
         "question_raw_ltl": "G ((a <-> b) -> (c <-> d))"
     },
     {
-        "id": "LTL_dev_15",
+        "id": "LTL_dev_16",
         "context": "",
         "question": "a can only happen if b happend before",
         "question_raw_ltl": "(! a) U b"
     },
     {
-        "id": "LTL_dev_16",
+        "id": "LTL_dev_17",
         "context": "",
         "question": "Once a happened, b won't happen again.",
         "question_raw_ltl": "G (a -> X G ! b)"
     },
     {
-        "id": "LTL_dev_17",
+        "id": "LTL_dev_18",
         "context": "",
         "question": "a releases b",
         "question_raw_ltl": "(b U (b & ! a)) | G b"
     },
     {
-        "id": "LTL_dev_18",
+        "id": "LTL_dev_19",
         "context": "",
         "question": "a and b won't occur at the same time",
         "question_raw_ltl": "G !(a & b)"
     },
     {
-        "id": "LTL_dev_19",
+        "id": "LTL_dev_20",
         "context": "",
         "question": "Whenever a holds and b holds in the next step, then c holds one step after b.",
         "question_raw_ltl": "G (a && X b -> X X c)"
     },
     {
-        "id": "LTL_dev_20",
+        "id": "LTL_dev_21",
         "context": "",
         "question": "Whenever a holds, b holds eventually from the next step on.",
         "question_raw_ltl": "G (a -> X F b)"
     },
     {
-        "id": "LTL_dev_21",
+        "id": "LTL_dev_22",
         "context": "",
         "question": "a holds in every fifth step.",
         "question_raw_ltl": "a && G (a -> X ! a && X X ! a && X X X ! a && X X X X ! a && X X X X X a)"
     },
     {
-        "id": "LTL_dev_22",
+        "id": "LTL_dev_23",
         "context": "",
         "question": "Either a holds infinitely often or b holds in the next step.",
         "question_raw_ltl": "G F a || X b"
     },
     {
-        "id": "LTL_dev_23",
+        "id": "LTL_dev_24",
         "context": "",
         "question": "a will hold at all instances.",
         "question_raw_ltl": "G (a)"
     },
     {
-        "id": "LTL_dev_24",
+        "id": "LTL_dev_25",
         "context": "",
         "question": "Whenever a holds, b must hold in the next two steps",
         "question_raw_ltl": "G (a -> (b | X b))"
     },
     {
-        "id": "LTL_dev_25",
+        "id": "LTL_dev_26",
         "context": "",
         "question": "One of the following aps will hold at all instances: a,b,c",
         "question_raw_ltl": "G (a | b | c)"
     },
     {
-        "id": "LTL_dev_26",
+        "id": "LTL_dev_27",
         "context": "",
         "question": "If a holds b will eventually hold",
         "question_raw_ltl": "G (a -> F b)"
     },
     {
-        "id": "LTL_dev_27",
+        "id": "LTL_dev_28",
         "context": "",
         "question": "a must always hold, but if is execeeds, it allow two timestamps to recover.",
         "question_raw_ltl": "! G (! (a && X a))"
     },
     {
-        "id": "LTL_dev_28",
+        "id": "LTL_dev_29",
         "context": "",
         "question": "not a holds at most two timestamps",
         "question_raw_ltl": "! G (! (a && X a))"
     },
     {
-        "id": "LTL_dev_29",
+        "id": "LTL_dev_30",
         "context": "",
         "question": "a can only hold every three timestamps",
         "question_raw_ltl": "G ( a -> (X !a | XX !a | XXX !a))"
     },
     {
-        "id": "LTL_dev_30",
+        "id": "LTL_dev_31",
         "context": "",
         "question": "Every a is followed by a b.",
         "question_raw_ltl": "G ( a -> X b)"
     },
     {
-        "id": "LTL_dev_31",
+        "id": "LTL_dev_32",
         "context": "",
         "question": "Eventually a and b hold.",
         "question_raw_ltl": "F (a && b)"
     },
     {
-        "id": "LTL_dev_32",
+        "id": "LTL_dev_33",
         "context": "",
         "question": "Both a and b hold eventually.",
         "question_raw_ltl": "F a && F b"
     },
     {
-        "id": "LTL_dev_33",
+        "id": "LTL_dev_34",
         "context": "",
         "question": "It is always the case that a is the same as b in the next step.",
         "question_raw_ltl": "G (a <-> X b)"
     },
     {
-        "id": "LTL_dev_34",
+        "id": "LTL_dev_35",
         "context": "",
         "question": "If b holds then, in the next step, c holds until a holds or always c holds",
         "question_raw_ltl": "b -> X ((c U a) || G c)"
     },
     {
-        "id": "LTL_dev_35",
+        "id": "LTL_dev_36",
         "context": "",
         "question": "a holds until b holds or always a holds",
         "question_raw_ltl": "(a U b) || G a"
