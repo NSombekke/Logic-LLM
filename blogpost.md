@@ -160,9 +160,9 @@ Always avoid the green room and navigate to the third floor. Which one of the fo
 ------
 
 #### Language Grounding Results
-The evaluation consists of two stages: first, the conversion of the question into LTL, and then the subsequent conversion of the LTL formula into traces. 
+The evaluation consists of two stages: (1) the conversion of the question into LTL, and (2) the subsequent conversion of the LTL formula into traces. 
 
-#### Effectiveness of Problem Formulator
+##### (1) Effectiveness of Problem Formulator
 We aim to evaluate how well the LLM performs the conversion task, especially in cases where it needs to generalize from few examples (few-shot learning). The accuracy of the conversions will be reported over the 36 benchmark inctances crafted by experts in the nl2spec study [5]. We use their formatted intances and prompt the LLM to replaced the propositions a,b,c,d. It's worth noting that these sentences are not specific to any domain, allowing us to test the LLM's capability to generalize across different problem domains. 
 Through this evaluation, we seek to understand how well the LLM can handle the translation from natural language to LTL, including its strengths and limitations, and to provide insights into potential areas for improvement in future iterations of such models.
 
@@ -178,13 +178,17 @@ Through this evaluation, we seek to understand how well the LLM can handle the t
 
 In addition we evaluate the LLMS NltoLTL conversion in the Drone Planning domain. 
 
-#### Effectiveness of trace geneation
-We plan to measure the accuracy of these conversions over a variety of LTL formulae. 
 
-We aim to test how well the few shot learning performs the natural language to LTL conversion. **(say how conversions can be ambigious) -  inerherent ambiguity of natural language,**
-We assess the proficiency of LLM in transforming a provided problem into the symbolic representation (LTL) employed by the Buchi Automaton. The following table reports the accuracy over a variety of LTL formulae. 
+- We aim to compare our results to results using GPT-3 or Rasa (Their source 3).
+- Which model can handle unstructured natural language better?
+- Mention how the few-shot prompting affect the results
+**Insert an accuracy table with results per model out of 36x4**
 
-In order to evaluate the effectivenss of XXXX we evaluate on the 36 benchmark instances created by experts in the *nl2spec* study [].
+As pointed out by Cosler et al. [5], their dataset contains two types of ambiguities. The first type arises from the inherent limitations of natural language, such as operator precedence. The second type stems from semantic ambiguities within natural language. An illustration of the first is *a holds until b holds or always a holds* which their human experts initially translated to $(a U b) | G a$. Our model shows: XXX
+An example of the second type is, *Whenever a holds, b must hold in the next two steps*, mapped to $G (a \rightarrow (b | X b))$
+
+#### LTL Results TO DO
+
 
 #### Remove: Examples with a,b,c,d replaced
 - Every meal is eventually followed by dessert.
@@ -197,7 +201,8 @@ In order to evaluate the effectivenss of XXXX we evaluate on the 36 benchmark in
 - Birds chirp always, and whenever reading happens, writing does not occur.
 - If every journey is eventually followed by an adventure, then excitement needs to happen infinitely often.
 - If exercise happens infinitely often, then relaxation follows infinitely often as well.
-  
+
+
 
 | Temporal Property                                               | Temporal Logic Formula                                      | LLAMA output |
 |-----------------------------------------------------------------|--------------------------------------------------------------|---|
@@ -238,6 +243,9 @@ In order to evaluate the effectivenss of XXXX we evaluate on the 36 benchmark in
 | If b holds then, in the next step, c holds until a holds or always c holds | $b \rightarrow X((c \mathcal{U} a) \lor Gc)$         |   |
 | a holds until b holds or always a holds                        | $(a \mathcal{U} b) \lor Ga$                             |   |
 
+##### (2) Effectiveness of trace geneation
+
+We plan to measure the accuracy of these conversions over a variety of LTL formulae. 
 
 
 
