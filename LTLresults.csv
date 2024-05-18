@@ -72,5 +72,5 @@ LTL_dev_32,"Eventually, the you drink water while the sun shines.  ","F (drink_w
 LTL_dev_33,"Both the waves crashing and the seagulls flying occur eventually.  ","F waves_crashing & F seagulls_flying", 
 LTL_dev_34,"It's always the case that the current temperature is equal to tomorrow's temperature.  ","G (temperature_today <-> X temperature_tomorrow)", 
 LTL_dev_35,"If its sunny then, in the next step, thunder holds until it rains or always tunder holds.  ","sunny -> X ((thunder U rain) || G thunder)", 
-LTL_dev_36,"the pary is on until the speaker is broken or always the party is on .  ","(party_on U speaker_broken) || G party_on", 
+LTL_dev_36,"The party is on until the speaker is broken or always the party is on .  ","(party_on U speaker_broken) || G party_on", 
 
