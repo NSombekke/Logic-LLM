@@ -160,18 +160,8 @@ The prompt above embodies our methodology, showcasing its structural components.
     <td colspan=2><b>Figure 2.</b> (caption) source: https://github.com/UM-ARM-Lab/Efficient-Eng-2-LTL/tree/main .</td>
   </tr>
 </table>
-We use the same planning domain as introduced by Oh et al. [4].
-A 3D grid world $\Epsilon_1$ comprised of three floors, six rooms, and a single landmark. Both rooms, floor, and the landmark form levels of abstraction. The landmark is of level 0, the rooms of level 1, and the floor at level 2. 
 
-In this study, each natural language specification was restricted to one sentence and the following **atomic propositions**. 
-No explicit restriction on the set of atomic propositions, however the task description includes the following: ... 
-
-We evaluate the extension of Logic_LM on a dataset create for a Drone Planning domain. 
-- Drone navigation command in natural language into an LTL expression
-- Different paper feeds this LTL expression in to a trajectory planner that can plan the task in a predefined environment.
-- Instead, we add the predefined environment in Natural Langauge to the multiple Choice questions.
-- We are dealing with two levels of abstraction, the floor and the room. Being in the red room implies being on the first floor.  
-
+We utilize a test set comprising examples derived from the planning domain introduced by Oh et al. [4], which features a 3D grid world $\epsilon_1$ consisting of three floors, six rooms, and a single landmark. These elements are organized into levels of abstraction, with floors representing level 2, rooms as level 1, and the landmark designated as level 0. Each natural language specification in our investigation is constrained to a single sentence and a predefined set of atomic propositions. While there is no explicit limitation on the set of atomic propositions, the task description outlines specific guidelines. We assess the effectiveness of extending Logic_LM on a dataset tailored for Drone Planning, focusing on tasks such as translating drone navigation commands from natural language into LTL expressions. Instead of utilizing a trajectory planner fed with LTL expressions, as done in prior works, we introduce the predefined environment directly into the multiple-choice questions in natural language format, under context.
 
 #### Language Grounding Results
 #### Effectiveness of Problem Formulator
