@@ -146,8 +146,14 @@ Context: Declares the scene in which the question needs to be answered. Use this
 [Few shot examples]
 
 ------
+#### Prompt Engineering
+
 
 The prompt outline above encapsulates our methodology, showcasing its fundamental components. Comprising three main sections—LTL specification, few-shot examples, and context —the prompt serves as a structured framework for generating LTL formulas and traces from natural language inputs.
+
+
+(1) System description in the context
+(2) etc. 
 
 In our study, we employ a test set derived from the planning domain introduced by Oh et al. [4], featuring a 3D grid world denoted as $\epsilon_1$. This environment consists of three floors, six rooms, and a single landmark. For testing purposes, we utilized existing natural language descriptions and corresponding LTL formulas provided by Oh et al.'s and manually added multiple-choice answers. 
 
