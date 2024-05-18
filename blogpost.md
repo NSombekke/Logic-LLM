@@ -148,6 +148,7 @@ Context: Declares the scene in which the question needs to be answered. Use this
 (C) Go to the second floor passing the yellow room and then go to the third floor
 
 ------
+The prompt above embodies our methodology, showcasing its structural components. The prompt is structured into three main components: the LTL specifcation, and the few shot example. (**ADD MORE**)
 
 #### <a name="ltl">Environment Setup: Drone Planning Domain</a>
 
