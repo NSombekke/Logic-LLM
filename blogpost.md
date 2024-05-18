@@ -161,10 +161,18 @@ Always avoid the green room and navigate to the third floor. Which one of the fo
 
 #### Language Grounding Results
 The evaluation consists of two stages: first, the conversion of the question into LTL, and then the subsequent conversion of the LTL formula into traces. 
-#### Effectiveness of Problem Formulator
-To evaluate the effectiveness of our problem formulator, we aim to assess how well the few-shot learning approach performs the conversion of natural language queries into Linear Temporal Logic (LTL) formulas. Given the inherent ambiguity of natural language, this task poses a significant challenge.
 
-To ensure a rigorous evaluation, we utilize a set of 36 benchmark instances created by experts in the nl2spec study, providing a diverse range of scenarios to test the performance of our approach. These instances are not domain specific) (we test by replacing the propositions a, b, c, and d. ) 
+#### Effectiveness of Problem Formulator
+We aim to evaluate how well the LLM performs the conversion task, especially in cases where it needs to generalize from few examples (few-shot learning). The accuracy of the conversions will be reported over the 36 benchmark inctances crafted by experts in the nl2spec study [5]. We use their formatted intances and prompt the LLM to replaced the propositions a,b,c,d. It's worth noting that these sentences are not specific to any domain, allowing us to test the LLM's capability to generalize across different problem domains. 
+Through this evaluation, we seek to understand how well the LLM can handle the translation from natural language to LTL, including its strengths and limitations, and to provide insights into potential areas for improvement in future iterations of such models.
+
+| Natural Language Sentence                                        | Canonical Form                | LTL Formula                           |
+|------------------------------------------------------------------|-------------------------------|---------------------------------------|
+| Every meal is eventually followed by dessert.                    |    TO DO        | G (meal -> F dessert)                 |
+| It is never the case that sunshine and rain occur at the same time. |  TO DO       | G ~(sunshine & rain)                  |
+| Whenever a car starts, the engine revs three steps later.        | TO DO | G (car_starts -> X X X engine_revs) |
+
+In addition we evaluate the LLMS NltoLTL conversion in the Drone Planning domain. 
 
 #### Effectiveness of trace geneation
 We plan to measure the accuracy of these conversions over a variety of LTL formulae. 
@@ -173,18 +181,6 @@ We aim to test how well the few shot learning performs the natural language to L
 We assess the proficiency of LLM in transforming a provided problem into the symbolic representation (LTL) employed by the Buchi Automaton. The following table reports the accuracy over a variety of LTL formulae. 
 
 In order to evaluate the effectivenss of XXXX we evaluate on the 36 benchmark instances created by experts in the *nl2spec* study [].
-
-To assess the effectiveness of the natural language to LTL conversion performed by the LLM, we plan to measure its accuracy over a variety of LTL formulae. However, it's important to note that such conversions can sometimes be ambiguous due to the inherent ambiguity of natural language. Different interpretations of the same sentence can lead to different LTL formulae.
-
-We aim to evaluate how well the LLM performs the conversion task, especially in cases where it needs to generalize from few examples (few-shot learning). The accuracy of the conversions will be reported over the 36 benchmark inctances crafted by experts in the nl2spec study [5]. We use their formatted intances and prompt the LLM to replaced the propositions a,b,c,d. It's worth noting that these sentences are not specific to any domain, allowing us to test the LLM's capability to generalize across different problem domains. 
-Through this evaluation, we seek to understand how well the LLM can handle the translation from natural language to LTL, including its strengths and limitations, and to provide insights into potential areas for improvement in future iterations of such models.
-
-
-| Natural Language Sentence                                        | Canonical Form                | LTL Formula                           |
-|------------------------------------------------------------------|-------------------------------|---------------------------------------|
-| Every meal is eventually followed by dessert.                    |            | G (meal -> F dessert)                 |
-| It is never the case that sunshine and rain occur at the same time. |         | G ~(sunshine & rain)                  |
-| Whenever a car starts, the engine revs three steps later.        |  | G (car_starts -> X X X engine_revs) |
 
 #### Examples with a,b,c,d replaced
 - Every meal is eventually followed by dessert.
