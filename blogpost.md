@@ -62,7 +62,7 @@ We extend the Logic-LLM by introducing Linear-time Temporal Logic (LTL).
 
 | Syntax        | Description           |
 |---------------|-----------------------|
-| $p_a$      | Atomic Proposition    |
+| $p_a$      | Atomic Proposition $p_a \in P$    |
 |$\neg \phi$ | Negation              |
 | $\phi \land \psi$ | And                |
 | $\phi \lor \psi$ | Or                 |
@@ -72,6 +72,17 @@ We extend the Logic-LLM by introducing Linear-time Temporal Logic (LTL).
 | $X \phi$    | Next                 |
 | $G \phi$    | Always               |
 
+Denote the set of traces as $TR = (s^{|P|})^{w}$. For trace $t \in TR$, we denote the the i-th state in the trace by $t[i]$. Each state is a set of propositions. A trace of lenth $n$ can be defines as: t[0]t[1]t[2]...t[n].
+
+$$
+\begin{align*}
+t &\models p \quad \text{iff} \quad  p \in t[0] \\
+t &\models \neg \phi \quad \text{ iff } \quad  t \not \models \phi \\
+t &\models \phi_1 \land \phi_2 \quad \text{ iff } \quad t \models \phi_1 \text{ and } t \models \phi_2   \\
+t &\models F \phi \quad \text{ iff } \quad t[1, \infty] \models \phi  \\
+t &\models \phi_1 \mathcal{U} \phi_2 \quad \text{ iff } \quad \text{ there exists  } i \geq 0: t[i, \infty] \models \phi_2 \text{ and for all } 0 \leq j < i: t[j, \infty] \models \phi_1 \\
+\end{align*}
+$$
 
 We employ open source large language models (LLM) to convert natural language into Linear Temporal Logic (LTL) tasks based on the attributes in the planning domain. Consider the Natural language command $\mu$ : *Without stepping outside the orange room, go to landmark one*, where the terms *orange room* and *landmark one* belong to the predicates in the predetermined planning domain. From the given context, the LLM is able to identify and determine the relevant predicates such as the room and/or floor description. We use the LLM to translate $\mu$ into an LTL formula in CNF $\phi_{\mu}$ = F(landmark_1) & G (orange_room), and consequently employ a python module [3] to find its associated Determininistic Finite state Automaton $M_{\phi}$.
 
