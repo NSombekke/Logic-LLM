@@ -157,6 +157,16 @@ For example $p_a(s)$ being true might describe that the drone is located in the 
 
 
 #### <a name="ltl">Drone Planning Domain</a>
+
+<table align="center">
+  <tr align="center">
+      <td><img src="domain.jpg" width=800></td>
+  </tr>
+  <tr align="left">
+    <td colspan=2><b>Figure 2.</b> (caption) source: https://github.com/UM-ARM-Lab/Efficient-Eng-2-LTL/tree/main .</td>
+  </tr>
+</table>
+
 We evaluate the extension of Logic_LM on a dataset create for a Drone Planning domain. 
 - Drone navigation command in natural language into an LTL expression
 - Different paper feeds this LTL expression in to a trajectory planner that can plan the task in a predefined environment.
