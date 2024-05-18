@@ -166,11 +166,15 @@ The evaluation consists of two stages: first, the conversion of the question int
 We aim to evaluate how well the LLM performs the conversion task, especially in cases where it needs to generalize from few examples (few-shot learning). The accuracy of the conversions will be reported over the 36 benchmark inctances crafted by experts in the nl2spec study [5]. We use their formatted intances and prompt the LLM to replaced the propositions a,b,c,d. It's worth noting that these sentences are not specific to any domain, allowing us to test the LLM's capability to generalize across different problem domains. 
 Through this evaluation, we seek to understand how well the LLM can handle the translation from natural language to LTL, including its strengths and limitations, and to provide insights into potential areas for improvement in future iterations of such models.
 
-| Natural Language Sentence                                        | Canonical Form                | LTL Formula                           |
+<figcaption style="text-align: center;">[Link to NL2LTL Dataset](https://github.com/realChrisHahn2/nl2spec/blob/main/experiments/nl2spec-paper_experiment_results.csv)</figcaption>
+
+| **Prompted Natural Language Sentence ($\mu$)**                   | **Canonical Form**            | **LTL Formula**                       |
 |------------------------------------------------------------------|-------------------------------|---------------------------------------|
 | Every meal is eventually followed by dessert.                    |    TO DO        | G (meal -> F dessert)                 |
 | It is never the case that sunshine and rain occur at the same time. |  TO DO       | G ~(sunshine & rain)                  |
 | Whenever a car starts, the engine revs three steps later.        | TO DO | G (car_starts -> X X X engine_revs) |
+
+
 
 In addition we evaluate the LLMS NltoLTL conversion in the Drone Planning domain. 
 
@@ -182,7 +186,7 @@ We assess the proficiency of LLM in transforming a provided problem into the sym
 
 In order to evaluate the effectivenss of XXXX we evaluate on the 36 benchmark instances created by experts in the *nl2spec* study [].
 
-#### Examples with a,b,c,d replaced
+#### Remove: Examples with a,b,c,d replaced
 - Every meal is eventually followed by dessert.
 - It is never the case that sunshine and rain occur at the same time.
 - Whenever a car starts, the engine revs three steps later.
@@ -235,7 +239,6 @@ In order to evaluate the effectivenss of XXXX we evaluate on the 36 benchmark in
 | a holds until b holds or always a holds                        | $(a \mathcal{U} b) \lor Ga$                             |   |
 
 
-[NL2LTL](https://github.com/realChrisHahn2/nl2spec/blob/main/experiments/nl2spec-paper_experiment_results.csv)
 
 
 
