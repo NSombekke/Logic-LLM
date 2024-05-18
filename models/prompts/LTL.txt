@@ -29,7 +29,7 @@ The input additionally requires that "one of them holds in every time step", whi
 Explanation dictionary:
 {'a and b': 'a & b', 'a and b never occur': 'G(!(a & b))', 'one of them holds in every time step': 'G(a | b)'}
 Conclusion:
-G(~(a & b)) & G(a | b)
+G(!(a & b)) & G(a | b)
 ------
 Problem:
 [[PROBLEM]]
