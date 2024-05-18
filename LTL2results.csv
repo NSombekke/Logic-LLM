@@ -1,6 +1,7 @@
 ID,Question,Formula,GPT-3 Answer, Description
 LTL_dev_1,"Every time hunger strikes, eating eventually follows.","G(hunger -> F eating)","G(hunger -> F eating)","{'Every time': 'G', 'hunger strikes': 'hunger', 'eating eventually follows': 'F eating', 'hunger strikes, eating eventually follows': 'G(hunger -> F eating)'}"
 LTL_dev_2,"It's never the case that rain and sunshine occur at the same time.","G(!(rain & sunshine))","G(!(rain & sunshine))","{'It's never the case that': 'G(!())', 'rain and sunshine occur at the same time': '!(rain & sunshine)', 'It's never the case that rain and sunshine occur at the same time': 'G(!(rain & sunshine))'}"
+LTL_dev_3,"Whenever the engine starts, acceleration kicks in three steps later.", "G(engine_start -> X (X (X acceleration_on)))", "G(engine_start -> X X X acceleration)", " {'Whenever': 'G', 'the engine starts': 'engine_start', 'acceleration kicks in three steps later': 'X X X acceleration'}" 
 LTL_dev_4,"I am a student must hold everywhere until from some point on, I am graduated holds infinitely often.","student U (G (F graduated))","student U (G graduated)","{'I am a student': 'student', 'I am graduated': 'graduated', 'I am a student must hold everywhere until I am graduated holds infinitely often': 'student U (G graduated)'}"
 LTL_dev_5,"Whenever an exam is scheduled, studying occurs beforehand.","G (exam_scheduled -> (!exam_scheduled U (studying & !exam_scheduled)))","",""
 LTL_dev_6,"If it's nighttime, then sleeping occurs.","G (nighttime -> sleeping)","",""
