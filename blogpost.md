@@ -172,17 +172,11 @@ Always avoid the green room and navigate to the third floor. Which one of the fo
 The evaluation consists of two stages: (1) the conversion of the question into LTL, and (2) the subsequent conversion of the LTL formula into traces. 
 
 ##### (1) Effectiveness of Problem Formulator
-We aim to evaluate how well the LLM performs the conversion task, especially in cases where it needs to generalize from few examples (few-shot learning). The accuracy of the conversions will be reported over the 36 benchmark inctances crafted by experts in the nl2spec study [5]. We use their formatted intances and prompt the LLM to replaced the propositions a,b,c,d. It's worth noting that these sentences are not specific to any domain, allowing us to test the LLM's capability to generalize across different problem domains. 
+We aim to evaluate how well the LLM performs the conversion task, especially in cases where it needs to generalize from few examples (few-shot learning). The accuracy of the conversions will be reported over the 36 benchmark inctances crafted by experts in the nl2spec study [5]. We use their formatted intances and prompt the LLM to replaced the propositions a,b,c,d. A question in natural language may be $\mu:$ Every meal is eventually followed by dessert. Corresponding to G (meal -> F dessert). And $\mu: $ Whenever a car starts, the engine revs three steps later.  Corresponding to: G (car_starts -> X X X engine_revs).
+
+
+It's worth noting that these sentences are not specific to any domain, allowing us to test the LLM's capability to generalize across different problem domains. 
 Through this evaluation, we seek to understand how well the LLM can handle the translation from natural language to LTL, including its strengths and limitations, and to provide insights into potential areas for improvement in future iterations of such models.
-
-<figcaption style="text-align: center;">[Link to NL2LTL Dataset](https://github.com/realChrisHahn2/nl2spec/blob/main/experiments/nl2spec-paper_experiment_results.csv)</figcaption>
-
-| **Prompted Natural Language Sentence ($\mu$)**                   | **Canonical Form**            | **LTL Formula**                       |
-|------------------------------------------------------------------|-------------------------------|---------------------------------------|
-| Every meal is eventually followed by dessert.                    |    TO DO        | G (meal -> F dessert)                 |
-| It is never the case that sunshine and rain occur at the same time. |  TO DO       | G ~(sunshine & rain)                  |
-| Whenever a car starts, the engine revs three steps later.        | TO DO | G (car_starts -> X X X engine_revs) |
-
 
 
 In addition we evaluate the LLMS NltoLTL conversion in the Drone Planning domain. 
