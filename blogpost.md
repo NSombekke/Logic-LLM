@@ -189,7 +189,6 @@ Through this evaluation, we seek to understand how well the LLM can handle the t
 
 In addition we evaluate the LLMS NltoLTL conversion in the Drone Planning domain. 
 
-
 - We aim to compare our results to results using GPT-3 or Rasa (Their source 3).
 - Which model can handle unstructured natural language better?
 - Mention how the few-shot prompting affect the results
@@ -217,8 +216,7 @@ Accuracies over test sets
 |
 ##### (2) Effectiveness of trace geneation
 
-We plan to measure the accuracy of these conversions over a variety of LTL formulae. 
-
+- We plan to measure the accuracy of these conversions over a variety of LTL formulae. 
 
 
 
@@ -475,3 +473,5 @@ Using Llama-3 we observed that the performance of Logic-LM is significantly wors
 [4] Y. Oh, R. Patel, T. Nguyen, B. Huang, E. Pavlick, and S. Tellex, "Planning with State Abstractions for Non-Markovian Task Specifications," CoRR, vol. abs/1905.12096, 2019. [Online]. Available: http://arxiv.org/abs/1905.12096
 
 [5] M. Cosler, C. Hahn, D. Mendoza, F. Schmitt, and C. Trippel, "nl2spec: Interactively Translating Unstructured Natural Language to Temporal Logics with Large Language Models," Mar. 8, 2023. [Online]. Available: arXiv:2303.04864.
+
+[6] Wang, J., Tong, J., Tan, K., Vorobeychik, Y., & Kantaros, Y. (2024). Conformal Temporal Logic Planning using Large Language Models. Retrieved from arXiv:2309.10092 [cs.RO]
