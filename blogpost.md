@@ -137,9 +137,9 @@ Context: Declares the scene in which the question needs to be answered. Use this
 ##### Context:
 *Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1.* *The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.*
 
-*Question:*
+**Question:**
 *always avoid the green room and navigate to the third floor. Which one of the following is a possible path for the drone to follow?
-Options:*
+**Options:**
 
 (A) From the third floor go to the green room and stay there,
 
