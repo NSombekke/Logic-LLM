@@ -33,3 +33,12 @@
   biburl       = {https://dblp.org/rec/journals/corr/abs-1905-12096.bib},
   bibsource    = {dblp computer science bibliography, https://dblp.org}
 }
+
+@misc{cosler2023nl2spec,
+      title={nl2spec: Interactively Translating Unstructured Natural Language to Temporal Logics with Large Language Models}, 
+      author={Matthias Cosler and Christopher Hahn and Daniel Mendoza and Frederik Schmitt and Caroline Trippel},
+      year={2023},
+      eprint={2303.04864},
+      archivePrefix={arXiv},
+      primaryClass={cs.LO}
+}
