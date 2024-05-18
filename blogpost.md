@@ -136,7 +136,7 @@ Context: Declares the scene in which the question needs to be answered. Use this
 
 *Your raw LTL formula answers always need to follow the following output format and you always have to try to provide a LTL formula. You may repeat your answers.*
 
-*Remember that U means "until", G means "globally", F means "finally", which means GF means "infinitely often".*
+*Remember that U means "until", G means "globally", F means "eventually", which means GF means "infinitely often".*
 
 *The formula should only contain atomic propositions or operators ||, &, !, U, G, F.*
 
