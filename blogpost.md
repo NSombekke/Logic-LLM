@@ -162,6 +162,9 @@ Context: Declares the scene in which the question needs to be answered. Use this
 We use the same planning domain as introduced by Oh et al. [4].
 A 3D grid world $\Epsilon_1$ comprised of three floors, six rooms, and a single landmark. Both rooms, floor, and the landmark form levels of abstraction. The landmark is of level 0, the rooms of level 1, and the floor at level 2. 
 
+In this study, each natural language specification was restricted to one sentence and the following **atomic propositions**. 
+No explicit restriction on the set of atomic propositions, however the task description includes the following: ... 
+
 We evaluate the extension of Logic_LM on a dataset create for a Drone Planning domain. 
 - Drone navigation command in natural language into an LTL expression
 - Different paper feeds this LTL expression in to a trajectory planner that can plan the task in a predefined environment.
@@ -170,11 +173,11 @@ We evaluate the extension of Logic_LM on a dataset create for a Drone Planning d
 
 
 #### Language Grounding Results
-We aim to test how well the few shot learning performs the natural language to LTL conversion. 
-TO DO. 
-
 #### Effectiveness of Problem Formulator
+We aim to test how well the few shot learning performs the natural language to LTL conversion. **(say how conversions can be ambigious) -  inerherent ambiguity of natural language,**
 We assess the proficiency of LLM in transforming a provided problem into the symbolic representation (LTL) employed by the Buchi Automaton. The following table reports the accuracy over a variety of LTL formulae. 
+
+In order to evaluate the effectivenss of XXXX we evaluate on the 36 benchmark instances created by experts in the *nl2spec* study [].
 **TO DO**
 
 | Temporal Property                                               | Temporal Logic Formula                                      | LLAMA output |
