@@ -185,9 +185,6 @@ Through this evaluation, we seek to understand how well the LLM can handle the t
 | Every meal is eventually followed by dessert.                    |            | G (meal -> F dessert)                 |
 | It is never the case that sunshine and rain occur at the same time. |         | G ~(sunshine & rain)                  |
 | Whenever a car starts, the engine revs three steps later.        |  | G (car_starts -> X X X engine_revs) |
-| Happiness must prevail everywhere until from some point on, sadness occurs infinitely often. |  | G (happiness U (G F sadness))        |
-| If hunger strikes at some point, eating must happen beforehand.  |          | G (hunger -> F eating)                |
-
 
 #### Examples with a,b,c,d replaced
 - Every meal is eventually followed by dessert.
