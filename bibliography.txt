@@ -9,3 +9,9 @@
   url_code    = {https://github.com/whitemech/LTLf2DFA},
   url_website = {http://ltlf2dfa.diag.uniroma1.it},
 }
+@article{pan2023data,
+  title={Data-Efficient Learning of Natural Language to Linear Temporal Logic Translators for Robot Task Specification},
+  author={Pan, Jiayi and Chou, Glen and Berenson, Dmitry},
+  journal={arXiv preprint arXiv:2303.08006},
+  year={2023}
+}
