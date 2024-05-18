@@ -185,6 +185,10 @@ TO DO.
 We assess the proficiency of LLM in transforming a provided problem into the symbolic representation (LTL) employed by the Buchi Automaton. The following table reports the accuracy over a variety of LTL formulae. 
 **TO DO**
 
+[NL2LTL](https://github.com/realChrisHahn2/nl2spec/blob/main/experiments/nl2spec-paper_experiment_results.csv)
+
+
+
 ## <a name="contribution">Novel contribution</a>
 *Describe your novel contribution.*
 
