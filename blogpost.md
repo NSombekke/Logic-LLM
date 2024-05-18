@@ -157,8 +157,6 @@ For example $p_a(s)$ being true might describe that the drone is located in the 
 
  
 
-
-
 #### <a name="ltl">Environment Setup: Drone Planning Domain</a>
 
 <table align="center">
@@ -182,6 +180,10 @@ We evaluate the extension of Logic_LM on a dataset create for a Drone Planning d
 #### Language Grounding Results
 We aim to test how well the few shot learning performs the natural language to LTL conversion. 
 TO DO. 
+
+#### Effectiveness of Problem Formulator
+We assess the proficiency of LLM in transforming a provided problem into the symbolic representation (LTL) employed by the Buchi Automaton. The following table reports the accuracy over a variety of LTL formulae. 
+**TO DO**
 
 ## <a name="contribution">Novel contribution</a>
 *Describe your novel contribution.*
