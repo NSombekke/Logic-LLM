@@ -73,16 +73,17 @@ We extend the Logic-LLM by introducing Linear-time Temporal Logic (LTL).
 | $G \phi$    | Always               |
 
 
-We employ open source large language models (LLM) to convert natural language into Linear Temporal Logic (LTL) tasks based on the attributes in the planning domain. **(Mention the methodology for prompting)**
-
-Consider the Natural language command $\mu$ : *Without stepping outside the orange room, go to landmark one*, where the terms *orange room* and *landmark one* belong to the predicates in the predetermined planning domain. From the given context, the LLM is able to identify and determine the relevant predicates such as the room and/or floor description. We use the LLM to translate $\mu$ into an LTL formula in CNF $\phi_{\mu}$ = F(landmark_1) & G (orange_room), and consequently employ a python module (**source**) to find its associated Determininistic Finite state Automaton $M_{\phi}$.
+We employ open source large language models (LLM) to convert natural language into Linear Temporal Logic (LTL) tasks based on the attributes in the planning domain. Consider the Natural language command $\mu$ : *Without stepping outside the orange room, go to landmark one*, where the terms *orange room* and *landmark one* belong to the predicates in the predetermined planning domain. From the given context, the LLM is able to identify and determine the relevant predicates such as the room and/or floor description. We use the LLM to translate $\mu$ into an LTL formula in CNF $\phi_{\mu}$ = F(landmark_1) & G (orange_room), and consequently employ a python module [3] to find its associated Determininistic Finite state Automaton $M_{\phi}$.
 
 Since Large language models are predominantly trained on natural language and may encounter difficulties when processing text transcriptions of Linear Temporal Logic (LTL) formulas. The syntax of LTL (e.g. U and F) is quite different from typical natural language constructs. To address this distribution shift, a study [X] proposes creating a "canonical" representation that aligns more closely with natural language. In the prompt we ask the LLM to turn $\mu$ into an intermediate 'canoncial form' before mapping the the sentence into an LTL formula.
 
+Using few shot learning we create a mapping between natural language commands and their associated LTL formula. Given the prompt below, an open source LLM can be instructed to create such LTL formulae from natural langauge. 
 
 |Natural Language ($\mu$)| Canonical form      | Raw LTL form     |
 |-----------------------------------------|-----------------------------------------|-------------------------------------|
 |Always avoid the green room and navigate to the third floor. | finally ( and ( the third floor , not ( the green room ) ) ) | F ( third_floor & ! green_room ) |
+|Every a is eventually followed by an e | globally ( a -> finally ( e ) )| G(a -> Fe)|
+| The gate remains closed untill the train leaves the crossing| globally ( gate-closed until ( train-leaves ) )| gate-closed U train-exists| 
 
 
 ------
@@ -116,20 +117,16 @@ Options:*
 
 (C) Go to the second floor passing the yellow room and then go to the third floor
 
-
-
-
 ------
 
 ### <a name="ltl">Symbolic Reasoner</a>
 ### Buchi Automaton 
 
-For temporal reasoning, we incorporate a library for translating LTL formulas (in CNF form) with finite-trace semantics into a minimal Deterministic Finite state Automaton (DFA) using MONA [3]. This DFA captures the temporal constraints specified by the LTL formula and enables efficient reasoning over finite traces.
+For temporal reasoning, we incorporate a library for translating LTL formulas (in CNF form) with finite-trace semantics into a minimal Deterministic Finite state Automaton (DFA) using MONA [3]. This DFA captures the temporal constraints specified by the LTL formula and enables efficient reasoning over finite traces. The trace-based satisfiability reasoning enhances the framework's ability to handle temporal aspects of logical reasoning problems. 
 
-The trace-based satisfiability reasoning enhances the framework's ability to handle temporal aspects of logical reasoning problems. 
 - Co-safe LTL formulae can be translated into $M_{\phi}$ using the model checking tool Flloat based on Mesa. 
 
-- Using few shot learning we create a mapping between natural language commands and their associated LTL formula. For example, *Every a is eventually followed by an e,* may be parsed into *G(a -> Fe)*. And *The gate remains closed untill the train leaves the crossing* can be translated to *gate-closed U train-exists*. Given a prompt, an open source LLM can be instructed to create such LTL formulae from natural langauge. 
+
 - Traces are possible executions
 - Model checking for the validity of traces
 
@@ -139,13 +136,15 @@ For example $p_a(s)$ being true might describe that the drone is located in the 
 
 
 
-**Definition 1: (Büchi automaton)**: A deterministic Büchi automaton (DBA) is a tuple B = (Q, Σ, δ, q₀, F) where:
-- Q is a finite set of states,
-- Σ is the input alphabet,
-- δ : Q × Σ → Q is the transition function,
-- q₀ ∈ Q is the initial state, and
-- F is the acceptance condition.
+**Definition 1: (Büchi automaton)**: A deterministic Büchi automaton (DBA) is a tuple $B = (Q, \sum, \Delta, Q_0, F)$ where:
+- $Q$ is a finite set of states,
+- $\sum$ is a finite alphabet,
+- $\Delta \subseteq Q \times \sum \times Q$ is the transition relation,
+- $Q_o \subseteq Q$ is the set of initial stats
+- $F \subseteq Q$ is the set of accepting state. 
 
+
+A Buchi Automaton $M_{\phi} recognizes a language that consistss of infinite words over the alphabet $\sum$.
 <table align="center">
   <tr align="center">
       <td><img src="pipeline.jpg" width=800></td>
@@ -155,6 +154,8 @@ For example $p_a(s)$ being true might describe that the drone is located in the 
   </tr>
 </table>
 
+The language of a formula defines a set of infinite traces. 
+Traces are either accepted or rejected. 
  
 
 #### <a name="ltl">Environment Setup: Drone Planning Domain</a>
