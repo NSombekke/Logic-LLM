@@ -57,7 +57,7 @@ Our first extension is making Logic-LM work with open-source language models, in
 
 ## <a name="ltl">Linear Temporal Logic</a>
 We extend the Logic-LLM by introducing Linear-time Temporal Logic (LTL). 
- Linear-time Temporal Logic extends standard propositional logic to express properties that hold over trajectories across time. LTL adheres to the following grammar:
+ Linear-time Temporal Logic extends standard propositional logic to express properties that hold over trajectories across time. Formulas in LTL over the set of atomic propositions (P) adhere to the following grammar:
 
 
 | Syntax        | Description           |
@@ -72,8 +72,9 @@ We extend the Logic-LLM by introducing Linear-time Temporal Logic (LTL).
 | $X \phi$    | Next                 |
 | $G \phi$    | Always               |
 
-Denote the set of traces as $TR = (s^{|P|})^{w}$. For trace $t \in TR$, we denote the the i-th state in the trace by $t[i]$. Each state is a set of propositions. A trace of lenth $n$ can be defines as: $t[0]t[1]t[2]...t[n]$.
+Denote the set of traces as $TR = (s^{|P|})^{w}$. For trace $t \in TR$, we denote the the i-th state in the trace by $t[i]$. Each state is a set of propositions. A trace of lenth $n$ can be defines as:  $ t_{\psi} = t(0), t(1), t(2)...t(n)$.
 
+- Co-safe LTL tasks are satisfied by a finite trajectory. 
 $$
 \begin{align*}
 t &\models p \quad \text{iff} \quad  p \in t[0] \\
@@ -123,7 +124,7 @@ Step 5 in Figure 1 shows an example output of traces corresponding to options (A
 - $Q_o \subseteq Q$ is the set of initial stats
 - $F \subseteq Q$ is the set of accepting state. 
 
-
+Function L maps subplans of t(n) to symbold $\sigma \in \sum$. Finite traces $t_{\psi} satisfiy the LTL if word $w = L(t(0)L(t(1)...L(t(n)$ is an acceptable trace in the DBA $(M_{\phi})$.
 
 ------
 **Example Prompt**
@@ -169,6 +170,7 @@ Always avoid the green room and navigate to the third floor. Which one of the fo
 ------
 
 #### Language Grounding Results
+
 The evaluation consists of two stages: (1) the conversion of the question into LTL, and (2) the subsequent conversion of the LTL formula into traces. 
 
 ##### (1) Effectiveness of Problem Formulator
