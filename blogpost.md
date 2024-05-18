@@ -104,11 +104,11 @@ Context: Declares the scene in which the question needs to be answered. Use this
 *always avoid the green room and navigate to the third floor. Which one of the following is a possible path for the drone to follow?
 Options:*
 
-*(A) From the third floor go to the green room and stay there,
+(A) From the third floor go to the green room and stay there,
 
 (B) Go inside the red room and then move to the green room,
 
-(C) Go to the second floor passing the yellow room and then go to the third floor*
+(C) Go to the second floor passing the yellow room and then go to the third floor
 
 
 ##### Canonical formular of the question: 
