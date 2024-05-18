@@ -15,3 +15,21 @@
   journal={arXiv preprint arXiv:2303.08006},
   year={2023}
 }
+@article{DBLP:journals/corr/abs-1905-12096,
+  author       = {Yoonseon Oh and
+                  Roma Patel and
+                  Thao Nguyen and
+                  Baichuan Huang and
+                  Ellie Pavlick and
+                  Stefanie Tellex},
+  title        = {Planning with State Abstractions for Non-Markovian Task Specifications},
+  journal      = {CoRR},
+  volume       = {abs/1905.12096},
+  year         = {2019},
+  url          = {http://arxiv.org/abs/1905.12096},
+  eprinttype    = {arXiv},
+  eprint       = {1905.12096},
+  timestamp    = {Mon, 03 Jun 2019 13:42:33 +0200},
+  biburl       = {https://dblp.org/rec/journals/corr/abs-1905-12096.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
