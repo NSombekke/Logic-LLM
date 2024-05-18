@@ -1,24 +1,147 @@
 [ {
     "id": "LTL_dev_1",
-    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
-    "question": "First either go to the second floor or the red room and then go to the first floor. Which one of the following is a possible path for the drone to follow?",
+    "context": "",
+    "question": "Every time hunger strikes, eating eventually follows. Which one of the following is a possible order of events?",
     "options": [
-      "A) First go to the green room and then move the red room",
-      "B) First go to the third floor and stay there",
-      "C) Go to the second floor and then move to the purple room"
+      "A) ",
+      "B) ",
+      "C) "
     ],
     "answer": "A",
-    "question_raw_ltl":"F((second_floor || red_room) & F(first_floor))"
+    "question_raw_ltl":""
   },
   {
     "id": "LTL_dev_2",
-    "context": "Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1. The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
-    "question": "Go to the green room after entering the second floor. Which one of the following is a possible path for the drone to follow?",
+    "context": "",
+    "question": "It's never the case that rain and sunshine occur at the same time. Which one of the following is a possible order of events?",
     "options": [
-      "A) Go to the purple room and then move to the second floor",
-      "B) Only visit the green room",
-      "C) Go to the red room and then move to the orange room passing the second floor"
+      "A) ",
+      "B) ",
+      "C) "
     ],
-    "answer": "B",
-    "question_raw_ltl":"F((second_floor & F(green_room)))"
-  },]
+    "answer": "A",
+    "question_raw_ltl":""
+  },
+    {
+    "id": "LTL_dev_3",
+    "context": "",
+    "question": "Whenever the engine starts, acceleration kicks in three steps later. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl":""
+  },
+    {
+    "id": "LTL_dev_4",
+    "context": "",
+    "question": "I am not yet graduated must hold everywhere until from some point on, I am graduated holds infinitely often. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl":""
+  },
+     {
+    "id": "LTL_dev_5",
+    "context": "",
+    "question": "Whenever an exam is scheduled, studying occurs beforehand. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "(F exam_scheduled) -> (!exam_scheduled U (studying & !exam_scheduled))"
+  },
+  {
+    "id": "LTL_dev_6",
+    "context": "",
+    "question": "If it's nighttime, then sleeping occurs. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G (nighttime -> sleeping)"
+  },
+  {
+    "id": "LTL_dev_7",
+    "context": "",
+    "question": "Both the sun is shining and the birds are chirping in every time step. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G (sun_shining && birds_chirping)"
+  },
+  {
+    "id": "LTL_dev_8",
+    "context": "",
+    "question": "The sun shines always, and whenever the birds sing, the cats don't meow. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G sun_shines && G(birds_sing -> !cats_meow)"
+  },
+      {
+    "id": "LTL_dev_9",
+    "context": "",
+    "question": "If it is the case that every emission test is eventually passed, then good air quality needs to holds infinitely often. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G(emission_test -> F passed) -> G F good_air_quality"
+  },
+    
+      {
+    "id": "LTL_dev_10",
+    "context": "",
+    "question": "If Mark loves Stacy infinitely often, then Stacey loves Mark holds infinitely often as well. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G F mark_loves_stacey -> G F  stacey_loves_mark"
+  },
+     {
+    "id": "LTL_dev_11",
+    "context": "",
+    "question": "Either the store is open all day or the online website is accessible around the clock. Which one of the following is a possible order of events?",
+    "options": [
+      "A) ",
+      "B) ",
+      "C) "
+    ],
+    "answer": "A",
+    "question_raw_ltl": "G F store_open || G F online_website_accessible"
+  }
+]
+    
+
+
+
+   
+
+    
+    
+
+
+
+
+]
