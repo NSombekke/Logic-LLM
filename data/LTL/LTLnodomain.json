@@ -3,11 +3,11 @@
     "context": "",
     "question": "Every time hunger strikes, eating eventually follows. Which one of the following is a possible order of events?",
     "options": [
-      "A) ",
-      "B) ",
-      "C) "
+      "A) Eating precedes hunger, after which you never eat again.",
+      "B) You are hungry, and then fall asleep and do not wake up.",
+      "C) Hunger prompts cooking, followed by eating."
     ],
-    "answer": "A",
+    "answer": "C",
     "question_raw_ltl":"G(hunger -> F eating)"
   },
   {
