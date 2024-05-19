@@ -1,2 +1,2 @@
-ID, True LTL , GPT3 LTL output ,GPT3 trace output, Direct prompting, Direct prompting answer
-LTL_dev_1, "F((second_floor || red_room) & F(first_floor))", "F ( (second_floor || red_room) & F (first_floor) )", "A", "", "X"
+ID, True LTL , solution, GPT3 LTL output ,GPT3 trace output, Direct prompting, Direct prompting answer
+LTL_dev_1, A, "F((second_floor || red_room) & F(first_floor))", "F ( (second_floor || red_room) & F (first_floor) )", "A", "", "X"
