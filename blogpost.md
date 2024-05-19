@@ -128,7 +128,7 @@ Utilizing few-shot learning, we establish a correspondence between natural langu
 <!--(TODO add ref)-->
 **Definition 1: (Büchi automaton)**: A deterministic Büchi automaton (DBA) is a tuple $M = (Q, \sum, \Delta, Q_0, F)$ where:
 - $Q$ is a finite set of automaton states,
-- $\sum$ is a finite alphabet of the automaton,
+- $\Sigma$ is a finite alphabet of the automaton ($\Sigma = 2^{|P|}$),
 - $\Delta : Q \times \sum  \rightarrow 2^{Q}$ is the transition function,
 - $q_0 \subseteq Q$ is the set of initial stats
 - $F \subseteq Q$ is the set of accepting states.
