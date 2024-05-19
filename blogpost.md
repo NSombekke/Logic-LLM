@@ -177,6 +177,7 @@ Note how the prompt includes a context, question, and multiple choice options.
 > 
 > **Question:**
 > Always avoid the green room and navigate to the third floor. Which one of the following is a possible path for the drone to follow?
+> 
 > **Options:**
 > 
 > (A) From the third floor go to the green room and stay there,
