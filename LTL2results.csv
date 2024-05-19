@@ -23,8 +23,9 @@ LTL_dev_20,"Whenever the oven preheats and the timer beeps for the next step, th
 LTL_dev_21,"Whenever the seeds are planted, the flowers bloom eventually from the next step onward.","G (seeds_planted -> X F flowers_bloom)","",""
 LTL_dev_22,"We work every fifth day.","G (work -> X !work & X X !work & X X X !work & X X X X !work & X X X X X work)","",""
 LTL_dev_23,"Either failed my exam holds infinitely often or passed the exam holds in the next step.","G F failed_exam || X passed_exam","",""
-LTL_dev_24,"Sam is taller than Ben will hold at all instances.","G (sam_taller_than_ben)","",""
-LTL_dev_25,"Whenever the food is hot, the food is cold in the next two steps.","G (hot_food -> (cold_food | X cold_food))","",""
+LTL_dev_24,"Sam is taller than Ben will hold at all instances.","G (sam_taller_than_ben)","G(Sam_is_taller_than_Ben)","{'Sam is taller than Ben': 'Sam_is_taller_than_Ben', 'Sam is taller than Ben will hold at all instances': 'G(Sam_is_taller_than_Ben)'}"
+LTL_dev_25,"Whenever the food is hot, the food is cold in the next two steps.","G (hot_food -> (cold_food | X cold_food))","F food_is_hot -> X food_is_cold & XX food_is_cold","{'the food is hot': 'food_is_hot', 'the food is cold': 'food_is_cold', 'in the next two steps': 'X food_is_cold & XX food_is_cold'}
+{'Whenever the food is hot, the food is cold in the next two steps': 'F food_is_hot -> X food_is_cold & XX food_is_cold'}"
 LTL_dev_26,"At all times, one of the following apps will be running: messaging, navigation, or music.","G (messaging | navigation | music)","G (messaging | navigation | music)","{'At all times': 'G', 'one of the following apps will be running': 'messaging | navigation | music'}"
 LTL_dev_27,"If the alarm rings, someone will eventually wake up.","G (alarm_ring -> F wake_up)","",""
 LTL_dev_28,"The temperature must always be within a normal range, but if it exceeds that range, it allows for two time intervals to return to normal.","G (temperature_normal | X temperature_normal)","",""
