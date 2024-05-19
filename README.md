@@ -1,3 +1,8 @@
+# Logic-LM extension by integrating Llama3 and Linear Temporal Logic
+You can find the code in src (this has not been cleaned yet, we will do this for the final submission).
+
+Below you can find the readme of the original logic-LM paper.
+
 # Logic-LM
 Data and Codes for ["LOGIC-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning"](https://arxiv.org/abs/2305.12295) (Findings of EMNLP 2023). 
 
