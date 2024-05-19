@@ -147,7 +147,7 @@ Step 5 in Figure 1 shows an example output of traces corresponding to options (A
 
 #### Prompt Engineering
 
-The prompt below encapsulates our methodology, showcasing its fundamental components. Comprising three main sections— (1) LTL specification for the conversion of Natural Language to LTL, (2) the conversion of multiple choice options to traces, and (3) few-shot examples. All in all, the prompt serves as a structured framework for generating LTL formulas and traces from natural language inputs.
+The prompt outline below encapsulates our methodology, showcasing its fundamental components. Comprising three main sections— (1) LTL specification for the conversion of Natural Language to LTL, (2) the conversion of multiple choice options to traces, and (3) few-shot examples. All in all, the prompt serves as a structured framework for generating LTL formulas and traces from natural language inputs.
 
 >**Prompt**
 >
