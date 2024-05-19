@@ -167,7 +167,7 @@ Below an explanaition is given of all the input you will recieve and what you sh
 >
 >[Few shot examples]
 >
-While simpler examples may not necessitate a context for trace generation, for more intricate trace generation tasks, a prompt enriched with domain descriptions is utilized. For instance, the LLM should be able to infer from the context that the drone cannot simultaneously occupy the third floor and a particulaer room on the first floor. In order to test the LLMs ability to create traces for a predetermined domain we use the *drone planning* dataset [5]. 
+While simpler examples may not necessitate a context for trace generation. For instance, for the more general examples, the LLM shoud be able to infer mutex pairs such as sleeping and eating. (One cannot sleep and eat at the same time). For more intricate trace generation tasks, a prompt enriched with domain descriptions is utilized. For instance, the LLM should be able to infer from the context that the drone cannot simultaneously occupy the third floor and a particulaer room on the first floor. In order to test the LLMs ability to create traces for a more specific/predetermined domains we use the *drone planning* dataset [4]. 
 
 > **Context**:
 >  *Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second  floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1.* *The drone’s movement is limited to one floor and not more than one  room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.*
