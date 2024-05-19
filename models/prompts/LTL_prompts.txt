@@ -33,21 +33,19 @@ Options:
 ###
 # canonical formular of the question: 
 finally ( and ( the third floor , not ( the green room ) ) )
-
 # raw LTL formula of the question:
 F ( third_floor & ! green_room )
-
 # Options
-t_A = [
+[
     {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': True, 'orange_room': False, 'landmark_1': False},
     {'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_1': False},
     {'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_1': False}
 ] ::: (A)
-t_B = [
+[
     {'first_floor': True, 'red_room': True, 'yellow_room': False, 'second_floor': False, 'green_room': False, 'third_floor': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False},
     {'first_floor': False, 'red_room': False, 'yellow_room': False, 'second_floor': True, 'green_room': True, 'third_floor': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}
 ] ::: (B)
-t_C = [
+[
     {'first_floor': True, 'red_room': False, 'yellow_room': True, 'second_floor': False, 'green_room': False, 'third_floor': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False},
     {'first_floor': False, 'red_room': False, 'yellow_room': False, 'second_floor': True, 'green_room': False, 'third_floor': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False},
     {'first_floor': False, 'red_room': False, 'yellow_room': False, 'second_floor': False, 'green_room': False, 'third_floor': True, 'purple_room': True, 'orange_room': False, 'landmark_1': False}
@@ -66,21 +64,19 @@ Options:
 ###
 # formular of the question: 
 finally ( and ( the yellow room , finally ( the second floor ) ) )
-
 # raw LTL formula of the question:
 F ( yellow_room & F ( second_floor ) )
-
 # Options
-t_A = [
+[
     {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': True, 'orange_room': False, 'landmark_1': False},
     {'first_floor': True, 'second_floor': False, 'third_floor': False, 'red_room': False, 'yellow_room': True, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False},
     {'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_1': False}
 ] ::: (A)
-t_B = [
+[
     {'first_floor': True, 'red_room': True, 'yellow_room': False, 'second_floor': False, 'green_room': False, 'third_floor': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False},
     {'first_floor': False, 'red_room': False, 'yellow_room': False, 'second_floor': True, 'green_room': False, 'third_floor': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}
 ] ::: (B)
-t_C = [
+[
     {'first_floor': True, 'red_room': True, 'yellow_room': False, 'second_floor': False, 'green_room': False, 'third_floor': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False},
     {'first_floor': False, 'red_room': False, 'yellow_room': False, 'second_floor': True, 'green_room': False, 'third_floor': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}
 ] ::: (C)
@@ -98,22 +94,20 @@ Options:
 ###
 # formular of the question: 
 finally ( and ( the first floor , finally ( landmark 1 ) ) )
-
 # raw LTL formula of the question:
 F ( first_floor & F ( landmark_1 ) )
-
 # Options
-t_A = [
+[
     {'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_1': False},
     {'first_floor': True, 'second_floor': False, 'third_floor': False, 'red_room': False, 'yellow_room': True, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}
 ] ::: (A)
-t_B = [
+[
     {'first_floor': False, 'red_room': False, 'yellow_room': False, 'second_floor': True, 'green_room': True, 'third_floor': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False},
     {'first_floor': False, 'red_room': False, 'yellow_room': False, 'second_floor': False, 'green_room': False, 'third_floor': True, 'purple_room': False, 'orange_room': False, 'landmark_1': True},
     {'first_floor': False, 'red_room': False, 'yellow_room': False, 'second_floor': False, 'green_room': False, 'third_floor': True, 'purple_room': True, 'orange_room': False, 'landmark_1': False}
 
 ] ::: (B)
-t_C = [
+[
     {'first_floor': True, 'red_room': False, 'yellow_room': False, 'second_floor': False, 'green_room': False, 'third_floor': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False},
     {'first_floor': True, 'red_room': True, 'yellow_room': False, 'second_floor': True, 'green_room': False, 'third_floor': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}
 ] ::: (C)
