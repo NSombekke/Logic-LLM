@@ -1,0 +1,57 @@
+Task: Given the initial program and the error message, debug the following logic program.
+------
+>>> Initial Program:
+Predicates:
+Chases($x, $y, bool) ::: Does x chase y?
+Needs($x, $y, bool) ::: Does x need y?
+Visits($x, $y, bool) ::: Does x visit y?
+Big($x, bool) ::: Is x big?
+Green($x, bool) ::: Is x green?
+Facts:
+Chases(BaldEagle, Rabbit, True) ::: The bald eagle chases the rabbit.
+Chases(BaldEagle, Tiger, True) ::: The bald eagle chases the tiger.
+Needs(Lion, Rabbit, True) ::: The lion needs the rabbit.
+DoesNotChase(Rabbit, Lion, True) ::: The rabbit does not chase the lion.
+Needs(Rabbit, BaldEagle, True) ::: The rabbit needs the bald eagle.
+Needs(Rabbit, Lion, True) ::: The rabbit needs the lion.
+Visits(Tiger, Rabbit, True) ::: The tiger visits the rabbit.
+Rules:
+Chases($x, Rabbit, True) >>> Big($x, True) ::: If something chases the rabbit then it is big.
+Needs($x, Tiger, True) >>> Big($x, True) ::: If something needs the tiger then it is big.
+Needs($x, Lion, True) && Visits($x, Rabbit, True) >>> Chases($x, Lion, True) ::: If something needs the lion and it visits the rabbit then it chases the lion.
+Big($x, True) >>> Chases($x, Lion, True) ::: If something is big then it chases the lion.
+Chases($x, Tiger, True) >>> Needs(Tiger, Rabbit, True) ::: If something chases the tiger then the tiger needs the rabbit.
+Visits($x, Tiger, True) >>> NotGreen($x, True) ::: If something visits the tiger then the tiger is not green.
+Chases($x, Lion, True) >>> Chases(Lion, Rabbit, True) ::: If something chases the lion then the lion chases the rabbit.
+Chases($x, Tiger, True) >>> Visits($x, BaldEagle, True) ::: If something chases the tiger then it visits the bald eagle.
+Chases($x, Rabbit, True) && DoesNotVisit($x, Lion, True) >>> DoesNotNeed(Lion, Rabbit, True) ::: If something chases the rabbit and it does not visit the lion then the lion does not need the rabbit.
+Query:
+DoesNotChase(BaldEagle, BaldEagle, True) ::: The bald eagle does not chase the bald eagle.
+>>> Corrected Program:
+Predicates:
+Chases($x, $y, bool) ::: Does x chase y?
+Needs($x, $y, bool) ::: Does x need y?
+Visits($x, $y, bool) ::: Does x visit y?
+Big($x, bool) ::: Is x big?
+Green($x, bool) ::: Is x green?
+Facts:
+Chases(BaldEagle, Rabbit, True) ::: The bald eagle chases the rabbit.
+Chases(BaldEagle, Tiger, True) ::: The bald eagle chases the tiger.
+Needs(Lion, Rabbit, True) ::: The lion needs the rabbit.
+DoesNotChase(Rabbit, Lion, True) ::: The rabbit does not chase the lion.
+Needs(Rabbit, BaldEagle, True) ::: The rabbit needs the bald eagle.
+Needs(Rabbit, Lion, True) ::: The rabbit needs the lion.
+Visits(Tiger, Rabbit, True) ::: The tiger visits the rabbit.
+Rules:
+Chases($x, Rabbit, True) >>> Big($x, True) ::: If something chases the rabbit then it is big.
+Needs($x, Tiger, True) >>> Big($x, True) ::: If something needs the tiger then it is big.
+Needs($x, Lion, True) && Visits($x, Rabbit, True) >>> Chases($x, Lion, True) ::: If something needs the lion and it visits the rabbit then it chases the lion.
+Big($x, True) >>> Chases($x, Lion, True) ::: If something is big then it chases the lion.
+Chases($x, Tiger, True) >>> Needs(Tiger, Rabbit, True) ::: If something chases the tiger then the tiger needs the rabbit.
+Visits($x, Tiger, True) >>> NotGreen($x, True) ::: If something visits the tiger then the tiger is not green.
+Chases($x, Lion, True) >>> Chases(Lion, Rabbit, True) ::: If something chases the lion then the lion chases the rabbit.
+Chases($x, Tiger, True) >>> Visits($x, BaldEagle, True) ::: If something chases the tiger then it visits the bald eagle.
+Chases($x, Rabbit, True) && DoesNotVisit($
+>>> Error Message:
+expected str, bytes or os.PathLike object, not NoneType
+>>> Corrected Program:

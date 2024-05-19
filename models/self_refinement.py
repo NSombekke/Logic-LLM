@@ -33,12 +33,11 @@ class SelfRefinementEngine:
             )
         elif self.framework == "openai":
             self.model = OpenAIModel(
-                args.api_key, "gpt-4", args.stop_words, args.max_new_tokens
+                args.api_key, args.model_name, args.stop_words, args.max_new_tokens
             )
         self.current_round = current_round
 
         self.logic_programs = self.load_logic_programs()
-        # self.reasoning_results = self.load_inference_results()
 
         program_executor_map = {
             "FOLIO": FOL_Prover9_Program,
@@ -68,13 +67,17 @@ class SelfRefinementEngine:
         return dataset
 
     def load_prompt(self, program, error_message):
-        program = program.strip()
-        error_message = error_message.strip()
+        program = str(program).strip()
+        error_message = str(error_message).strip()
         with open(f"./models/prompts/self-correct-{self.dataset_name}.txt", "r") as f:
             prompt_template = f.read()
         full_prompt = prompt_template.replace("[[PROGRAM]]", program).replace(
             "[[ERROR MESSAGE]]", error_message
         )
+        with open(
+            f"./models/prompts/self-correct-{self.dataset_name}-full.txt", "w"
+        ) as f:
+            f.write(full_prompt)
         return full_prompt
 
     def safe_execute_program(self, id, logic_program):
@@ -108,7 +111,9 @@ class SelfRefinementEngine:
                 ):  # this is not execution error, but parsing error
                     # perform self-correction based on the error message
                     full_prompt = self.load_prompt(logic_program, error_message)
-                    revised_program = self.model.generate(full_prompt).strip()
+                    revised_program = self.model.generate(full_prompt)
+                    if self.args.stop_words:
+                        revised_program = revised_program[: -len(self.args.stop_words)]
                     programs = [revised_program]
                     output = {
                         "id": example["id"],
@@ -124,7 +129,9 @@ class SelfRefinementEngine:
             elif status == "parsing error":
                 # perform self-correction based on the error message
                 full_prompt = self.load_prompt(logic_program, "Parsing Error")
-                revised_program = self.model.generate(full_prompt).strip()
+                revised_program = self.model.generate(full_prompt)
+                if self.args.stop_words:
+                    revised_program = revised_program[: -len(self.args.stop_words)]
                 programs = [revised_program]
                 output = {
                     "id": example["id"],
