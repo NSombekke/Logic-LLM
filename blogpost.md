@@ -1,10 +1,11 @@
-# Open source Logic-LLM
+# Logic-LM inegrated with Llama-3 and Linear Temporal Logic
 
 ### Authors
-
+Niels Sombekke, AnneLouise de Boer, Roos Hutter, Rens Baas, Sacha Buijs
 ---
 
-*Abstract very short*
+*Abstract*
+*We still need to write the abstract*
 ---
 
 ## Introduction
