@@ -98,9 +98,9 @@ Since Large language models are predominantly trained on natural language and ma
 
 - In the prompt we ask the LLM to turn $\mu$ into an intermediate *canoncial form* before mapping the the sentence into an LTL formula. Each translation accompanies a translation dictionary in through which th LLM is asked to explain its steps.
 
-> **Every time hunger strikes, eating eventually follows.**
+> ** $\mu $ Every time hunger strikes, eating eventually follows.**
 > 
-> $G(\text{ hunger} \rightarrow F \text{ eating})$
+> $\psi_{\mu}$: $G(\text{ hunger} \rightarrow F \text{ eating})$
 > 
 > {'Every time': 'G', 'hunger strikes': 'hunger', 'eating eventually follows': 'F eating', 'hunger strikes, eating eventually follows': 'G (hunger $\rightarrow$ F eating)'}
 
