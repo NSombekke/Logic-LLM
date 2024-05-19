@@ -3,12 +3,6 @@
     "context": "...",
     "question": "...",
     "answer": "D",
-    "options": [
-      "A) The green book is the second from the left.",
-      "B) The blue book is the second from the left.",
-      "C) The white book is the second from the left.",
-      "D) The purple book is the second from the left.",
-      "E) The yellow book is the second from the left."
-    ],
-    "raw_logic_programs": []
+    "options": [ ...],
+    "raw_logic_programs": [...]
   },]
