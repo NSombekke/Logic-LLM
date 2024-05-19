@@ -228,7 +228,7 @@ Accuracies over test sets
 | predicates only | X/36 (%) | X/36 (%)| X/36 (%) |
 | drone planning | X/Y (%) |X/Y (%) | X/Y (%) |
 
-
+- TO DO: Compare these results to **nl2spec** [5]. (T-5 fine tunes achieved 5.5% accurracy, nl2spec 44.4% accuracy)
 
 ##### (2) Effectiveness of trace geneation
 
