@@ -211,8 +211,10 @@ The evaluation consists of two stages: (1) the conversion of the natural languag
 ##### (1) Effectiveness of Problem Formulator
 We aim to evaluate how well the LLM performs the conversion task, especially in cases where it needs to generalize from few examples (few-shot learning). The accuracy of the conversions will be reported over the 36 benchmark inctances crafted by experts in the nl2spec study [5]. Each of these examples has been selected by LTL experts to cover a variety of ambiguities and complexities. We use their formatted intances, in addition we have prompted the LLM to replaced the 
 propositions a,b,c,d to create more realistic sentences. 
-$\mu:$ Every meal is eventually followed by dessert. $\leftrightarrow$ G(meal -> F dessert). 
-$\mu:$ Whenever a car starts, the engine revs three steps later. $\leftrightarrow$ G(car_starts -> X X X engine_revs).
+
+> $\mu:$ Every meal is eventually followed by dessert. $\leftrightarrow$ G(meal -> F dessert).
+> 
+> $\mu:$ Whenever a car starts, the engine revs three steps later. $\leftrightarrow$ G(car_starts -> X X X engine_revs).
 
 Through this evaluation, we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations of such models. ( ToDo **Look up further studies on NL to LTL**)
 
