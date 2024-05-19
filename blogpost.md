@@ -149,9 +149,6 @@ Step 5 in Figure 1 shows an example output of traces corresponding to options (A
 
 The prompt outline above encapsulates our methodology, showcasing its fundamental components. Comprising three main sections— (1) LTL specification for the conversion of Natural Language to LTL, (2) the conversion of multiple choice options to traces, and (3) few-shot examples. All in all, the prompt serves as a structured framework for generating LTL formulas and traces from natural language inputs.
 
-
-- TO DO: ADD THIS. In order to answer the question the prompt offers the (1) context - domain of planning problem (2) question - Natural language (3) options - to convert to traces. . 
-
 ------
 **Example Prompt**
 
@@ -173,13 +170,11 @@ Context: Declares the scene in which the question needs to be answered. Use this
 
 ------
 
-###### Environmental Setup
-In our study, we employ a test set derived from the planning domain introduced by Oh et al. [4], featuring a 3D grid world denoted as $\epsilon_1$. This environment consists of three floors, six rooms, and a single landmark. For testing purposes, we utilized existing natural language descriptions and corresponding LTL formulas provided by Oh et al.'s and manually added multiple-choice answers. 
-
-These elements within the grid world are organized into distinct levels of abstraction, with floors designated as level 2, rooms as level 1, and the landmark as level 0. Each natural language specification provided in our investigation is limited to a single sentence and a predefined set of atomic propositions. Although there is no explicit restriction on the set of atomic propositions, specific guidelines are outlined in the task description. The LLM is asked to pick a possible path for the drone to follow, by checking if the trace is valid for the $M_{\psi}$. Unlike previous approaches that utilize trajectory planners fed with LTL expressions, we introduce the predefined environment directly into the multiple-choice questions in natural language format, under the *context* section of the prompt.
+Note how the prompt includes a context, question, and multiple choice options. 
 
 ------
-##### Context:
+##### 
+**Context**:
 *Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1.* *The drone’s movement is limited to one floor and not more than one room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.*
 
 **Question:**
@@ -193,6 +188,14 @@ Always avoid the green room and navigate to the third floor. Which one of the fo
 (C) Go to the second floor passing the yellow room and then go to the third floor
 
 ------
+While simpler examples may not necessitate a context for trace generation, for more intricate trace generation tasks, a prompt enriched with domain descriptions is utilized.
+
+###### Environmental Setup
+In our study, we employ a test set derived from the planning domain introduced by Oh et al. [4], featuring a 3D grid world denoted as $\epsilon_1$. This environment consists of three floors, six rooms, and a single landmark. For testing purposes, we utilized existing natural language descriptions and corresponding LTL formulas provided by Oh et al.'s and manually added multiple-choice answers. 
+
+These elements within the grid world are organized into distinct levels of abstraction, with floors designated as level 2, rooms as level 1, and the landmark as level 0. Each natural language specification provided in our investigation is limited to a single sentence and a predefined set of atomic propositions. Although there is no explicit restriction on the set of atomic propositions, specific guidelines are outlined in the task description. The LLM is asked to pick a possible path for the drone to follow, by checking if the trace is valid for the $M_{\psi}$. Unlike previous approaches that utilize trajectory planners fed with LTL expressions, we introduce the predefined environment directly into the multiple-choice questions in natural language format, under the *context* section of the prompt.
+
+
 
 #### Language Grounding Results
 
