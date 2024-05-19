@@ -125,7 +125,7 @@ Utilizing few-shot learning, we establish a correspondence between natural langu
 
 **Theorem 1** [Vardi and Wolper, 1994]: For any LTL formula $\psi$, a Büchi automaton $M_{\psi}$ can be constructed, having a number of states that is at most exponential in the length of $\psi$.  The language of $M_{\psi}$, denoted as $L(M_{\psi})$, encompasses the set of models of $\psi$.
 
-The input words $w$ of the Büchi automaton ($M_{\psi}$) can be infinite words $\sigma_0 \sigma_1 ... \sigma_n \in \Sigma^{w}$ [7]. A *run* of the automaton $(M_{\psi})$ on the word $\textbf{w}$ is sequence of states $\rho = q_0q_1q_2...$, where each state is a set of propositions. The initial state is $q_0$ and subsequent states are defined throught the transition function $q_{i+1} = \Delta(q_i,\sigma_i)$. The language of the automaton $M_{\psi}$ ($L(M_{\psi})$), is a set of (infinite) *words* characterized by the presence of an accepting run. 
+The input words **w** of the Büchi automaton ($M_{\psi}$) can be infinite sequences $\sigma_0 \sigma_1 ... \sigma_n \in \Sigma^{w}$ [7]. A *run* of the automaton $(M_{\psi})$ on the word  **w** is sequence of states $\rho = q_0q_1q_2...$, where each state is a set of propositions. The initial state is $q_0$ and subsequent states are defined throught the transition function $q_{i+1} = \Delta(q_i,\sigma_i)$. The language of the automaton $M_{\psi}$ ($L(M_{\psi})$), is a set of *words* characterized by the presence of an accepting run. 
 
 <!--(TODO add ref)-->
 **Definition 1: (Büchi automaton)**: A deterministic Büchi automaton (DBA) is a tuple $M = (Q, \sum, \Delta, Q_0, F)$ where:
@@ -136,8 +136,7 @@ The input words $w$ of the Büchi automaton ($M_{\psi}$) can be infinite words $
 - $F \subseteq Q$ is the set of accepting states.
 
 
-A word $w$ is accepted by an automaton ($M_{\psi}$) if its run $\rho$ meets the condition $\lim(\rho) \cap F \neq \emptyset $. In other words, the language $L(M_{\psi})$ is not empty if it can reach any of final state. In other words, a run is a valid sequence of states that holds in the automaton, the Büchi automaton ($M_{\psi}$) accepts the word $\alpha \in \Sigma^{w}$ if there is an accepting run on $\alpha$.
-
+A word  **w** is accepted by an automaton ($M_{\psi}$) if its run $\rho$ meets the condition $\lim(\rho) \cap F \neq \emptyset$. A run is a valid sequence of states that holds in the automaton. The Büchi automaton ($M_{\psi}$) accepts the word **w** if there is an accepting run on $\alpha$, one that reaches at least one final state. 
 
 For each subplan $t_i$ of the trace $t_n$, the language function $L$ assigns a symbol $\sigma \in \Sigma$. These symbols collectively form a word $\alpha$, representing the sequence of symbols observed along the trace. This word  $\alpha$ is then evaluated against the acceptance conditions of the DBA $M_{\psi}$. If $w$ satisfies these acceptance conditions, then the finite trace $t_{\psi}$ is deemed to satisfy the LTL formula. Otherwise, it is considered not to satisfy the formula. Finite traces $t_{\psi}$ satisfiy the LTL if word $\alpha = L(t_0)L(t_t)...L(t_n)$ is an acceptable trace in the DBA $(M_{\psi})$. 
 
