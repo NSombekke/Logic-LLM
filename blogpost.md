@@ -197,7 +197,7 @@ These elements within the grid world are organized into distinct levels of abstr
 
 <table align="center">
   <tr align="center">
-      <td><img src="drone_domain.png" width=800></td>
+      <td><img src="drone_domain.png" width=300></td>
   </tr>
   <tr align="left">
     <td colspan=2><b>Figure 2.</b> Planning domain for the drone navigation. Figure by [8].</td>
