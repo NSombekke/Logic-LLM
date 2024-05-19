@@ -92,20 +92,20 @@ Denote the set of traces as $TR = (s^{|P|})^{w}$. For trace $t \in TR$, we denot
 
 We employ the 2 Llama-3 models to convert natural language into Linear Temporal Logic (LTL) tasks based on the attributes in the context of the question (e.g. planning domain). The conversion from natural language to LTL has been predominantly studied within the field of robotics [ToDo **cite**]. 
 
-Consider the following Natural language commands $\mu$, and their coresponding LTL formula with predicates $\psi_{\mu}$.  
+For illustration, consider the following Natural language commands $\mu$, and their coresponding LTL formula with predicates $\psi_{\mu}$, and explaination dictionary (D_{\psi}).  
 
 > **$\mu:$ "Every time hunger strikes, eating eventually follows."**
 > 
 > $\psi_{\mu}$: $G(\text{ hunger} \rightarrow F \text{ eating})$
 > 
-> {'Every time': 'G', 'hunger strikes': 'hunger', 'eating eventually follows': 'F eating', 'hunger strikes, eating eventually follows': 'G (hunger $\rightarrow$ F eating)'}
+> D_{\psi}: {'Every time': 'G', 'hunger strikes': 'hunger', 'eating eventually follows': 'F eating', 'hunger strikes, eating eventually follows': 'G (hunger $\rightarrow$ F eating)'}
 
 
 > **$\mu:$ "Always avoid the green room and navigate to the third floor."**
 > 
 > $\psi_{\mu}$: $G( \neg greenroom) \land F thirdfloor$
 > 
-> {"Always avoid the green room": "G(¬greenroom)","Navigate to the third floor": "F thirdfloor"}
+> D_{\psi}: {"Always avoid the green room": "G(¬greenroom)","Navigate to the third floor": "F thirdfloor"}
 
 
 <table align="center">
