@@ -135,7 +135,7 @@ The input words **w** of the Büchi automaton ($M_{\psi}$) can be infinite seque
 - $q_0 \subseteq Q$ is the set of initial stats
 - $F \subseteq Q$ is the set of accepting states.
 
-A word **w** is accepted by an automaton ($M_{\psi}$) if its run $\rho$ meets the condition $\lim(\rho) \cap F \neq \emptyset$. Meaning that that the run reaches at least one accepting state in **F***. 
+A word **w** is accepted by an automaton ($M_{\psi}$) if its run $\rho$ meets the condition $\lim(\rho) \cap F \neq \emptyset$. Meaning that that the run reaches at least one accepting state in **F**. 
 
 For each subplan $q_i$ of the run, the language function $L$ assigns a symbol $\sigma \in \Sigma$. These symbols collectively form a word **w** representing the sequence of symbols observed along the trace. This word **w** is then evaluated against the acceptance conditions of the DBA $M_{\psi}$. If **w** satisfies these acceptance conditions, then the finite run $\pho_{\psi}$ is deemed to satisfy the LTL formula. Otherwise, it is considered not to satisfy the formula. Finite runs $\rho_{\psi}$ satisfiy the LTL if the word $ **w** = L(q_0)L(q_1)...L(q_n)$ is acceptable in the DBA $(M_{\psi})$. 
 
