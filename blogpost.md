@@ -417,44 +417,52 @@ Comparing these results to the GPT model results, we observe that Llama generall
 Table 2 displays a comparison of self-refinement
 
 <table align="center">
-    <tr align="center">
-        <th>Dataset</th>
-        <th>Error count</th>
-        <th>Overall accuracy</th>
-        <th>Executable rate</th>
-        <th>Executable accuracy</th>
-    </tr>
-    <tr align="center">
-        <td>FOLIO</td>
-        <td>0</td>
-        <td>60.0</td>
-        <td>100.0</td>
-        <td>60.0</td>
-    </tr>
-    <tr align="center">
-        <td>AR-LSAT</td>
-        <td>5</td>
-        <td>20.0</td>
-        <td>0.0</td>
-        <td>-</td>
-    </tr>
-    <tr align="center">
-        <td>LogicalDeduction</td>
-        <td>5</td>
-        <td>40.0</td>
-        <td>0.0</td>
-        <td>-</td>
-    </tr>
-    <tr align="center">
-        <td>ProofWriter</td>
-        <td>4</td>
-        <td>40.0</td>
-        <td>20.0</td>
-        <td>100.0</td>
-    </tr>
-	<tr align="left">
-		<td colspan=7><b>Table 3.</b>  Chat-GPT Logic-LM results</td>
+	<tr align="center">
+    	<th>Dataset</th>
+    	<th>Error count</th>
+    	<th>Overall accuracy</th>
+    	<th>Executable rate</th>
+    	<th>Executable accuracy</th>
+	</tr>
+	<tr align="center">
+    	<td>FOLIO</td>
+    	<td>0</td>
+    	<td>60.0</td>
+    	<td>100.0</td>
+    	<td>60.0</td>
+	</tr>
+	<tr align="center">
+    	<td>AR-LSAT</td>
+    	<td>5</td>
+    	<td>20.0</td>
+    	<td>0.0</td>
+    	<td>-</td>
+	</tr>
+	<tr align="center">
+    	<td>LogicalDeduction</td>
+    	<td>5</td>
+    	<td>40.0</td>
+    	<td>0.0</td>
+    	<td>-</td>
+	</tr>
+	<tr align="center">
+    	<td>ProofWriter</td>
+    	<td>4</td>
+    	<td>40.0</td>
+    	<td>20.0</td>
+    	<td>100.0</td>
+	</tr>
+	<tr align="center">
+    	<td>ProntoQA</td>
+    	<td>4</td>
+    	<td>60.0</td>
+    	<td>20.0</td>
+    	<td>100.0</td>
+	</tr>
+    <tr align="left">
+   	 <td colspan=7><b>Table 3.</b>  Chat-GPT (GPT 3.5) Logic-LM results</td>
 </table>
+
 
 
 
