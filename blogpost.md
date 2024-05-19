@@ -205,35 +205,31 @@ As pointed out by Cosler et al. [5], their dataset contains two types of ambigui
 
 An example of the second type is, *Whenever a holds, b must hold in the next two steps*, mapped to $G (a \rightarrow (b | X b))$. GPT3 returns:G (h -> X X c), with the accompanying explaination: {"Whenever": "->", "the food is hot": "h", "the food is cold": "c", "in the next two steps": "X X", "the food is hot implies that the food is cold in the next two steps": "h -> X X c"}
 
+**TO DO: Write about how to adjust the prompt to improve results**
+
 ###### Drone Planning
-In addition we evaluate the LLMS NltoLTL conversion in the Drone Planning domain. 
+In addition we evaluate the LLMs NltoLTL conversion in the Drone Planning domain. 
 
 - We aim to compare our results to results using GPT-3 or Rasa (Their source 3).
 - Which model can handle unstructured natural language better?
 - Mention how the few-shot prompting affect the results
-**Insert an accuracy table with results per model out of 36x4**
 
 
-
-#### Improved prompting
-**Write about how to adjust the prompt to improve results**
-
-#### LTL Results TO DO
+#### TO DO LTL Results
 
 Accuracies over test sets
 | Dataset | GPT-4.o| Folio | GPT-3 |
 |----------|----------|----------|----------|
 | no domain | X/36 (%) | X/36 (%) |X/36 (%) |
 | predicates only | X/36 (%) | X/36 (%)| X/36 (%) |
-| drone planning | X/36 (%) |X/36 (%) | X/36 (%) |
-| Row 4, C1 | X/36 (%)| X/36 (%) | X/36 (%) |
+| drone planning | X/Y (%) |X/Y (%) | X/Y (%) |
 
 
-|
+
 ##### (2) Effectiveness of trace geneation
 
-- We plan to measure the accuracy of these conversions over a variety of LTL formulae. 
-
+- We plan to measure the accuracy of these conversions over a variety of LTL formulae.
+- We will investigate how trace generation is affected by the **Context** of the drone planning domain.
 
 
 ## <a name="contribution">Novel contribution</a>
