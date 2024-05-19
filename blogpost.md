@@ -456,7 +456,7 @@ Table 2 displays a comparison of self-refinement
         <td>100.0</td>
     </tr>
 	<tr align="left">
-		<td colspan=7><b>Table 3.</b>  TODO: Chat-GPT results</td>
+		<td colspan=7><b>Table 3.</b>  Chat-GPT Logic-LM results</td>
 </table>
 
 
