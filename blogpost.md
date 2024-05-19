@@ -166,9 +166,8 @@ Below an explanaition is given of all the input you will recieve and what you sh
 >***Options**: The options need to be parsed into traces. These traces need to be a list ([]) containing dictionaries for each timestep ({}). In each dictionary the state of the corresponding timestep is given.*
 >
 >[Few shot examples]
-
-
-Note how the prompt includes a context, question, and multiple choice options. 
+>
+While simpler examples may not necessitate a context for trace generation, for more intricate trace generation tasks, a prompt enriched with domain descriptions is utilized.For instance, the LLM should be able to infer from the context that the drone cannot simultaneously occupy the third floor and a particulaer room on the first floor. 
 
 > **Context**:
 >  *Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second  floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1.* *The drone’s movement is limited to one floor and not more than one  room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.*
@@ -185,7 +184,7 @@ Note how the prompt includes a context, question, and multiple choice options.
 > (C) Go to the second floor passing the yellow room and then go to the third floor
 
 
-While simpler examples may not necessitate a context for trace generation, for more intricate trace generation tasks, a prompt enriched with domain descriptions is utilized.
+
 
 ###### Environmental Setup
 In our study, we employ a test set derived from the planning domain introduced by Oh et al. [4], featuring a 3D grid world denoted as $\epsilon_1$. This environment consists of three floors, six rooms, and a single landmark. For testing purposes, we utilized existing natural language descriptions and corresponding LTL formulas provided by Oh et al.'s and manually added multiple-choice answers. 
