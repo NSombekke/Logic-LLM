@@ -161,7 +161,7 @@ Context: Declares the scene in which the question needs to be answered. Use this
 
 *Remember that U means "until", G means "globally", F means "eventually", which means GF means "infinitely often".*
 
-*The formula should only contain atomic propositions or operators ||, &, !, U, G, F.*
+*The formula should only contain atomic propositions or operators ||, &, !, X, U, G, F.*
 
 *Options: The options need to be parsed into traces. These traces need to be a list ([]) containing dictionaries for each timestep ({}). In each dictionary the state of the corresponding timestep is given.*
 
