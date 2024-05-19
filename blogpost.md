@@ -110,7 +110,7 @@ For illustration, consider the following Natural language commands $\mu$, and th
 
 <table align="center">
   <tr align="center">
-      <td><img src="pipeline.jpg" width=800></td>
+      <td><img src="pipeline.jpg" width=300></td>
   </tr>
   <tr align="left">
     <td colspan=2><b>Figure 1.</b>  Pipeline: Converting Natural Language to Linear Temporal Logic for Multiple Choice Answering.</td>
