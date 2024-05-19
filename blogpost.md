@@ -220,7 +220,7 @@ In addition we evaluate the LLMS NltoLTL conversion in the Drone Planning domain
 #### LTL Results TO DO
 
 Accuracies over test sets
-| Dataset | GPT-4| Folio | Column 4 |
+| Dataset | GPT-4.o| Folio | GPT-3 |
 |----------|----------|----------|----------|
 | no domain | X/36 (%) | X/36 (%) |X/36 (%) |
 | predicates only | X/36 (%) | X/36 (%)| X/36 (%) |
