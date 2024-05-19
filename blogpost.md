@@ -78,7 +78,7 @@ $$
   
 Let $\psi$ be an LTL formula defiend over the set of propositions $P$. $\textbf{w} = [w_0,...,w_n]$ is a sequence of worlds over $P$ [7]. 
 For $0 \le i \le n$, through induction one can define if $\psi$ is true at instant $i$ (written $w, i \models \psi$) as:
-- $w, i \models p$ iff $p \in w_i$ 
+- $w, i \models p$ iff $p \in L(w_0)$ 
 - $w, i \models \neg \psi$ iff $w, i \not\models \psi$
 - $w, i \models \psi_1 \land \psi_2$ iff $w, i \models \psi_1$ and $w, i \models \psi_2$
 - $w, i \models X \psi$ iff $i < n$ and $w, i+1 \models \psi$
@@ -94,28 +94,19 @@ We employ open source large language models (LLM) to convert natural language in
 
 Consider the Natural language command, $\mu$ : *Without stepping outside the orange room, go to landmark one*, where the terms *orange room* and *landmark one* belong to the predicates in the predetermined planning domain. From the given predetermined planning domain, the LLM is able to identify and determine the relevant predicates such as the room and floor description. The natural language command $\mu$ can be turned into its corresponnding LTL formula in CNF $\phi_{\mu}$ = $F(landmark_{}1)$ & $G (orange_{}room)$.
 
-Since Large language models are predominantly trained on natural language and may encounter difficulties when processing text transcriptions of Linear Temporal Logic (LTL) formulas. The syntax of LTL (e.g. X, U, and F) is quite different from typical natural language constructs. To address this distribution shift, a study [X] proposes creating a *canonical* representation that aligns more closely with natural language.
+Since Large language models are predominantly trained on natural language and may encounter difficulties when processing text transcriptions of Linear Temporal Logic (LTL) formulas. The syntax of LTL (e.g. X, U, and F) is quite different from typical natural language constructs. To address this distribution shift, a study [X] proposes creating a *canonical* representation that aligns more closely with natural language. To adress this issue, we prompt the LLM to turn $\mu$ into an intermediate *canoncial form* before mapping the the sentence into an LTL formula. Each translation accompanies a translation dictionary in canonical form, through which th LLM is asked to explain its steps.
 
-- In the prompt we ask the LLM to turn $\mu$ into an intermediate *canoncial form* before mapping the the sentence into an LTL formula. Each translation accompanies a translation dictionary in through which th LLM is asked to explain its steps.
-
-> ** $\mu $ Every time hunger strikes, eating eventually follows.**
+> **$\mu:$ "Every time hunger strikes, eating eventually follows."**
 > 
 > $\psi_{\mu}$: $G(\text{ hunger} \rightarrow F \text{ eating})$
 > 
 > {'Every time': 'G', 'hunger strikes': 'hunger', 'eating eventually follows': 'F eating', 'hunger strikes, eating eventually follows': 'G (hunger $\rightarrow$ F eating)'}
 
-
-
-- and consequently employ a python module [3] to find its associated Determininistic Finite state Automaton $M_{\phi}$.
-- parsing the sentence. 
-
-Using few shot learning we create a mapping between natural language commands and their associated LTL formula. Given the prompt below, an open source LLM can be instructed to create such LTL formulae from natural langauge. 
-
-|Natural Language ($\mu$)| Canonical form      | Raw LTL form     |
-|-----------------------------------------|-----------------------------------------|-------------------------------------|
-|Always avoid the green room and navigate to the third floor. | finally ( and ( the third floor , not ( the green room ) ) ) | F ( third_floor & ! green_room ) |
-|Every a is eventually followed by an e | globally ( a -> finally ( e ) )| G(a -> Fe)|
-| The gate remains closed untill the train leaves the crossing| gate-closed until train-leaves  | gate-closed U train-exists| 
+> **$\mu:$ "Always avoid the green room and navigate to the third floor."**
+> 
+> $\psi_{\mu}$: $G( \neg greenroom) \land F thirdfloor$
+> 
+> {"Always avoid the green room": "G(¬greenroom)","Navigate to the third floor": "F thirdfloor"}
 
 
 <table align="center">
@@ -123,26 +114,39 @@ Using few shot learning we create a mapping between natural language commands an
       <td><img src="pipeline.jpg" width=800></td>
   </tr>
   <tr align="left">
-    <td colspan=2><b>Figure 1.</b> Pipeline.</td>
+    <td colspan=2><b>Figure 1.</b>  Pipeline: Converting Natural Language to Linear Temporal Logic for Multiple Choice Answering.</td>
   </tr>
 </table>
 
-### <a name="ltl">Symbolic Reasoner</a>
-We incorporate a *Flloat* python library for translating LTL formulas (in CNF form) with finite-trace semantics into a minimal Deterministic Finite state Automaton (DFA) using MONA [3]. This DFA captures the temporal constraints specified by the LTL formula and enables efficient reasoning over finite traces. The trace-based satisfiability reasoning enhances the framework's ability to handle temporal aspects of logical reasoning problems. 
 
-Traces are possible executions representing the sequence of states that the system can go through. Model checking for the validity of traces involves verifying whether a given trace satisfies the specified LTL formula. We prompt the LLM to generate a trace corresponding to each of the multiple-choice descriptions. Traces are either accepted or rejected based on their compliance with the LTL formula, and consequently, the model selects one of the multiple-choice answers. The language of a formula defines a set of infinite traces that the DFA can recognize, ensuring the logical consistency of temporal behaviors.
+
+### <a name="ltl">Symbolic Reasoner</a>
+
+Utilizing few-shot learning, we establish a correspondence between natural language commands and their respective LTL formulas. With the given prompt, an open-source LLM can be directed to generate these LTL formulas from natural language. Subsequently, we employ a Python module to derive its associated Deterministic Finite State Automaton $M_{\phi}$. We integrate the *Flloat* Python library to translate LTL formulas (in CNF form) with finite-trace semantics into a minimal Deterministic Finite State Automaton (DFA) using MONA [3]. This conversion is guaranteed by Theorem 1. The resultigng  DFA ($M_{\phi}$) encapsulates the temporal constraints specified by the LTL formula, enabling efficient reasoning over finite traces. The trace-based satisfiability reasoning enhances the framework's capability to address temporal aspects of logical reasoning problems.
+
+**Theorem 1** [Vardi and Wolper, 1994]: For any LTL formula $\psi$, a Büchi automaton $M_{\psi}$ can be constructed, having a number of states that is at most exponential in the length of $\psi$.  The language of $M_{\psi}$, denoted as $L(M_{\psi})$, encompasses the set of models of $\psi$.
+
+**Definition 1: (Büchi automaton)**: A deterministic Büchi automaton (DBA) is a tuple $M = (Q, \sum, \Delta, Q_0, F)$ where:
+- $Q$ is a finite set of automaton states,
+- $\sum$ is a finite alphabet of the automaton,
+- $\Delta : Q \times \sum  \rightarrow 2^{Q}$ is the transition function,
+- $Q_o \subseteq Q$ is the set of initial stats
+- $F \subseteq Q$ is the set of accepting states.
+  
+The input words $\alpha$ of the Büchi automaton ($M_{\psi}$) are infinite words $\sigma_0 \sigma_1 ... \sigma_n \in \Sigma^{w}$. A run of $M_{\psi}$ on word $\alpha$ is an infinite sequence of states ($\rho$) where $\rho(0) \in S \quad \forall i \in N$, and subsequent transitions between states are valid: $(\rho(i), \alpha(i), \rho(i + 1)) \in \Delta)$. In other words, a run is a valid sequence of states that holds in the automaton, the Büchi automaton ($M_{\psi}$) accepts the word $\alpha \in \Sigma^{w}$ if there is an accepting run on $\alpha$. The language of the automaton $M_{\psi}$ is denoted as $L(M_{\psi})$, it is set of (infinite) words characterized by the presence of an accepting run. The language function $L$ maps subplans of $t_n$ to symbold $\sigma \in \Sigma$. Finite traces $t_{\psi}$ satisfiy the LTL if word $\alpha = L(t_0)L(t_t)...L(t_n)$ is an acceptable trace in the DBA $(M_{\psi})$. 
+
+
+$L(M_{\psi}) = \\{ \alpha \in \Sigma^{w} | \alpha \text{ is accepted by}  M_{\psi} \\}$
+
+
+Traces are possible executions representing the sequence of states that the system can go through. Model checking for the validity of traces involves verifying whether a given trace satisfies the specified LTL formula. We prompt the LLM to generate a possible finite trace corresponding to each of the multiple-choice descriptions. Traces are either accepted or rejected based on their compliance with the LTL formula, and consequently, the model is able to select one of the multiple-choice answers. The language of a formula defines a set of infinite traces that the DFA can recognize, ensuring the logical consistency of temporal behaviors.
+
+
+For each subplan $t_i$ of the trace $t_n$, the function $L$ assigns a symbol $\sigma \in \sum$. These symbols collectively form a word $w$, representing the sequence of symbols observed along the trace. This word  $w$ is then evaluated against the acceptance conditions of the DBA $M_{\phi}$. If $w$ satisfies these acceptance conditions, then the finite trace $t_{\psi}$ is deemed to satisfy the LTL formula. Otherwise, it is considered not to satisfy the formula.
+
 
 Step 5 in Figure 1 shows an example output of traces corresponding to options (A) and (B). In this step, the generated traces are evaluated against the associated Determininistic Finite state Automaton $M_{\phi}$ to determine their validity. 
 
-
-**Definition 1: (Büchi automaton)**: A deterministic Büchi automaton (DBA) is a tuple $B = (Q, \sum, \Delta, Q_0, F)$ where:
-- $Q$ is a finite set of states,
-- $\sum$ is a finite alphabet,
-- $\Delta \subseteq Q \times \sum \times Q$ is the transition relation,
-- $Q_o \subseteq Q$ is the set of initial stats
-- $F \subseteq Q$ is the set of accepting state. 
-
-Function L maps subplans of t(n) to symbold $\sigma \in \sum$. Finite traces $t_{\psi} satisfiy the LTL if word $w = L(t(0)L(t(1)...L(t(n)$ is an acceptable trace in the DBA $(M_{\phi})$.
 
 ------
 **Example Prompt**
