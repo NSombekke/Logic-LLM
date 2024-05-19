@@ -147,28 +147,26 @@ Step 5 in Figure 1 shows an example output of traces corresponding to options (A
 
 #### Prompt Engineering
 
-The prompt outline above encapsulates our methodology, showcasing its fundamental components. Comprising three main sections— (1) LTL specification for the conversion of Natural Language to LTL, (2) the conversion of multiple choice options to traces, and (3) few-shot examples. All in all, the prompt serves as a structured framework for generating LTL formulas and traces from natural language inputs.
+The prompt below encapsulates our methodology, showcasing its fundamental components. Comprising three main sections— (1) LTL specification for the conversion of Natural Language to LTL, (2) the conversion of multiple choice options to traces, and (3) few-shot examples. All in all, the prompt serves as a structured framework for generating LTL formulas and traces from natural language inputs.
 
-------
-**Example Prompt**
-
-*Given a context, question and options. The task is to first parse the question into a canonical formular and then from this formula to raw LTL formula. Also the options need to parsed into traces.
+>**Prompt**
+>
+>*Given a context, question and options. The task is to first parse the question into a canonical formular and then from this formula to raw LTL formula. Also the options need to parsed into traces.
 Below an explanaition is given of all the input you will recieve and what you should do with it.
 Context: Declares the scene in which the question needs to be answered. Use this knowledge to parse the question and the options.*
+>
+>*Question: Contains the question that needs to be answered. The task is to parse the question into a canonical formula and then based on the canonical formular to a raw LTL formula.*
+>
+>*Your raw LTL formula answers always need to follow the following output format and you always have to try to provide a LTL formula. You may repeat your answers.*
+>
+>*Remember that U means "until", G means "globally", F means "eventually", which means GF means "infinitely often".*
+>
+>*The formula should only contain atomic propositions or operators ||, &, !, X, U, G, F.*
+>
+>*Options: The options need to be parsed into traces. These traces need to be a list ([]) containing dictionaries for each timestep ({}). In each dictionary the state of the corresponding timestep is given.*
+>
+>[Few shot examples]
 
-*Question: Contains the question that needs to be answered. The task is to parse the question into a canonical formula and then based on the canonical formular to a raw LTL formula.*
-
-*Your raw LTL formula answers always need to follow the following output format and you always have to try to provide a LTL formula. You may repeat your answers.*
-
-*Remember that U means "until", G means "globally", F means "eventually", which means GF means "infinitely often".*
-
-*The formula should only contain atomic propositions or operators ||, &, !, X, U, G, F.*
-
-*Options: The options need to be parsed into traces. These traces need to be a list ([]) containing dictionaries for each timestep ({}). In each dictionary the state of the corresponding timestep is given.*
-
-[Few shot examples]
-
-------
 
 Note how the prompt includes a context, question, and multiple choice options. 
 
