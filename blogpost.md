@@ -111,7 +111,7 @@ For illustration, consider the following Natural language commands $\mu$, and th
 
 <table align="center">
   <tr align="center">
-      <td><img src="pipeline.jpg" width=800></td>
+      <td><img src="src/pipeline.jpg" width=800></td>
   </tr>
   <tr align="left">
     <td colspan=2><b>Figure 1.</b>  Pipeline: Converting Natural Language to Linear Temporal Logic for Multiple Choice Answering.</td>
@@ -197,7 +197,7 @@ These elements within the grid world are organized into distinct levels of abstr
 
 <table align="center">
   <tr align="center">
-      <td><img src="drone_domain.png" width=300></td>
+      <td><img src="src/drone_domain.png" width=300></td>
   </tr>
   <tr align="left">
     <td colspan=2><b>Figure 2.</b> Planning domain for the drone navigation. Figure by [8].</td>
