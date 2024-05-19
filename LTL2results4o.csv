@@ -1,13 +1,13 @@
 ID,GPT-4o Answer, GPT-4o Description (using LTL.txt prompt)
-LTL_dev_1,"G(hunger -> F eating)", '{"Every time": "G", "hunger strikes": "hunger", "eating eventually follows": "F eating", "hunger eventually followed by eating": "hunger -> F eating"}'
-LTL_dev_2,"G(!(rain & sunshine))", '{"It's never the case that": "G(!", "rain and sunshine": "rain & sunshine", "occur at the same time": "rain & sunshine"}'
-LTL_dev_3,"G(engine_starts -> XXX(acceleration))", '{"Whenever": "G", "the engine starts": "engine_starts", "acceleration kicks in three steps later": "XXX(acceleration)"}'
-LTL_dev_4,"G(student) U GF(graduated)", '{"I am a student must hold everywhere": "G(student)", "until": "U", "from some point on": "until", "I am graduated holds infinitely often": "GF(graduated)"}'
-LTL_dev_5,"G(studying U exam_scheduled)", '{"Whenever": "G", "an exam is scheduled": "exam_scheduled", "studying occurs beforehand": "studying U exam_scheduled"}'
-LTL_dev_6,"G(nighttime -> sleeping)", '{"If": "->", "it's nighttime": "nighttime", "then sleeping occurs": "sleeping", "If it's nighttime, then sleeping occurs": "nighttime -> sleeping"}'
-LTL_dev_7,"G(sun_shining & birds_chirping)", '{"Both": "&", "the sun is shining": "sun_shining", "the birds are chirping": "birds_chirping", "in every time step": "G"}'
-LTL_dev_8,"G(sun_shining) & G(birds_singing -> !cats_meowing)", '{"The sun shines always": "G(sun_shining)", "whenever": "->", "the birds sing": "birds_singing", "the cats don't meow": "!cats_meowing", "whenever the birds sing, the cats don't meow": "G(birds_singing -> !cats_meowing)"}'
-LTL_dev_9,"G(emission_test -> F passed) -> GF good_air_quality", '{"If it is the case that": "->", "every": "G", "eventually": "F", "emission test": "emission_test", "passed": "passed", "good air quality": "good_air_quality", "needs to hold infinitely often": "GF good_air_quality"}'
+LTL_dev_1,"G(hunger -> F eating)", "{"Every time": "G", "hunger strikes": "hunger", "eating eventually follows": "F eating", "hunger eventually followed by eating": "hunger -> F eating"}"
+LTL_dev_2,"G(!(rain & sunshine))", "{"It's never the case that": "G(!", "rain and sunshine": "rain & sunshine", "occur at the same time": "rain & sunshine"}"
+LTL_dev_3,"G(engine_starts -> XXX(acceleration))", "{"Whenever": "G", "the engine starts": "engine_starts", "acceleration kicks in three steps later": "XXX(acceleration)"}"
+LTL_dev_4,"G(student) U GF(graduated)", "{"I am a student must hold everywhere": "G(student)", "until": "U", "from some point on": "until", "I am graduated holds infinitely often": "GF(graduated)"}"
+LTL_dev_5,"G(studying U exam_scheduled)", "{"Whenever": "G", "an exam is scheduled": "exam_scheduled", "studying occurs beforehand": "studying U exam_scheduled"}"
+LTL_dev_6,"G(nighttime -> sleeping)", "{"If": "->", "it's nighttime": "nighttime", "then sleeping occurs": "sleeping", "If it's nighttime, then sleeping occurs": "nighttime -> sleeping"}"
+LTL_dev_7,"G(sun_shining & birds_chirping)", "{"Both": "&", "the sun is shining": "sun_shining", "the birds are chirping": "birds_chirping", "in every time step": "G"}"
+LTL_dev_8,"G(sun_shining) & G(birds_singing -> !cats_meowing)", "{"The sun shines always": "G(sun_shining)", "whenever": "->", "the birds sing": "birds_singing", "the cats don't meow": "!cats_meowing", "whenever the birds sing, the cats don't meow": "G(birds_singing -> !cats_meowing)"}"
+LTL_dev_9,"G(emission_test -> F passed) -> GF good_air_quality", "{"If it is the case that": "->", "every": "G", "eventually": "F", "emission test": "emission_test", "passed": "passed", "good air quality": "good_air_quality", "needs to hold infinitely often": "GF good_air_quality"}"
 LTL_dev_10,
 LTL_dev_11,
 LTL_dev_12,
