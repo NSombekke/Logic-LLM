@@ -142,10 +142,10 @@ For each subplan $q_i$ of the run, the language function $L$ assigns a symbol $\
 
 $L(M_{\psi}) = \\{ w \in \Sigma^{w} | w \text{ is accepted by}  M_{\psi} \\}$
 
-Traces (**or should we say runs?**) are possible executions representing the sequence of states that the system can go through. Model checking for the validity of traces involves verifying whether a given trace satisfies the specified LTL formula. We prompt the LLM to generate a possible finite trace corresponding to each of the multiple-choice descriptions. Traces are either accepted or rejected based on their compliance with the LTL formula, and consequently, the model is able to select one of the multiple-choice answers. The language of a formula defines a set of infinite traces that the DFA can recognize, ensuring the logical consistency of temporal behaviors.
 
+Model checking for the validity of runs involves verifying whether a given run satisfies the specified LTL formula. We prompt the LLM to generate a possible finite run corresponding to each of the multiple-choice descriptions. Runs are either accepted or rejected based on their compliance with the LTL formula, and consequently, the model is able to select one of the multiple-choice answers. The language of a formula defines a set of infinite runs that the DFA can recognize, ensuring the logical consistency of temporal behaviors.
 
-Step 5 in Figure 1 shows an example output of traces corresponding to options (A) and (B). In this step, the generated traces are evaluated against the associated Determininistic Finite state Automaton $M_{\phi}$ to determine their validity. 
+Step 5 in Figure 1 shows an example output of runs corresponding to options (A) and (B). In this step, the generated runs are evaluated against the associated Deterministic Finite Automaton \(M_{\phi}\) to determine their validity.
 
 
 #### Prompt Engineering
