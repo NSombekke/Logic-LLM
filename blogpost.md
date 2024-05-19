@@ -221,7 +221,15 @@ propositions a,b,c,d to create more realistic sentences.
 Through this evaluation, we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations of such models. <!--( ToDo **Look up further studies on NL to LTL**)-->
 
 ###### Ambiguity
-As pointed out by Cosler et al. [5], their dataset contains two types of ambiguities. The first type arises from the inherent limitations of natural language, such as operator precedence. The second type stems from semantic ambiguities within natural language. An illustration of the first is *a holds until b holds or always a holds* which their human experts initially translated to $(a U b) | G a$. GPT3 returns: p U (s | G p), with the accompanying explaination: {"The party is on": "p", "until": "U", "the speaker is broken": "s", "or": "|", "always the party is on": "G p", "The party is on until the speaker is broken or always the party is on": "p U (s | G p)"}. As both are plausible translations depending on the interpretation of the sentence, the example shows how the conversion is not as straight forward. 
+As pointed out by Cosler et al. [5], their dataset contains two types of ambiguities. The first type arises from the inherent limitations of natural language, such as operator precedence. The second type stems from semantic ambiguities within natural language. An illustration of the first is *a holds until b holds or always a holds* which their human experts initially translated to $(a U b) | G a$. GPT-3 returns the following:
+
+> **$\mu:$ "The party is on until the speaker is broken or always the party is on."**
+> 
+> $\psi_{\mu}$: $p U (s | G p)$
+> 
+> $D_{\psi}$: {"The party is on": "p", "until": "U", "the speaker is broken": "s", "or": "|", "always the party is on": "G p", "The party is on until the speaker is broken or always the party is on": "p U (s | G p)"}
+
+As both are plausible translations depending on the interpretation of the sentence, the example shows how the conversion is not as straight forward. 
 
 An example of the second type is, *Whenever a holds, b must hold in the next two steps*, mapped to $G (a \rightarrow (b | X b))$. GPT3 returns:G (h -> X X c), with the accompanying explaination: {"Whenever": "->", "the food is hot": "h", "the food is cold": "c", "in the next two steps": "X X", "the food is hot implies that the food is cold in the next two steps": "h -> X X c"}
 
