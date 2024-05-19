@@ -1,4 +1,4 @@
 ID, True LTL , solution, GPT3 LTL output ,GPT3 output (Logic-LLM),  Direct prompting answer
 LTL_dev_1, A, "F((second_floor || red_room) & F(first_floor))", "F ( (second_floor || red_room) & F (first_floor) )", "A", "X"
 LTL_dev_2, B, "F((second_floor & F(green_room)))", "F ( second_floor & F ( green_room ) )", "B",  B
-LTL_dev_3, , "", "F ( landmark_1 & ! purple_room )", "A and C", "C"
+LTL_dev_3, C, "!purple_room U (landmark_1)", "F ( landmark_1 & ! purple_room )", "A and C", "C"
