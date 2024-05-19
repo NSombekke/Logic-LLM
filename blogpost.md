@@ -98,14 +98,14 @@ For illustration, consider the following Natural language commands $\mu$, and th
 > 
 > $\psi_{\mu}$: $G(\text{ hunger} \rightarrow F \text{ eating})$
 > 
-> D_{\psi}: {'Every time': 'G', 'hunger strikes': 'hunger', 'eating eventually follows': 'F eating', 'hunger strikes, eating eventually follows': 'G (hunger $\rightarrow$ F eating)'}
+> $D_{\psi}$: {'Every time': 'G', 'hunger strikes': 'hunger', 'eating eventually follows': 'F eating', 'hunger strikes, eating eventually follows': 'G (hunger $\rightarrow$ F eating)'}
 
 
 > **$\mu:$ "Always avoid the green room and navigate to the third floor."**
 > 
 > $\psi_{\mu}$: $G( \neg greenroom) \land F thirdfloor$
 > 
-> D_{\psi}: {"Always avoid the green room": "G(¬greenroom)","Navigate to the third floor": "F thirdfloor"}
+> $D_{\psi}$: {"Always avoid the green room": "G(¬greenroom)","Navigate to the third floor": "F thirdfloor"}
 
 
 <table align="center">
