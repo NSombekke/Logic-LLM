@@ -42,3 +42,13 @@
       archivePrefix={arXiv},
       primaryClass={cs.LO}
 }
+@article{article,
+author = {Simon, Salomé and Röger, Gabriele},
+year = {2021},
+month = {09},
+pages = {113-121},
+title = {Finding and Exploiting LTL Trajectory Constraints in Heuristic Search},
+volume = {6},
+journal = {Proceedings of the International Symposium on Combinatorial Search},
+doi = {10.1609/socs.v6i1.18361}
+}
