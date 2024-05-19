@@ -92,13 +92,14 @@ Denote the set of traces as $TR = (s^{|P|})^{w}$. For trace $t \in TR$, we denot
 
 We employ the 2 Llama-3 models to convert natural language into Linear Temporal Logic (LTL) tasks based on the attributes in the context of the question (e.g. planning domain). The conversion from natural language to LTL has been predominantly studied within the field of robotics [ToDo **cite**]. 
 
-Consider the Natural language command, $\mu$ : *Without stepping outside the orange room, go to landmark one*, where the terms *orange room* and *landmark one* belong to the predicates in the predetermined planning domain. From the given predetermined planning domain, the LLM is able to identify and determine the relevant predicates such as the room and floor description. The natural language command $\mu$ can be turned into its corresponnding LTL formula in CNF $\phi_{\mu}$ = $F(landmark_{}1)$ & $G (orange_{}room)$.
+Consider the following Natural language commands $\mu$, and their coresponding LTL formula with predicates $\psi_{\mu}$.  
 
 > **$\mu:$ "Every time hunger strikes, eating eventually follows."**
 > 
 > $\psi_{\mu}$: $G(\text{ hunger} \rightarrow F \text{ eating})$
 > 
 > {'Every time': 'G', 'hunger strikes': 'hunger', 'eating eventually follows': 'F eating', 'hunger strikes, eating eventually follows': 'G (hunger $\rightarrow$ F eating)'}
+
 
 > **$\mu:$ "Always avoid the green room and navigate to the third floor."**
 > 
