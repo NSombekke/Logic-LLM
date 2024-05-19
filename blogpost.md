@@ -202,7 +202,7 @@ These elements within the grid world are organized into distinct levels of abstr
   <tr align="left">
     <td colspan=2><b>Figure 2.</b> Planning domain for the drone navigation. Figure by [8].</td>
   </tr>
-</table>
+</table> 
 
 #### Language Grounding Results
 
