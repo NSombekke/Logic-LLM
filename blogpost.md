@@ -223,7 +223,7 @@ As pointed out by Cosler et al. [5], their dataset contains two types of ambigui
 
 An example of the second type is, *Whenever a holds, b must hold in the next two steps*, mapped to $G (a \rightarrow (b | X b))$. GPT3 returns:G (h -> X X c), with the accompanying explaination: {"Whenever": "->", "the food is hot": "h", "the food is cold": "c", "in the next two steps": "X X", "the food is hot implies that the food is cold in the next two steps": "h -> X X c"}
 
-**TO DO: Write about how to adjust the prompt to improve results**
+<!--**TO DO: Write about how to adjust the prompt to improve results**-->
 
 ###### Drone Planning
 In addition we evaluate the LLMs NltoLTL conversion in the Drone Planning domain. 
