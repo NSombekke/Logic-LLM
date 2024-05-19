@@ -77,7 +77,8 @@ $$
 
 **Semantics of LTL**
   
-Let $\psi$ be an LTL formula defiend over the set of propositions $P$. $\textbf{w} = [w_0,...,w_n]$ is a sequence of worlds over $P$ [7]. 
+Let $\psi$ be an LTL formula defined over the set of propositions $P$. A word $\textbf{w} = [a_0,a_1,a_2...]$, where each $a_i \in \Sigma$, can be any infinite sequence [7]. A *run* of the automaton $(M_{\psi})$ on the word $\textbf{w}$ is sequence of states $\rho = q_0q_1q_2..., where each state is a set of propositions. The initial state is $q_0$ and subsequent states are defined throught the transition function $q_{i+1} = \Delta(q_i,a_i)$
+
 For $0 \le i \le n$, through induction one can define if $\psi$ is true at instant $i$ (written $w, i \models \psi$) as:
 - $w, i \models p$ iff $p \in L(w_0)$ 
 - $w, i \models \neg \psi$ iff $w, i \not\models \psi$
@@ -87,7 +88,7 @@ For $0 \le i \le n$, through induction one can define if $\psi$ is true at insta
 - $w, i \models \psi_1 \mathcal{U} \psi_2$ iff there exists a $j$ with $i \le j \le n$ s.t. $w, j \models \psi_2$ and for all $i \le k < j$, $w, k \models \psi_1$
 
 
-Denote the set of traces as $TR = (s^{|P|})^{w}$. For trace $t \in TR$, we denote the the i-th state in the trace by $t[i]$. Each state is a set of propositions. A trace of lenth $n$ can be defines as:  $t_{\psi} = [t_0, t_1, t_2,...t_n]$.
+ A trace of length $n$ can be defined as a sequence of state, 
 
 **Natural Language to LTL**
 
