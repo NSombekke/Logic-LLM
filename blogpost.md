@@ -153,9 +153,9 @@ The prompt outline below encapsulates our methodology, showcasing its fundamenta
 >
 >*Given a context, question and options. The task is to first parse the question into a canonical formular and then from this formula to raw LTL formula. Also the options need to parsed into traces.
 Below an explanaition is given of all the input you will recieve and what you should do with it.
-Context: Declares the scene in which the question needs to be answered. Use this knowledge to parse the question and the options.*
+**Context**: Declares the scene in which the question needs to be answered. Use this knowledge to parse the question and the options.*
 >
->*Question: Contains the question that needs to be answered. The task is to parse the question into a canonical formula and then based on the canonical formular to a raw LTL formula.*
+>***Question**: Contains the question that needs to be answered. The task is to parse the question into a canonical formula and then based on the canonical formular to a raw LTL formula.*
 >
 >*Your raw LTL formula answers always need to follow the following output format and you always have to try to provide a LTL formula. You may repeat your answers.*
 >
@@ -163,7 +163,7 @@ Context: Declares the scene in which the question needs to be answered. Use this
 >
 >*The formula should only contain atomic propositions or operators ||, &, !, X, U, G, F.*
 >
->*Options: The options need to be parsed into traces. These traces need to be a list ([]) containing dictionaries for each timestep ({}). In each dictionary the state of the corresponding timestep is given.*
+>***Options**: The options need to be parsed into traces. These traces need to be a list ([]) containing dictionaries for each timestep ({}). In each dictionary the state of the corresponding timestep is given.*
 >
 >[Few shot examples]
 
