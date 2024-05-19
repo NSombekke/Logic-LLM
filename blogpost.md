@@ -56,41 +56,58 @@ The authors of Logic-LM pointed out a crucial constraint, stating that “the mo
 Our first extension is making Logic-LM work with open-source language models, instead of closed-source models like ChatGPT. To make the application as flexible as possible, this was appplied by using models from the Huggingface library TODO:Add link. This library contains a large variety of pre-trained open-source language models. For this project two versions of Meta's Llama-3 model were used, since these are current state-of-the-art open-source models (add ref). The first model is the 8B version of Llama-3 and the second is the 70B version. The former is a smaller version of the model, while the second is significantly larger and thus should have better performance. These models will be compared with the GPT models used by the original author to see how SoTA open-source models compare to closed-source models. By using two versions of this model we can also research the difference in performance between smaller and more complex models. 
 
 ## <a name="ltl">Linear Temporal Logic</a>
-We extend the Logic-LLM by introducing Linear-time Temporal Logic (LTL). 
- Linear-time Temporal Logic extends standard propositional logic to express properties that hold over trajectories across time. Formulas in LTL over the set of atomic propositions (P) adhere to the following grammar:
- 
-
-| Syntax        | Description           |
-|---------------|-----------------------|
-| $p_a$      | Atomic Proposition $p_a \in P$    |
-|$\neg \phi$ | Negation              |
-| $\phi \land \psi$ | And                |
-| $\phi \lor \psi$ | Or                 |
-| $\phi \Rightarrow \psi$ | Imply            |
-| $\phi U \psi$ | $\phi$ Until $\psi$      |
-| $F \phi$    | Eventually           |
-| $X \phi$    | Next                 |
-| $G \phi$    | Always               |
-
-Denote the set of traces as $TR = (s^{|P|})^{w}$. For trace $t \in TR$, we denote the the i-th state in the trace by $t[i]$. Each state is a set of propositions. A trace of lenth $n$ can be defines as:  $ t_{\psi} = t(0), t(1), t(2)...t(n)$.
+We extend the Logic-LLM by introducing Linear-time Temporal Logic (LTL), which enhances standard propositional logic to express properties that hold over time-based trajectories. This extension is particularly useful in robotics and automated planning, where paths must comply with temporal constraints. LTL's semantics can effectively capture command specifications in the temporal domain. Formulas in LTL over the set of atomic propositions ($P$) adhere to the following grammar:
 
 
-- Mention that Nl to LTL has mostly been studies in the field of robotics.
-- Commands with specifications in the temporal domain can be captured with the semantics of LTL. 
-  
 $$
 \begin{align*}
-t &\models p \quad \text{iff} \quad  p \in t[0] \\
-t &\models \neg \phi \quad \text{ iff } \quad  t \not \models \phi \\
-t &\models \phi_1 \land \phi_2 \quad \text{ iff } \quad t \models \phi_1 \text{ and } t \models \phi_2   \\
-t &\models F \phi \quad \text{ iff } \quad t[1, \infty] \models \phi  \\
-t &\models \phi_1 \mathcal{U} \phi_2 \quad \text{ iff } \quad \text{ there exists  } i \geq 0: t[i, \infty] \models \phi_2 \text{ and for all } 0 \leq j < i: t[j, \infty] \models \phi_1 \\
+\text{Syntax} & \quad \text{Description} \\
+p & \quad \text{Atomic Proposition } p \in P \\
+\neg \varphi & \quad \text{Negation} \\
+\varphi \land \psi & \quad \text{And} \\
+\varphi \lor \psi & \quad \text{Or} \\
+\varphi \Rightarrow \psi & \quad \text{Imply} \\
+\varphi \mathcal{U} \psi & \quad \varphi \text{ Until } \psi \\
+F \varphi & \quad \text{Eventually} \\
+X \varphi & \quad \text{Next} \\
+G \varphi & \quad \text{Always}
 \end{align*}
 $$
 
-We employ open source large language models (LLM) to convert natural language into Linear Temporal Logic (LTL) tasks based on the attributes in the context of the question (e.g. planning domain). Consider the Natural language command $\mu$ : *Without stepping outside the orange room, go to landmark one*, where the terms *orange room* and *landmark one* belong to the predicates in the predetermined planning domain. From the given context, the LLM is able to identify and determine the relevant predicates such as the room and/or floor description. We use the LLM to translate $\mu$ into an LTL formula in CNF $\phi_{\mu}$ = F(landmark_1) & G (orange_room), and consequently employ a python module [3] to find its associated Determininistic Finite state Automaton $M_{\phi}$.
+**Semantics of LTL**
+  
+Let $\psi$ be an LTL formula defiend over the set of propositions $P$. $\textbf{w} = [w_0,...,w_n]$ is a sequence of worlds over $P$ [7]. 
+For $0 \le i \le n$, through induction one can define if $\psi$ is true at instant $i$ (written $w, i \models \psi$) as:
+- $w, i \models p$ iff $p \in w_i$ 
+- $w, i \models \neg \psi$ iff $w, i \not\models \psi$
+- $w, i \models \psi_1 \land \psi_2$ iff $w, i \models \psi_1$ and $w, i \models \psi_2$
+- $w, i \models X \psi$ iff $i < n$ and $w, i+1 \models \psi$
+- $w, i \models F \psi$ iff $\exists j \geq i$ such that $w, j \models \psi$
+- $w, i \models \psi_1 \mathcal{U} \psi_2$ iff there exists a $j$ with $i \le j \le n$ s.t. $w, j \models \psi_2$ and for all $i \le k < j$, $w, k \models \psi_1$
 
-Since Large language models are predominantly trained on natural language and may encounter difficulties when processing text transcriptions of Linear Temporal Logic (LTL) formulas. The syntax of LTL (e.g. U and F) is quite different from typical natural language constructs. To address this distribution shift, a study [X] proposes creating a "canonical" representation that aligns more closely with natural language. In the prompt we ask the LLM to turn $\mu$ into an intermediate 'canoncial form' before mapping the the sentence into an LTL formula.
+
+Denote the set of traces as $TR = (s^{|P|})^{w}$. For trace $t \in TR$, we denote the the i-th state in the trace by $t[i]$. Each state is a set of propositions. A trace of lenth $n$ can be defines as:  $t_{\psi} = [t_0, t_1, t_2,...t_n]$.
+
+**Natural Language to LTL**
+
+We employ open source large language models (LLM) to convert natural language into Linear Temporal Logic (LTL) tasks based on the attributes in the context of the question (e.g. planning domain). The conversion from natural language to LTL has been predominantly studied within the field of robotics [**cite**]. 
+
+Consider the Natural language command, $\mu$ : *Without stepping outside the orange room, go to landmark one*, where the terms *orange room* and *landmark one* belong to the predicates in the predetermined planning domain. From the given predetermined planning domain, the LLM is able to identify and determine the relevant predicates such as the room and floor description. The natural language command $\mu$ can be turned into its corresponnding LTL formula in CNF $\phi_{\mu}$ = $F(landmark_{}1)$ & $G (orange_{}room)$.
+
+Since Large language models are predominantly trained on natural language and may encounter difficulties when processing text transcriptions of Linear Temporal Logic (LTL) formulas. The syntax of LTL (e.g. X, U, and F) is quite different from typical natural language constructs. To address this distribution shift, a study [X] proposes creating a *canonical* representation that aligns more closely with natural language.
+
+- In the prompt we ask the LLM to turn $\mu$ into an intermediate *canoncial form* before mapping the the sentence into an LTL formula. Each translation accompanies a translation dictionary in through which th LLM is asked to explain its steps.
+
+> **Every time hunger strikes, eating eventually follows.**
+> 
+> $G(\text{ hunger} \rightarrow F \text{ eating})$
+> 
+> {'Every time': 'G', 'hunger strikes': 'hunger', 'eating eventually follows': 'F eating', 'hunger strikes, eating eventually follows': 'G (hunger $\rightarrow$ F eating)'}
+
+
+
+- and consequently employ a python module [3] to find its associated Determininistic Finite state Automaton $M_{\phi}$.
+- parsing the sentence. 
 
 Using few shot learning we create a mapping between natural language commands and their associated LTL formula. Given the prompt below, an open source LLM can be instructed to create such LTL formulae from natural langauge. 
 
