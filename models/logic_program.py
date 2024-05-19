@@ -107,9 +107,13 @@ class LogicProgramGenerator:
     def prompt_ltl(self, test_data):  # TO DO adjust this functio for the LTL dev.json
         problem = test_data["context"]
         question = test_data["question"].strip()
+        choices_str = "\n".join(
+            [f"({choice.strip()}" for choice in test_data["options"]]
+        ).strip()
         full_prompt = self.prompt_template.replace("[[PROBLEM]]", problem).replace(
             "[[QUESTION]]", question
         )
+        full_prompt = full_prompt.replace("[[CHOICES]]", choices_str)
         return full_prompt
 
     def load_raw_dataset(self, split):
