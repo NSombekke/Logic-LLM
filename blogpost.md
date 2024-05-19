@@ -138,7 +138,7 @@ The input words **w** of the Büchi automaton ($M_{\psi}$) can be infinite seque
 
 A word  **w** is accepted by an automaton ($M_{\psi}$) if its run $\rho$ meets the condition $\lim(\rho) \cap F \neq \emptyset$. A run is a valid sequence of states that holds in the automaton. The Büchi automaton ($M_{\psi}$) accepts the word **w** if there is an accepting run on $\alpha$, one that reaches at least one final state. 
 
-For each subplan $t_i$ of the trace $t_n$, the language function $L$ assigns a symbol $\sigma \in \Sigma$. These symbols collectively form a word $\alpha$, representing the sequence of symbols observed along the trace. This word  $\alpha$ is then evaluated against the acceptance conditions of the DBA $M_{\psi}$. If $w$ satisfies these acceptance conditions, then the finite trace $t_{\psi}$ is deemed to satisfy the LTL formula. Otherwise, it is considered not to satisfy the formula. Finite traces $t_{\psi}$ satisfiy the LTL if word $\alpha = L(t_0)L(t_t)...L(t_n)$ is an acceptable trace in the DBA $(M_{\psi})$. 
+For each subplan $t_i$ of the trace $t_n$, the language function $L$ assigns a symbol $\sigma \in \Sigma$. These symbols collectively form a word $\alpha$, representing the sequence of symbols observed along the trace. This word **w** is then evaluated against the acceptance conditions of the DBA $M_{\psi}$. If  **w** satisfies these acceptance conditions, then the finite trace $t_{\psi}$ is deemed to satisfy the LTL formula. Otherwise, it is considered not to satisfy the formula. Finite traces $t_{\psi}$ satisfiy the LTL if word $ **w** = L(t_0)L(t_t)...L(t_n)$ is an acceptable trace in the DBA $(M_{\psi})$. 
 
 
 $L(M_{\psi}) = \\{ \alpha \in \Sigma^{w} | \alpha \text{ is accepted by}  M_{\psi} \\}$
