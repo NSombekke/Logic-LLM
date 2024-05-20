@@ -190,12 +190,16 @@ Simpler examples may not necessitate contextual information for trace generation
 > (C) Go to the second floor passing the yellow room and then go to the third floor
 
 
- 
+#### Language Grounding Results
+We test the parsing on two datasets. The first consists of 36 benchmark inctances crafted by experts in the nl2spec study [5]. Each of these examples has been selected by LTL experts to cover a variety of ambiguities and complexities. We use their formatted intances, in addition we have prompted the LLM to replaced the propositions a,b,c,d to create more realistic sentences. For example: 
 
-###### Environmental Setup
+> $\mu:$ Every meal is eventually followed by dessert. $\leftrightarrow$ G(meal -> F dessert).
+> 
+> $\mu:$ Whenever a car starts, the engine revs three steps later. $\leftrightarrow$ G(car_starts -> X X X engine_revs).
 
 
-These elements within the grid world are organized into distinct levels of abstraction, with floors designated as level 2, rooms as level 1, and the landmark as level 0. Each natural language specification provided in our investigation is limited to a single sentence. Although there is no explicit restriction on the set of atomic propositions, specific guidelines are outlined in the task description. The LLM is asked to pick a possible path for the drone to follow, by checking if the run is valid for the $M_{\psi}$. Unlike previous approaches that utilize trajectory planners fed with LTL expressions, we introduce the predefined environment directly into the multiple-choice questions in natural language format, under the *context* section of the prompt.
+
+The second dataset is derived from commands in the *drone planning* domain, adapted from [8]. This test set is generated from the planning domain introduced by [8], This environment is a 3D grid world that consists of three floors, six rooms, and a single landmark. We created a test set with multiple-choice options from their natural language descriptions and corresponding LTL formulas.
 
 <table align="center">
   <tr align="center">
@@ -206,11 +210,6 @@ These elements within the grid world are organized into distinct levels of abstr
   </tr>
 </table> 
 
-#### Language Grounding Results
-We test the parsing on two datasets. The first consists of 36 benchmark inctances crafted by experts in the nl2spec study [5]. Each of these examples has been selected by LTL experts to cover a variety of ambiguities and complexities. We use their formatted intances, in addition we have prompted the LLM to replaced the propositions a,b,c,d to create more realistic sentences.
-
-The second dataset is derived from commands in the *drone planning* domain, adapted from [8]. This test set is generated from the planning domain introduced by [8], This environment is a 3D grid world that consists of three floors, six rooms, and a single landmark. We created a test set with multiple-choice options from their natural language descriptions and corresponding LTL formulas.
-
 
 We aim to evaluate how well the LLM performs the conversion task from natural language to LTL, especially in cases where it needs to generalize from few examples (few-shot learning). The evaluation consists of two stages: (1) the conversion of the natural language command into LTL, and (2) the subsequent conversion of the multiple choice options (each formlated in natural language) into runs. 
 
@@ -218,13 +217,7 @@ The first dataset will be used to test the initial conversion from natural langu
 
 
 ##### (1) Effectiveness of Problem Formulator
-- By testing the NL to LTL conversion on the **nl2spec** benchmark, we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations of such models. <!--( ToDo **Look up further studies on NL to LTL**)-->
-
-> $\mu:$ Every meal is eventually followed by dessert. $\leftrightarrow$ G(meal -> F dessert).
-> 
-> $\mu:$ Whenever a car starts, the engine revs three steps later. $\leftrightarrow$ G(car_starts -> X X X engine_revs).
-
-
+By testing the NL to LTL conversion on the **nl2spec** dataset, we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations of such models. <!--( ToDo **Look up further studies on NL to LTL**)-->
 
 
 ###### Ambiguity
@@ -252,6 +245,12 @@ An example of the second type is, *Whenever a holds, b must hold in the next two
 - We aim to compare our results to results using GPT-3 or Rasa (Their source 3).
 - Which model can handle unstructured natural language better?
 - Mention how the few-shot prompting affect the results
+
+###### Environmental Setup
+
+
+These elements within the grid world are organized into distinct levels of abstraction, with floors designated as level 2, rooms as level 1, and the landmark as level 0. Each natural language specification provided in our investigation is limited to a single sentence. Although there is no explicit restriction on the set of atomic propositions, specific guidelines are outlined in the task description. The LLM is asked to pick a possible path for the drone to follow, by checking if the run is valid for the $M_{\psi}$. Unlike previous approaches that utilize trajectory planners fed with LTL expressions, we introduce the predefined environment directly into the multiple-choice questions in natural language format, under the *context* section of the prompt.
+
 
 
 #### TO DO LTL Results
