@@ -29,7 +29,8 @@ class SelfRefinementEngine:
                 args.model_name,
                 args.stop_words,
                 args.max_new_tokens,
-                args.is_AWQ,
+                args.is_GGUF,
+                args.Q_type,
             )
         elif self.framework == "openai":
             self.model = OpenAIModel(
@@ -171,7 +172,8 @@ def parse_args():
     parser.add_argument("--api_key", type=str)
     parser.add_argument("--stop_words", type=str, default="------\n")
     parser.add_argument("--max_new_tokens", type=int, default=1024)
-    parser.add_argument("--is_AWQ", action="store_true", default=False)
+    parser.add_argument("--is_GGUF", action="store_true", default=False)
+    parser.add_argument("--Q_type", type=str)
     args = parser.parse_args()
     return args
 

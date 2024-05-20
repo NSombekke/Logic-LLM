@@ -8,7 +8,7 @@ from transformers import pipeline
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import StoppingCriteria, StoppingCriteriaList
 
-from awq import AutoAWQForCausalLM
+from llama_cpp import Llama
 
 
 # Backoff decorator -> Retry function when RateLimitError is raised
@@ -194,65 +194,94 @@ class StoppingCriteriaToken(StoppingCriteria):
 
 class HuggingFaceModel:
     def __init__(
-        self, API_KEY, model_name, stop_words, max_new_tokens, is_AWQ, temperature=0.0
+        self,
+        API_KEY,
+        model_name,
+        stop_words,
+        max_new_tokens,
+        is_GGUF=False,
+        Q_type=None,
+        temperature=0.0,
     ) -> None:
         self.api_key = API_KEY
         self.model_name = model_name
+        self.stop_words = stop_words
+        self.max_new_tokens = max_new_tokens
+        self.is_GGUF = is_GGUF
+        self.Q_type = Q_type
+        self.temperature = temperature
 
-        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
-
-        if is_AWQ:
-            model = AutoAWQForCausalLM.from_quantized(
-                model_name,
-                fuse_layers=True,
-                device_map="auto",
-                trust_remote_code=False,
-                safetensors=True,
+        if self.is_GGUF:
+            self.pipe = Llama.from_pretrained(
+                repo_id=self.model_name,
+                filename=f"*{self.Q_type}.gguf",
+                verbose=False,
+                n_gpu_layers=-1,
+                n_ctx=2048,
             )
-            self.model = model.model
         else:
+            self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
             self.model = AutoModelForCausalLM.from_pretrained(
                 self.model_name, device_map="auto", torch_dtype="auto"
             )
 
-        stop_token_ids = [
-            self.tokenizer(stop_token, return_tensors="pt", add_special_tokens=False)[
-                "input_ids"
-            ].squeeze()
-            for stop_token in stop_words.split(" ")
-        ]
-        stopping_criteria = StoppingCriteriaList(
-            [StoppingCriteriaToken(stop_token_id) for stop_token_id in stop_token_ids]
-        )
+            stop_token_ids = [
+                self.tokenizer(
+                    stop_token, return_tensors="pt", add_special_tokens=False
+                )["input_ids"].squeeze()
+                for stop_token in stop_words.split(" ")
+            ]
+            stopping_criteria = StoppingCriteriaList(
+                [
+                    StoppingCriteriaToken(stop_token_id)
+                    for stop_token_id in stop_token_ids
+                ]
+            )
 
-        self.pipe = pipeline(
-            "text-generation",
-            model=self.model,
-            tokenizer=self.tokenizer,
-            token=self.api_key,
-            max_new_tokens=max_new_tokens,
-            top_p=1.0,
-            device_map="auto",
-            do_sample=False,
-            return_full_text=False,
-            stopping_criteria=stopping_criteria,
-        )
+            self.pipe = pipeline(
+                "text-generation",
+                model=self.model,
+                tokenizer=self.tokenizer,
+                token=self.api_key,
+                max_new_tokens=max_new_tokens,
+                top_p=1.0,
+                device_map="auto",
+                do_sample=False,
+                return_full_text=False,
+                stopping_criteria=stopping_criteria,
+            )
 
-        if self.pipe.tokenizer.pad_token_id is None:
-            self.pipe.tokenizer.pad_token_id = self.pipe.model.config.eos_token_id
+            if self.pipe.tokenizer.pad_token_id is None:
+                self.pipe.tokenizer.pad_token_id = self.pipe.model.config.eos_token_id
 
     def generate(self, input_string):
-        response = self.pipe(
-            input_string,
-        )
-        generated_text = response[0]["generated_text"].strip()
+        if self.is_GGUF:
+            response = self.pipe(
+                input_string,
+                max_tokens=self.max_new_tokens,
+                temperature=self.temperature,
+                top_p=1.0,
+                echo=False,
+                stop=self.stop_words,
+            )
+            generated_text = response["choices"][0]["text"].strip()
+        else:
+            response = self.pipe(
+                input_string,
+            )
+            generated_text = response[0]["generated_text"].strip()
         return generated_text
 
     def batch_generate(self, input_strings):
-        responses = self.pipe(
-            input_strings,
-        )
-        generated_text = [
-            response[0]["generated_text"].strip() for response in responses
-        ]
+        if self.is_GGUF:
+            raise Exception(
+                "Batch generation not (yet) supported for GGUF models (using llama-cpp-python)"
+            )
+        else:
+            responses = self.pipe(
+                input_strings,
+            )
+            generated_text = [
+                response[0]["generated_text"].strip() for response in responses
+            ]
         return generated_text

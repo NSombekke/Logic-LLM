@@ -31,13 +31,14 @@ class Model_Baseline:
                 args.model_name,
                 args.stop_words,
                 args.max_new_tokens,
-                args.is_AWQ,
+                args.is_GGUF,
+                args.Q_type,
             )
         else:
             raise ValueError(
                 "Invalid framework. Please choose from [openai, huggingface]"
             )
-        print(f"Running on {self.model.pipe.device}")
+        # print(f"Running on {self.model.pipe.device}")
         self.prompt_creator = self.prompt
         self.label_phrase = "The correct option is:"
         # replace "/" with "-" in model name for saving
@@ -74,7 +75,7 @@ class Model_Baseline:
 
     def reasoning_graph_generation(self):
         # load raw dataset
-        raw_dataset = self.load_raw_dataset(self.split)
+        raw_dataset = self.load_raw_dataset(self.split)[:1]
         print(f"Loaded {len(raw_dataset)} examples from {self.split} split.")
 
         # load in-context examples
@@ -126,7 +127,7 @@ class Model_Baseline:
                 batch_outputs = self.model.batch_generate(full_prompts)
                 # create output
                 for sample, output in zip(chunk, batch_outputs):
-                    if self.args.stop_words:
+                    if self.args.stop_words in output:
                         output = output[: -len(self.args.stop_words)]
                     # get the answer
                     dict_output = self.update_answer(sample, output)
@@ -136,13 +137,14 @@ class Model_Baseline:
                 for sample, full_prompt in zip(chunk, full_prompts):
                     try:
                         output = self.model.generate(full_prompt)
-                        if self.args.stop_words:
+                        if self.args.stop_words in output:
                             output = output[: -len(self.args.stop_words)]
                         # get the answer
                         dict_output = self.update_answer(sample, output)
                         outputs.append(dict_output)
-                    except:
-                        print("Error in generating example: ", sample["id"])
+                    except Exception as e:
+                        print("Error in generating example:", sample["id"])
+                        print("Error message:", str(e))
 
         # save outputs
         with open(
@@ -170,18 +172,21 @@ class Model_Baseline:
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data_path", type=str, default="./data")
+    parser.add_argument("--data_path", type=str, default="./src/data")
     parser.add_argument("--dataset_name", type=str)
     parser.add_argument("--split", type=str)
-    parser.add_argument("--save_path", type=str, default="./outputs/baselines")
-    parser.add_argument("--demonstration_path", type=str, default="./models/prompts")
+    parser.add_argument("--save_path", type=str, default="./src/outputs/baselines")
+    parser.add_argument(
+        "--demonstration_path", type=str, default="./src/models/prompts"
+    )
     parser.add_argument("--api_key", type=str)
     parser.add_argument("--model_name", type=str)
     parser.add_argument("--framework", type=str, default="openai")
     parser.add_argument("--stop_words", type=str, default="------\n")
     parser.add_argument("--mode", type=str)
     parser.add_argument("--max_new_tokens", type=int, default=1024)
-    parser.add_argument("--is_AWQ", action="store_true", default=False)
+    parser.add_argument("--is_GGUF", action="store_true", default=False)
+    parser.add_argument("--Q_type", type=str)
     args = parser.parse_args()
     return args
 
@@ -189,4 +194,4 @@ def parse_args():
 if __name__ == "__main__":
     args = parse_args()
     model_baseline = Model_Baseline(args)
-    model_baseline.batch_reasoning_graph_generation()
+    model_baseline.reasoning_graph_generation()

@@ -30,13 +30,14 @@ class LogicProgramGenerator:
                 args.model_name,
                 args.stop_words,
                 args.max_new_tokens,
-                args.is_AWQ,
+                args.is_GGUF,
+                args.Q_type,
             )
         else:
             raise ValueError(
                 "Invalid framework. Please choose from [openai, huggingface]"
             )
-        print(f"Running on {self.model.pipe.device}")
+        # print(f"Running on {self.model.pipe.device}")
         self.prompt_creator = {
             "FOLIO": self.prompt_folio,
             "ProntoQA": self.prompt_prontoqa,
@@ -50,9 +51,9 @@ class LogicProgramGenerator:
         self.model_name = self.model_name.replace("/", "-")
 
     def load_prompt_templates(self):
-        prompt_file = f"./models/prompts/{self.dataset_name}.txt"
+        prompt_file = f"./src/models/prompts/{self.dataset_name}.txt"
         if self.dataset_name == "AR-LSAT" and self.model_name == "gpt-4":
-            prompt_file = f"./models/prompts/{self.dataset_name}-long.txt"
+            prompt_file = f"./src/models/prompts/{self.dataset_name}-long.txt"
         with open(prompt_file, "r") as f:
             self.prompt_template = f.read()
 
@@ -125,12 +126,12 @@ class LogicProgramGenerator:
         print(f"Loaded {len(raw_dataset)} examples from {self.split} split.")
 
         outputs = []
-        for example in tqdm(raw_dataset[:1]):
+        for example in tqdm(raw_dataset):
             # create prompt
             try:
                 full_prompt = self.prompt_creator[self.dataset_name](example)
                 output = self.model.generate(full_prompt)
-                if self.args.stop_words:
+                if self.args.stop_words in output:
                     output = output[: -len(self.args.stop_words)]
                 programs = [output]
 
@@ -182,7 +183,7 @@ class LogicProgramGenerator:
                 batch_outputs = self.model.batch_generate(full_prompts)
                 # create output
                 for sample, output in zip(chunk, batch_outputs):
-                    if self.args.stop_words:
+                    if self.args.stop_words in output:
                         output = output[: -len(self.args.stop_words)]
                     programs = [output]
                     output = {
@@ -235,16 +236,17 @@ class LogicProgramGenerator:
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--data_path", type=str, default="./data")
+    parser.add_argument("--data_path", type=str, default="./src/data")
     parser.add_argument("--dataset_name", type=str)
     parser.add_argument("--split", type=str, default="dev")
-    parser.add_argument("--save_path", type=str, default="./outputs/logic_programs")
+    parser.add_argument("--save_path", type=str, default="./src/outputs/logic_programs")
     parser.add_argument("--api_key", type=str, default="KEY")
     parser.add_argument("--model_name", type=str, default="text-davinci-003")
     parser.add_argument("--framework", type=str.lower, default="openai")
-    parser.add_argument("--stop_words", type=str, default="------\n")
+    parser.add_argument("--stop_words", type=str, default="------")
     parser.add_argument("--max_new_tokens", type=int, default=1024)
-    parser.add_argument("--is_AWQ", action="store_true", default=False)
+    parser.add_argument("--is_GGUF", action="store_true", default=False)
+    parser.add_argument("--Q_type", type=str)
     args = parser.parse_args()
     return args
 

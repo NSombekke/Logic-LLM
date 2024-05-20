@@ -1,0 +1,34 @@
+#!/bin/bash
+
+#SBATCH --partition=gpu
+#SBATCH --gpus=1
+#SBATCH --job-name=Run_Logic_Program
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=18
+#SBATCH --time=18:00:00
+#SBATCH --output=./slurm_output/slurm_output_%A.out
+
+module purge
+module load 2023
+module load Anaconda3/2023.07-2
+source activate DL2
+
+cd $HOME/Logic-LLM/
+
+MODEL_NAME="meta-llama/Meta-Llama-3-8B"
+
+API_KEY="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"
+DATASET_NAMES=("ProntoQA" "ProofWriter" "FOLIO" "LogicalDeduction" "AR-LSAT")
+DATASET_NAMES=("ProofWriter")
+
+for dataset_name in "${DATASET_NAMES[@]}"
+do
+    echo "Running self_refinement for $dataset_name with $MODEL_NAME model"
+    python models/self_refinement.py \
+        --api_key "$API_KEY" \
+        --dataset_name "$dataset_name" \
+        --framework "huggingface" \
+        --split dev \
+        --model_name "$MODEL_NAME" \
+        --max_new_tokens 1024
+done

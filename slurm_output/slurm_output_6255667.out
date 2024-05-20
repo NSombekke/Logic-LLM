@@ -1,0 +1,455 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+Running self_refinement for AR-LSAT with meta-llama/Meta-Llama-3-8B model
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Round 1 self-refinement
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:18,  6.14s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:12<00:12,  6.20s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:18<00:06,  6.10s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:19<00:00,  4.28s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:19<00:00,  4.96s/it]
+Loaded 231 examples from dev split.
+  0%|          | 0/231 [00:00<?, ?it/s]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  0%|          | 1/231 [00:17<1:08:22, 17.84s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  1%|          | 2/231 [00:32<59:49, 15.68s/it]  Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  1%|▏         | 3/231 [00:54<1:11:13, 18.74s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  2%|▏         | 4/231 [00:54<43:13, 11.43s/it]  /home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  2%|▏         | 5/231 [01:08<46:12, 12.27s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  3%|▎         | 6/231 [01:23<49:50, 13.29s/it]  3%|▎         | 7/231 [01:23<33:44,  9.04s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  3%|▎         | 8/231 [01:39<41:41, 11.22s/it]  4%|▍         | 9/231 [01:40<28:50,  7.80s/it]  4%|▍         | 10/231 [01:40<20:09,  5.47s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  5%|▍         | 11/231 [01:55<30:44,  8.38s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  5%|▌         | 12/231 [02:10<37:55, 10.39s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  6%|▌         | 13/231 [02:10<26:53,  7.40s/it]You seem to be using the pipelines sequentially on GPU. In order to maximize efficiency please use a dataset
+/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  6%|▌         | 14/231 [02:11<19:27,  5.38s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  6%|▋         | 15/231 [02:12<15:01,  4.17s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  7%|▋         | 16/231 [02:24<23:15,  6.49s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  7%|▋         | 17/231 [02:25<16:57,  4.75s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  8%|▊         | 18/231 [02:26<13:16,  3.74s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  8%|▊         | 19/231 [02:43<27:21,  7.74s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  9%|▊         | 20/231 [03:10<47:00, 13.37s/it]  9%|▉         | 21/231 [03:11<33:22,  9.53s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 10%|▉         | 22/231 [03:25<38:12, 10.97s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 10%|▉         | 23/231 [03:52<55:17, 15.95s/it] 10%|█         | 24/231 [03:53<38:47, 11.24s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 11%|█         | 25/231 [04:08<42:20, 12.33s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 11%|█▏        | 26/231 [04:08<30:04,  8.80s/it] 12%|█▏        | 27/231 [04:08<21:14,  6.25s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 12%|█▏        | 28/231 [04:29<35:42, 10.56s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 13%|█▎        | 29/231 [04:47<42:57, 12.76s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 13%|█▎        | 30/231 [05:04<47:12, 14.09s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 13%|█▎        | 31/231 [05:22<50:55, 15.28s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 14%|█▍        | 32/231 [05:36<49:44, 15.00s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 14%|█▍        | 33/231 [05:51<49:25, 14.98s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 15%|█▍        | 34/231 [06:07<49:24, 15.05s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 15%|█▌        | 35/231 [06:21<48:54, 14.97s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 16%|█▌        | 36/231 [06:39<50:50, 15.64s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 16%|█▌        | 37/231 [06:55<51:44, 16.00s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 16%|█▋        | 38/231 [07:12<52:19, 16.27s/it] 17%|█▋        | 39/231 [07:13<36:41, 11.47s/it] 17%|█▋        | 40/231 [07:13<25:48,  8.11s/it] 18%|█▊        | 41/231 [07:13<18:13,  5.75s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 18%|█▊        | 42/231 [07:25<23:56,  7.60s/it] 19%|█▊        | 43/231 [07:25<16:55,  5.40s/it] 19%|█▉        | 44/231 [07:26<12:02,  3.86s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 19%|█▉        | 45/231 [07:44<25:32,  8.24s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 20%|█▉        | 46/231 [07:45<18:18,  5.94s/it] 20%|██        | 47/231 [07:45<12:59,  4.24s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 21%|██        | 48/231 [07:56<19:08,  6.28s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 21%|██        | 49/231 [07:56<13:47,  4.55s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 22%|██▏       | 50/231 [07:57<10:03,  3.34s/it] 22%|██▏       | 51/231 [07:57<07:14,  2.42s/it] 23%|██▎       | 52/231 [07:57<05:16,  1.77s/it] 23%|██▎       | 53/231 [07:58<03:54,  1.32s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 23%|██▎       | 54/231 [07:58<03:10,  1.08s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 24%|██▍       | 55/231 [08:09<11:39,  3.98s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 24%|██▍       | 56/231 [08:22<19:40,  6.74s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 25%|██▍       | 57/231 [08:34<23:46,  8.20s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 25%|██▌       | 58/231 [08:54<34:00, 11.79s/it] 26%|██▌       | 59/231 [08:54<23:53,  8.34s/it] 26%|██▌       | 60/231 [08:54<16:47,  5.89s/it] 26%|██▋       | 61/231 [08:55<11:55,  4.21s/it] 27%|██▋       | 62/231 [08:55<08:31,  3.03s/it] 27%|██▋       | 63/231 [08:55<06:09,  2.20s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 28%|██▊       | 64/231 [09:12<18:20,  6.59s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 28%|██▊       | 65/231 [09:26<24:37,  8.90s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 29%|██▊       | 66/231 [09:38<26:51,  9.76s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 29%|██▉       | 67/231 [09:39<19:09,  7.01s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 29%|██▉       | 68/231 [09:39<13:55,  5.12s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 30%|██▉       | 69/231 [09:53<20:48,  7.71s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 30%|███       | 70/231 [10:06<25:04,  9.35s/it] 31%|███       | 71/231 [10:07<17:39,  6.62s/it] 31%|███       | 72/231 [10:07<12:29,  4.71s/it] 32%|███▏      | 73/231 [10:07<08:53,  3.37s/it] 32%|███▏      | 74/231 [10:07<06:22,  2.44s/it] 32%|███▏      | 75/231 [10:08<04:38,  1.79s/it] 33%|███▎      | 76/231 [10:08<03:26,  1.33s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 33%|███▎      | 77/231 [10:09<03:04,  1.20s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 34%|███▍      | 78/231 [10:10<02:41,  1.06s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 34%|███▍      | 79/231 [10:44<28:17, 11.17s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 35%|███▍      | 80/231 [11:03<33:31, 13.32s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 35%|███▌      | 81/231 [11:14<31:54, 12.76s/it] 35%|███▌      | 82/231 [11:14<22:23,  9.01s/it] 36%|███▌      | 83/231 [11:15<15:45,  6.39s/it] 36%|███▋      | 84/231 [11:15<11:09,  4.55s/it] 37%|███▋      | 85/231 [11:15<07:57,  3.27s/it] 37%|███▋      | 86/231 [11:15<05:43,  2.37s/it] 38%|███▊      | 87/231 [11:16<04:09,  1.73s/it] 38%|███▊      | 88/231 [11:16<03:04,  1.29s/it] 39%|███▊      | 89/231 [11:16<02:19,  1.02it/s] 39%|███▉      | 90/231 [11:16<01:47,  1.31it/s] 39%|███▉      | 91/231 [11:17<01:25,  1.64it/s]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 40%|███▉      | 92/231 [11:17<01:20,  1.72it/s] 40%|████      | 93/231 [11:18<01:06,  2.06it/s]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 41%|████      | 94/231 [11:34<12:14,  5.36s/it] 41%|████      | 95/231 [11:35<08:41,  3.83s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 42%|████▏     | 96/231 [11:52<17:36,  7.83s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 42%|████▏     | 97/231 [11:52<12:35,  5.64s/it] 42%|████▏     | 98/231 [11:52<08:55,  4.03s/it] 43%|████▎     | 99/231 [11:53<06:22,  2.90s/it] 43%|████▎     | 100/231 [11:53<04:35,  2.10s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 44%|████▎     | 101/231 [11:54<03:37,  1.68s/it] 44%|████▍     | 102/231 [11:54<02:41,  1.25s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 45%|████▍     | 103/231 [12:15<15:04,  7.07s/it] 45%|████▌     | 104/231 [12:15<10:35,  5.01s/it] 45%|████▌     | 105/231 [12:15<07:31,  3.58s/it] 46%|████▌     | 106/231 [12:15<05:20,  2.56s/it] 46%|████▋     | 107/231 [12:15<03:52,  1.88s/it] 47%|████▋     | 108/231 [12:16<02:51,  1.39s/it] 47%|████▋     | 109/231 [12:16<02:08,  1.05s/it] 48%|████▊     | 110/231 [12:16<01:38,  1.23it/s] 48%|████▊     | 111/231 [12:17<01:18,  1.54it/s]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 48%|████▊     | 112/231 [12:35<11:54,  6.00s/it] 49%|████▉     | 113/231 [12:35<08:25,  4.28s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 49%|████▉     | 114/231 [12:50<14:42,  7.54s/it] 50%|████▉     | 115/231 [12:51<10:21,  5.36s/it] 50%|█████     | 116/231 [12:51<07:20,  3.83s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 51%|█████     | 117/231 [12:51<05:23,  2.84s/it] 51%|█████     | 118/231 [12:52<03:54,  2.07s/it] 52%|█████▏    | 119/231 [12:52<02:51,  1.53s/it] 52%|█████▏    | 120/231 [12:52<02:07,  1.15s/it] 52%|█████▏    | 121/231 [12:53<01:37,  1.13it/s]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 53%|█████▎    | 122/231 [13:10<10:42,  5.90s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 53%|█████▎    | 123/231 [13:18<11:47,  6.55s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 54%|█████▎    | 124/231 [13:27<12:39,  7.10s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 54%|█████▍    | 125/231 [13:39<15:25,  8.73s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 55%|█████▍    | 126/231 [13:53<18:05, 10.34s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 55%|█████▍    | 127/231 [13:54<12:48,  7.39s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 55%|█████▌    | 128/231 [13:54<09:16,  5.40s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 56%|█████▌    | 129/231 [14:09<13:37,  8.02s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 56%|█████▋    | 130/231 [14:09<09:43,  5.78s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 57%|█████▋    | 131/231 [14:28<16:00,  9.61s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 57%|█████▋    | 132/231 [14:28<11:27,  6.95s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 58%|█████▊    | 133/231 [14:47<17:09, 10.50s/it] 58%|█████▊    | 134/231 [14:48<12:01,  7.43s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 58%|█████▊    | 135/231 [15:02<15:16,  9.54s/it] 59%|█████▉    | 136/231 [15:02<10:42,  6.76s/it] 59%|█████▉    | 137/231 [15:03<07:32,  4.81s/it] 60%|█████▉    | 138/231 [15:03<05:20,  3.45s/it] 60%|██████    | 139/231 [15:03<03:49,  2.49s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 61%|██████    | 140/231 [15:04<03:16,  2.16s/it] 61%|██████    | 141/231 [15:05<02:22,  1.59s/it] 61%|██████▏   | 142/231 [15:05<01:45,  1.19s/it] 62%|██████▏   | 143/231 [15:05<01:19,  1.10it/s] 62%|██████▏   | 144/231 [15:05<01:02,  1.40it/s] 63%|██████▎   | 145/231 [15:06<00:49,  1.74it/s] 63%|██████▎   | 146/231 [15:06<00:40,  2.08it/s]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 64%|██████▎   | 147/231 [15:32<11:18,  8.08s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 64%|██████▍   | 148/231 [15:50<15:18, 11.07s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 65%|██████▍   | 149/231 [15:50<10:49,  7.92s/it] 65%|██████▍   | 150/231 [15:51<07:36,  5.63s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 65%|██████▌   | 151/231 [15:51<05:31,  4.14s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 66%|██████▌   | 152/231 [16:11<11:29,  8.73s/it] 66%|██████▌   | 153/231 [16:11<08:03,  6.20s/it] 67%|██████▋   | 154/231 [16:11<05:40,  4.42s/it] 67%|██████▋   | 155/231 [16:12<04:01,  3.18s/it] 68%|██████▊   | 156/231 [16:12<02:53,  2.31s/it] 68%|██████▊   | 157/231 [16:12<02:05,  1.70s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 68%|██████▊   | 158/231 [16:38<10:42,  8.81s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 69%|██████▉   | 159/231 [16:40<08:21,  6.97s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 69%|██████▉   | 160/231 [17:02<13:38, 11.53s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 70%|██████▉   | 161/231 [17:26<17:39, 15.13s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 70%|███████   | 162/231 [17:47<19:35, 17.04s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 71%|███████   | 163/231 [17:48<13:42, 12.09s/it] 71%|███████   | 164/231 [17:48<09:32,  8.55s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 71%|███████▏  | 165/231 [17:49<06:48,  6.19s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 72%|███████▏  | 166/231 [17:49<04:51,  4.48s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 72%|███████▏  | 167/231 [17:50<03:34,  3.35s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 73%|███████▎  | 168/231 [18:06<07:25,  7.08s/it] 73%|███████▎  | 169/231 [18:06<05:12,  5.03s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 74%|███████▎  | 170/231 [18:21<08:02,  7.91s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 74%|███████▍  | 171/231 [18:38<10:36, 10.61s/it] 74%|███████▍  | 172/231 [18:38<07:22,  7.50s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 75%|███████▍  | 173/231 [18:54<09:35,  9.93s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 75%|███████▌  | 174/231 [19:19<13:50, 14.58s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 76%|███████▌  | 175/231 [19:35<14:06, 15.11s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 76%|███████▌  | 176/231 [19:53<14:37, 15.96s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 77%|███████▋  | 177/231 [19:54<10:15, 11.39s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 77%|███████▋  | 178/231 [19:55<07:14,  8.19s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 77%|███████▋  | 179/231 [19:55<05:09,  5.95s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 78%|███████▊  | 180/231 [20:15<08:27,  9.95s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 78%|███████▊  | 181/231 [20:31<09:51, 11.82s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 79%|███████▉  | 182/231 [20:47<10:36, 12.99s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 79%|███████▉  | 183/231 [20:47<07:26,  9.29s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 80%|███████▉  | 184/231 [21:08<10:00, 12.77s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 80%|████████  | 185/231 [21:41<14:24, 18.80s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 81%|████████  | 186/231 [22:04<14:58, 19.98s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 81%|████████  | 187/231 [22:17<13:14, 18.06s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 81%|████████▏ | 188/231 [22:33<12:19, 17.20s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 82%|████████▏ | 189/231 [22:48<11:45, 16.79s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 82%|████████▏ | 190/231 [23:12<12:48, 18.74s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 83%|████████▎ | 191/231 [23:37<13:44, 20.62s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 83%|████████▎ | 192/231 [24:06<15:03, 23.17s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 84%|████████▎ | 193/231 [24:25<13:55, 21.99s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 84%|████████▍ | 194/231 [24:50<14:07, 22.89s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 84%|████████▍ | 195/231 [25:12<13:30, 22.51s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 85%|████████▍ | 196/231 [25:29<12:15, 21.02s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 85%|████████▌ | 197/231 [25:45<11:05, 19.59s/it] 86%|████████▌ | 198/231 [25:46<07:35, 13.79s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 86%|████████▌ | 199/231 [26:01<07:31, 14.10s/it] 87%|████████▋ | 200/231 [26:01<05:08,  9.96s/it] 87%|████████▋ | 201/231 [26:01<03:31,  7.05s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 87%|████████▋ | 202/231 [26:02<02:29,  5.14s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 88%|████████▊ | 203/231 [26:24<04:45, 10.20s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 88%|████████▊ | 204/231 [26:25<03:19,  7.39s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 89%|████████▊ | 205/231 [26:42<04:27, 10.29s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 89%|████████▉ | 206/231 [26:43<03:06,  7.46s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 90%|████████▉ | 207/231 [27:00<04:14, 10.59s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 90%|█████████ | 208/231 [27:35<06:50, 17.83s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 90%|█████████ | 209/231 [27:56<06:49, 18.62s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 91%|█████████ | 210/231 [28:09<05:58, 17.07s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 91%|█████████▏| 211/231 [28:22<05:18, 15.91s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 92%|█████████▏| 212/231 [28:37<04:57, 15.68s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 92%|█████████▏| 213/231 [28:51<04:30, 15.02s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 93%|█████████▎| 214/231 [29:13<04:51, 17.17s/it] 93%|█████████▎| 215/231 [29:13<03:13, 12.10s/it] 94%|█████████▎| 216/231 [29:14<02:08,  8.56s/it] 94%|█████████▍| 217/231 [29:14<01:24,  6.07s/it] 94%|█████████▍| 218/231 [29:14<00:56,  4.33s/it] 95%|█████████▍| 219/231 [29:14<00:37,  3.11s/it] 95%|█████████▌| 220/231 [29:15<00:24,  2.26s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 96%|█████████▌| 221/231 [29:31<01:03,  6.35s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 96%|█████████▌| 222/231 [29:44<01:15,  8.42s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 97%|█████████▋| 223/231 [29:56<01:15,  9.46s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 97%|█████████▋| 224/231 [30:09<01:14, 10.67s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 97%|█████████▋| 225/231 [30:10<00:45,  7.62s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 98%|█████████▊| 226/231 [30:16<00:36,  7.30s/it] 98%|█████████▊| 227/231 [30:17<00:20,  5.19s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+ 99%|█████████▊| 228/231 [30:24<00:17,  5.70s/it] 99%|█████████▉| 229/231 [30:24<00:08,  4.07s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+100%|█████████▉| 230/231 [30:24<00:03,  3.01s/it]100%|██████████| 231/231 [30:25<00:00,  2.18s/it]100%|██████████| 231/231 [30:25<00:00,  7.90s/it]
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+Round 2 self-refinement
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:07,  2.44s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:04<00:04,  2.40s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:07<00:02,  2.33s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:07<00:00,  1.65s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:07<00:00,  1.92s/it]
+Loaded 231 examples from dev split.
+  0%|          | 0/231 [00:00<?, ?it/s]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  0%|          | 1/231 [00:16<1:04:32, 16.84s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  1%|          | 2/231 [00:30<58:13, 15.25s/it]  Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  1%|▏         | 3/231 [00:53<1:10:15, 18.49s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  2%|▏         | 4/231 [00:53<42:30, 11.24s/it]  /home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  2%|▏         | 5/231 [01:07<45:39, 12.12s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  3%|▎         | 6/231 [01:22<49:23, 13.17s/it]  3%|▎         | 7/231 [01:22<33:25,  8.95s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  3%|▎         | 8/231 [01:38<41:29, 11.16s/it]  4%|▍         | 9/231 [01:38<28:41,  7.76s/it]  4%|▍         | 10/231 [01:39<20:03,  5.44s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  5%|▍         | 11/231 [01:54<30:44,  8.38s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  5%|▌         | 12/231 [02:09<37:53, 10.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  6%|▌         | 13/231 [02:09<26:49,  7.38s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  6%|▌         | 14/231 [02:10<19:10,  5.30s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  6%|▋         | 15/231 [02:11<14:35,  4.05s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  7%|▋         | 16/231 [02:23<23:00,  6.42s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  7%|▋         | 17/231 [02:23<16:43,  4.69s/it]Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  8%|▊         | 18/231 [02:24<12:53,  3.63s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  8%|▊         | 19/231 [02:42<27:08,  7.68s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+  9%|▊         | 20/231 [03:08<46:56, 13.35s/it]  9%|▉         | 21/231 [03:09<33:18,  9.52s/it]/home/scur0397/.conda/envs/DL2/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:492: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+slurmstepd: error: *** JOB 6255667 ON gcn20 CANCELLED AT 2024-05-14T09:55:42 ***
+slurmstepd: error: container_p_join: setns failed for /slurm/6255667/.ns: Invalid argument
+slurmstepd: error: container_g_join(6255667): Invalid argument
+
+JOB STATISTICS
+==============
+Job ID: 6255667
+Cluster: snellius
+User/Group: scur0397/scur0397
+State: CANCELLED (exit code 0)
+Nodes: 1
+Cores per node: 18
+CPU Utilized: 00:00:01
+CPU Efficiency: 0.00% of 10:20:42 core-walltime
+Job Wall-clock time: 00:34:29
+Memory Utilized: 2.69 GB
+Memory Efficiency: 2.24% of 120.00 GB
