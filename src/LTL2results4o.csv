@@ -8,12 +8,12 @@ LTL_dev_6,"G(nighttime -> sleeping)", "{'If': '->', 'it's nighttime': 'nighttime
 LTL_dev_7,"G(sun_shining & birds_chirping)", "{'Both': '&', 'the sun is shining': 'sun_shining', 'the birds are chirping': 'birds_chirping', 'in every time step': 'G'}"
 LTL_dev_8,"G(sun_shining) & G(birds_singing -> !cats_meowing)", "{'The sun shines always': 'G(sun_shining)', 'whenever': '->', 'the birds sing': 'birds_singing', 'the cats don't meow': '!cats_meowing', 'whenever the birds sing, the cats don't meow': 'G(birds_singing -> !cats_meowing)'}"
 LTL_dev_9,"G(emission_test -> F passed) -> GF good_air_quality", "{'If it is the case that': '->', 'every': 'G', 'eventually': 'F', 'emission test': 'emission_test', 'passed': 'passed', 'good air quality': 'good_air_quality', 'needs to hold infinitely often': 'GF good_air_quality'}"
-LTL_dev_10,,
-LTL_dev_11,,
-LTL_dev_12,,
-LTL_dev_13,,
-LTL_dev_14,,
-LTL_dev_15,,
+LTL_dev_10,"GF Mark_loves_Stacy -> GF Stacy_loves_Mark", "{'If': '->', 'infinitely often': 'GF', 'Mark loves Stacy': 'Mark_loves_Stacy', 'Stacy loves Mark': 'Stacy_loves_Mark'}"
+LTL_dev_11,"G store_open | G website_accessible","{'Either...or...': '|', 'the store is open all day': 'G store_open', 'the online website is accessible around the clock': 'G website_accessible'}"
+LTL_dev_12,"F G !childless", "{'From some point in time on': 'F', 'always': 'G', 'I am always not childless': 'G !childless'}"
+LTL_dev_13,"G(!peace & !prosperity -> F conflict)", "{'Whenever': 'G', 'there is no peace and no prosperity': '!peace & !prosperity', 'conflict arises eventually': 'F conflict'}"
+LTL_dev_14,"G(!(happiness & sadness)) & G(happiness | sadness)", "{'Happiness and sadness': 'happiness & sadness', 'Happiness and sadness never coincide': 'G(!(happiness & sadness))', 'one of them is experienced at every moment in life': 'G(happiness | sadness)'}"
+LTL_dev_15,"G (sugar = flour -> taste = texture)", "{'Whenever': 'G', 'the ingredients sugar and flour are equal in quantity': 'sugar = flour', 'the resulting cake\'s taste and texture are equally good': 'taste = texture'}"
 LTL_dev_16,,
 LTL_dev_17,,
 LTL_dev_19,,
