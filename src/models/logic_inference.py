@@ -5,6 +5,7 @@ from symbolic_solvers.fol_solver.prover9_solver import FOL_Prover9_Program
 from symbolic_solvers.pyke_solver.pyke_solver import Pyke_Program
 from symbolic_solvers.csp_solver.csp_solver import CSP_Program
 from symbolic_solvers.z3_solver.sat_problem_solver import LSAT_Z3_Program
+from symbolic_solvers.LTL_solver.ltl_solver import LTL_program
 import argparse
 import random
 from backup_answer_generation import Backup_Answer_Generator
@@ -27,6 +28,7 @@ class LogicInferenceEngine:
             "ProofWriter": Pyke_Program,
             "LogicalDeduction": CSP_Program,
             "AR-LSAT": LSAT_Z3_Program,
+            "LTL": LTL_program,
         }
         self.program_executor = program_executor_map[self.dataset_name]
         self.backup_generator = Backup_Answer_Generator(
