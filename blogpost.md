@@ -234,7 +234,7 @@ As both are plausible translations depending on the interpretation of the senten
 An example of the second type is, *Whenever a holds, b must hold in the next two steps*, mapped to $G (a \rightarrow (b | X b))$. GPT3 returns:
 > **$\mu:$ "Whenever the food is hot, the food is cold in the next two steps."**
 > 
-> $G (h \rightarrow X X c)$
+> $\psi_{\mu}$: $G (h \rightarrow X X c)$
 > 
 > $D_{\psi}$: {"Whenever": "->", "the food is hot": "h", "the food is cold": "c", "in the next two steps": "X X", "the food is hot implies that the food is cold in the next two steps": "h -> X X c"}
 
