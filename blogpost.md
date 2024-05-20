@@ -240,16 +240,15 @@ An example of the second type is, *Whenever a holds, b must hold in the next two
 
 <!--**TO DO: Write about how to adjust the prompt to improve results**-->
 
-###### Drone Planning
+##### (2) Conversion to runs
 
 - We aim to compare our results to results using GPT-3 or Rasa (Their source 3).
 - Which model can handle unstructured natural language better?
 - Mention how the few-shot prompting affect the results
+- 
+- Can the LLM infer that rooms belong to floors? (reasoning at abstracted levels)
 
-###### Environmental Setup
-
-
-These elements within the grid world are organized into distinct levels of abstraction, with floors designated as level 2, rooms as level 1, and the landmark as level 0. Each natural language specification provided in our investigation is limited to a single sentence. Although there is no explicit restriction on the set of atomic propositions, specific guidelines are outlined in the task description. The LLM is asked to pick a possible path for the drone to follow, by checking if the run is valid for the $M_{\psi}$. Unlike previous approaches that utilize trajectory planners fed with LTL expressions, we introduce the predefined environment directly into the multiple-choice questions in natural language format, under the *context* section of the prompt.
+The elements within the *drona planning* grid world are organized into distinct levels of abstraction, with floors designated as level 2, rooms as level 1, and the landmark as level 0. Each natural language specification provided in our investigation is limited to a single sentence. Although there is no explicit restriction on the set of atomic propositions, specific guidelines are outlined in the task description. The LLM is asked to pick a possible path for the drone to follow, by checking if the run is valid for the $M_{\psi}$. Unlike previous approaches that utilize trajectory planners fed with LTL expressions, we introduce the predefined environment directly into the multiple-choice questions in natural language format, under the *context* section of the prompt.
 
 
 
