@@ -222,8 +222,8 @@ By testing the NL to LTL conversion on the **nl2spec** dataset, we seek to under
 TO DO Accuracies over test sets
 | Dataset | GPT-4.o|  GPT-3 |Llama |
 |----------|----------|----------|----------|
-| no domain | X/36 (%) | X/36 (%) |X/36 (%) |
-| predicates only | X/36 (%) | X/36 (%)| X/36 (%) |
+| nl2spec original  | X/36 (%) | X/36 (%) |X/36 (%) |
+| nl2spec in NL | X/36 (%) | X/36 (%)| X/36 (%) |
 
 ###### Ambiguity
 As pointed out by Cosler et al. [5], their dataset contains two types of ambiguities. The first type arises from the inherent limitations of natural language, such as operator precedence. The second type stems from semantic ambiguities within natural language. An illustration of the first is *a holds until b holds or always a holds* which their human experts initially translated to $(a U b) | G a$. GPT-3 returns the following:
