@@ -223,7 +223,7 @@ TO DO Accuracies over test sets
 | Dataset | GPT-4.o|  GPT-3 |Llama |
 |----------|----------|----------|----------|
 | nl2spec original  | X/36 (%) | X/36 (%) |X/36 (%) |
-| nl2spec in NL | X/36 (%) | 17/36 (%)| X/36 (%) |
+| nl2spec in NL | X/36 (%) | 17/36 (47.22%)| X/36 (%) |
 
 We observe that the  number of exact matches TO DO. 
 
