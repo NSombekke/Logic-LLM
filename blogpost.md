@@ -219,6 +219,11 @@ The first dataset will be used to test the initial conversion from natural langu
 ##### (1) Effectiveness of Problem Formulator
 By testing the NL to LTL conversion on the **nl2spec** dataset, we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations of such models. <!--( ToDo **Look up further studies on NL to LTL**)-->
 
+TO DO Accuracies over test sets
+| Dataset | GPT-4.o|  GPT-3 |Llama |
+|----------|----------|----------|----------|
+| no domain | X/36 (%) | X/36 (%) |X/36 (%) |
+| predicates only | X/36 (%) | X/36 (%)| X/36 (%) |
 
 ###### Ambiguity
 As pointed out by Cosler et al. [5], their dataset contains two types of ambiguities. The first type arises from the inherent limitations of natural language, such as operator precedence. The second type stems from semantic ambiguities within natural language. An illustration of the first is *a holds until b holds or always a holds* which their human experts initially translated to $(a U b) | G a$. GPT-3 returns the following:
@@ -251,15 +256,6 @@ An example of the second type is, *Whenever a holds, b must hold in the next two
 The elements within the *drona planning* grid world are organized into distinct levels of abstraction, with floors designated as level 2, rooms as level 1, and the landmark as level 0. Each natural language specification provided in our investigation is limited to a single sentence. Although there is no explicit restriction on the set of atomic propositions, specific guidelines are outlined in the task description. The LLM is asked to pick a possible path for the drone to follow, by checking if the run is valid for the $M_{\psi}$. Unlike previous approaches that utilize trajectory planners fed with LTL expressions, we introduce the predefined environment directly into the multiple-choice questions in natural language format, under the *context* section of the prompt.
 
 
-
-#### TO DO LTL Results
-
-Accuracies over test sets
-| Dataset | GPT-4.o| Folio | GPT-3 |
-|----------|----------|----------|----------|
-| no domain | X/36 (%) | X/36 (%) |X/36 (%) |
-| predicates only | X/36 (%) | X/36 (%)| X/36 (%) |
-| drone planning | X/Y (%) |X/Y (%) | X/Y (%) |
 
 - TO DO: Compare these results to **nl2spec** [5]. (T-5 fine tunes achieved 5.5% accurracy, nl2spec 44.4% accuracy)
 
