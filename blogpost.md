@@ -86,7 +86,14 @@ For $0 \leq i \leq n$, through induction one can define if $\psi$ is true at ins
 - $w, i \models F \psi$ iff $\exists j \geq i$ such that $w, j \models \psi$
 - $w, i \models \psi_1 \mathcal{U} \psi_2$ iff there exists a $j$ with $i \le j \le n$ s.t. $w, j \models \psi_2$ and for all $i \le k < j$, $w, k \models \psi_1$
 
-
+<table align="center">
+  <tr align="center">
+      <td><img src="src/pipeline_ltl.png" width=700></td>
+  </tr>
+  <tr align="left">
+    <td colspan=2><b>Figure 2.</b> Pipeline of Logic-LM for LTL.</td>
+  </tr>
+</table> 
 
 **Natural Language to LTL**
 
