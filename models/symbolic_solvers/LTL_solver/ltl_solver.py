@@ -16,7 +16,7 @@ class LTL_program:
         raw_start_index = lines.index("# raw")
         option_start_index = lines.index("# Options")
 
-        raw_formula = lines[raw_start_index + 1:option_start_index]
+        self.raw_formula = lines[raw_start_index + 1:option_start_index]
         option_traces = lines[option_start_index + 1:]
 
         try:
