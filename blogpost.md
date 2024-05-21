@@ -57,8 +57,24 @@ The authors of Logic-LM pointed out a crucial constraint, stating that “the mo
 Our first extension is making Logic-LM work with open-source language models, instead of closed-source models like ChatGPT. To make the application as flexible as possible, this was appplied by using models from the Huggingface library (https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct). Two versions of the current state-of-the-art open-source model Llama-3 have been utilized<!--(TODO add ref)-->. First, the smaller 8B version of the model is implemented and evaluated to see how well Logic-LM performs with a lower resource model. Additionally, the larger version of Llama-3 (70B) is utilized to extend Logic-LM, as it is significantly larger it is expected it outperforms the 8B variant. Both models are be compared with the GPT models used by the original author to see how SoTA open-source models compare to closed-source models. 
 
 ## <a name="ltl">Extension: Linear Temporal Logic</a>
-Second, we extend the Logic-LLM by introducing Linear-time Temporal Logic (LTL), which enhances standard propositional logic to express properties that hold over time-based trajectories. This extension is particularly useful in robotics and automated planning, where paths must comply with temporal constraints. LTL's semantics can effectively capture command specifications in the temporal domain. Formulas in LTL over the set of atomic propositions ($P$) adhere to the following grammar:
+Second, we extend the Logic-LLM by introducing Linear-time Temporal Logic (LTL), which enhances standard propositional logic to express properties that hold over time-based trajectories. This extension is particularly useful in robotics and automated planning, where paths must comply with temporal constraints. 
 
+The integration of Linear Temporal Logic (LTL) in Logic-LM involves several components, as illustrated in Figure 2. The input problem consists of a context, a question, and three multiple-choice options. The context sets the environment for answering the question. The problem formulator translates the question and options into logic formulas suitable for the solver. Specifically, the question is first converted into an easier canonical LTL representation, and then into the raw LTL formula. The options are translated into runs. The symbolic reasoner then evaluates each run to determine if it satisfies the LTL formula using a Büchi automaton. These results are passed to the result interpreter, which generates the answer. Further details are provided in the following sections.
+
+
+<table align="center">
+  <tr align="center">
+      <td><img src="src/pipeline_ltl.png" width=700></td>
+  </tr>
+  <tr align="left">
+    <td colspan=2><b>Figure 2.</b> Pipeline of Logic-LM for LTL.</td>
+  </tr>
+</table> 
+
+
+**Semantics of LTL**
+
+LTL's semantics can effectively capture command specifications in the temporal domain. Formulas in LTL over the set of atomic propositions ($P$) adhere to the following grammar:
 
 $$
 \begin{align*}
@@ -75,8 +91,6 @@ G \varphi & \quad \text{Always}
 \end{align*}
 $$
 
-**Semantics of LTL**
-  
 Let $\psi$ be an LTL formula defined over the set of propositions $P$. 
 For $0 \leq i \leq n$, through induction one can define if $\psi$ is true at instant $i$ (written $w, i \models \psi$) as:
 - $w, i \models p$ iff $p \in L(w_0)$ 
@@ -85,15 +99,7 @@ For $0 \leq i \leq n$, through induction one can define if $\psi$ is true at ins
 - $w, i \models X \psi$ iff $i < n$ and $w, i+1 \models \psi$
 - $w, i \models F \psi$ iff $\exists j \geq i$ such that $w, j \models \psi$
 - $w, i \models \psi_1 \mathcal{U} \psi_2$ iff there exists a $j$ with $i \le j \le n$ s.t. $w, j \models \psi_2$ and for all $i \le k < j$, $w, k \models \psi_1$
-
-<table align="center">
-  <tr align="center">
-      <td><img src="src/pipeline_ltl.png" width=700></td>
-  </tr>
-  <tr align="left">
-    <td colspan=2><b>Figure 2.</b> Pipeline of Logic-LM for LTL.</td>
-  </tr>
-</table> 
+- 
 
 **Natural Language to LTL**
 
