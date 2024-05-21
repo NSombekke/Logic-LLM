@@ -1,4 +1,4 @@
-# Logic-LM inegrated with Llama-3 and Linear Temporal Logic
+# Logic-LM integrated with Llama-3 and Linear Temporal Logic
 
 ### Authors
 Niels Sombekke, AnneLouise de Boer, Roos Hutter, Rens Baas, Sacha Buijs
