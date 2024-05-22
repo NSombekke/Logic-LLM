@@ -41,6 +41,13 @@ LTL_dev_34,"It's always the case that the current temperature is equal to tomorr
     'tomorrow's expected heat': 'X(expected_heat)'
 }", Equivalent
 LTL_dev_35,"If it's sunny then, in the next step, thunder holds until it rains or always thunder holds.","G (sunny -> X (thunder U rain | G thunder))","(Sunny -> X Thunder) & (Thunder U Rain | G(Thunder))","{'If it's sunny then, in the next step, thunder holds': 'Sunny -> X Thunder', 'thunder holds until it rains': 'Thunder holds U Rain', 'always thunder holds': 'G(Thunder)'}",The two formulas are incomparable
-LTL_dev_36,"The party is on until the speaker is broken or always the party is on.","(party_on U speaker_broken) | G party_on","(Party is on U Speaker is broken) | G(Party is on)","{'The party is on until the speaker is broken': 'Party is on U Speaker is broken', 'always the party is on': 'G(Party is on)'}", Equivalent
+LTL_dev_36,"The party is on until the speaker is broken or always the party is on.","(party_on U speaker_broken) | G party_on","'p U (s | G p)'","{
+    'The party is on': 'p',
+    'until': 'U',
+    'the speaker is broken': 's',
+    'or': '|',
+    'always the party is on': 'G p',
+    'The party is on until the speaker is broken or always the party is on': 'p U (s | G p)'
+}", TO DO 
 
 
