@@ -13,11 +13,13 @@ LTL_dev_11,"G store_open | G website_accessible","{'Either...or...': '|', 'the s
 LTL_dev_12,"F G !childless", "{'From some point in time on': 'F', 'always': 'G', 'I am always not childless': 'G !childless'}"
 LTL_dev_13,"G(!peace & !prosperity -> F conflict)", "{'Whenever': 'G', 'there is no peace and no prosperity': '!peace & !prosperity', 'conflict arises eventually': 'F conflict'}"
 LTL_dev_14,"G(!(happiness & sadness)) & G(happiness | sadness)", "{'Happiness and sadness': 'happiness & sadness', 'Happiness and sadness never coincide': 'G(!(happiness & sadness))', 'one of them is experienced at every moment in life': 'G(happiness | sadness)'}"
-LTL_dev_15,"G (sugar = flour -> taste = texture)", "{'Whenever': 'G', 'the ingredients sugar and flour are equal in quantity': 'sugar = flour', 'the resulting cake\'s taste and texture are equally good': 'taste = texture'}"
-LTL_dev_16,,
-LTL_dev_17,,
-LTL_dev_19,,
-LTL_dev_20,,
+LTL_dev_15,"G(sugar_flour_equal -> cake_good)", "{'Whenever': 'G', 'the ingredients sugar and flour are equal in quantity': 'sugar_flour_equal', 'the resulting cake\'s taste and texture are equally good': 'cake_good', 'if sugar_flour_equal then cake_good': 'sugar_flour_equal -> cake_good'}"
+LTL_dev_16,"G(meeting -> X(room_reservation))", "{'A meeting can only be scheduled if': 'meeting ->', 'a room reservation has been made beforehand': 'X(room_reservation)', 'globally': 'G', 'meeting': 'meeting', 'room reservation': 'room_reservation'}"
+LTL_dev_17,"shipment_delivered -> G(!return_request)", "{'After': '->', 'the shipment is delivered': 'shipment_delivered', 'a return request won\'t be processed again': 'G(!return_request)', 'shipment_delivered followed by no return_request': 'shipment_delivered -> G(!return_request)'}"
+LTL_dev_18,"valve_open -> F water_flow", "{'After': '->', 'the valve is opened': 'valve_open', 'water flows freely': 'water_flow', 'eventually': 'F', 'valve_open followed by water_flow': 'valve_open -> F water_flow'}"
+LTL_dev_19,"G(!(music_practice & sleeping))", "{'Music practice and anyone sleeping': 'music_practice & sleeping', 'won\'t happen simultaneously': 'G(!(music_practice & sleeping))'}"
+LTL_dev_20,"G(oven_preheat & timer_beep -> X(cookies_aroma))", "{'Whenever': 'G', 'the oven preheats': 'oven_preheat', 'the timer beeps for the next step': 'timer_beep', 'the aroma of freshly baked cookies fills the kitchen one step after the timer beeps': 'X(cookies_aroma)', 'if oven_preheat and timer_beep then next cookies_aroma': 'oven_preheat & timer_beep -> X(cookies_aroma)'}"
+LTL_dev_21,"G(seeds_planted -> X(F(flowers_bloom)))", "{'Whenever': 'G', 'the seeds are planted': 'seeds_planted', 'the flowers bloom eventually from the next step onward': 'X(F(flowers_bloom))', 'if seeds_planted then eventually next flowers_bloom': 'seeds_planted -> X(F(flowers_bloom))'}"
 LTL_dev_22,,
 LTL_dev_23,,
 LTL_dev_24,,
