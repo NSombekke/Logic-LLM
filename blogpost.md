@@ -64,7 +64,8 @@ Our first extension is making Logic-LM work with open-source language models, in
 
 ### Experiments
 Following the methodology of the original paper we evaluate the two Llama3 models on five common logical reasoning datasets (as explained in the introduction). The models are compaired against 2 baselines 1) Standard LLMs;
-and 2) Chain-of-Thought (CoT) (Wei et al., 2022b). Follwing Pan et al (TODO bron) we ensure fair comparisons, by using the same in-context examples for all models. For reproducibility, we set the temperature to 0 and select the highest-probability response from the LLMs. We evaluate model performance based on the accuracy of selecting the correct answer from multiple-choice questions. (TODO stukje over self refinement)
+and 2) Chain-of-Thought (CoT) (Wei et al., 2022b). Follwing Pan et al (TODO bron) we ensure fair comparisons, by using the same in-context examples for all models. For reproducibility, we set the temperature to 0 and select the highest-probability response from the LLMs. We evaluate model performance based on the accuracy of selecting the correct answer from multiple-choice questions. Additionally, we the research the effect of the rifiner on the two Llama-3 models by investigating the accuracy and the executable rates on the FOLIO dataset across different rounds of self refinement. 
+
 
 ## <a name="ltl">Extension: Linear Temporal Logic</a>
 Second, we extend the Logic-LLM by introducing Linear-time Temporal Logic (LTL), which enhances standard propositional logic to express properties that hold over time-based trajectories. This extension is particularly useful in robotics and automated planning, where paths must comply with temporal constraints. 
@@ -231,7 +232,7 @@ The first dataset will be used to test both the initial conversion and the subse
 
 
 ## Reprodcing the original results
-(TODO roos)
+(TODO roos, duidelijker maken) Pan et al. (2023) employed three closed-source LLMs: ChatGPT, GPT-3.5, and GPT-4. Our extension of the Logic-LM involves open-source LLMs. However, ChatGPT is publicly accessible for manual query-based messaging. To validate the claims of Pan et al. (2023), we queried ChatGPT five times for each logic type, presenting the prompt and a new problem and question.
 
 ## <a name="results">Results</a>
 ### <a name="general results">LLama as a open source LLM for Logic-LM</a>
