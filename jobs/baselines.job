@@ -5,13 +5,14 @@
 #SBATCH --job-name=Run_Baselines
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=18
-#SBATCH --time=12:00:00
+#SBATCH --time=24:00:00
 #SBATCH --output=./slurm_output/slurm_output_%A.out
 
 module purge
 module load 2023
 module load Anaconda3/2023.07-2
-source activate DL2
+module load PyTorch/2.1.2-foss-2023a-CUDA-12.1.1
+source activate DL
 
 cd $HOME/Logic-LLM/
 
@@ -26,7 +27,7 @@ do
     for mode in "${MODES[@]}"
     do
         echo "Running baselines for $dataset_name with $mode for $MODEL_NAME model"
-        python models/model_baseline.py \
+        python src/models/model_baseline.py \
             --api_key "$API_KEY" \
             --dataset_name "$dataset_name" \
             --framework "huggingface" \
