@@ -20,18 +20,19 @@ LTL_dev_18,"valve_open -> F water_flow", "{'After': '->', 'the valve is opened':
 LTL_dev_19,"G(!(music_practice & sleeping))", "{'Music practice and anyone sleeping': 'music_practice & sleeping', 'won\'t happen simultaneously': 'G(!(music_practice & sleeping))'}"
 LTL_dev_20,"G(oven_preheat & timer_beep -> X(cookies_aroma))", "{'Whenever': 'G', 'the oven preheats': 'oven_preheat', 'the timer beeps for the next step': 'timer_beep', 'the aroma of freshly baked cookies fills the kitchen one step after the timer beeps': 'X(cookies_aroma)', 'if oven_preheat and timer_beep then next cookies_aroma': 'oven_preheat & timer_beep -> X(cookies_aroma)'}"
 LTL_dev_21,"G(seeds_planted -> X(F(flowers_bloom)))", "{'Whenever': 'G', 'the seeds are planted': 'seeds_planted', 'the flowers bloom eventually from the next step onward': 'X(F(flowers_bloom))', 'if seeds_planted then eventually next flowers_bloom': 'seeds_planted -> X(F(flowers_bloom))'}"
-LTL_dev_22,,
-LTL_dev_23,,
-LTL_dev_24,,
-LTL_dev_25,,
-LTL_dev_26,,
-LTL_dev_27,,
-LTL_dev_28,,
-LTL_dev_29,,
-LTL_dev_30,,
-LTL_dev_31,,
-LTL_dev_32,,
-LTL_dev_33,,
-LTL_dev_34,,
-LTL_dev_35,,
-LTL_dev_36,,
+LTL_dev_22,"G (work -> X(!work & X(!work & X(!work & X(!work & X(work))))))", "{'We work': 'work', 'every fifth day': 'X(!work & X(!work & X(!work & X(!work & X(work))))'}"
+LTL_dev_23,"GF(failed) | X(passed)", "{'Either': '|', 'failed my exam': 'failed', 'holds infinitely often': 'GF', 'passed the exam': 'passed', 'holds in the next step': 'X'}"
+LTL_dev_24,"G(taller)", "{'will hold at all instances': 'G', 'Sam is taller than Ben': 'taller'}"
+LTL_dev_25,"G(hot -> X(X(cold)))", "{'Whenever': '->', 'the food is hot': 'hot', 'the food is cold': 'cold', 'in the next two steps': 'X(X(cold))'}"
+LTL_dev_26,"G(messaging | navigation | music)", "{'At all times': 'G', 'one of the following apps will be running': 'messaging | navigation | music', 'messaging': 'messaging', 'navigation': 'navigation', 'music': 'music'}"
+LTL_dev_27,"G(alarm -> F(wake_up))", "{'If': '->', 'the alarm rings': 'alarm', 'someone will eventually wake up': 'F(wake_up)'}"
+LTL_dev_28,"G(within_range | exceeds_range) & G(exceeds_range -> X(X(within_range)))", "{'must always be': 'G', 'within a normal range': 'within_range', 'exceeds that range': 'exceeds_range', 'within two time intervals': 'X(X(within_range))'}"
+LTL_dev_29,"G(!(clear & X(clear) & X(X(clear))))", "{'Not a day goes by': 'G', 'the sky is clear for more than two hours': 'clear & X(clear) & X(X(clear))', 'not clear for more than two hours': '!(clear & X(clear) & X(X(clear)))'}"
+LTL_dev_30,"G(s -> !(X(s) | X(X(s)) | X(X(X(s)))))", "{'The sprinklers can only activate every three hours': 'G(s -> !(X(s) | X(X(s)) | X(X(X(s)))))', 'to conserve water': '', 's': 'the sprinklers are activated'}"
+LTL_dev_31,"G (s -> X c)", "{'Every': 'G', 'followed by': 'X', 'sunrise': 's', 'the chirping of birds': 'c', 'Every sunrise is followed by the chirping of birds': 's -> X c'}"
+LTL_dev_32,"F(w & s)", "{'Eventually': 'F', 'you drink water': 'w', 'the sun shines': 's', 'while the sun shines': '& s', 'you drink water while the sun shines': 'w & s'}"
+LTL_dev_33,"F w & F s", "{'Eventually': 'F', 'the waves crashing': 'w', 'the seagulls flying': 's', 'both the waves crashing and the seagulls flying': 'F w & F s'}"
+LTL_dev_34,"G (temp <-> X heat)", "{'It's always the case': 'G', 'the current temperature': 'temp', 'tomorrow's expected heat': 'heat', 'is equal to': '<->', 'the current temperature is equal to tomorrow's expected heat': 'temp <-> X heat'}"
+LTL_dev_35,"s -> (X (t U r) | G t)", "{'If': '->', 'it's sunny': 's', 'in the next step': 'X', 'thunder holds': 't', 'it rains': 'r', 'until': 'U', 'always': 'G', 'in the next step, thunder holds until it rains': 'X (t U r)', 'always thunder holds': 'G t', 'or': '|', 'in the next step, thunder holds until it rains or always thunder holds': 'X (t U r) | G t'}"
+LTL_dev_36,"(p U b) | G p", "{'The party is on': 'p', 'the speaker is broken': 'b', 'until': 'U', 'or': '|', 'always': 'G', 'the party is on until the speaker is broken': 'p U b', 'always the party is on': 'G p'}"
+
