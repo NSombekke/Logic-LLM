@@ -487,42 +487,43 @@ The elements within the *drona planning* grid world are organized into distinct 
 	</tr>
 	<tr align="center">
     	<td>FOLIO</td>
-    	<td>0</td>
-    	<td>60.0</td>
-    	<td>100.0</td>
+    	<td>5</td>
+    	<td>50.0</td>
+    	<td>50.0</td>
     	<td>60.0</td>
 	</tr>
 	<tr align="center">
     	<td>AR-LSAT</td>
-    	<td>5</td>
-    	<td>20.0</td>
+    	<td>9</td>
+    	<td>10.0</td>
+    	<td>10.0</td>
     	<td>0.0</td>
-    	<td>-</td>
 	</tr>
 	<tr align="center">
     	<td>LogicalDeduction</td>
-    	<td>5</td>
-    	<td>40.0</td>
+    	<td>10</td>
+    	<td>60.0</td>
     	<td>0.0</td>
     	<td>-</td>
 	</tr>
 	<tr align="center">
     	<td>ProofWriter</td>
-    	<td>4</td>
+    	<td>6</td>
+    	<td>50.0</td>
     	<td>40.0</td>
-    	<td>20.0</td>
     	<td>100.0</td>
 	</tr>
 	<tr align="center">
     	<td>ProntoQA</td>
-    	<td>4</td>
-    	<td>60.0</td>
-    	<td>20.0</td>
+    	<td>9</td>
+    	<td>30.0</td>
+    	<td>10.0</td>
     	<td>100.0</td>
 	</tr>
     <tr align="left">
    	 <td colspan=7><b>Table 3.</b>  Chat-GPT (GPT 3.5) Logic-LM results</td>
 </table>
+
 
 Pan et al. (2023) employed three closed-source LLMs: ChatGPT, GPT-3.5, and GPT-4. Our extension of the Logic-LM involves open-source LLMs. However, ChatGPT is publicly accessible for manual query-based messaging. To validate the claims of Pan et al. (2023), we queried ChatGPT five times for each logic type, presenting the prompt and a new problem and question. Results are summarized in Table 3. ... (*qualitative results will come*)
 
