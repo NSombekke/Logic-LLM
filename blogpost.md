@@ -501,10 +501,10 @@ The elements within the *drona planning* grid world are organized into distinct 
 	</tr>
 	<tr align="center">
     	<td>LogicalDeduction</td>
-    	<td>10</td>
-    	<td>60.0</td>
-    	<td>0.0</td>
-    	<td>-</td>
+    	<td>0</td>
+    	<td>50.0</td>
+    	<td>100.0</td>
+    	<td>50.0</td>
 	</tr>
 	<tr align="center">
     	<td>ProofWriter</td>
