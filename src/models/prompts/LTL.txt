@@ -111,3 +111,11 @@ F ( first_floor & F ( landmark_1 ) )
     {'first_floor': True, 'red_room': False, 'yellow_room': False, 'second_floor': False, 'green_room': False, 'third_floor': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False},
     {'first_floor': True, 'red_room': True, 'yellow_room': False, 'second_floor': True, 'green_room': False, 'third_floor': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}
 ] ::: (C)
+------
+Problem:
+[[PROBLEM]]
+Question:
+[[QUESTION]]
+Options:
+[[CHOICES]]
+###
