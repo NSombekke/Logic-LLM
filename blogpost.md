@@ -46,20 +46,30 @@ prompting and CoT prompting, respectively. Third, while CoT generally enhances L
 <!--Pan et al. (2023) report three main results. First, LOGIC-LM notably outperforms standard LLMs and Chain-of-Thought (CoT) across various datasets, highlighting the advantage of integrating LLMs with external symbolic solvers for logical reasoning. Second, GPT-4 exhibits superior performance compared to GPT-3.5, especially in standard prompting. Logic-LM further improves GPT-4 by 24.98% and 10.44% for standard prompting and CoT prompting, respectively. Third, while CoT generally enhances LLM performance, its benefits vary across datasets, with less substantial or negative effects seen in certain scenarios. Additionally, the effectiveness of problem formulation, the robustness of reasoning, and the impact of self-refinement highlight both the successes and challenges encountered in these areas.-->
 
 ## <a name="reasons">Reasons for extension</a>
-*Exposition of its weaknesses/strengths/potential which triggered your group to come up with a response.*
-
 As outlined in the introduction, the Logic-LM framework relies on three LLMs: ChatGPT, GPT-3.5, and GPT-4. However, due to their closed-source nature, these models suffer from limited transparency, customization options, and opportunities for collaboration. Therefore,  integrating open-source LLMs into the Logic-LM framework would be beneficial, as it increases accessibility, usability and flexibility. 
 
 The authors of Logic-LM pointed out a crucial constraint, stating that “the model’s applicability is inherently bounded by the expressiveness of the symbolic solver” (Pan et al., 2023). Currently, only four distinct symbolic solvers are employed, limiting the framework's scope to four specific types of logical reasoning problems. This limitation can be mitigated by integrating more symbolic solvers into the framework, as proposed by the authors (Pan et al., 2023). Therefore, incorporating an additional solver expands the framework’s capabilities, which is facilitated by the inherent flexibility of its design. Moreover, this addition encourages the development of a versatile logic-solving model. 
+
+AAdditionally, we will reproduce the results of the original paper to investigate its reproducibility. As the authors utilized closed-source models, we have opted to reproduce the results on a smaller scale using ChatGPT.
+
+In summary, our contributions are threefold:
+
+1. Making Logic-LM open-source to enhance accessibility.
+2. Extending Logic-LM by integrating Linear Temporal Logic.
+3. Reproducing the results of the original paper to investigate its reproducibility.
 
 
 ## <a name="open_source">Extension: Open-source models</a>
 Our first extension is making Logic-LM work with open-source language models, instead of closed-source models like ChatGPT. To make the application as flexible as possible, this was appplied by using models from the Huggingface library (https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct). Two versions of the current state-of-the-art open-source model Llama-3 have been utilized<!--(TODO add ref)-->. First, the smaller 8B version of the model is implemented and evaluated to see how well Logic-LM performs with a lower resource model. Additionally, the larger version of Llama-3 (70B) is utilized to extend Logic-LM, as it is significantly larger it is expected it outperforms the 8B variant. Both models are be compared with the GPT models used by the original author to see how SoTA open-source models compare to closed-source models. 
 
+### Experiments
+Following the methodology of the original paper we evaluate the two Llama3 models on five common logical reasoning datasets (as explained in the introduction). The models are compaired against 2 baselines 1) Standard LLMs;
+and 2) Chain-of-Thought (CoT) (Wei et al., 2022b). Follwing Pan et al (TODO bron) we ensure fair comparisons, by using the same in-context examples for all models. For reproducibility, we set the temperature to 0 and select the highest-probability response from the LLMs. We evaluate model performance based on the accuracy of selecting the correct answer from multiple-choice questions. (TODO stukje over self refinement)
+
 ## <a name="ltl">Extension: Linear Temporal Logic</a>
 Second, we extend the Logic-LLM by introducing Linear-time Temporal Logic (LTL), which enhances standard propositional logic to express properties that hold over time-based trajectories. This extension is particularly useful in robotics and automated planning, where paths must comply with temporal constraints. 
 
-The integration of Linear Temporal Logic (LTL) in Logic-LM involves several components, as illustrated in Figure 2. The input problem consists of a context, a question, and three multiple-choice options. The context sets the environment for answering the question. The problem formulator translates the question and options into logic formulas suitable for the solver. Specifically, the question is first converted into an easier canonical LTL representation, and then into the raw LTL formula. The options are translated into runs. The symbolic reasoner then evaluates each run to determine if it satisfies the LTL formula using a Büchi automaton. These results are passed to the result interpreter, which generates the answer. We will test and evaluate this extension based on a drone planning scenario (TODO bron dataset). Further details are provided in the following sections.
+The integration of Linear Temporal Logic (LTL) in Logic-LM involves several components, as illustrated in Figure 2. The input problem consists of a context, a question, and three multiple-choice options. The context sets the environment for answering the question. The problem formulator translates the question and options into logic formulas suitable for the solver. Specifically, the question is first converted into an easier canonical LTL representation, and then into the raw LTL formula. The options are translated into runs. The symbolic reasoner then evaluates each run to determine if it satisfies the LTL formula using a Büchi automaton. These results are passed to the result interpreter, which generates the answer. We will test and evaluate this extension based on a drone planning scenario (TODO bron dataset). Additionally we perform an experiment evaluating the performance of three LLMs in converting natural language to LTL and runs. Further details are provided in the following sections.
 
 
 <table align="center">
@@ -67,7 +77,7 @@ The integration of Linear Temporal Logic (LTL) in Logic-LM involves several comp
       <td><img src="src/pipeline_ltl.png" width=700></td>
   </tr>
   <tr align="left">
-    <td colspan=2><b>Figure 2.</b> Pipeline of Logic-LM for LTL.</td>
+    <td colspan=2><b>Figure 1.</b> Pipeline of Logic-LM for LTL.</td>
   </tr>
 </table> 
 
@@ -103,9 +113,9 @@ For $0 \leq i \leq n$, through induction one can define if $\psi$ is true at ins
 
 ### Problem Formulator
 
-We employ the 2 Llama-3 models to convert natural language into Linear Temporal Logic (LTL) tasks based on the attributes in the context of the question (e.g. planning domain). Utilizing few-shot learning, we establish a correspondence between natural language commands and their respective LTL formulas. With the given prompt, an open-source LLM can be directed to generate these LTL formulas from natural language. The conversion from natural language to LTL has been predominantly studied within the field of robotics [9]. 
+We utilize two Llama-3 models to convert natural language into Linear Temporal Logic (LTL) tasks and runs based on the context attributes (e.g., planning domain), the question, and the options. We provide the models with clear instructions and a few examples to facilitate few-shot learning. This approach helps establish a correspondence between natural language commands and their respective LTL formulas and runs. With the given prompts, the LLMs are directed to generate these LTL formulas and runs from natural language inputs effectively. (TODO deze zin lijkt overbodig --> )The conversion from natural language to LTL has been predominantly studied within the field of robotics [9]. 
 
-For illustration, consider the following Natural language commands $\mu$, and their corresponding LTL formula $\psi_{\mu}$, and explanation dictionary $(D_{\psi})$ generated by a LLM.  
+For illustration, consider the following Natural language commands $\mu$, and their corresponding LTL formula $\psi_{\mu}$, and explanation dictionary $(D_{\psi})$ generated by a LLM.  (TODO wat is de explanaition dictionary)
 
 > **$\mu:$ "Always avoid the green room and navigate to the third floor."**
 > 
@@ -119,17 +129,14 @@ For illustration, consider the following Natural language commands $\mu$, and th
       <td><img src="src/pipeline.jpg" width=800></td>
   </tr>
   <tr align="left">
-    <td colspan=2><b>Figure 1.</b>  Pipeline: Converting Natural Language to Linear Temporal Logic for Multiple Choice Answering.</td>
+    <td colspan=2><b>Figure 2.</b>  Pipeline: Converting Natural Language to Linear Temporal Logic for Multiple Choice Answering. (TODO dit plaatje klopt vlgs mij niet, de multiple choice antwoorden zijn vragen nml?</td>
   </tr>
 </table>
 
-(TODO verder uitwerken)
-We prompt the LLM to generate a possible finite run corresponding to each of the multiple-choice descriptions.
-
 #### Prompt Engineering
-Since Large language models are predominantly trained on natural language, they may struggle converting natural language directly into Linear Temporal Logic (LTL) formulas. The syntax of LTL (e.g. X, U, and F) is quite different from typical natural language constructs. To address this distribution shift, a study by Pan et al. (2023) proposes creating a *canonical* representation that aligns more closely with natural language [8]. For the same reason Cosler et al. (2023) prompt the LLM to turn $\mu$ into an intermediate *canoncial form*, shown as *sub-translations*, before mapping the the sentence into an LTL formula [5]. Each translation accompanies a translation dictionary in canonical form, through which th LLM is asked to explain its steps. We will use their prompting technique. 
+Since Large language models are predominantly trained on natural language, they may struggle converting natural language directly into Linear Temporal Logic (LTL) formulas. The syntax of LTL (e.g. X, U, and F) is quite different from typical natural language constructs. To address this distribution shift, a study by Pan et al. (2023) proposes creating a *canonical* representation that aligns more closely with natural language [8]. For the same reason Cosler et al. (2023) prompt the LLM to turn $\mu$ into an intermediate *canoncial form*, shown as *sub-translations*, before mapping the the sentence into an LTL formula [5]. Each translation accompanies a translation dictionary in canonical form, through which th LLM is asked to explain its steps. We will use their prompting technique. (TODO wij hebben geen translation dictionary in de prompt)
 
-The prompt outline below encapsulates our methodology, comprising three main sections — (1) LTL specification for the conversion of Natural Language to LTL, (2) the conversion of multiple choice options to traces, and (3) few-shot examples. All in all, the prompt serves as a structured framework for generating LTL formulas and traces from natural language inputs.
+The outline below encapsulates our prompt setup, comprising three main sections — (1) LTL specification for the conversion of Natural Language to LTL, (2) the conversion of multiple choice options to traces, and (3) few-shot examples. All in all, the prompt serves as a structured framework for generating LTL formulas and traces from natural language inputs.
 
 >**Prompt**
 >
@@ -144,15 +151,14 @@ Below an explanaition is given of all the input you will recieve and what you sh
 >
 >*Remember that U means "until", G means "globally", F means "eventually", which means GF means "infinitely often".*
 >
->*The formula should only contain atomic propositions or operators ||, &, !, X, U, G, F.*
+>*The formula should only contain atomic propositions or operators ||, &, !, U, G, F.*
 >
 >***Options**: The options need to be parsed into traces. These traces need to be a list ([]) containing dictionaries for each timestep ({}). In each dictionary the state of the corresponding timestep is given.*
 >
 >[Few shot examples]
 >
 >
-
-Simpler examples may not necessitate contextual information for trace generation, as the LLM is expected to infer when predictes have a mutually exclusive (mutex) relation. (e.g. The predicates sleeping and eating can not hold at the same time) However, as the complexity of trace generation tasks increases, the inclusion of detailed domain descriptions becomes crucial. For instance, in scenarios where the LLM needs to understand specific constraints, such as the impossibility of the drone simultaneously occupying the third floor and a particular room on the first floor, prompts enriched with a context are utilized. To evaluate the LLM's proficiency in generating traces within predetermined domains, we generated a datasets based on the *drone planning* domain [4]. This rigorous testing approach ensures thorough assessment of the LLM's capabilities across various levels of complexity and specificity.
+The addition of a context in the prompt is not always necessary for correct LTL generation as the LLM is expected to infer when predictes have a mutually exclusive (mutex) relation (e.g. the predicates sleeping and eating can not hold at the same time). However, we are utilizing a drone planning dataset that contains spefic constraints, such as the impossibility of the drone simultaneously occupying the third floor and a particular room on the first floor. Therefore prompts enriched with a context are utilized in this study.
 
 > **Context**:
 >  *Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second  floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1.* *The drone’s movement is limited to one floor and not more than one  room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.*
@@ -174,7 +180,7 @@ Simpler examples may not necessitate contextual information for trace generation
 
 After the problem formulator has translated the natural language question into LTL and options into runs, we pass them to the logical reasoner. This reasoner checks for the validity of runs, verifying whether a given run satisfies the specified LTL formula. Runs are either accepted or rejected based on their compliance with the LTL formula, and consequently, the model is able to select one of the multiple-choice answers. 
 
-We employ a Python module to derive its associated Deterministic Finite State Automaton $M_{\phi}$. We integrate the *Flloat* Python library to translate LTL formulas (in CNF form) with finite-trace semantics into a minimal Deterministic Finite State Automaton (DFA) using MONA [3] (TODO wat is mona?). This conversion is guaranteed by Theorem 1. The resultigng  DFA ($M_{\phi}$) encapsulates the temporal constraints specified by the LTL formula, enabling efficient reasoning over finite traces. The trace-based satisfiability reasoning enhances the framework's capability to address temporal aspects of logical reasoning problems.
+We employ a Python module to derive its associated Deterministic Finite State Automaton $M_{\phi}$. We integrate the *Flloat* Python library (TODO bron) to translate LTL formulas (in CNF form) with finite-trace semantics into a minimal Deterministic Finite State Automaton (DFA) using MONA [3] (TODO wat is mona?). This conversion is guaranteed by Theorem 1. The resultigng  DFA ($M_{\phi}$) encapsulates the temporal constraints specified by the LTL formula, enabling efficient reasoning over finite traces. The trace-based satisfiability reasoning enhances the framework's capability to address temporal aspects of logical reasoning problems.
 
 **Theorem 1** [Vardi and Wolper, 1994 [10]]: For any LTL formula $\psi$, a Büchi automaton $M_{\psi}$ can be constructed, having a number of states that is at most exponential in the length of $\psi$.  The language of $M_{\psi}$, denoted as $L(M_{\psi})$, encompasses the set of models of $\psi$.
 
@@ -195,20 +201,13 @@ $L(M_{\psi}) = \\{ w \in \Sigma^{w} | w \text{ is accepted by}  M_{\psi} \\}$
 
 For each subplan $q_i$ of the run, the language function $L$ assigns a symbol $\sigma \in \Sigma$. These symbols collectively form a word **w** representing the sequence of symbols observed along the trace. This word **w** is then evaluated against the acceptance conditions of the DBA $M_{\psi}$. The language $L(M_{\psi})$ defines a set of infinite runs that the DFA can recognize. If **w** satisfies these acceptance conditions, then the finite run $\rho_{\psi}$ satisfies the LTL formula. Finite runs $\rho_{\psi}$ satisfiy the LTL if the word $ **w** = L(q_0)L(q_1)...L(q_n)$ is acceptable in $L(M_{\psi})$. 
 
-Step 5 in Figure 1 shows an example output of runs corresponding to options (A) and (B). In this step, the generated runs are evaluated against the associated Deterministic Finite Automaton $M_{\psi}$ to determine their validity.
+Step 5 in Figure 2 shows an example output of runs corresponding to options (A) and (B). In this step, the generated runs are evaluated against the associated Deterministic Finite Automaton $M_{\psi}$ to determine their validity.
 
+### Result interpreter
+Finally, the result interpreter translates the results returned from the symbolic solver back to a natural language answer. The symbolic reasoner returns "True" or "False" for each of the runs (options), this results in a list. From this list the results interpreter takes the index of the "True" value and maps it to the letter corresponding to the correct answer, *e.g. translating [True, False, False] to "the answer is A"*.
 
-### Language Grounding
-We aim to evaluate how well the LLM performs the conversion task from natural language to LTL, especially in cases where it needs to generalize from few examples (few-shot learning). The evaluation consists of two stages: (1) the conversion of the natural language command into LTL, and (2) the subsequent conversion of the multiple choice options (each formlated in natural language) into runs. 
-
-We test the parsing on two datasets. The first consists of 36 benchmark intances crafted by experts in the nl2spec study [5]. Each of these examples has been selected by LTL experts to cover a variety of ambiguities and complexities. We use their formatted intances, in addition we have prompted the LLM to replaced the propositions a,b,c,d to create more realistic sentences. For example: 
-
-> $\mu:$ Every meal is eventually followed by dessert. $\leftrightarrow$ G(meal -> F dessert).
-> 
-> $\mu:$ Whenever a car starts, the engine revs three steps later. $\leftrightarrow$ G(car_starts -> X X X engine_revs).
-
-The second dataset is derived from commands in the *drone planning* domain, adapted from [8]. This test set is generated from the planning domain introduced by [8], This environment is a 3D grid world that consists of three floors, six rooms, and a single landmark. We created a test set with multiple-choice options from their natural language descriptions and corresponding LTL formulas.
-
+### Experiments
+We evaluate LOGIC-LM LTL extension on a dataset derived from commands in the *drone planning* domain, adapted from [8]. This test set is generated from the planning domain introduced by [8], This environment is a 3D grid world that consists of three floors, six rooms, and a single landmark. We created a test set of 50 entries with each three multiple-choice options from their natural language descriptions and corresponding LTL formulas. Mirroring the original paper, we evaluate the LOGIC-LM LTL extension against 2 baselines:  1) Standard LLMs; and 2) Chain-of-Thought (CoT) (Wei et al., 2022b). Additionally we perform an experiment evaluating how well various LLMs convert Natural Language to LTL, this will be further discussed in the following section.
 
 <table align="center">
   <tr align="center">
@@ -219,64 +218,23 @@ The second dataset is derived from commands in the *drone planning* domain, adap
   </tr>
 </table> 
 
-The first dataset will be used to test the initial conversion from natural language to LTL, while the second dataset will be used to test both the initial conversion and the subsequent generation of runs.
+#### Natural language to LTL
+We aim to evaluate how well LLMs performs the conversion task from natural language to LTL in cases where it needs to generalize from few examples (few-shot learning). The evaluation consists of two stages: (1) the conversion of the natural language command into LTL, and (2) the subsequent conversion of the multiple choice options (each formlated in natural language) into runs. 
 
+We test the parsing on two datasets. The first dataset is the drone planning dataset, which is priorly discussed and used for the Logic-LM LTL extension evaluation. The second dataset consists of 36 benchmark intances crafted by experts in the nl2spec study [5]. Each of these examples has been selected by LTL experts to cover a variety of ambiguities and complexities. We use their formatted intances, in addition we have prompted the LLM to replaced the propositions a,b,c,d to create more realistic sentences. For example: 
 
-##### (1) Effectiveness of Problem Formulator
-By testing the NL to LTL conversion on the **nl2spec** dataset, we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations of such models. <!--( ToDo **Look up further studies on NL to LTL**)-->
-
-TO DO Accuracies over test sets
-| Dataset | GPT-4.o|  GPT-3 |Llama |
-|----------|----------|----------|----------|
-| nl2spec original  | X/36 (%) | X/36 (%) |X/36 (%) |
-| nl2spec in NL | X/36 (%) | 17/36 (47.22%)| X/36 (%) |
-
-We observe that the  number of exact matches TO DO. 
-
-
-###### Ambiguity
-As pointed out by Cosler et al. [5], their dataset contains two types of ambiguities. The first type arises from the inherent limitations of natural language, such as operator precedence. The second type stems from semantic ambiguities within natural language. An illustration of the first is *a holds until b holds or always a holds* which their human experts initially translated to $(a U b) | G a$. GPT-3 returns the following:
-
-> **$\mu:$ "The party is on until the speaker is broken or always the party is on."**
+> $\mu:$ Every meal is eventually followed by dessert. $\leftrightarrow$ G(meal -> F dessert).
 > 
-> $\psi_{\mu}$: $p U (s | G p)$
-> 
-> $D_{\psi}$: {"The party is on": "p", "until": "U", "the speaker is broken": "s", "or": "|", "always the party is on": "G p", "The party is on until the speaker is broken or always the party is on": "p U (s | G p)"}
+> $\mu:$ Whenever a car starts, the engine revs three steps later. $\leftrightarrow$ G(car_starts -> X X X engine_revs).
 
-As both are plausible translations depending on the interpretation of the sentence, the example shows how the conversion is not as straight forward. 
-
-An example of the second type is, *Whenever a holds, b must hold in the next two steps*, mapped to $G (a \rightarrow (b | X b))$. GPT3 returns:
-> **$\mu:$ "Whenever the food is hot, the food is cold in the next two steps."**
-> 
-> $\psi_{\mu}$: $G (h \rightarrow X X c)$
-> 
-> $D_{\psi}$: {"Whenever": "->", "the food is hot": "h", "the food is cold": "c", "in the next two steps": "X X", "the food is hot implies that the food is cold in the next two steps": "h -> X X c"}
-
-<!--**TO DO: Write about how to adjust the prompt to improve results**-->
+The first dataset will be used to test both the initial conversion and the subsequent generation of runs, while the second dataset will be used to test solely the initial conversion from natural language to LTL.
 
 
-
-
-- TO DO: Compare these results to **nl2spec** [5]. (T-5 fine tunes achieved 5.5% accurracy, nl2spec 44.4% accuracy)
-
-##### (2) Effectiveness of trace geneation
-
-- We plan to measure the accuracy of these conversions over a variety of LTL formulae.
-- We will investigate how trace generation is affected by the **Context** of the drone planning domain.
-
-- We aim to compare our results to results using GPT-3 or Rasa (Their source 3).
-- Which model can handle unstructured natural language better?
-- Mention how the few-shot prompting affect the results
-- 
-- Can the LLM infer that rooms belong to floors? (reasoning at abstracted levels)
-
-The results from the multiple choice options in the *planning domain* show that the ambiguity observed in (1) might prevent exact matches, but it enables effective executions in some cases. (i.e. generates the right answer, but the LTL formula of the test set is not an exact match)
-
-The elements within the *drona planning* grid world are organized into distinct levels of abstraction, with floors designated as level 2, rooms as level 1, and the landmark as level 0. Each natural language specification provided in our investigation is limited to a single sentence. Although there is no explicit restriction on the set of atomic propositions, specific guidelines are outlined in the task description. The LLM is asked to pick a possible path for the drone to follow, by checking if the run is valid for the $M_{\psi}$. Unlike previous approaches that utilize trajectory planners fed with LTL expressions, we introduce the predefined environment directly into the multiple-choice questions in natural language format, under the *context* section of the prompt.
-
+## Reprodcing the original results
+(TODO roos)
 
 ## <a name="results">Results</a>
-### <a name="general results">Main results</a>
+### <a name="general results">LLama as a open source LLM for Logic-LM</a>
 <table align="center">
 	<tr align="center">
 		<th align="left"></th>
@@ -351,7 +309,7 @@ Table 1 shows the results of the experiments with the open-source model.  It dis
 Comparing these results to the GPT model results from the original paper (Pan et al., 2023), we observe that Llama generally performs worse than the GPT models. Logic-LM has significantly lower scores compared to all GPT models for the Proofwriter, FOLIO and AR-LSAT dataset and slightly lower scores for the LogicalDeduction dataset. Only on the PrOntoQA Llama achieved a higher score than gpt-3.5-turbo, while still having worse scores when using the other GPT models. For the Standard and CoT method we observe similar performance to gpt-3.5-turbo while also being outperformed by the other GPT models. (*More results and analysis will follow in final version*)
 
 
-### <a name="sr results">Self-refinement</a>
+#### <a name="sr results">Self-refinement</a>
 <table align="center">
 	<tr align="center">
 		<th align="left"></th>
@@ -454,6 +412,59 @@ Comparing these results to the GPT model results from the original paper (Pan et
 	</tr>
 </table>
 Table 2 displays a comparison of self-refinement. (*More results and analysis will follow in final version*)
+
+### <a name="LTL results">LTL extension</a>
+##### (1) Effectiveness of Problem Formulator
+By testing the NL to LTL conversion on the **nl2spec** dataset, we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations of such models. <!--( ToDo **Look up further studies on NL to LTL**)-->
+ xch
+TO DO Accuracies over test sets
+| Dataset | GPT-4.o|  GPT-3 |Llama |
+|----------|----------|----------|----------|
+| nl2spec original  | X/36 (%) | X/36 (%) |X/36 (%) |
+| nl2spec in NL | X/36 (%) | 17/36 (47.22%)| X/36 (%) |
+
+We observe that the  number of exact matches TO DO. 
+
+
+###### Ambiguity
+As pointed out by Cosler et al. [5], their dataset contains two types of ambiguities. The first type arises from the inherent limitations of natural language, such as operator precedence. The second type stems from semantic ambiguities within natural language. An illustration of the first is *a holds until b holds or always a holds* which their human experts initially translated to $(a U b) | G a$. GPT-3 returns the following:
+
+> **$\mu:$ "The party is on until the speaker is broken or always the party is on."**
+> 
+> $\psi_{\mu}$: $p U (s | G p)$
+> 
+> $D_{\psi}$: {"The party is on": "p", "until": "U", "the speaker is broken": "s", "or": "|", "always the party is on": "G p", "The party is on until the speaker is broken or always the party is on": "p U (s | G p)"}
+
+As both are plausible translations depending on the interpretation of the sentence, the example shows how the conversion is not as straight forward. 
+
+An example of the second type is, *Whenever a holds, b must hold in the next two steps*, mapped to $G (a \rightarrow (b | X b))$. GPT3 returns:
+> **$\mu:$ "Whenever the food is hot, the food is cold in the next two steps."**
+> 
+> $\psi_{\mu}$: $G (h \rightarrow X X c)$
+> 
+> $D_{\psi}$: {"Whenever": "->", "the food is hot": "h", "the food is cold": "c", "in the next two steps": "X X", "the food is hot implies that the food is cold in the next two steps": "h -> X X c"}
+
+<!--**TO DO: Write about how to adjust the prompt to improve results**-->
+
+
+
+
+- TO DO: Compare these results to **nl2spec** [5]. (T-5 fine tunes achieved 5.5% accurracy, nl2spec 44.4% accuracy)
+
+##### (2) Effectiveness of trace geneation
+
+- We plan to measure the accuracy of these conversions over a variety of LTL formulae.
+- We will investigate how trace generation is affected by the **Context** of the drone planning domain.
+
+- We aim to compare our results to results using GPT-3 or Rasa (Their source 3).
+- Which model can handle unstructured natural language better?
+- Mention how the few-shot prompting affect the results
+- 
+- Can the LLM infer that rooms belong to floors? (reasoning at abstracted levels)
+
+The results from the multiple choice options in the *planning domain* show that the ambiguity observed in (1) might prevent exact matches, but it enables effective executions in some cases. (i.e. generates the right answer, but the LTL formula of the test set is not an exact match)
+
+The elements within the *drona planning* grid world are organized into distinct levels of abstraction, with floors designated as level 2, rooms as level 1, and the landmark as level 0. Each natural language specification provided in our investigation is limited to a single sentence. Although there is no explicit restriction on the set of atomic propositions, specific guidelines are outlined in the task description. The LLM is asked to pick a possible path for the drone to follow, by checking if the run is valid for the $M_{\psi}$. Unlike previous approaches that utilize trajectory planners fed with LTL expressions, we introduce the predefined environment directly into the multiple-choice questions in natural language format, under the *context* section of the prompt.
 
 ### <a name="reproducibility results">Reproducibility</a>
 <table align="center">
