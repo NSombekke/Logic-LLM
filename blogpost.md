@@ -96,7 +96,7 @@ For $0 \leq i \leq n$, through induction one can define if $\psi$ is true at ins
 
 <table align="center">
   <tr align="center">
-      <td><img src="etc/img/pipeline_ltl.png" width=700></td>
+      <td><img src="misc/img/pipeline_ltl.png" width=700></td>
   </tr>
   <tr align="left">
     <td colspan=2><b>Figure 2.</b> Pipeline of Logic-LM for LTL.</td>
@@ -123,7 +123,7 @@ For illustration, consider the following Natural language commands $\mu$, and th
 
 <table align="center">
   <tr align="center">
-      <td><img src="etc/img/pipeline.jpg" width=800></td>
+      <td><img src="misc/img/pipeline.jpg" width=800></td>
   </tr>
   <tr align="left">
     <td colspan=2><b>Figure 1.</b>  Pipeline: Converting Natural Language to Linear Temporal Logic for Multiple Choice Answering.</td>
@@ -211,7 +211,7 @@ The second dataset is derived from commands in the _drone planning_ domain, adap
 
 <table align="center">
   <tr align="center">
-      <td><img src="etc/img/drone_domain.png" width=300></td>
+      <td><img src="misc/img/drone_domain.png" width=300></td>
   </tr>
   <tr align="left">
     <td colspan=2><b>Figure 2.</b> Planning domain for the drone navigation. Figure by [8].</td>
