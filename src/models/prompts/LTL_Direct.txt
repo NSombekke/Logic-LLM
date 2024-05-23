@@ -1,0 +1,37 @@
+Given a problem statement as contexts, the task is to answer a logical reasoning question. 
+------
+Context:
+Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.
+
+Question:
+always avoid the green room and navigate to the third floor. Which one of the following is a possible path for the drone to follow?
+
+Options:
+(A) From the third floor go to the green room and stay there,
+(B) Go inside the red room and then move to the green room,
+(C) Go to the second floor passing the yellow room and then go to the third floor
+
+The correct option is: C
+------
+Context:
+Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.
+
+Question:
+go through the yellow room to the second floor. Which one of the following is a possible path for the drone to follow?
+
+Options:
+(A) From the third floor go to the yellow room then move to the green room,
+(B) Visit the second floor after going to the red room,
+(C) Go to the red room and finally go to the yellow room
+
+The correct option is: A
+------
+Context:
+[[CONTEXT]]
+
+Question: [[QUESTION]]
+
+Options:
+[[OPTIONS]]
+
+The correct option is:
