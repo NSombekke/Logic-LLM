@@ -105,7 +105,7 @@ class LogicProgramGenerator:
         full_prompt = full_prompt.replace("[[CHOICES]]", choices_str)
         return full_prompt
 
-    def prompt_ltl(self, test_data):  # TO DO adjust this functio for the LTL dev.json
+    def prompt_ltl(self, test_data):
         problem = test_data["context"]
         question = test_data["question"].strip()
         choices_str = "\n".join(
