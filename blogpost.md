@@ -10,11 +10,6 @@ Niels Sombekke, AnneLouise de Boer, Roos Hutter, Rens Baas, Sacha Buijs
 
 ## Introduction
 Logic-LM is a novel framework, proposed by Pan et al. (2023) \[1\], that combines Large Language Models (LLMs) and Symbolic Solvers for reasoning tasks . Leveraging the translative power of LLMs, they counterbalance potential inaccuracies in reasoning by employing Symbolic Solvers (Shanan, 2022) \[2\].
-
-<!--Logic-LM, proposed by Pan et al. (2023) [1], introduces a novel framework that merges Large Language Models (LLMs) with Symbolic Solvers for reasoning tasks. Leveraging the translative power of LLMs, they counterbalance potential inaccuracies in reasoning by employing Symbolic Solvers [2]. Recent advancements in adapting LLMs for logical reasoning tasks have seen approaches like fine-tuning and in-context learning, which optimize LLMs' reasoning ability through specialized training modules or prompt-based step-by-step reasoning. While these methods operate directly over natural language, the Logic-LM framework stands out by utilizing symbolic language for reasoning, transferring complex tasks to external symbolic solvers while leveraging LLMs for problem formulation. Unlike prior neuro-symbolic methods, which often require specialized modules and suffer from optimization challenges, Logic-LM seamlessly integrates modern LLMs with symbolic logic, offering a more generalizable solution. Additionally, this work explores tool-augmented LLMs, extending their capabilities beyond language comprehension by integrating external tools for improved performance on logical reasoning tasks. Auto-formalization, widely applied in mathematical reasoning, finds a pioneering extension in Logic-LM to a broader range of logical reasoning tasks, bridging the gap between natural language understanding and formal logic with modern LLMs.-->
-
-### Related work
-<!-- Nog niet goed -->
 Recent advancements in adapting Large Language Models (LLMs) for logical reasoning tasks can be categorized into two main approaches: fine-tuning and in-context learning. Fine-tuning methods optimize LLMs' reasoning ability through specialized training modules (Clark et al., 2020; Tafjord et al., 2022; Yang et al., 2022), while in-context learning designs prompts to elicit step-by-step reasoning. Chain-of-Thought prompting (Wei et al., 2022b; Wang et al., 2023) is an example of in-context learning, in which explanaitions are generated before the final answer. While these methods operate directly over natural language, the Logic-LM framework stands out by utilizing symbolic language for reasoning, transferring complex tasks to external symbolic solvers while leveraging LLMs for problem formulation. Unlike prior neuro-symbolic methods (Mao et al., 2019; Gupta et al., 2020; Manhaeve et al., 2021; Cai et al., 2021; Tian et al., 2022; Pryor et al., 2023), which often require specialized modules and suffer from optimization challenges, the Logic-LM framework integrates modern LLMs with symbolic logic without the need for complex module designs, offering a more generalizable solution. Additionally, this work explores tool-augmented LLMs, extending their capabilities beyond language comprehension by integrating external tools for improved performance on logical reasoning tasks. While auto-formalization has been widely applied in mathematical reasoning (Wu et al., 2022; Drori et al., 2022; He-Yueya et al., 2023; Jiang et al., 2023), Pan et al. (2023) pioneer its extension to a broader range of logical reasoning tasks, bridging the gap between natural language understanding and formal logic with modern LLMs.
 
 <table align="center">
@@ -26,7 +21,6 @@ Recent advancements in adapting Large Language Models (LLMs) for logical reasoni
   </tr>
 </table>
 
-### Logic-LM framework
 <!--The Problem Formulation stage prompts an LLM to translate the problem into symbolic language, leveraging the model's few-shot generalization ability. We use four symbolic formulations to cover different types of logical reasoning problems. Then, in the Symbolic Reasoning stage, we call external solvers based on the problem type, such as Pyke for deductive reasoning or Z3 for SAT problems. Finally, the Result Interpreter translates the solver's output back into natural language. Additionally, a Self-Refiner module adjusts inaccurate logical formulations based on solver feedback. This framework reduces the burden on LLMs by focusing on symbolic representation rather than step-by-step reasoning.-->
 
 The Logic-LM decomposes a logical reasoning problem into three stages: stages: *Problem Formulation*,
@@ -43,21 +37,19 @@ The Logic-LM decomposes a logical reasoning problem into three stages: stages: *
 **Table 1**: A summary of the symbolic formulations and symbolic solvers we use for cateogies of logical reasoning in our study.
 
 
-### Experiments
 The performance of three GPT models serving as underlying models for the Problem Formulator of Logic-LM (ChatGPT, GPT-3.5, and GPT-4) is evaluated against two baselines: 1) Standard LLMs, which leverage incontext learning to directly answer the question; and 2) Chain-of-Thought (CoT) (Wei et al., 2022b), which adopts a step-by-step problem-solving approach. The performance is evaluated across five logical reasoning datasets. *PrOntoQA* (Saparov and He, 2023)offers synthetic challenges for deductive reasoning, with the hardest 5-hop subset tested. *ProofWriter* (Tafjord et al., 2021) presents problems in a more natural language form under the open-world assumption, focusing on different levels of reasoning depth, with the depth-5 subset chosen for evaluation. *FOLIO* (Han et al., 2022), a challenging expert-written dataset, demands complex first-order logic reasoning. *LogicalDeduction* (Srivastava et al.,2022) from BigBench and *AR-LSAT* (Zhong et al., 2022) present real-world scenarios and analytical logic reasoning questions, respectively. Additionally, the effect of the refiner is researched by investigating the accuracy and the executable rates on the FOLIO dataset across different rounds of self refinement. 
 
 <!--The performance of three GPT models serving as underlying models for the Problem Formulator of Logic-LM (ChatGPT, GPT-3.5, and GPT-4) is evaluated against two baselines: 1) Standard LLMs, which use in-context learning to answer questions directly; and 2) Chain-of-Thought (CoT), adopting a step-by-step problem-solving approach. The evaluation spans five logical reasoning datasets: PrOntoQA, ProofWriter, FOLIO, LogicalDeduction, and AR-LSAT, each offering distinct challenges. PrOntoQA provides synthetic challenges for deductive reasoning, while ProofWriter presents problems in a more natural language form. FOLIO demands complex first-order logic reasoning, while LogicalDeduction and AR-LSAT present real-world scenarios and analytical logic reasoning questions, respectively, adding diversity to the evaluation.-->
 
-### Main results
 Pan et al. (2023) present three main results. First, LOGIC-LM notably outperforms standard LLMs and Chain-of-Thought (CoT) across various datasets, showcasing the advantage of integrating LLMs with external symbolic solvers for logical reasoning. Second, GPT-4 exhibits superior performance compared to GPT-3.5, especially in standard prompting. Logic-LM further improves GPT-4 24.98% and 10.44% for standard
 prompting and CoT prompting, respectively. Third, while CoT generally enhances LLM performance, its benefits vary across datasets, with less substantial or negative effects seen in certain scenarios. Additionally, the effectiveness of problem formulation, the robustness of reasoning, and the impact of self-refinement, highlight both the successes and challenges encountered in these areas.
 
 <!--Pan et al. (2023) report three main results. First, LOGIC-LM notably outperforms standard LLMs and Chain-of-Thought (CoT) across various datasets, highlighting the advantage of integrating LLMs with external symbolic solvers for logical reasoning. Second, GPT-4 exhibits superior performance compared to GPT-3.5, especially in standard prompting. Logic-LM further improves GPT-4 by 24.98% and 10.44% for standard prompting and CoT prompting, respectively. Third, while CoT generally enhances LLM performance, its benefits vary across datasets, with less substantial or negative effects seen in certain scenarios. Additionally, the effectiveness of problem formulation, the robustness of reasoning, and the impact of self-refinement highlight both the successes and challenges encountered in these areas.-->
 
 ## <a name="reasons">Reasons for extension</a>
-As outlined in the introduction, the Logic-LM framework relies on three LLMs: ChatGPT, GPT-3.5, and GPT-4. However, due to their closed-source nature, these models suffer from limited transparency, customization options, and opportunities for collaboration. Therefore,  integrating open-source LLMs into the Logic-LM framework would be beneficial, as it increases accessibility, usability and flexibility. 
+As outlined in the introduction, the Logic-LM framework is tested on three LLMs: ChatGPT, GPT-3.5, and GPT-4. However, due to their closed-source nature, these models suffer from limited transparency, customization options, and opportunities for collaboration. Therefore,  integrating open-source LLMs into the Logic-LM framework would be beneficial, as it increases accessibility, usability and flexibility. 
 
-The authors of Logic-LM pointed out a crucial constraint, stating that “the model’s applicability is inherently bounded by the expressiveness of the symbolic solver” (Pan et al., 2023). Currently, only four distinct symbolic solvers are employed, limiting the framework's scope to four specific types of logical reasoning problems. This limitation can be mitigated by integrating more symbolic solvers into the framework, as proposed by the authors (Pan et al., 2023). Therefore, incorporating an additional solver expands the framework’s capabilities, which is facilitated by the inherent flexibility of its design. Moreover, this addition encourages the development of a versatile logic-solving model. 
+The authors of Logic-LM pointed out a crucial constraint, stating that “the model’s applicability is inherently bounded by the expressiveness of the symbolic solver” (Pan et al., 2023). Currently, the framework utilizes only four distinct symbolic solvers, restricting its scope to four specific types of logical reasoning problems. The current solvers in Logic-LM do not facilitate reasoning about temporal aspects, which limits the model's applicability in scenarios where time-based reasoning is essential. Therefore we opted to include Linear Temporal Logic into the framework. LTL allows for the encoding of formulas about the future of paths, enabling the framework to handle tasks that require an understanding of temporal sequences and future events. By integrating LTL into the Logic-LM framework, we can extend its functionality to encompass temporal logic reasoning, thus broadening its applicability and making it a more powerful tool for a variety of logical reasoning tasks.
 
 AAdditionally, we will reproduce the results of the original paper to investigate its reproducibility. As the authors utilized closed-source models, we have opted to reproduce the results on a smaller scale using ChatGPT.
 
@@ -94,7 +86,7 @@ The integration of Linear Temporal Logic (LTL) in Logic-LM involves several comp
 
 **Semantics of LTL**
 
-LTL's semantics can effectively capture command specifications in the temporal domain. Formulas in LTL over the set of atomic propositions ($P$) adhere to the following grammar:
+LTL's semantics can effectively capture command specifications in the temporal domain. Formulas in LTL over the set of atomic propositions ($P$) adhere to the grammar below. For example, to express the statement "A cat never sleeps" in LTL, you would write $G \neg sleep$ in temporal logic. In this formula, the $G$  operator (Globally) indicates that the property it precedes must hold at all times in the future, and the $\neg$ operator (Negation) indicates that the "sleep" property does not hold.
 
 $$
 \begin{align*}
@@ -258,10 +250,10 @@ The first dataset will be used to test both the initial conversion and the subse
 	<tr align="center">
 		<th align="left">Dataset</th>
 		<th>Standard</th>
-		<th>GoT</th>
+		<th>CoT</th>
 		<th>Logic-LM</th>
 		<th>Standard</th>
-		<th>GoT</th>
+		<th>CoT</th>
 		<th>Logic-LM</th>
 	</tr>
 	<tr align="center">
@@ -522,6 +514,97 @@ The elements within the *drona planning* grid world are organized into distinct 
 	</tr>
     <tr align="left">
    	 <td colspan=7><b>Table 3.</b>  Chat-GPT (GPT 3.5) Logic-LM results</td>
+</table>
+
+
+<table align="center">
+  <tr align="center">
+    <th>Dataset</th>
+    <th>ChatGPT (gpt-3.5-turbo)</th>
+    <th></th>
+    <th></th>
+    <th>GPT-3.5 (text-davinci-003)</th>
+    <th></th>
+    <th></th>
+    <th>GPT-4 (gpt-4)</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr align="center">
+    <th></th>
+    <th>Standard</th>
+    <th>CoT</th>
+    <th>Logic-LM</th>
+    <th>Standard</th>
+    <th>CoT</th>
+    <th>Logic-LM</th>
+    <th>Standard</th>
+    <th>CoT</th>
+    <th>Logic-LM</th>
+  </tr>
+  <tr align="center">
+    <td>PrOntoQA</td>
+    <td>47.40</td>
+    <td><u>67.80</u></td>
+    <td>61.00</td>
+    <td>51.80</td>
+    <td>83.00</td>
+    <td><u>85.00</u></td>
+    <td>77.40</td>
+    <td><u>98.79</u></td>
+    <td>83.20</td>
+  </tr>
+  <tr align="center">
+    <td>ProofWriter</td>
+    <td>35.50</td>
+    <td>49.17</td>
+    <td><u>58.33</u></td>
+    <td>36.16</td>
+    <td>48.33</td>
+    <td><u>71.45</u></td>
+    <td>52.67</td>
+    <td>68.11</td>
+    <td><u>79.66</u></td>
+  </tr>
+  <tr align="center">
+    <td>FOLIO</td>
+    <td>45.09</td>
+    <td>57.35</td>
+    <td><u>62.74</u></td>
+    <td>54.60</td>
+    <td>57.84</td>
+    <td><u>61.27</u></td>
+    <td>69.11</td>
+    <td>70.58</td>
+    <td><u>78.92</u></td>
+  </tr>
+  <tr align="center">
+    <td>LogicalDeduction</td>
+    <td>40.00</td>
+    <td>42.33</td>
+    <td><u>65.67</u></td>
+    <td>41.33</td>
+    <td>48.33</td>
+    <td><u>62.00</u></td>
+    <td>71.33</td>
+    <td>75.25</td>
+    <td><u>87.63</u></td>
+  </tr>
+  <tr align="center">
+    <td>AR-LSAT</td>
+    <td>20.34</td>
+    <td>17.31</td>
+    <td><u>26.41</u></td>
+    <td>22.51</td>
+    <td>22.51</td>
+    <td><u>25.54</u></td>
+    <td>33.33</td>
+    <td>35.06</td>
+    <td><u>43.04</u></td>
+  </tr>
+  <tr align="left">
+  <td colspan=10><b>Table 3.</b>Original paper results(Pan et al., 2023): Accuracy of standard promoting (Standard), chain-of-thought promoting (CoT), and our method (LOGICLM,
+without self-refinement) on five reasoning datasets. The best results within each base LLM are highlighted.</td>
 </table>
 
 
