@@ -209,7 +209,7 @@ Simpler examples may not necessitate contextual information for trace generation
 
 #### Language Grounding Results
 
-We test the LLms ability to parse natural language into LTL on two datasets. The first consists of 36 benchmark inctances crafted by experts in the nl2spec study [5]. Each of these examples has been selected by LTL experts to cover a variety of ambiguities and complexities. We have replaced the propositions a,b,c,d to create more realistic sentences in natural language. For example:
+We test the LLms ability to parse natural language into LTL on two datasets. The first consists of 36 benchmark inctances crafted by experts in the *nl2spec* study [5]. Each of these examples has been selected by LTL experts to cover a variety of ambiguities and complexities. We have replaced the propositions a,b,c,d to create more realistic sentences in natural language. For example:
 
 > $\mu:$ Every meal is eventually followed by dessert. $\leftrightarrow$ G(meal -> F dessert).
 >
