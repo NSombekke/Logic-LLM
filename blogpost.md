@@ -242,49 +242,48 @@ The first dataset will be used to test both the initial conversion and the subse
 ## <a name="results">Results</a>
 
 ### <a name="reproducibility results">Reproducibility</a>
-
 <table align="center">
 	<tr align="center">
     	<th>Dataset</th>
+    	<th>Overall accuracy (of original paper)</th>
     	<th>Overall accuracy (of 10 examples)</th>
     	<th>Executable rate (of 10 examples)</th>
     	<th>Executable accuracy (of 10 examples)</th>
-    	<th>Overall accuracy (of original paper)</th>
 	</tr>
 		<tr align="center">
     	<td>ProntoQA</td>
+    	<td>61.00</td>
     	<td>30.0</td>
     	<td>10.0</td>
     	<td>100.0</td>
-    	<td>61.00</td>
 	</tr>
 		<tr align="center">
     	<td>ProofWriter</td>
+    	<td>58.33</td>
     	<td>50.0</td>
     	<td>40.0</td>
     	<td>100.0</td>
-    	<td>58.33</td>
 	</tr>
 	<tr align="center">
     	<td>FOLIO</td>
+    	<td>62.74</td>
     	<td>50.0</td>
     	<td>50.0</td>
     	<td>60.0</td>
-    	<td>62.74</td>
 	</tr>
 		<tr align="center">
     	<td>LogicalDeduction</td>
+    	<td>65.67</td>
     	<td>50.0</td>
     	<td>100.0</td>
     	<td>50.0</td>
-    	<td>65.67</td>
 	</tr>
 	<tr align="center">
     	<td>AR-LSAT</td>
+    	<td>26.41</td>
     	<td>10.0</td>
     	<td>10.0</td>
     	<td>0.0</td>
-    	<td>26.41</td>
 	</tr>
     <tr align="left">
    	 <td colspan=7><b>Table 3.</b> Results of Logic-LM (without self-refinement) with Chat-GPT (gpt-3.5-turbo).</td>
