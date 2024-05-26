@@ -33,3 +33,7 @@
 | a can only hold every three timestamps | G ( a -> (X !a 'or' XX !a 'or' XXX !a)) | G(a -> (Xa 'or' XXa 'or' XXXa)) | {a: a, can: , only: , hold: , every: G, three: XXX, timestamps: , a can only hold every three timestamps: G(a -> (Xa 'or' XXa 'or' XXXa))} |
 | Every a is followed by a b. | G ( a -> X b) | G(a -> Xb) | {Every: G, a: a, is: , followed: ->, by: , a: a, b: b, Every a is followed by a b: G(a -> Xb)} |
 | Eventually a and b hold. | F (a && b) | F(a & b) | {Eventually: F, a: a, and: &, b: b, hold: , Eventually a and b hold: F(a & b)} |
+|Both a and b hold eventually. |;F a && F b | F(a) && F(b)|{Both: F, a: a, and: &, b: b, hold: , eventually: F, Both a and b hold eventually: F(a) && F(b)}|
+|It is always the case that a is the same as b in the next step.|G (a <-> X b)| | |
+|If b holds then, in the next step, c holds until a holds or always c holds.| b -> X ((c U a) 'or' G c)| G(b -> X(c U a 'or' Gc))| {If: G, b: b, holds: , then: ->, in: X, the: , next: X, step: , c: c, holds: , until: U, a: a, holds: , or: ||, always: G, c: c, holds: , If b holds then, in the next step, c holds until a holds or always c holds: G(b -> X(c U a || Gc))}|
+|a holds until b holds or always a holds |(a U b) "or" G a| G(a U b 'or' Ga)| {a: a, holds: , until: U, b: b, holds: , or: 'or', always: G, a: a, holds: , a holds until b holds or always a holds: G(a U b 'or' Ga)}|
