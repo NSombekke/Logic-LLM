@@ -291,6 +291,108 @@ The first dataset will be used to test both the initial conversion and the subse
 
 Pan et al. (2023) employed three closed-source LLMs: ChatGPT, GPT-3.5, and GPT-4. Our extension of the Logic-LM involves open-source LLMs. However, ChatGPT is publicly accessible for manual query-based messaging. To validate the claims of Pan et al. (2023), we queried ChatGPT five times for each logic type, presenting the prompt and a new problem and question. Results are summarized in Table 3. ... (*qualitative results will come*)
 
+<table align="center">
+	<tr align="center">
+    	<th>Context</th>
+    	<td>Every impus is earthy. Each impus is a jompus. Jompuses are small. Jompuses are rompuses. Rompuses are not amenable. Rompuses are wumpuses. Wumpuses are wooden. Wumpuses are zumpuses. Every zumpus is temperate. Every zumpus is a dumpus. Dumpuses are dull. Dumpuses are vumpuses. Every vumpus is not shy. Every yumpus is sweet. Vumpuses are numpuses. Numpuses are not sweet. Numpuses are tumpuses. Fae is a wumpus.</td>
+	</tr>
+		<tr align="center">
+    	<th>Question</th>
+    	<td>Is the following statement true or false? Fae is sweet.</td>
+    </tr>
+    		<tr align="center">
+    	<th>Symbolic language formulation of original paper </th>
+    	<th>Symbolic language formulation of our experiment </th>
+    </tr>
+        <tr align="center">
+    	<td>Predicates:<br>
+Impus($x, bool) ::: Does x belong to Impus?<br>
+Earthy($x, bool) ::: Is x earthy?<br>
+Jompus($x, bool) ::: Does x belong to Jompus?<br>
+Small($x, bool) ::: Is x small?<br>
+Rompus($x, bool) ::: Does x belong to Rompus?<br>
+Amenable($x, bool) ::: Is x amenable?<br>
+Wumpus($x, bool) ::: Does x belong to Wumpus?<br>
+Wooden($x, bool) ::: Is x wooden?<br>
+Zumpus($x, bool) ::: Does x belong to Zumpus?<br>
+Temperate($x, bool) ::: Is x temperate?<br>
+Dumpus($x, bool) ::: Does x belong to Dumpus?<br>
+Dull($x, bool) ::: Is x dull?<br>
+Vumpus($x, bool) ::: Does x belong to Vumpus?<br>
+Shy($x, bool) ::: Is x shy?<br>
+Yumpus($x, bool) ::: Does x belong to Yumpus?<br>
+Sweet($x, bool) ::: Is x sweet?<br>
+Numpus($x, bool) ::: Does x belong to Numpus?<br>
+Fae($x, bool) ::: Is x Fae?<br>
+Facts:<br>
+Impus($x, True) >>> Earthy($x, True)<br>
+Impus($x, True) >>> Jompus($x, True)<br>
+Jompus($x, True) >>> Small($x, True)<br>
+Jompus($x, True) >>> Rompus($x, True)<br>
+Rompus($x, True) >>> Amenable($x, False)<br>
+Rompus($x, True) >>> Wumpus($x, True)<br>
+Wumpus($x, True) >>> Wooden($x, True)<br>
+Wumpus($x, True) >>> Zumpus($x, True)<br>
+Zumpus($x, True) >>> Temperate($x, True)<br>
+Zumpus($x, True) >>> Dumpus($x, True)<br>
+Dumpus($x, True) >>> Dull($x, True)<br>
+Dumpus($x, True) >>> Vumpus($x, True)<br>
+Vumpus($x, True) >>> Shy($x, False)<br>
+Yumpus($x, True) >>> Sweet($x, True)<br>
+Vumpus($x, True) >>> Numpus($x, True)<br>
+Numpus($x, True) >>> Sweet($x, False)<br>
+Numpus($x, True) >>> Tumpus($x, True)<br>
+Fae($x, True) >>> Wumpus($x, True)<br>
+Rules:<br>
+Query:<br>
+Sweet(Fae, bool)</td>
+    	<td>Predicates:<br>
+Impus($x, bool) ::: Does x belong to Impus?<br>
+Earthy($x, bool) ::: Is x earthy?<br>
+Jompus($x, bool) ::: Does x belong to Jompus?<br>
+Small($x, bool) ::: Is x small?<br>
+Rompus($x, bool) ::: Does x belong to Rompus?<br>
+Amenable($x, bool) ::: Is x amenable?<br>
+Wumpus($x, bool) ::: Does x belong to Wumpus?<br>
+Wooden($x, bool) ::: Is x wooden?<br>
+Zumpus($x, bool) ::: Does x belong to Zumpus?<br>
+Temperate($x, bool) ::: Is x temperate?<br>
+Dumpus($x, bool) ::: Does x belong to Dumpus?<br>
+Dull($x, bool) ::: Is x dull?<br>
+Vumpus($x, bool) ::: Does x belong to Vumpus?<br>
+Shy($x, bool) ::: Is x shy?<br>
+Yumpus($x, bool) ::: Does x belong to Yumpus?<br>
+Sweet($x, bool) ::: Is x sweet?<br>
+Numpus($x, bool) ::: Does x belong to Numpus?<br>
+Tumpus($x, bool) ::: Does x belong to Tumpus? <br>
+Facts:<br>
+Wumpus(Fae, True)<br>
+Rules:<br>
+Impus($x, True) >>> Earthy($x, True)<br>
+Impus($x, True) >>> Jompus($x, True)<br>
+Jompus($x, True) >>> Small($x, True)<br>
+Jompus($x, True) >>> Rompus($x, True)<br>
+Rompus($x, True) >>> Amenable($x, False)<br>
+Rompus($x, True) >>> Wumpus($x, True)<br>
+Wumpus($x, True) >>> Wooden($x, True)<br>
+Wumpus($x, True) >>> Zumpus($x, True)<br>
+Zumpus($x, True) >>> Temperate($x, True)<br>
+Zumpus($x, True) >>> Dumpus($x, True)<br>
+Dumpus($x, True) >>> Dull($x, True)<br>
+Dumpus($x, True) >>> Vumpus($x, True)<br>
+Vumpus($x, True) >>> Shy($x, False)<br>
+Yumpus($x, True) >>> Sweet($x, True)<br>
+Vumpuses($x, True) >>> Numpuses($x, True)<br>
+Numpus($x, True) >>> Sweet($x, False)<br>
+Numpuses($x, True) >>> Tumpuses($x, True)<br>
+Query:<br>
+Sweet(Fae, X)<br>
+</td>
+    </tr>
+    <tr align="left">
+   	 <td colspan=7><b>Table 3.</b> Results of Logic-LM (without self-refinement) with Chat-GPT (gpt-3.5-turbo).</td>
+</table>
+
 
 ### <a name="general results">LLama as a open source LLM for Logic-LM</a>
 <table align="center">
