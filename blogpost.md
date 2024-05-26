@@ -234,10 +234,6 @@ The first dataset will be used to test the initial conversion from natural langu
 
 By testing the NL to LTL conversion on the **nl2spec** dataset, we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations of such models. <!--( ToDo **Look up further studies on NL to LTL**)-->
 
-
-Certainly! Here's the revised table with a label, and a more coherent text:
-
-
 **Accuracies Over Test Sets (Counting the Number of Exact Matches Between Formulae)**
 
 | Dataset             | GPT-4.0       | GPT-3         | Llama        |
