@@ -228,7 +228,7 @@ The second dataset is derived from commands in the _drone planning_ domain. This
 
 We aim to evaluate how well the LLM performs the conversion task from natural language to LTL, especially in cases where it needs to generalize from few examples (few-shot learning). The evaluation consists of two stages: (1) the conversion of the natural language command into LTL, and (2) the subsequent conversion of the multiple choice options (each formlated in natural language) into runs.
 
-The first dataset will be used to test the initial conversion from natural language to LTL, while the second dataset will be used to test both the initial conversion and the subsequent generation of runs.
+The *nl2spec* dataset will be used to test the initial conversion from natural language to LTL, while the *drone planning* dataset will be used to test both the initial conversion and the subsequent generation of runs.
 
 
 ##### (1)  Evaluating the Performance of Large Language Models in NL to LTL Conversion
