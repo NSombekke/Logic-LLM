@@ -234,14 +234,23 @@ The first dataset will be used to test the initial conversion from natural langu
 
 By testing the NL to LTL conversion on the **nl2spec** dataset, we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations of such models. <!--( ToDo **Look up further studies on NL to LTL**)-->
 
-TO DO Accuracies over test sets
-| Dataset | GPT-4.o| GPT-3 |Llama |
-|----------|----------|----------|----------|
-| nl2spec original | X/36 (%) | X/36 (%) |X/36 (%) |
-| nl2spec in NL | 26/36 (72.2%) | 17/36 (47.22%)| X/36 (%) |
 
-For intersecting Buchi automaton we use the folliwng [spot](https://spot.lre.epita.fr/app/) model checking software
-We observe that the number of exact matches TO DO.
+Certainly! Here's the revised table with a label, and a more coherent text:
+
+
+**Accuracies Over Test Sets (Counting the Number of Exact Matches Between Formulae)**
+
+| Dataset             | GPT-4.0       | GPT-3         | Llama        |
+|---------------------|---------------|---------------|--------------|
+| nl2spec original    | X/36 (%)      | X/36 (%)      | X/36 (%)     |
+| nl2spec in NL       | 26/36 (72.2%) | 17/36 (47.22%)| X/36 (%)     |
+
+---
+
+Our results demonstrate that GPT-4.0 is significantly more proficient at translating natural language to LTL formulas compared to GPT-3. Specifically, GPT-4.0 achieved an accuracy rate of 72.2% (26 out of 36), while GPT-3 achieved 47.22% (17 out of 36). This improvement suggests that GPT-4.0 has enhanced capabilities in understanding and processing natural language semantics, making it a more reliable tool for complex logical conversions. 
+
+For intersecting Büchi automata, we use the following [spot](https://spot.lre.epita.fr/app/) model checking software.
+
 
 ###### Ambiguity
 
