@@ -4,7 +4,7 @@
 Niels Sombekke, AnneLouise de Boer, Roos Hutter, Rens Baas, Sacha Buijs
 ---
 
-In this blogpost, we explore, reproduce, and build upon the findings from the paper [LOGIC-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning](https://arxiv.org/abs/2305.12295). This paper presents a novel framework, Logic-LM, which combines Large Language Models (LLMs) and Symbolic Solvers for reasoning tasks. 
+In this blogpost, we explore, reproduce, and build upon the findings from the paper [LOGIC-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning](https://arxiv.org/abs/2305.12295). This paper presents a novel framework, Logic-LM, which integrates Large Language Models (LLMs) with symbolic solvers to improve logical problem-solving.
 
 The objective of this blogpost are:
 1. Reproducing the results of the original paper to investigate its reproducibility.
