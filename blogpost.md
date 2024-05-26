@@ -253,7 +253,7 @@ The first dataset will be used to test both the initial conversion and the subse
 		<tr align="center">
     	<td>ProntoQA</td>
     	<td>61.00</td>
-    	<td>30.0</td>
+    	<td>80.0</td>
     	<td>10.0</td>
     	<td>100.0</td>
 	</tr>
