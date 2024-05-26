@@ -1,4 +1,4 @@
-ID,Question,Human Annotator,GPT-3 Answer,,
+ID,Question,Human Annotator,Llama-7B Answer,,
 LTL_dev_1,"Every time hunger strikes, eating eventually follows.","G(hunger -> F eating)","G(hunger -> F eating)",,
 LTL_dev_2,"It's never the case that rain and sunshine occur at the same time.","G(!(rain & sunshine))","G(!(rain & sunshine))",,
 LTL_dev_3,"Whenever the engine starts, acceleration kicks in three steps later.","G(engine_start -> X (X (X acceleration_on)))","G(engine_start -> X X X acceleration)",,
