@@ -252,25 +252,32 @@ Our results show that GPT-4.o significantly outperforms GPT-3.5 in translating n
 
 ###### Ambiguity
 
-As pointed out by Cosler et al. [5], their dataset contains two types of ambiguities. The first type arises from the inherent limitations of natural language, such as operator precedence. The second type stems from semantic ambiguities within natural language. An illustration of the first is _a holds until b holds or always a holds_ which their human experts initially translated to $(a U b) | G a$. GPT-3 returns the following:
+As pointed out by Cosler et al. [5], natural language is prone to ambiguity. Their dataset contains two types of ambiguities.
+
+The first type arises from the more structural limitations of natural language, such as operator precedence. The second type stems from semantic ambiguities within natural language. An illustration of the first is _a holds until b holds or always a holds_ which their human experts initially translated to $(a U b) | G a$. GPT-3.5 returns the following:
 
 > **$\mu:$ "The party is on until the speaker is broken or always the party is on."**
 >
 > $\psi_{\mu}$: $p U (s | G p)$
 >
 > $D_{\psi}$: {"The party is on": "p", "until": "U", "the speaker is broken": "s", "or": "|", "always the party is on": "G p", "The party is on until the speaker is broken or always the party is on": "p U (s | G p)"}
+> 
+As both are plausible translations depending on the interpretation of action precedence, the example shows how the conversion is not as straight forward.
 
-As both are plausible translations depending on the interpretation of the sentence, the example shows how the conversion is not as straight forward.
-
-An example of the second type is, _Whenever a holds, b must hold in the next two steps_, mapped to $G (a \rightarrow (b | X b))$. GPT3 returns:
+The second type of ambiguity is illustrated by the following. _Whenever a holds, b must hold in the next two steps_, mapped to $G (a \rightarrow (b | X b))$. However, it could also be translated as $G((a \rightarrow X(X(b))))$ as this depends on the interpretation of the semantic meaning. GPT3.5 returns the latter interpretation:
 
 > **$\mu:$ "Whenever the food is hot, the food is cold in the next two steps."**
 >
 > $\psi_{\mu}$: $G (h \rightarrow X X c)$
 >
 > $D_{\psi}$: {"Whenever": "->", "the food is hot": "h", "the food is cold": "c", "in the next two steps": "X X", "the food is hot implies that the food is cold in the next two steps": "h -> X X c"}
+>
 
-<!--**TO DO: Write about how to adjust the prompt to improve results**-->
+- To mitigate these ambiguities, the *nl2spec* [5] specifies sub-clauses.  TODO
+
+
+
+
 
 - TO DO: Compare these results to **nl2spec** [5]. (T-5 fine tunes achieved 5.5% accurracy, nl2spec 44.4% accuracy)
 
