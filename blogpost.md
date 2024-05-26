@@ -231,7 +231,7 @@ We test the parsing on two datasets. The first dataset is the drone planning dat
 The first dataset will be used to test both the initial conversion and the subsequent generation of runs, while the second dataset will be used to test solely the initial conversion from natural language to LTL.
 
 
-## Reprodcing the original results
+## Reproducing the original results
 (TODO roos, duidelijker maken) Pan et al. (2023) employed three closed-source LLMs: ChatGPT, GPT-3.5, and GPT-4. Our extension of the Logic-LM involves open-source LLMs. However, ChatGPT is publicly accessible for manual query-based messaging. To validate the claims of Pan et al. (2023), we queried ChatGPT five times for each logic type, presenting the prompt and a new problem and question.
 
 ## <a name="results">Results</a>
