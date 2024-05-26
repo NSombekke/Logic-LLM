@@ -26,7 +26,7 @@ Natural Language,Formula,GPT-3,Description, More
 "One of the following aps will hold at all instances: a,b,c.","G (a | b | c)","G(a | b | c)","{'One of the following propositions will hold at all instances': 'G(a | b | c)'}",
 "If a holds b will eventually hold.","G (a -> F b)","a -> F(b)","{'If': '->', 'a holds':'a', 'b will eventually hold': 'F(b)'}",
 "a must always hold, but if is exceeds, it allow two timestamps to recover.","! G (! (a & X a))","G(a) & ((a -> F(a)) U X(X(a)))",,
-"not a holds at most two timestamps.","! G (! (a & X a))","{'a must always hold': 'G(a)', 'it allows two timestamps to recover': '(a -> F(a)) U X(X(a))'}",,
+"not a holds at most two timestamps.","! G (! (a & X a))",,"{'a must always hold': 'G(a)', 'it allows two timestamps to recover': '(a -> F(a)) U X(X(a))'}",
 "a can only hold every three timestamps.","G ( a -> (X !a | XX !a | XXX !a))","G(a <-> F(X^3 a))","{'a can only hold every three timestamps': 'G(a <-> F(X^3 a))'}",
 "Every a is followed by a b.","G ( a -> X b)","G(a -> Fb)","{'Every a is followed by a b': 'G(a -> Fb)'}",
 "Eventually a and b hold.","F (a & b)",,,
