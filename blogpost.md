@@ -303,7 +303,7 @@ The elements within the _drona planning_ grid world are organized into distinct 
 		<td>67.40</td>
 		<td></td>
 		<td></td>
-		<td></td>
+		<td>61.60</td>
 	</tr>
 	<tr align="center">
 		<td align="left">Proofwriter</td>
@@ -312,7 +312,7 @@ The elements within the _drona planning_ grid world are organized into distinct 
 		<td>37.83</td>
 		<td></td>
 		<td></td>
-		<td></td>
+		<td>74.17</td>
 	</tr>
 	<tr align="center">
 		<td align="left">FOLIO</td>
@@ -321,7 +321,7 @@ The elements within the _drona planning_ grid world are organized into distinct 
 		<td>36.27</td>
 		<td></td>
 		<td></td>
-		<td></td>
+		<td>57.35</td>
 	</tr>
 	<tr align="center">
 		<td align="left">LogicalDeduction</td>
@@ -330,7 +330,7 @@ The elements within the _drona planning_ grid world are organized into distinct 
 		<td><b>60.67</b></td>
 		<td></td>
 		<td></td>
-		<td></td>
+		<td>77.00</td>
 	</tr>
 	<tr align="center">
 		<td align="left">AR-LSAT</td>
@@ -346,9 +346,12 @@ The elements within the _drona planning_ grid world are organized into distinct 
 	</tr>
 </table>
 
-Table 1 shows the results of the experiments with the open-source model. It displays that Logic-LM only scored highest on the LogicalDeduction dataset, where it scored 60.67 compared to 35.33 and 39.00 for Standard and CoT respectively. For the other datasets Logic-LM got outperformed by either the Standard or the CoT model. <!--TODO: Insert % of how much better/worse-->
+Table 1 shows the results of the experiments with the open-source model. For Llama-3 8B it shows that Logic-LM only scored highest on the LogicalDeduction dataset, where it scored 60.67 compared to 35.33 and 39.00 for Standard and CoT respectively. For the other datasets Logic-LM got outperformed by either the Standard or the CoT method. <!-- Complete once 70B results are in -->
 
-Comparing these results to the GPT model results from the original paper (Pan et al., 2023), we observe that Llama generally performs worse than the GPT models. Logic-LM has significantly lower scores compared to all GPT models for the Proofwriter, FOLIO and AR-LSAT dataset and slightly lower scores for the LogicalDeduction dataset. Only on the PrOntoQA Llama achieved a higher score than gpt-3.5-turbo, while still having worse scores when using the other GPT models. For the Standard and CoT method we observe similar performance to gpt-3.5-turbo while also being outperformed by the other GPT models. (_More results and analysis will follow in final version_)
+One reason why Logic-LM performs worse than the other methods could be that the dataset on which Llama-3 was trained lacks logic problems that are written in symbolic language. According to https://daily.dev/blog/meta-llama-3-everything-you-need-to-know-in-one-place llama-3 was trained to be good in logical problems and reasoning, however this training was probably mostly done in logical reasoning with natural language, but not in converting natural language logic to symbolic language logic, since that is less relevant for most users. This would explain why it does perform well with the Standard and CoT method, where the model can solve the logic with natural language, but does not perform well when having to do something with symbolic language, like converting from natural to symbolic language. Logic-LM does score high on the LogicalDeduction dataset, which might mean that Llama-3 was trained more on constraint satisfaction. Another explanation could be that since the symbolic formulation of constraint satisfaction logic is much simpler and more familiar to natural language compared to other logic types, it is easier for the model to convert the natural language to symbolic logic, making it score better.
+
+Comparing these results to the GPT model results from the original paper (Pan et al., 2023), we observe that the 8B version of Llama-3 generally performs worse than the GPT models. Logic-LM has significantly lower scores compared to all GPT models for the Proofwriter, FOLIO and AR-LSAT dataset and slightly lower scores for the LogicalDeduction dataset. Only on the PrOntoQA Llama-3 8B achieved a higher score than gpt-3.5-turbo, while still having worse scores when using the other GPT models. For the Standard and CoT method we observe similar performance to gpt-3.5-turbo while also being outperformed by the other GPT models. The 70B version however does achieve more similar scores as the OpenAI models. While still being outperformed by GPT-4 on all datasets, it does score higher than ChatGPT and GPT-3.5 on some datasets. It outperforms ChatGPT on all datasets except FOLIO and outperforms GPT 3.5 on both Proofwriter and LogicalDeduction. Llama-3 70B's better performance compared to the 8B version was to be expected, since Llama-3 70B is significantly larger and also performs better in Meta's own benchmarks (https://ai.meta.com/blog/meta-llama-3/). Taking this into account, it is noteworthy that the 8B version outperforms the 70B version on ProtoQA, achieving a score of 67.40 versus the 61.60 from 70B.
+There are multiple (_More results and analysis will follow in final version_)
 
 ### <a name="sr results">Self-refinement</a>
 
@@ -372,10 +375,10 @@ Comparing these results to the GPT model results from the original paper (Pan et
 	<tr align="center">
 		<td align="left">ProntoQA</td>
 		<td>-</td>
-		<td>91.60</td>
+		<td>91.60%</td>
 		<td>69.65</td>
-		<td></td>
-		<td></td>
+		<td>100.00%</td>
+		<td>61.60</td>
 	</tr>
 	<tr align="center">
 		<td ></td>
@@ -388,10 +391,10 @@ Comparing these results to the GPT model results from the original paper (Pan et
 	<tr align="center">
 		<td align="left">Proofwriter</td>
 		<td>-</td>
-		<td>13.00</td>
+		<td>13.00%</td>
 		<td>70.51</td>
-		<td></td>
-		<td></td>
+		<td>80.83%</td>
+		<td>81.44</td>
 	</tr>
 	<tr align="center">
 		<td ></td>
@@ -404,10 +407,10 @@ Comparing these results to the GPT model results from the original paper (Pan et
 	<tr align="center">
 		<td align="left">FOLIO</td>
 		<td>-</td>
-		<td>37.25</td>
+		<td>37.25%</td>
 		<td>48.68</td>
-		<td></td>
-		<td></td>
+		<td>67.16%</td>
+		<td>72.26</td>
 	</tr>
 	<tr align="center">
 		<td ></td>
@@ -420,10 +423,10 @@ Comparing these results to the GPT model results from the original paper (Pan et
 	<tr align="center">
 		<td align="left">LogicalDeduction</td>
 		<td>-</td>
-		<td>100.00</td>
+		<td>100.00%</td>
 		<td>60.67</td>
-		<td></td>
-		<td></td>
+		<td>100.00%</td>
+		<td>77.00</td>
 	</tr>
 	<tr align="center">
 		<td ></td>
@@ -436,7 +439,7 @@ Comparing these results to the GPT model results from the original paper (Pan et
 	<tr align="center">
 		<td align="left">AR-LSAT</td>
 		<td>-</td>
-		<td>20.35</td>
+		<td>20.35%</td>
 		<td>21.28</td>
 		<td></td>
 		<td></td>
