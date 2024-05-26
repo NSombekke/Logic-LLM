@@ -236,6 +236,57 @@ We test the parsing on two datasets. The first dataset is the drone planning dat
 The first dataset will be used to test both the initial conversion and the subsequent generation of runs, while the second dataset will be used to test solely the initial conversion from natural language to LTL.
 
 ## <a name="results">Results</a>
+### <a name="reproducibility results">Reproducibility</a>
+<table align="center">
+	<tr align="center">
+    	<th>Dataset</th>
+    	<th>Error count</th>
+    	<th>Overall accuracy</th>
+    	<th>Executable rate</th>
+    	<th>Executable accuracy</th>
+	</tr>
+	<tr align="center">
+    	<td>FOLIO</td>
+    	<td>5</td>
+    	<td>50.0</td>
+    	<td>50.0</td>
+    	<td>60.0</td>
+	</tr>
+	<tr align="center">
+    	<td>AR-LSAT</td>
+    	<td>9</td>
+    	<td>10.0</td>
+    	<td>10.0</td>
+    	<td>0.0</td>
+	</tr>
+	<tr align="center">
+    	<td>LogicalDeduction</td>
+    	<td>0</td>
+    	<td>50.0</td>
+    	<td>100.0</td>
+    	<td>50.0</td>
+	</tr>
+	<tr align="center">
+    	<td>ProofWriter</td>
+    	<td>6</td>
+    	<td>50.0</td>
+    	<td>40.0</td>
+    	<td>100.0</td>
+	</tr>
+	<tr align="center">
+    	<td>ProntoQA</td>
+    	<td>9</td>
+    	<td>30.0</td>
+    	<td>10.0</td>
+    	<td>100.0</td>
+	</tr>
+    <tr align="left">
+   	 <td colspan=7><b>Table 3.</b>  Chat-GPT (GPT 3.5) Logic-LM results</td>
+</table>
+
+Pan et al. (2023) employed three closed-source LLMs: ChatGPT, GPT-3.5, and GPT-4. Our extension of the Logic-LM involves open-source LLMs. However, ChatGPT is publicly accessible for manual query-based messaging. To validate the claims of Pan et al. (2023), we queried ChatGPT five times for each logic type, presenting the prompt and a new problem and question. Results are summarized in Table 3. ... (*qualitative results will come*)
+
+
 ### <a name="general results">LLama as a open source LLM for Logic-LM</a>
 <table align="center">
 	<tr align="center">
@@ -468,54 +519,6 @@ The results from the multiple choice options in the *planning domain* show that 
 
 The elements within the *drona planning* grid world are organized into distinct levels of abstraction, with floors designated as level 2, rooms as level 1, and the landmark as level 0. Each natural language specification provided in our investigation is limited to a single sentence. Although there is no explicit restriction on the set of atomic propositions, specific guidelines are outlined in the task description. The LLM is asked to pick a possible path for the drone to follow, by checking if the run is valid for the $M_{\psi}$. Unlike previous approaches that utilize trajectory planners fed with LTL expressions, we introduce the predefined environment directly into the multiple-choice questions in natural language format, under the *context* section of the prompt.
 
-### <a name="reproducibility results">Reproducibility</a>
-<table align="center">
-	<tr align="center">
-    	<th>Dataset</th>
-    	<th>Error count</th>
-    	<th>Overall accuracy</th>
-    	<th>Executable rate</th>
-    	<th>Executable accuracy</th>
-	</tr>
-	<tr align="center">
-    	<td>FOLIO</td>
-    	<td>5</td>
-    	<td>50.0</td>
-    	<td>50.0</td>
-    	<td>60.0</td>
-	</tr>
-	<tr align="center">
-    	<td>AR-LSAT</td>
-    	<td>9</td>
-    	<td>10.0</td>
-    	<td>10.0</td>
-    	<td>0.0</td>
-	</tr>
-	<tr align="center">
-    	<td>LogicalDeduction</td>
-    	<td>0</td>
-    	<td>50.0</td>
-    	<td>100.0</td>
-    	<td>50.0</td>
-	</tr>
-	<tr align="center">
-    	<td>ProofWriter</td>
-    	<td>6</td>
-    	<td>50.0</td>
-    	<td>40.0</td>
-    	<td>100.0</td>
-	</tr>
-	<tr align="center">
-    	<td>ProntoQA</td>
-    	<td>9</td>
-    	<td>30.0</td>
-    	<td>10.0</td>
-    	<td>100.0</td>
-	</tr>
-    <tr align="left">
-   	 <td colspan=7><b>Table 3.</b>  Chat-GPT (GPT 3.5) Logic-LM results</td>
-</table>
-
 
 <table align="center">
   <tr align="center">
@@ -607,8 +610,6 @@ The elements within the *drona planning* grid world are organized into distinct 
 without self-refinement) on five reasoning datasets. The best results within each base LLM are highlighted.</td>
 </table>
 
-
-Pan et al. (2023) employed three closed-source LLMs: ChatGPT, GPT-3.5, and GPT-4. Our extension of the Logic-LM involves open-source LLMs. However, ChatGPT is publicly accessible for manual query-based messaging. To validate the claims of Pan et al. (2023), we queried ChatGPT five times for each logic type, presenting the prompt and a new problem and question. Results are summarized in Table 3. ... (*qualitative results will come*)
 
 
 
