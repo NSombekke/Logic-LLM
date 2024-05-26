@@ -242,10 +242,12 @@ By testing the NL to LTL conversion on the **nl2spec** dataset, we seek to under
 | nl2spec in NL       | 26/36 (72.2%) | 17/36 (47.22%)| 19/36 (52.77%)     |
 
 ---
+*For intersecting Büchi automata, we use the following [spot](https://spot.lre.epita.fr/app/) model checking software.*
 
-Our results demonstrate that GPT-4.0 is significantly more proficient at translating natural language to LTL formulas compared to GPT-3. Specifically, GPT-4.0 achieved an accuracy rate of 72.2% (26 out of 36), while GPT-3 achieved 47.22% (17 out of 36). This improvement suggests that GPT-4.0 has enhanced capabilities in understanding and processing natural language semantics, making it a more reliable tool for complex logical conversions. 
+The results presented in the table above demonstrate the effectiveness of using Large Language Models (LLMs) to parse natural language into Linear Temporal Logic (LTL) formulas. Notably, the "nl2spec original" approach, which works directly with predefined predicates, outperforms the "nl2spec in NL" approach, which extracts predicates from natural language sentences. This improvement can be attributed to the fact that predefined predicates provide a clear and concise representation of the relevant information, allowing the LLM to focus on understanding the relationships between them and generating the correct LTL formula.
+Our results show that GPT-4.o significantly outperforms GPT-3.5 in translating natural language to LTL formulas, achieving an accuracy rate of 72.2% (26 out of 36) compared to 47.22% (17 out of 36) for GPT-3. This suggests that GPT-4.0 has enhanced capabilities in understanding and processing natural language semantics, making it a more reliable tool for complex logical conversions.
 
-For intersecting Büchi automata, we use the following [spot](https://spot.lre.epita.fr/app/) model checking software.
+
 
 
 ###### Ambiguity
