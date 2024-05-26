@@ -70,7 +70,7 @@ Following the methodology of the original paper, we evaluate the two Llama3 mode
 
 
 ## <a name="ltl">Extension: Linear Temporal Logic</a>
-Second, we extend the Logic-LM by introducing Linear-time Temporal Logic (LTL), which enhances standard propositional logic to express properties that hold over time-based trajectories. This extension is particularly useful in robotics and automated planning, where paths must comply with temporal constraints. 
+In addition to standard propositional logic, we extend the Logic-LLM by introducing Linear-time Temporal Logic (LTL), which enables the expression of properties that hold over time-based trajectories. This extension is particularly useful in robotics and automated planning, where paths must comply with temporal constraints. 
 
 The integration of Linear Temporal Logic (LTL) in Logic-LM involves several components, as illustrated in Figure 2. The input problem consists of a context, a question, and three multiple-choice options. The context sets the environment for answering the question. The problem formulator translates the question and options into logic formulas suitable for the solver. Specifically, the question is first converted into an easier canonical LTL representation, and then into the raw LTL formula. The options are translated into runs. The symbolic reasoner then evaluates each run to determine if it satisfies the LTL formula using a Büchi automaton. These results are passed to the result interpreter, which generates the answer. We will test and evaluate this extension based on a drone planning scenario (TODO bron dataset). Additionally, we perform an experiment evaluating the performance of three LLMs in converting natural language to LTL and runs. Further details are provided in the following sections.
 
@@ -87,7 +87,12 @@ The integration of Linear Temporal Logic (LTL) in Logic-LM involves several comp
 
 **Semantics of LTL**
 
-LTL's semantics can effectively capture command specifications in the temporal domain. Formulas in LTL over the set of atomic propositions ($P$) adhere to the grammar below. For example, to express the statement "A cat never sleeps" in LTL, you would write $G \neg sleep$ in temporal logic. In this formula, the $G$  operator (Globally) indicates that the property it precedes must hold at all times in the future, and the $\neg$ operator (Negation) indicates that the "sleep" property does not hold.
+LTL's semantics can effectively capture command specifications in the temporal domain. Formulas in LTL over the set of atomic propositions ($P$) adhere to the grammar below. For example, to express the statement "A cat never sleeps" in LTL, you would write $G \neg sleep$ in temporal logic. In this formula, the $G$  operator (Globally) indicates that the property it precedes must hold at all times in the future, and the $\neg$ operator (Negation) indicates that the "sleep" property does not hold. These temporal operators may be summarized as follows:
+
+* **Eventually** ($F \varphi$): $\varphi$ will hold at some point in the trace.
+* **Always** ($G \varphi$): $\varphi$ holds at every time step in the trace.
+* **Until** ($\varphi \mathcal{U} \psi$): $\varphi$ holds continuously until $\psi$ holds.
+* **Next** ($X \varphi$): $\varphi$ holds at the next time step.
 
 $$
 \begin{align*}
@@ -104,15 +109,17 @@ G \varphi & \quad \text{Always}
 \end{align*}
 $$
 
-Let $\psi$ be an LTL formula defined over the set of propositions $P$. 
-For $0 \leq i \leq n$, through induction one can define if $\psi$ is true at instant $i$ (written $w, i \models \psi$) as:
-- $w, i \models p$ iff $p \in L(w_0)$ 
+
+In the context of planning, LTL formulas ($\psi$) are constructed over a set of atomic propositions ($P$). The semantics of an LTL formula $\varphi$ is given with respect to an execution trace $\sigma = (s_0, s_1, ..., s_n)$. We consider only LTL over finite traces, which is commonly called $LTL_f$, however, the semantics may descrive an execution traces of infinite length. For $0 \leq i \leq n$, through induction one can define if $\psi$ is true at instant $i$ (written $w, i \models \psi$) as:
+
+- $w, i \models p$ iff $p \in L(w_0)$
 - $w, i \models \neg \psi$ iff $w, i \not\models \psi$
 - $w, i \models \psi_1 \land \psi_2$ iff $w, i \models \psi_1$ and $w, i \models \psi_2$
 - $w, i \models X \psi$ iff $i < n$ and $w, i+1 \models \psi$
 - $w, i \models F \psi$ iff $\exists j \geq i$ such that $w, j \models \psi$
 - $w, i \models \psi_1 \mathcal{U} \psi_2$ iff there exists a $j$ with $i \le j \le n$ s.t. $w, j \models \psi_2$ and for all $i \le k < j$, $w, k \models \psi_1$
-- 
+
+
 
 ### Problem Formulator
 
