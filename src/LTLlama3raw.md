@@ -1,6 +1,6 @@
 
-| Sentence | Human Annotator | Conclusion | Explanation Dictionary |
-| --- | --- | --- | --- |
+| Sentence | Human Annotator | Llama-70b interact | Explanation Dictionary |Conclusion |
+| --- | --- | --- | --- |---|
 | Every a is eventually followed by a e. | G(a -> F e) | F(a -> F(e)) | {Every: , a: a, is: , eventually: F, followed: ->, by: , an: , e: e, Every a is eventually followed by an e: F(a -> F(e))} |
 | It is never the case that a and b hold at the same time. | G(!(a & b)) | !(a & b) | {It: , is: , never: !, the: , case: , that: , a: a, and: &, b: b, hold: , at: , the: , same: , time: , It is never the case that a and b hold at the same time: !(a & b)} |
 | Whenever a is enabled, b is enabled three steps later. | G(a -> X (X (X b))) | G(a -> X(X(Xb))) | {Whenever: G, a: a, is: , enabled: , b: b, is: , enabled: , three: X(X(X, steps: , later: , Whenever a is enabled, b is enabled three steps later: G(a -> X(X(Xb)))} |
