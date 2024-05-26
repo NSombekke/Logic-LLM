@@ -68,6 +68,7 @@ Our first extension is making Logic-LM work with open-source language models, in
 In addition to standard propositional logic, we extend the Logic-LLM by introducing Linear-time Temporal Logic (LTL), which enables the expression of properties that hold over time-based trajectories. This extension is particularly useful in robotics and automated planning, where paths must comply with temporal constraints. LTL's semantics can effectively capture command specifications in the temporal domain. 
 
 **Syntax and Semantics**
+
 Formulas in LTL over the set of atomic propositions ($P$) adhere to the following grammar:
 
 $$
@@ -84,7 +85,7 @@ X \varphi & \quad \text{Next} \\
 G \varphi & \quad \text{Always}
 \end{align*}
 $$
- 
+
 In addition to the syntax of propositional logic, temporal operators express the following properties:
 
 * **Eventually** ($F \varphi$): $\varphi$ will hold at some point in the trace.
@@ -92,9 +93,7 @@ In addition to the syntax of propositional logic, temporal operators express the
 * **Until** ($\varphi \mathcal{U} \psi$): $\varphi$ holds continuously until $\psi$ holds.
 * **Next** ($X \varphi$): $\varphi$ holds at the next time step.
 
-
-Let $\psi$ be an LTL formula defined over the set of propositions $P$. The semantics may descrive an execution traces of infinite length. LTL over finite traces is called $LTL_f$.
-For $0 \leq i \leq n$, through induction one can define if $\psi$ is true at instant $i$ (written $w, i \models \psi$) as:
+In the context of planning, LTL formulas ($\psi$) are constructed over a set of atomic propositions ($P$). The semantics of an LTL formula $\varphi$ is given with respect to an execution trace $\sigma = (s_0, s_1, ..., s_n)$. We consider only LTL over finite traces, which is commonly called $LTL_f$, however, the semantics may descrive an execution traces of infinite length. For $0 \leq i \leq n$, through induction one can define if $\psi$ is true at instant $i$ (written $w, i \models \psi$) as:
 
 - $w, i \models p$ iff $p \in L(w_0)$
 - $w, i \models \neg \psi$ iff $w, i \not\models \psi$
@@ -114,11 +113,8 @@ For $0 \leq i \leq n$, through induction one can define if $\psi$ is true at ins
 
 
 ____
-REMOVE
 
-### LTL in Planning
 
-In the context of planning, LTL formulas are constructed over a set of primitive propositions, which are the proposition symbols $A$. The semantics of an LTL formula $\varphi$ is given with respect to an execution trace $\sigma = (s_0, s_1, ..., s_n)$. We consider only LTL over finite traces, which is commonly called LTLf.
 
 The truth value of an LTLf formula $\varphi$ is defined over an execution trace $\sigma$ as $[[\varphi]](\sigma)$. The intuition of the semantics of temporal operators is:
 
