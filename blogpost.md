@@ -5,7 +5,13 @@ Niels Sombekke, AnneLouise de Boer, Roos Hutter, Rens Baas, Sacha Buijs
 ---
 
 *Abstract*
-*We still need to write the abstract*
+In this blogpost, we explore, reproduce, and build upon the findings from the paper [LOGIC-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning](https://arxiv.org/abs/2305.12295). This paper introduces a novel framework, Logic-LM, which combines Large Language Models (LLMs) and Symbolic Solvers for reasoning tasks. 
+
+The objective of this blogpost are:
+1. Reproducing the results of the original paper to investigate its reproducibility.
+2. Making Logic-LM open-source to enhance accessibility.
+3. Extending Logic-LM by integrating Linear Temporal Logic.
+
 ---
 
 ## Introduction
