@@ -1,8 +1,8 @@
 
 | Sentence | Human Annotator | Llama-70b interact | Explanation Dictionary |Conclusion |
 | --- | --- | --- | --- |---|
-| Every a is eventually followed by a e. | G(a -> F e) | F(a -> F(e)) | {Every: , a: a, is: , eventually: F, followed: ->, by: , an: , e: e, Every a is eventually followed by an e: F(a -> F(e))} | |
-| It is never the case that a and b hold at the same time. | G(!(a & b)) | !(a & b) | {It: , is: , never: !, the: , case: , that: , a: a, and: &, b: b, hold: , at: , the: , same: , time: , It is never the case that a and b hold at the same time: !(a & b)} | |
+| Every a is eventually followed by a e. | G(a -> F e) | F(a -> F(e)) | {Every: , a: a, is: , eventually: F, followed: ->, by: , an: , e: e, Every a is eventually followed by an e: F(a -> F(e))} |The first formula is covered by the second one. |
+| It is never the case that a and b hold at the same time. | G(!(a & b)) | !(a & b) | {It: , is: , never: !, the: , case: , that: , a: a, and: &, b: b, hold: , at: , the: , same: , time: , It is never the case that a and b hold at the same time: !(a & b)} | The first formula is covered by the second one.|
 | Whenever a is enabled, b is enabled three steps later. | G(a -> X (X (X b))) | G(a -> X(X(Xb))) | {Whenever: G, a: a, is: , enabled: , b: b, is: , enabled: , three: X(X(X, steps: , later: , Whenever a is enabled, b is enabled three steps later: G(a -> X(X(Xb)))} | Equivalent|
 | e must hold everywhere until from some point on, d holds infinitely often. | e U (G (F d)) | G(e U (F(GF(d)))) | {e: e, must: G, hold: , everywhere: G, until: U, from: F, some: F, point: F, on: F, d: d, holds: GF, infinitely: GF, often: GF, e must hold everywhere until from some point on, d holds infinitely often: G(e U (F(GF(d))))} | Equivalent|
 | If b holds at some point, a has to hold somewhere beforehand. | (F b) -> (!b U (a & !b)) | F(b -> F(a)) | {If: , b: b, holds: , at: , some: , point: , a: a, has: , to: , hold: , somewhere: , beforehand: , If b holds at some point, a has to hold somewhere beforehand: F(b -> F(a))} | First covers second and second covers first|
