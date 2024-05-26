@@ -240,6 +240,7 @@ TO DO Accuracies over test sets
 | nl2spec original | X/36 (%) | X/36 (%) |X/36 (%) |
 | nl2spec in NL | 26/36 (72.2%) | 17/36 (47.22%)| X/36 (%) |
 
+For intersecting Buchi automaton we use the folliwng [https://spot.lre.epita.fr/app/](spot model checking software)
 We observe that the number of exact matches TO DO.
 
 ###### Ambiguity
