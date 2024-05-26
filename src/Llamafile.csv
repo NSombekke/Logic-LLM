@@ -1,4 +1,4 @@
-ID,Question,Human Annotator,Llama3-7B Answer,,
+ID,Question,Human Annotator,Llama3-7B Answer,
 LTL_dev_1,"Every time hunger strikes, eating eventually follows.","G(hunger -> F eating)","G(h -> F e)","{'Every time': 'G', 'hunger strikes': 'h', 'eating eventually follows': 'h -> F e', 'hunger strikes, eating eventually follows': 'G(h -> F e)'}"
 LTL_dev_2,"It's never the case that rain and sunshine occur at the same time.","G(!(rain & sunshine))","G!(r & s)","{It's never the case: 'G', rain and sunshine occur at the same time: 'r & s', never: '!'}",
 LTL_dev_3,"Whenever the engine starts, acceleration kicks in three steps later.","G(engine_start -> X (X (X acceleration_on)))","G(e -> XXXa)","{Whenever: 'G', the engine starts: 'e', acceleration kicks in three steps later: 'e -> XXXa', the engine starts, acceleration kicks in three steps later: 'G(e -> XXXa)'}"
