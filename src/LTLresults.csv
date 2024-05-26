@@ -22,17 +22,17 @@ Natural Language,Formula,GPT-3,Description, More
 "a holds in every fifth step.","a & G (a -> X ! a & X X ! a & X X X ! a & X X X X ! a & X X X X X a)","X^5 a","{'a holds in every fifth step': 'G(X^5 a)'}",The two formulas are incomparable.
 "Either a holds infinitely often or b holds in the next step.","G F a || X b","F(a) | X(b)","{'Either': 'or', 'a holds infinitely often': 'F(a)', 'b holds in the next step': 'X(b)'}","The first formula covers the second one, and the second formula covers the first one."
 "a will hold at all instances.","G (a)","G(a)","{'a will hold at all instances': 'G(a)'}",Equivalent
-"Whenever a holds, b must hold in the next two steps.","G (a -> (b | X b))","G(a -> (X(b) & XX(b)))","{'Whenever': 'G', 'a holds': 'a', 'b must hold in the next two steps': 'X(b) & XX(b)'}",
+"Whenever a holds, b must hold in the next two steps.","G (a -> (b | X b))","G(a -> (X(b) & XX(b)))","{'Whenever': 'G', 'a holds': 'a', 'b must hold in the next two steps': 'X(b) & XX(b)'}","The first formula covers the second one, and the second formula covers the first one."
 "One of the following aps will hold at all instances: a,b,c.","G (a | b | c)","G(a | b | c)","{'One of the following propositions will hold at all instances': 'G(a | b | c)'}",Equivalent
-"If a holds b will eventually hold.","G (a -> F b)","a -> F(b)","{'If': '->', 'a holds':'a', 'b will eventually hold': 'F(b)'}",
-"a must always hold, but if is exceeds, it allow two timestamps to recover.","! G (! (a & X a))","G(a) & ((a -> F(a)) U X(X(a)))","{'a must always hold': 'G(a)', 'it allows two timestamps to recover': '(a -> F(a)) U X(X(a))'}",
-"not a holds at most two timestamps.","! G (! (a & X a))","G(!(a U (a U a)))","{'not a holds at most two timestamps': 'G(!(a U (a U a)))'}",
-"a can only hold every three timestamps.","G ( a -> (X !a | XX !a | XXX !a))","G(a <-> F(X^3 a))","{'a can only hold every three timestamps': 'G(a <-> F(X^3 a))'}",
+"If a holds b will eventually hold.","G (a -> F b)","a -> F(b)","{'If': '->', 'a holds':'a', 'b will eventually hold': 'F(b)'}","The first formula covers the second one, and the second formula covers the first one."
+"a must always hold, but if is exceeds, it allow two timestamps to recover.","! G (! (a & X a))","G(a) & ((a -> F(a)) U X(X(a)))","{'a must always hold': 'G(a)', 'it allows two timestamps to recover': '(a -> F(a)) U X(X(a))'}","The first formula covers the second one, and the second formula covers the first one."
+"not a holds at most two timestamps.","! G (! (a & X a))","G(!(a U (a U a)))","{'not a holds at most two timestamps': 'G(!(a U (a U a)))'}",The two formulas are disjoint.
+"a can only hold every three timestamps.","G ( a -> (X !a | XX !a | XXX !a))","G(a <-> F(X^3 a))","{'a can only hold every three timestamps': 'G(a <-> F(X^3 a))'}", The two formulas are incomparable.
 "Every a is followed by a b.","G ( a -> X b)","G(a -> Fb)","{'Every a is followed by a b': 'G(a -> Fb)'}",Equivalent
 "Eventually a and b hold.","F (a & b)","F(a & b)","{'Eventually a and b hold': 'F(a & b)'}",Equivalent
 "Both a and b hold eventually.","F a & F b","F a & F b","{'Both a and b hold eventually': 'F a & F b'}",Equivalent
 "It is always the case that a is the same as b in the next step.","G (a <-> X b)","G(a <-> Xb)","{'It is always the case that a is the same as b in the next step': 'G(a <-> Xb)'}",Equivalent
-"If b holds then, in the next step, c holds until a holds or always c holds.","b -> X ((c U a) || G c)","b -> (Xc U a | G c)","{'If b holds then': 'b ->', 'In the next step, c holds until a holds or always c holds': '(Xc U a | G c)'}",
+"If b holds then, in the next step, c holds until a holds or always c holds.","b -> X ((c U a) || G c)","b -> (Xc U a | G c)","{'If b holds then': 'b ->', 'In the next step, c holds until a holds or always c holds': '(Xc U a | G c)'}",The two formulas are incomparable.
 "a holds until b holds or always a holds.","(a U b) || G a","a U b | G a","{'a holds until b holds': 'a U b', 'or always a holds': 'G a'}",Equivalent
 
 
