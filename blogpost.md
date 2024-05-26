@@ -215,7 +215,7 @@ We test the LLms ability to parse natural language into LTL on two datasets. The
 >
 > $\mu:$ Whenever a car starts, the engine revs three steps later. $\leftrightarrow$ G(car_starts -> X X X engine_revs).
 
-The second dataset is derived from commands in the _drone planning_ domain, adapted from [8]. This test set is generated from the planning domain introduced by [8], This environment is a 3D grid world that consists of three floors, six rooms, and a single landmark. We created a test set with multiple-choice options from their natural language descriptions and corresponding LTL formulas.
+The second dataset is derived from commands in the _drone planning_ domain. This test set is adapted from the planning domain introduced by [8]. This environment is a 3D grid world that consists of three floors, six rooms, and a single landmark. We created a test set with multiple-choice options from their natural language descriptions and corresponding LTL formulas.
 
 <table align="center">
   <tr align="center">
