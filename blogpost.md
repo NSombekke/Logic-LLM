@@ -78,7 +78,7 @@ The integration of Linear Temporal Logic (LTL) in Logic-LM involves several comp
       <td><img src="src/pipeline_ltl.png" width=700></td>
   </tr>
   <tr align="left">
-    <td colspan=2><b>Figure 1.</b> Overview of the LOGIC-LM model extended for LTL, which consists of three modules: (1) Problem Formulator generates a LTL formula and runs for the input question and options respectively with LLMs via in-context learning (2) Symbolic Reasoner performs logical inference on the formulated problem via a Büchi automaton, and (3) Result Interpreter interprets the symbolic answer.</td>
+    <td colspan=2><b>Figure 1.</b> Overview of the Logic-LM model extended for LTL, which consists of three modules: (1) Problem Formulator generates a LTL formula and runs for the input question and options respectively with LLMs via in-context learning (2) Symbolic Reasoner performs logical inference on the formulated problem via a Büchi automaton, and (3) Result Interpreter interprets the symbolic answer.</td>
   </tr>
 </table> 
 
