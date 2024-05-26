@@ -2,7 +2,7 @@ ID,Question,Human Annotator,Llama3-7B Answer,,
 LTL_dev_1,"Every time hunger strikes, eating eventually follows.","G(hunger -> F eating)","G(h -> F e)","{'Every time': 'G', 'hunger strikes': 'h', 'eating eventually follows': 'h -> F e', 'hunger strikes, eating eventually follows': 'G(h -> F e)'}"
 LTL_dev_2,"It's never the case that rain and sunshine occur at the same time.","G(!(rain & sunshine))","G!(r & s)","{It's never the case: 'G', rain and sunshine occur at the same time: 'r & s', never: '!'}",
 LTL_dev_3,"Whenever the engine starts, acceleration kicks in three steps later.","G(engine_start -> X (X (X acceleration_on)))","G(e -> XXXa)","{Whenever: 'G', the engine starts: 'e', acceleration kicks in three steps later: 'e -> XXXa', the engine starts, acceleration kicks in three steps later: 'G(e -> XXXa)'}"
-LTL_dev_4,"I am a student must hold everywhere until from some point on, I am graduated holds infinitely often.",TO DO,"Gs U GFg",,
+LTL_dev_4,"I am a student must hold everywhere until from some point on, I am graduated holds infinitely often.",TO DO,"Gs U GFg",
 LTL_dev_5,"Whenever an exam is scheduled, studying occurs beforehand.","G (exam_scheduled -> (!exam_scheduled U (studying & !exam_scheduled)))","",,
 LTL_dev_6,"If it's nighttime, then sleeping occurs.","",,
 LTL_dev_7,"Both the sun is shining and the birds are chirping in every time step.","G (sun_shining & birds_chirping)","",,
