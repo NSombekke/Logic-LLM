@@ -55,10 +55,15 @@ Additionally, we will reproduce the results of the original paper to investigate
 
 In summary, our contributions are threefold:
 
-1. Making Logic-LM open-source to enhance accessibility.
-2. Extending Logic-LM by integrating Linear Temporal Logic.
-3. Reproducing the results of the original paper to investigate its reproducibility.
+1. Reproducing the results of the original paper to investigate its reproducibility.
+2. Making Logic-LM open-source to enhance accessibility.
+3. Extending Logic-LM by integrating Linear Temporal Logic.
 
+
+## Reproducing the original results
+For the first stage of the Logic-LM framework, the Problem Formulation, a natural language problem is translated into symbolic language. The authors of Logic-LM employed three closed-source LLMs (ChatGPT, GPT-3.5, and GPT-4), whereas our extension involves the open-source LLM Llama-3. In an attempt to reproduce their results, we utilized the web version of ChatGPT (gpt-3.5-turbo) which is publicly accessible for manual query-based messaging. 
+
+For this reproducibility experiment, we manually queried ChatGPT ten times for each symbolic language. The input consisted of the prompt, which includes instructions about the grammar of that symbolic language and in-context examples, and a new problem and question. After the Problem Formulation stage, the same setup as the original paper is used for the Symbolic Reasoning and Result Interpretation stages. 
 
 ## <a name="open_source">Extension: Open-source models</a>
 Our first extension is making Logic-LM work with open-source language models, instead of closed-source models like ChatGPT. To make the application as flexible as possible, this was applied by using models from the Huggingface library (https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct). Two versions of the current state-of-the-art open-source model Llama-3 have been utilized<!--(TODO add ref)-->. First, the smaller 8B version of the model is implemented and evaluated to see how well Logic-LM performs with a lower resource model. Additionally, the larger version of Llama-3 (70B) is utilized to extend Logic-LM, which is expected to outperform the 8B variant due to its significantly larger size. Both models are be compared with the GPT models used by the original author to see how SoTA open-source models compare to closed-source models. 
@@ -229,10 +234,6 @@ We test the parsing on two datasets. The first dataset is the drone planning dat
 > $\mu:$ Whenever a car starts, the engine revs three steps later. $\leftrightarrow$ G(car_starts -> X X X engine_revs).
 
 The first dataset will be used to test both the initial conversion and the subsequent generation of runs, while the second dataset will be used to test solely the initial conversion from natural language to LTL.
-
-
-## Reproducing the original results
-(TODO roos, duidelijker maken) Pan et al. (2023) employed three closed-source LLMs: ChatGPT, GPT-3.5, and GPT-4. Our extension of the Logic-LM involves open-source LLMs. However, ChatGPT is publicly accessible for manual query-based messaging. To validate the claims of Pan et al. (2023), we queried ChatGPT five times for each logic type, presenting the prompt and a new problem and question.
 
 ## <a name="results">Results</a>
 ### <a name="general results">LLama as a open source LLM for Logic-LM</a>
