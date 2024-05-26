@@ -230,9 +230,9 @@ We aim to evaluate how well the LLM performs the conversion task from natural la
 
 The first dataset will be used to test the initial conversion from natural language to LTL, while the second dataset will be used to test both the initial conversion and the subsequent generation of runs.
 
-##### (1) Effectiveness of Problem Formulator
 
-By testing the NL to LTL conversion on the **nl2spec** dataset, we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations of such models. <!--( ToDo **Look up further studies on NL to LTL**)-->
+##### (1)  Evaluating the Performance of Large Language Models in NL to LTL Conversion
+By testing the NL to LTL conversion on the *nl2spec* dataset [5], we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations of such models.
 
 **Accuracies Over Test Sets (Counting the Number of Exact Matches Between Formulae)**
 
