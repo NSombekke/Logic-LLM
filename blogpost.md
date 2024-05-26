@@ -246,15 +246,13 @@ The first dataset will be used to test both the initial conversion and the subse
 <table align="center">
 	<tr align="center">
     	<th>Dataset</th>
-    	<th>Error count (out of 10 examples)</th>
     	<th>Overall accuracy (of 10 examples)</th>
-    	<th>Exec-rate (of 10 examples)</th>
-    	<th>Exec-acc (of 10 examples)</th>
+    	<th>Executable rate (of 10 examples)</th>
+    	<th>Executable accuracy (of 10 examples)</th>
     	<th>Overall accuracy (of original paper)</th>
 	</tr>
 		<tr align="center">
     	<td>ProntoQA</td>
-    	<td>9</td>
     	<td>30.0</td>
     	<td>10.0</td>
     	<td>100.0</td>
@@ -262,7 +260,6 @@ The first dataset will be used to test both the initial conversion and the subse
 	</tr>
 		<tr align="center">
     	<td>ProofWriter</td>
-    	<td>6</td>
     	<td>50.0</td>
     	<td>40.0</td>
     	<td>100.0</td>
@@ -270,7 +267,6 @@ The first dataset will be used to test both the initial conversion and the subse
 	</tr>
 	<tr align="center">
     	<td>FOLIO</td>
-    	<td>5</td>
     	<td>50.0</td>
     	<td>50.0</td>
     	<td>60.0</td>
@@ -278,7 +274,6 @@ The first dataset will be used to test both the initial conversion and the subse
 	</tr>
 		<tr align="center">
     	<td>LogicalDeduction</td>
-    	<td>0</td>
     	<td>50.0</td>
     	<td>100.0</td>
     	<td>50.0</td>
@@ -286,7 +281,6 @@ The first dataset will be used to test both the initial conversion and the subse
 	</tr>
 	<tr align="center">
     	<td>AR-LSAT</td>
-    	<td>9</td>
     	<td>10.0</td>
     	<td>10.0</td>
     	<td>0.0</td>
