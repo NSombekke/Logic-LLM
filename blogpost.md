@@ -17,7 +17,7 @@ Recent advancements in adapting Large Language Models (LLMs) for logical reasoni
       <td><img src="src/Logic_LM_framework.png" width=800></td>
   </tr>
   <tr align="left">
-    <td colspan=2><b>Figure 1.</b>  Overview of the LOGIC-LM model, which consists of three modules: (1) Problem Formulator generates a symbolic representation for the input problem with LLMs via in-context learning (2) Symbolic Reasoner performs logical inference on the formulated problem, and (3) Result Interpreter interprets the symbolic answer. Figure by (TODO bron)</td>
+    <td colspan=2><b>Figure 1.</b>  Overview of the LOGIC-LM model, which consists of three modules: (1) Problem Formulator generates a symbolic representation for the input problem with LLMs via in-context learning (2) Symbolic Reasoner performs logical inference on the formulated problem, and (3) Result Interpreter interprets the symbolic answer. Figure by Pan et al. (2023) \[1\]</td>
   </tr>
 </table>
 
