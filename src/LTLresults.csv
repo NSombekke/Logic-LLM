@@ -33,6 +33,6 @@ Natural Language,Formula,GPT-3,Description, More
 "Both a and b hold eventually.","F a & F b",,,
 "It is always the case that a is the same as b in the next step.","G (a <-> X b)","G(a <-> Xb)","{'It is always the case that a is the same as b in the next step': 'G(a <-> Xb)'}",
 "If b holds then, in the next step, c holds until a holds or always c holds.","b -> X ((c U a) || G c)","b -> (Xc U a | G c)","{'If b holds then': 'b ->', 'In the next step, c holds until a holds or always c holds': '(Xc U a | G c)'}",
-"a holds until b holds or always a holds.","(a U b) || G a",,,
+"a holds until b holds or always a holds.","(a U b) || G a","a U b | G a","{'a holds until b holds': 'a U b', 'or always a holds': 'G a'}",
 
 
