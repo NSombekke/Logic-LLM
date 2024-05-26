@@ -84,7 +84,7 @@ $$
 
 **Semantics of LTL**
 
-Let $\psi$ be an LTL formula defined over the set of propositions $P$.
+Let $\psi$ be an LTL formula defined over the set of propositions $P$. The semantics may descrive an execution traces of infinite length. LTL over finite traces is called $LTL_f$.
 For $0 \leq i \leq n$, through induction one can define if $\psi$ is true at instant $i$ (written $w, i \models \psi$) as:
 
 - $w, i \models p$ iff $p \in L(w_0)$
