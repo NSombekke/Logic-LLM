@@ -4,7 +4,7 @@ import subprocess
 from subprocess import check_output
 from os.path import join
 import os
-
+import ast
 
 class LTL_program:
     def __init__(self, logic_program: str, dataset_name=str) -> None:
@@ -14,7 +14,7 @@ class LTL_program:
 
     def parse_logic_program(self):
         lines = [x for x in self.logic_program.splitlines() if not x.strip() == ""]
-        raw_start_index = lines.index("# raw")
+        raw_start_index = lines.index("# raw LTL formula of the question: ")
         option_start_index = lines.index("# Options")
 
         self.raw_formula = lines[raw_start_index + 1 : option_start_index]
@@ -33,12 +33,13 @@ class LTL_program:
 
     def execute_program(self):
         parser = LTLfParser()
-
-        parsed_formula = parser(self.raw_formula)
+        formula = f"{self.raw_formula[0]}"
+        parsed_formula = parser(formula)
         self.answers = []
 
         for option in self.options:
             try:
+                option = ast.literal_eval(option)
                 parsed_formula.truth(option, 0)
                 self.answers.append(parsed_formula.truth(option, 0))
             except Exception as e:
@@ -51,12 +52,11 @@ class LTL_program:
 
         return self.answers, ""
 
-    def answer_mapping(self):
+    def answer_mapping(self, answers):
         mapping = {0: "A", 1: "B", 2: "C"}
-        answer = [i for i in range(len(self.answers)) if self.answers[i] == True]
+        answer = [i for i in range(len(answers)) if answers[i] == True]
         if len(answer) == 1:
             return mapping[answer[0]]
-        elif len(answer) == 0:
-            return "Warning: No option is correct"
         else:
-            return "Warning: More than one option is correct"
+            print("Warning: More or less than one option is correct")
+            return len(answer)

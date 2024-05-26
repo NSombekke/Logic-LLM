@@ -1,0 +1,18 @@
+[
+{
+    "id": "LTL_dev_6",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem",
+    "question": "always avoid the green room and navigate to the third floor. Which one of the following is a possible path for the drone to follow?",
+    "options": [
+      "A) From the third floor go to the green room and stay there",
+      "B) Go inside the red room and then move to the green room",
+      "C) Go to the second floor passing the yellow room and then go to the third floor"
+    ],
+    "answer": "C",
+    "question_raw_ltl":"F ( third_floor & ! green_room )",
+    "raw_logic_programs":[
+        "# canonical formular of the question: \nfinally ( and ( the third floor , not ( the green room ) ) )\n# raw LTL formula of the question: \nF ( third_floor & ! green_room )\n# Options\n[    {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': True, 'orange_room': False, 'landmark_1': False},    {'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_1': False},    {'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_1': False}] ::: (A)\n[    {'first_floor': True, 'red_room': True, 'yellow_room': False, 'second_floor': False, 'green_room': False, 'third_floor': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False},    {'first_floor': False, 'red_room': False, 'yellow_room': False, 'second_floor': True, 'green_room': True, 'third_floor': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}] ::: (B)\n[    {'first_floor': True, 'red_room': False, 'yellow_room': True, 'second_floor': False, 'green_room': False, 'third_floor': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False},    {'first_floor': False, 'red_room': False, 'yellow_room': False, 'second_floor': True, 'green_room': False, 'third_floor': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False},   {'first_floor': False, 'red_room': False, 'yellow_room': False, 'second_floor': False, 'green_room': False, 'third_floor': True, 'purple_room': True, 'orange_room': False, 'landmark_1': False}] ::: (C)"
+    ]
+}
+]
+

@@ -65,7 +65,11 @@ Our first extension is making Logic-LM work with open-source language models, in
 
 ## <a name="ltl">Extension: Linear Temporal Logic</a>
 
-Second, we extend the Logic-LLM by introducing Linear-time Temporal Logic (LTL), which enhances standard propositional logic to express properties that hold over time-based trajectories. This extension is particularly useful in robotics and automated planning, where paths must comply with temporal constraints. LTL's semantics can effectively capture command specifications in the temporal domain. Formulas in LTL over the set of atomic propositions ($P$) adhere to the following grammar:
+In addition to standard propositional logic, we extend the Logic-LLM by introducing Linear-time Temporal Logic (LTL), which enables the expression of properties that hold over time-based trajectories. This extension is particularly useful in robotics and automated planning, where paths must comply with temporal constraints. LTL's semantics can effectively capture command specifications in the temporal domain. 
+
+**Syntax and Semantics**
+
+Formulas in LTL over the set of atomic propositions ($P$) adhere to the following grammar:
 
 $$
 \begin{align*}
@@ -82,10 +86,14 @@ G \varphi & \quad \text{Always}
 \end{align*}
 $$
 
-**Semantics of LTL**
+In addition to the syntax of propositional logic, temporal operators express the following properties:
 
-Let $\psi$ be an LTL formula defined over the set of propositions $P$.
-For $0 \leq i \leq n$, through induction one can define if $\psi$ is true at instant $i$ (written $w, i \models \psi$) as:
+* **Eventually** ($F \varphi$): $\varphi$ will hold at some point in the trace.
+* **Always** ($G \varphi$): $\varphi$ holds at every time step in the trace.
+* **Until** ($\varphi \mathcal{U} \psi$): $\varphi$ holds continuously until $\psi$ holds.
+* **Next** ($X \varphi$): $\varphi$ holds at the next time step.
+
+In the context of planning, LTL formulas ($\psi$) are constructed over a set of atomic propositions ($P$). The semantics of an LTL formula $\varphi$ is given with respect to an execution trace $\sigma = (s_0, s_1, ..., s_n)$. We consider only LTL over finite traces, which is commonly called $LTL_f$, however, the semantics may descrive an execution traces of infinite length. For $0 \leq i \leq n$, through induction one can define if $\psi$ is true at instant $i$ (written $w, i \models \psi$) as:
 
 - $w, i \models p$ iff $p \in L(w_0)$
 - $w, i \models \neg \psi$ iff $w, i \not\models \psi$
@@ -102,6 +110,7 @@ For $0 \leq i \leq n$, through induction one can define if $\psi$ is true at ins
     <td colspan=2><b>Figure 2.</b> Pipeline of Logic-LM for LTL.</td>
   </tr>
 </table>
+
 
 **Natural Language to LTL**
 
@@ -201,13 +210,13 @@ Simpler examples may not necessitate contextual information for trace generation
 
 #### Language Grounding Results
 
-We test the parsing on two datasets. The first consists of 36 benchmark inctances crafted by experts in the nl2spec study [5]. Each of these examples has been selected by LTL experts to cover a variety of ambiguities and complexities. We use their formatted intances, in addition we have prompted the LLM to replaced the propositions a,b,c,d to create more realistic sentences. For example:
+We test the LLms ability to parse natural language into LTL on two datasets. The first consists of 36 benchmark inctances crafted by experts in the *nl2spec* study [5]. Each of these examples has been selected by LTL experts to cover a variety of ambiguities and complexities. In addition, we have replaced the propositions a,b,c,d to create more realistic sentences in natural language (*nl2spec in NL*). For example:
 
 > $\mu:$ Every meal is eventually followed by dessert. $\leftrightarrow$ G(meal -> F dessert).
 >
 > $\mu:$ Whenever a car starts, the engine revs three steps later. $\leftrightarrow$ G(car_starts -> X X X engine_revs).
 
-The second dataset is derived from commands in the _drone planning_ domain, adapted from [8]. This test set is generated from the planning domain introduced by [8], This environment is a 3D grid world that consists of three floors, six rooms, and a single landmark. We created a test set with multiple-choice options from their natural language descriptions and corresponding LTL formulas.
+The second dataset is derived from commands in the _drone planning_ domain. This test set is adapted from the planning domain introduced by [8]. This environment is a 3D grid world that consists of three floors, six rooms, and a single landmark. We created a test set with multiple-choice options from their natural language descriptions and corresponding LTL formulas.
 
 <table align="center">
   <tr align="center">
@@ -220,41 +229,55 @@ The second dataset is derived from commands in the _drone planning_ domain, adap
 
 We aim to evaluate how well the LLM performs the conversion task from natural language to LTL, especially in cases where it needs to generalize from few examples (few-shot learning). The evaluation consists of two stages: (1) the conversion of the natural language command into LTL, and (2) the subsequent conversion of the multiple choice options (each formlated in natural language) into runs.
 
-The first dataset will be used to test the initial conversion from natural language to LTL, while the second dataset will be used to test both the initial conversion and the subsequent generation of runs.
+The *nl2spec* dataset will be used to test the initial conversion from natural language to LTL, while the *drone planning* dataset will be used to test both the initial conversion and the subsequent generation of runs.
 
-##### (1) Effectiveness of Problem Formulator
 
-By testing the NL to LTL conversion on the **nl2spec** dataset, we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations of such models. <!--( ToDo **Look up further studies on NL to LTL**)-->
+##### (1)  Evaluating the Performance of Large Language Models in NL to LTL Conversion
+By testing the NL to LTL conversion on the *nl2spec* dataset [5], we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations of such models.
 
-TO DO Accuracies over test sets
-| Dataset | GPT-4.o| GPT-3 |Llama |
-|----------|----------|----------|----------|
-| nl2spec original | X/36 (%) | X/36 (%) |X/36 (%) |
-| nl2spec in NL | X/36 (%) | 17/36 (47.22%)| X/36 (%) |
+**Accuracies Over Test Sets (Counting the Number of Exact Matches Between Formulae)**
 
-We observe that the number of exact matches TO DO.
+| Dataset             | GPT-4.0       | GPT-3         | Llama3-70b-instruct      |
+|---------------------|---------------|---------------|--------------|
+| nl2spec original    | X/36 (%)      | 17/36 (47.22%)      | 23/36 (63.88%)     |
+| nl2spec in NL       | 26/36 (72.2%) | 17/36 (47.22%)| 19/36 (52.77%)     |
+
+*For intersecting Büchi automata, we use the following [spot](https://spot.lre.epita.fr/app/) model checking software.*
+
+The results presented in the table above demonstrate the effectiveness of using Large Language Models (LLMs) to parse natural language into Linear Temporal Logic (LTL) formulas. Notably, the "nl2spec original" approach, which works directly with predefined predicates, outperforms the "nl2spec in NL" approach, which extracts predicates from natural language sentences. This improvement can be attributed to the fact that predefined predicates provide a clear and concise representation of the relevant information, allowing the LLM to focus on understanding the relationships between them and generating the correct LTL formula.
+Our results show that GPT-4.o significantly outperforms GPT-3.5 in translating natural language to LTL formulas, achieving an accuracy rate of 72.2% (26 out of 36) compared to 47.22% (17 out of 36) for GPT-3. This suggests that GPT-4.0 has enhanced capabilities in understanding and processing natural language semantics, making it a more reliable tool for complex logical conversions.
+
+
+
 
 ###### Ambiguity
 
-As pointed out by Cosler et al. [5], their dataset contains two types of ambiguities. The first type arises from the inherent limitations of natural language, such as operator precedence. The second type stems from semantic ambiguities within natural language. An illustration of the first is _a holds until b holds or always a holds_ which their human experts initially translated to $(a U b) | G a$. GPT-3 returns the following:
+As pointed out by Cosler et al. [5], natural language is prone to ambiguity. Their dataset contains two types of ambiguities.
+
+The first type arises from the more structural limitations of natural language, such as operator precedence. The second type stems from semantic ambiguities within natural language. An illustration of the first is _a holds until b holds or always a holds_ which their human experts initially translated to $(a U b) | G a$. GPT-3.5 returns the following:
 
 > **$\mu:$ "The party is on until the speaker is broken or always the party is on."**
 >
 > $\psi_{\mu}$: $p U (s | G p)$
 >
 > $D_{\psi}$: {"The party is on": "p", "until": "U", "the speaker is broken": "s", "or": "|", "always the party is on": "G p", "The party is on until the speaker is broken or always the party is on": "p U (s | G p)"}
+> 
+As both are plausible translations depending on the interpretation of action precedence, the example shows how the conversion is not as straight forward.
 
-As both are plausible translations depending on the interpretation of the sentence, the example shows how the conversion is not as straight forward.
-
-An example of the second type is, _Whenever a holds, b must hold in the next two steps_, mapped to $G (a \rightarrow (b | X b))$. GPT3 returns:
+The second type of ambiguity is illustrated by the following. _Whenever a holds, b must hold in the next two steps_, mapped to $G (a \rightarrow (b | X b))$. However, it could also be translated as $G((a \rightarrow X(X(b))))$ as this depends on the interpretation of the semantic meaning. GPT3.5 returns the latter interpretation:
 
 > **$\mu:$ "Whenever the food is hot, the food is cold in the next two steps."**
 >
 > $\psi_{\mu}$: $G (h \rightarrow X X c)$
 >
 > $D_{\psi}$: {"Whenever": "->", "the food is hot": "h", "the food is cold": "c", "in the next two steps": "X X", "the food is hot implies that the food is cold in the next two steps": "h -> X X c"}
+>
 
-<!--**TO DO: Write about how to adjust the prompt to improve results**-->
+- To mitigate these ambiguities, the *nl2spec* [5] specifies sub-clauses.  TODO
+
+
+
+
 
 - TO DO: Compare these results to **nl2spec** [5]. (T-5 fine tunes achieved 5.5% accurracy, nl2spec 44.4% accuracy)
 
