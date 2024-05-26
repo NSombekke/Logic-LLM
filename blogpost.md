@@ -248,8 +248,8 @@ The first dataset will be used to test both the initial conversion and the subse
     	<th>Dataset</th>
     	<th>Error count (out of 10 examples)</th>
     	<th>Overall accuracy (of 10 examples)</th>
-    	<th>Executable rate (of 10 examples)</th>
-    	<th>Executable accuracy (of 10 examples)</th>
+    	<th>Exec-rate (of 10 examples)</th>
+    	<th>Exec-acc (of 10 examples)</th>
     	<th>Overall accuracy (of original paper)</th>
 	</tr>
 		<tr align="center">
