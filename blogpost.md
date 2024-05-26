@@ -112,23 +112,6 @@ In the context of planning, LTL formulas ($\psi$) are constructed over a set of 
 </table>
 
 
-____
-
-
-
-The truth value of an LTLf formula $\varphi$ is defined over an execution trace $\sigma$ as $[[\varphi]](\sigma)$. The intuition of the semantics of temporal operators is:
-
-* $Ef$ – eventually $f$, i.e., $f$ will hold at some time, now or in the future.
-* $Gf$ – globally $f$, i.e., $f$ will hold from now on for ever.
-* $fUg$ – $f$ until $g$, i.e., $g$ will eventually hold and until that time $f$ will always hold.
-* $Xf$ – next $f$, i.e., $f$ holds in the next state of the trace.
-
-As a preprocessing step, we always transform an LTL formula $\varphi$ into negation normal form without increasing its size, i.e., into a formula where all negations only occur directly before atomic propositions. This can be done using equivalences like $\neg Gf = E\neg f$. Next, we add for each proposition symbol $a \in A$ a new proposition symbol $a'$. Its truth value will be maintained such that it is always the inverse of $a$. I.e. whenever an action has $\neg a$ as its effect, we add the effect $a'$ and when it has the effect $a$ we add $\neg a'$. Lastly, we replace $\neg a$ in $\varphi$ with $a'$, resulting in a formula not containing negation.
-
-Given a planning problem $P$ and an LTL formula $\varphi$, LTL planning is the task of finding a plan $\pi$ whose execution trace $\sigma$ will satisfy $\varphi$, i.e., for which $[[\varphi]](\sigma)$.
-
-
------
 **Natural Language to LTL**
 
 We employ the 2 Llama-3 models to convert natural language into Linear Temporal Logic (LTL) tasks based on the attributes in the context of the question (e.g. planning domain). The conversion from natural language to LTL has been predominantly studied within the field of robotics [9].
