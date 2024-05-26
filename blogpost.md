@@ -239,7 +239,7 @@ By testing the NL to LTL conversion on the **nl2spec** dataset, we seek to under
 | Dataset             | GPT-4.0       | GPT-3         | Llama        |
 |---------------------|---------------|---------------|--------------|
 | nl2spec original    | X/36 (%)      | 17/36 (47.22%)      | X/36 (%)     |
-| nl2spec in NL       | 26/36 (72.2%) | 17/36 (47.22%)| X/36 (%)     |
+| nl2spec in NL       | 26/36 (72.2%) | 17/36 (47.22%)| 19/36 (52.77%)     |
 
 ---
 
