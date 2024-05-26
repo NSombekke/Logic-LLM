@@ -240,7 +240,9 @@ We test the parsing on two datasets. The first dataset is the drone planning dat
 The first dataset will be used to test both the initial conversion and the subsequent generation of runs, while the second dataset will be used to test solely the initial conversion from natural language to LTL.
 
 ## <a name="results">Results</a>
+
 ### <a name="reproducibility results">Reproducibility</a>
+
 <table align="center">
 	<tr align="center">
     	<th>Dataset</th>
