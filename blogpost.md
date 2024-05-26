@@ -1,7 +1,6 @@
 # Logic-LM integrated with Llama-3 and Linear Temporal Logic
 
-### Authors
-Niels Sombekke, AnneLouise de Boer, Roos Hutter, Rens Baas, Sacha Buijs
+### Authors: Niels Sombekke, AnneLouise de Boer, Roos Hutter, Rens Baas, Sacha Buijs
 ---
 
 In this blogpost, we explore, reproduce, and build upon the findings from the paper [LOGIC-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning](https://arxiv.org/abs/2305.12295). This paper presents a novel framework, Logic-LM, which integrates Large Language Models (LLMs) with symbolic solvers to improve logical problem-solving.
