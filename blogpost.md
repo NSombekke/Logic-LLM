@@ -293,7 +293,7 @@ The first dataset will be used to test both the initial conversion and the subse
     	<td>26.41</td>
 	</tr>
     <tr align="left">
-   	 <td colspan=7><b>Table 3.</b> Logic-LM (without self-refinement) with Chat-GPT (gpt-3.5-turbo) results.</td>
+   	 <td colspan=7><b>Table 3.</b> Results of Logic-LM (without self-refinement) with Chat-GPT (gpt-3.5-turbo).</td>
 </table>
 
 Pan et al. (2023) employed three closed-source LLMs: ChatGPT, GPT-3.5, and GPT-4. Our extension of the Logic-LM involves open-source LLMs. However, ChatGPT is publicly accessible for manual query-based messaging. To validate the claims of Pan et al. (2023), we queried ChatGPT five times for each logic type, presenting the prompt and a new problem and question. Results are summarized in Table 3. ... (*qualitative results will come*)
