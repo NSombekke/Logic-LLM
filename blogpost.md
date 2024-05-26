@@ -82,6 +82,7 @@ G \varphi & \quad \text{Always}
 \end{align*}
 $$
 
+The temporal operators express the folliwng properties. Ef - eventually $f$, meaning that $f$ will hold at some point in the trace. $Gf$ - globally $f$, such that $f$ hold for each time step in the trace. $fUg$ - $f$ holds until $g$ holds. $Xf$ - next $f$, meaning that $f$ holds in the next time step. 
 **Semantics of LTL**
 
 Let $\psi$ be an LTL formula defined over the set of propositions $P$. The semantics may descrive an execution traces of infinite length. LTL over finite traces is called $LTL_f$.
