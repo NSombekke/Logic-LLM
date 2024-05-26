@@ -65,7 +65,10 @@ Our first extension is making Logic-LM work with open-source language models, in
 
 ## <a name="ltl">Extension: Linear Temporal Logic</a>
 
-Second, we extend the Logic-LLM by introducing Linear-time Temporal Logic (LTL), which enhances standard propositional logic to express properties that hold over time-based trajectories. This extension is particularly useful in robotics and automated planning, where paths must comply with temporal constraints. LTL's semantics can effectively capture command specifications in the temporal domain. Formulas in LTL over the set of atomic propositions ($P$) adhere to the following grammar:
+In addition to standard propositional logic, we extend the Logic-LLM by introducing Linear-time Temporal Logic (LTL), which enables the expression of properties that hold over time-based trajectories. This extension is particularly useful in robotics and automated planning, where paths must comply with temporal constraints. LTL's semantics can effectively capture command specifications in the temporal domain. 
+
+**Syntax and Semantics**
+Formulas in LTL over the set of atomic propositions ($P$) adhere to the following grammar:
 
 $$
 \begin{align*}
@@ -84,13 +87,11 @@ $$
  
 In addition to the syntax of propositional logic, temporal operators express the following properties:
 
-- **\(E f\)** (Eventually \(f\)): \(f\) will hold at some point in the trace.
-- **\(G f\)** (Globally \(f\)): \(f\) holds at every time step in the trace.
-- **\(f U g\)** (\(f\) Until \(g\)): \(f\) holds continuously until \(g\) holds.
-- **\(X f\)** (Next \(f\)): \(f\) holds at the next time step.
+* **Eventually** ($F \varphi$): $\varphi$ will hold at some point in the trace.
+* **Always** ($G \varphi$): $\varphi$ holds at every time step in the trace.
+* **Until** ($\varphi \mathcal{U} \psi$): $\varphi$ holds continuously until $\psi$ holds.
+* **Next** ($X \varphi$): $\varphi$ holds at the next time step.
 
----
-**Semantics of LTL**
 
 Let $\psi$ be an LTL formula defined over the set of propositions $P$. The semantics may descrive an execution traces of infinite length. LTL over finite traces is called $LTL_f$.
 For $0 \leq i \leq n$, through induction one can define if $\psi$ is true at instant $i$ (written $w, i \models \psi$) as:
@@ -111,6 +112,27 @@ For $0 \leq i \leq n$, through induction one can define if $\psi$ is true at ins
   </tr>
 </table>
 
+
+____
+REMOVE
+
+### LTL in Planning
+
+In the context of planning, LTL formulas are constructed over a set of primitive propositions, which are the proposition symbols $A$. The semantics of an LTL formula $\varphi$ is given with respect to an execution trace $\sigma = (s_0, s_1, ..., s_n)$. We consider only LTL over finite traces, which is commonly called LTLf.
+
+The truth value of an LTLf formula $\varphi$ is defined over an execution trace $\sigma$ as $[[\varphi]](\sigma)$. The intuition of the semantics of temporal operators is:
+
+* $Ef$ – eventually $f$, i.e., $f$ will hold at some time, now or in the future.
+* $Gf$ – globally $f$, i.e., $f$ will hold from now on for ever.
+* $fUg$ – $f$ until $g$, i.e., $g$ will eventually hold and until that time $f$ will always hold.
+* $Xf$ – next $f$, i.e., $f$ holds in the next state of the trace.
+
+As a preprocessing step, we always transform an LTL formula $\varphi$ into negation normal form without increasing its size, i.e., into a formula where all negations only occur directly before atomic propositions. This can be done using equivalences like $\neg Gf = E\neg f$. Next, we add for each proposition symbol $a \in A$ a new proposition symbol $a'$. Its truth value will be maintained such that it is always the inverse of $a$. I.e. whenever an action has $\neg a$ as its effect, we add the effect $a'$ and when it has the effect $a$ we add $\neg a'$. Lastly, we replace $\neg a$ in $\varphi$ with $a'$, resulting in a formula not containing negation.
+
+Given a planning problem $P$ and an LTL formula $\varphi$, LTL planning is the task of finding a plan $\pi$ whose execution trace $\sigma$ will satisfy $\varphi$, i.e., for which $[[\varphi]](\sigma)$.
+
+
+-----
 **Natural Language to LTL**
 
 We employ the 2 Llama-3 models to convert natural language into Linear Temporal Logic (LTL) tasks based on the attributes in the context of the question (e.g. planning domain). The conversion from natural language to LTL has been predominantly studied within the field of robotics [9].
