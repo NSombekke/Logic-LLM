@@ -291,20 +291,17 @@ The first dataset will be used to test both the initial conversion and the subse
 
 Pan et al. (2023) employed three closed-source LLMs: ChatGPT, GPT-3.5, and GPT-4. Our extension of the Logic-LM involves open-source LLMs. However, ChatGPT is publicly accessible for manual query-based messaging. To validate the claims of Pan et al. (2023), we queried ChatGPT five times for each logic type, presenting the prompt and a new problem and question. Results are summarized in Table 3. ... (*qualitative results will come*)
 
+
 <table align="center">
 	<tr align="center">
     	<th>Context</th>
-    	<td>Every impus is earthy. Each impus is a jompus. Jompuses are small. Jompuses are rompuses. Rompuses are not amenable. Rompuses are wumpuses. Wumpuses are wooden. Wumpuses are zumpuses. Every zumpus is temperate. Every zumpus is a dumpus. Dumpuses are dull. Dumpuses are vumpuses. Every vumpus is not shy. Every yumpus is sweet. Vumpuses are numpuses. Numpuses are not sweet. Numpuses are tumpuses. Fae is a wumpus.</td>
-	</tr>
-		<tr align="center">
     	<th>Question</th>
-    	<td>Is the following statement true or false? Fae is sweet.</td>
-    </tr>
-    		<tr align="center">
     	<th>Symbolic language formulation of original paper </th>
     	<th>Symbolic language formulation of our experiment </th>
-    </tr>
-        <tr align="center">
+	</tr>
+		<tr align="center">
+		<td>Every impus is earthy. <br>Each impus is a jompus. Jompuses are small.<br>Jompuses are rompuses. Rompuses are not amenable. <br>Rompuses are wumpuses. <br>Wumpuses are wooden. <br>Wumpuses are zumpuses. <br>Every zumpus is temperate. <br>Every zumpus is a dumpus. <br>Dumpuses are dull. <br>Dumpuses are vumpuses. <br>Every vumpus is not shy. <br>Every yumpus is sweet. <br>Vumpuses are numpuses. <br>Numpuses are not sweet. <br>Numpuses are tumpuses. <br>Fae is a wumpus.</td>
+    	<td>Is the following statement true or false? Fae is sweet.</td>
     	<td>Predicates:<br>
 Impus($x, bool) ::: Does x belong to Impus?<br>
 Earthy($x, bool) ::: Is x earthy?<br>
@@ -392,6 +389,7 @@ Sweet(Fae, X)<br>
     <tr align="left">
    	 <td colspan=7><b>Table 3.</b> Results of Logic-LM (without self-refinement) with Chat-GPT (gpt-3.5-turbo).</td>
 </table>
+
 
 
 ### <a name="general results">LLama as a open source LLM for Logic-LM</a>
