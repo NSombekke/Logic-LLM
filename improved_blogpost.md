@@ -18,7 +18,7 @@ Recent advancements in adapting Large Language Models (LLMs) for logical reasoni
 
 <table align="center">
   <tr align="center">
-      <td><img src="src/Logic_LM_framework.png" width=800></td>
+      <td><img src="misc/img/Logic_LM_framework.png" width=800></td>
   </tr>
   <tr align="left">
     <td colspan=2><b>Figure 1.</b>  Overview of the LOGIC-LM model, which consists of three modules: (1) Problem Formulator generates a symbolic representation for the input problem with LLMs via in-context learning (2) Symbolic Reasoner performs logical inference on the formulated problem, and (3) Result Interpreter interprets the symbolic answer. Figure by Pan et al. [1]</td>
@@ -77,7 +77,7 @@ The integration of Linear Temporal Logic (LTL) in Logic-LM involves several comp
 
 <table align="center">
   <tr align="center">
-      <td><img src="src/pipeline_ltl.png" width=700></td>
+      <td><img src="misc/img/pipeline_ltl.png" width=700></td>
   </tr>
   <tr align="left">
     <td colspan=2><b>Figure 1.</b> Overview of the Logic-LM model extended for LTL, which consists of three modules: (1) Problem Formulator generates a LTL formula and runs for the input question and options respectively with LLMs via in-context learning (2) Symbolic Reasoner performs logical inference on the formulated problem via a Büchi automaton, and (3) Result Interpreter interprets the symbolic answer.</td>
@@ -129,7 +129,7 @@ For illustration, consider the following Natural language commands $\mu$, and th
 
 <table align="center">
   <tr align="center">
-      <td><img src="src/pipeline.jpg" width=800></td>
+      <td><img src="misc/img/pipeline.jpg" width=800></td>
   </tr>
   <tr align="left">
     <td colspan=2><b>Figure 2.</b>  Pipeline: Converting Natural Language to Linear Temporal Logic for Multiple Choice Answering. (TODO dit plaatje klopt vlgs mij niet, de multiple choice antwoorden zijn vragen nml?</td>
@@ -214,7 +214,7 @@ We evaluate LOGIC-LM LTL extension on a dataset derived from commands in the *dr
 
 <table align="center">
   <tr align="center">
-      <td><img src="src/drone_domain.png" width=300></td>
+      <td><img src="misc/img/drone_domain.png" width=300></td>
   </tr>
   <tr align="left">
     <td colspan=2><b>Figure 2.</b> Planning domain for the drone navigation. Figure by [8].</td>
