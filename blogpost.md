@@ -65,7 +65,7 @@ Our first extension is making Logic-LM work with open-source language models, in
 
 ### Experiments
 Following the methodology of the original paper we evaluate the two Llama3 models on five common logical reasoning datasets (as explained in the introduction). The models are compaired against 2 baselines 1) Standard LLMs;
-and 2) Chain-of-Thought (CoT) (Wei et al., 2022b). Follwing Pan et al (TODO bron) we ensure fair comparisons, by using the same in-context examples for all models. For reproducibility, we set the temperature to 0 and select the highest-probability response from the LLMs. We evaluate model performance based on the accuracy of selecting the correct answer from multiple-choice questions. Additionally, we the research the effect of the rifiner on the two Llama-3 models by investigating the accuracy and the executable rates on the FOLIO dataset across different rounds of self refinement. 
+and 2) Chain-of-Thought (CoT) (Wei et al., 2022b). Follwing Pan et al. (2023), we ensure fair comparisons, by using the same in-context examples for all models. For reproducibility, we set the temperature to 0 and select the highest-probability response from the LLMs. We evaluate model performance based on the accuracy of selecting the correct answer from multiple-choice questions. Additionally, we the research the effect of the rifiner on the two Llama-3 models by investigating the accuracy and the executable rates on the FOLIO dataset across different rounds of self refinement. 
 
 
 ## <a name="ltl">Extension: Linear Temporal Logic</a>
