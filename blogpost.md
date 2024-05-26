@@ -246,10 +246,27 @@ The first dataset will be used to test both the initial conversion and the subse
 <table align="center">
 	<tr align="center">
     	<th>Dataset</th>
-    	<th>Error count</th>
-    	<th>Overall accuracy</th>
-    	<th>Executable rate</th>
-    	<th>Executable accuracy</th>
+    	<th>Error count (out of 10 examples)</th>
+    	<th>Overall accuracy (of 10 examples)</th>
+    	<th>Executable rate (of 10 examples)</th>
+    	<th>Executable accuracy (of 10 examples)</th>
+    	<th>Overall accuracy (of original paper)</th>
+	</tr>
+		<tr align="center">
+    	<td>ProntoQA</td>
+    	<td>9</td>
+    	<td>30.0</td>
+    	<td>10.0</td>
+    	<td>100.0</td>
+    	<td>61.00</td>
+	</tr>
+		<tr align="center">
+    	<td>ProofWriter</td>
+    	<td>6</td>
+    	<td>50.0</td>
+    	<td>40.0</td>
+    	<td>100.0</td>
+    	<td>58.33</td>
 	</tr>
 	<tr align="center">
     	<td>FOLIO</td>
@@ -257,6 +274,15 @@ The first dataset will be used to test both the initial conversion and the subse
     	<td>50.0</td>
     	<td>50.0</td>
     	<td>60.0</td>
+    	<td>62.74</td>
+	</tr>
+		<tr align="center">
+    	<td>LogicalDeduction</td>
+    	<td>0</td>
+    	<td>50.0</td>
+    	<td>100.0</td>
+    	<td>50.0</td>
+    	<td>65.67</td>
 	</tr>
 	<tr align="center">
     	<td>AR-LSAT</td>
@@ -264,30 +290,10 @@ The first dataset will be used to test both the initial conversion and the subse
     	<td>10.0</td>
     	<td>10.0</td>
     	<td>0.0</td>
-	</tr>
-	<tr align="center">
-    	<td>LogicalDeduction</td>
-    	<td>0</td>
-    	<td>50.0</td>
-    	<td>100.0</td>
-    	<td>50.0</td>
-	</tr>
-	<tr align="center">
-    	<td>ProofWriter</td>
-    	<td>6</td>
-    	<td>50.0</td>
-    	<td>40.0</td>
-    	<td>100.0</td>
-	</tr>
-	<tr align="center">
-    	<td>ProntoQA</td>
-    	<td>9</td>
-    	<td>30.0</td>
-    	<td>10.0</td>
-    	<td>100.0</td>
+    	<td>26.41</td>
 	</tr>
     <tr align="left">
-   	 <td colspan=7><b>Table 3.</b>  Chat-GPT (GPT 3.5) Logic-LM results</td>
+   	 <td colspan=7><b>Table 3.</b> Logic-LM with Chat-GPT (gpt-3.5-turbo) results</td>
 </table>
 
 Pan et al. (2023) employed three closed-source LLMs: ChatGPT, GPT-3.5, and GPT-4. Our extension of the Logic-LM involves open-source LLMs. However, ChatGPT is publicly accessible for manual query-based messaging. To validate the claims of Pan et al. (2023), we queried ChatGPT five times for each logic type, presenting the prompt and a new problem and question. Results are summarized in Table 3. ... (*qualitative results will come*)
