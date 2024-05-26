@@ -240,6 +240,7 @@ By testing the NL to LTL conversion on the **nl2spec** dataset, we seek to under
 |---------------------|---------------|---------------|--------------|
 | nl2spec original    | X/36 (%)      | 17/36 (47.22%)      | 23/36 (63.88%)     |
 | nl2spec in NL       | 26/36 (72.2%) | 17/36 (47.22%)| 19/36 (52.77%)     |
+
 *For intersecting Büchi automata, we use the following [spot](https://spot.lre.epita.fr/app/) model checking software.*
 
 The results presented in the table above demonstrate the effectiveness of using Large Language Models (LLMs) to parse natural language into Linear Temporal Logic (LTL) formulas. Notably, the "nl2spec original" approach, which works directly with predefined predicates, outperforms the "nl2spec in NL" approach, which extracts predicates from natural language sentences. This improvement can be attributed to the fact that predefined predicates provide a clear and concise representation of the relevant information, allowing the LLM to focus on understanding the relationships between them and generating the correct LTL formula.
