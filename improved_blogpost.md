@@ -484,8 +484,8 @@ By testing the NL to LTL conversion on the *nl2spec* dataset [5], we seek to und
 
 | Dataset             | GPT-4.0       | GPT-3         | Llama3-70b-instruct      |
 |---------------------|---------------|---------------|--------------|
-| nl2spec original    | X/36 (%)      | 17/36 (47.22%)      | 23/36 (63.88%)     |
-| nl2spec in NL       | 26/36 (72.2%) | 17/36 (47.22%)| 19/36 (52.77%)     |
+| nl2spec original    | 22/36 (61.11%)      | 17/36 (47.22%)      | 23/36 (63.88%)     |
+| nl2spec in NL       | 26/36 (72.22%) | 17/36 (47.22%)| 19/36 (52.77%)     |
 
 *For intersecting Büchi automata, we use the following [spot](https://spot.lre.epita.fr/app/) model checking software.*
 
