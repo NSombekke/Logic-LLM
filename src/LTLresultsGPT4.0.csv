@@ -2,7 +2,7 @@ Natural Language,Formula,GPT-4.0,Description, More
 "Every a is eventually followed by an e.","G(a -> F e)","G(a -> F e)", "{'Every': 'G', 'eventually': 'F, 'a': 'a', 'e': 'e', 'a followed by an e': 'a -> e', 'a eventually followed by an e': 'a -> F e'}", 
 "It is never the case that a and b hold at the same time.","G(!(a & b))",  "G(!(a & b))","{'It is never the case': 'G(!', 'a': 'a', 'b': 'b', 'a and b hold at the same time': 'a & b', 'It is never the case that a and b hold at the same time': 'G(!(a & b))'}",
 "Whenever a is enabled, b is enabled three steps later.","G(a -> X (X (X b)))","G(a -> X(X(X(b))))", "{'Whenever a is enabled': 'G(a -> ...)', 'b is enabled three steps later': 'X(X(X(b)))', 'G(a -> X(X(X(b))))'}"
-"e must hold everywhere until from some point on, d holds infinitely often.","e U (G (F d))",
+"e must hold everywhere until from some point on, d holds infinitely often.","e U (G (F d))",,,
 "If b holds at some point, a has to hold somewhere beforehand.","(F b) -> (!b U (a & !b))",
 "Whenever a holds, b holds as well.","G(a -> b)",
 "Both a and b hold in every time step.","G (a & b)",
