@@ -14,21 +14,24 @@ class LTL_program:
         self.dataset_name = dataset_name
 
     def parse_logic_program(self):
-        lines = [
-            x.strip() for x in self.logic_program.splitlines() if not x.strip() == ""
-        ]
-        raw_start_index = lines.index("# raw LTL formula of the question:")
-        option_start_index = lines.index("# Options")
-
-        self.raw_formula = lines[raw_start_index + 1 : option_start_index]
-        option_traces = lines[option_start_index + 1 :]
-
         try:
-            self.options = [
-                x.split(":::")[0].strip()
-                for x in option_traces
-                if not x.startswith("Question :::")
+            lines = [
+                x.strip() for x in self.logic_program.splitlines() if not x.strip() == ""
             ]
+            raw_start_index = lines.index("# raw LTL formula of the question:")
+            option_start_index = lines.index("# Options")
+
+            self.raw_formula = lines[raw_start_index + 1 : option_start_index]
+            option_traces = lines[option_start_index + 1 :]
+
+            try:
+                self.options = [
+                    x.split(":::")[0].strip()
+                    for x in option_traces
+                    if not x.startswith("Question :::")
+                ]
+            except Exception as e:
+                return False
         except Exception as e:
             return False
 
@@ -53,12 +56,11 @@ class LTL_program:
                 return self.answers, "Error: No option is correct"
             elif self.answers.count(True) > 1:
                 return self.answers, "Error: More than one option is correct"
-            
+
             return self.answers, ""
-        
+
         except Exception as e:
             return None, e
-
 
     def answer_mapping(self, answers):
         mapping = {0: "A", 1: "B", 2: "C"}
@@ -67,4 +69,4 @@ class LTL_program:
             return mapping[answer[0]]
         else:
             print("Warning: More or less than one option is correct")
-            return len(answer)
+            return [mapping[x] for x in answer]

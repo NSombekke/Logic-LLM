@@ -4,8 +4,8 @@
     "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
     "question": "First either go to the second floor or the red room and then go to the first floor. Which one of the following is a possible path for the drone to follow?",
     "answer": "A",
-    "flag": "execution error",
-    "predicted_answer": "B"
+    "flag": "success",
+    "predicted_answer": "A"
   },
   {
     "id": "LTL_dev_2",
@@ -24,7 +24,11 @@
     "question": "Move to landmark 1 without entering the purple room. Then you may stay at landmark 1 or go to the purple room. Which one of the following is a possible path for the drone to follow?",
     "answer": "C",
     "flag": "success",
-    "predicted_answer": "B"
+    "predicted_answer": [
+      "A",
+      "B",
+      "C"
+    ]
   },
   {
     "id": "LTL_dev_4",
@@ -32,7 +36,11 @@
     "question": "Go to the orange room but avoid landmark one. if you reached to the orange room then you can head to landmark one or stay put . Which one of the following is a possible path for the drone to follow?",
     "answer": "C",
     "flag": "success",
-    "predicted_answer": "C"
+    "predicted_answer": [
+      "A",
+      "B",
+      "C"
+    ]
   },
   {
     "id": "LTL_dev_5",
@@ -59,7 +67,7 @@
     "question": "go through the yellow room to the second floor. Which one of the following is a possible path for the drone to follow?",
     "answer": "A",
     "flag": "success",
-    "predicted_answer": "A"
+    "predicted_answer": []
   },
   {
     "id": "LTL_dev_8",
@@ -75,7 +83,10 @@
     "question": "avoid the red room and go to landmark one . Which one of the following is a possible path for the drone to follow?",
     "answer": "C",
     "flag": "success",
-    "predicted_answer": "B"
+    "predicted_answer": [
+      "B",
+      "C"
+    ]
   },
   {
     "id": "LTL_dev_10",
@@ -84,8 +95,8 @@
     "answer": "B",
     "flag": "success",
     "predicted_answer": [
-      "B",
-      "C"
+      "A",
+      "B"
     ]
   },
   {
@@ -126,11 +137,7 @@
     "question": "Avoid the green room until navigating to the purple room. Which one of the following is a possible path for the drone to follow?",
     "answer": "B",
     "flag": "success",
-    "predicted_answer": [
-      "A",
-      "B",
-      "C"
-    ]
+    "predicted_answer": "B"
   },
   {
     "id": "LTL_dev_16",
@@ -138,7 +145,7 @@
     "question": "Avoid the green room until you enter the red room. Which one of the following is a possible path for the drone to follow?",
     "answer": "A",
     "flag": "success",
-    "predicted_answer": "C"
+    "predicted_answer": "A"
   },
   {
     "id": "LTL_dev_17",
@@ -146,10 +153,7 @@
     "question": "Move to the first floor without entering the purple room. Which one of the following is a possible path for the drone to follow?",
     "answer": "A",
     "flag": "success",
-    "predicted_answer": [
-      "A",
-      "C"
-    ]
+    "predicted_answer": "A"
   },
   {
     "id": "LTL_dev_18",
@@ -157,7 +161,7 @@
     "question": "Go to the purple room by touching the green room. Which one of the following is a possible path for the drone to follow?",
     "answer": "C",
     "flag": "success",
-    "predicted_answer": "C"
+    "predicted_answer": []
   },
   {
     "id": "LTL_dev_19",
@@ -173,7 +177,7 @@
     "question": "Head to the orange room and then head to the second floor. Which one of the following is a possible path for the drone to follow?",
     "answer": "A",
     "flag": "success",
-    "predicted_answer": []
+    "predicted_answer": "A"
   },
   {
     "id": "LTL_dev_21",
@@ -189,11 +193,7 @@
     "question": "Navigate to the purple room always avoiding the green room. Which one of the following is a possible path for the drone to follow?",
     "answer": "A",
     "flag": "success",
-    "predicted_answer": [
-      "A",
-      "B",
-      "C"
-    ]
+    "predicted_answer": "A"
   },
   {
     "id": "LTL_dev_23",
@@ -209,11 +209,7 @@
     "question": "Move to the red room without changing floors. Which one of the following is a possible path for the drone to follow?",
     "answer": "C",
     "flag": "success",
-    "predicted_answer": [
-      "A",
-      "B",
-      "C"
-    ]
+    "predicted_answer": []
   },
   {
     "id": "LTL_dev_25",
@@ -221,10 +217,7 @@
     "question": "Go to the first floor but do not go through the orange room first. Which one of the following is a possible path for the drone to follow?",
     "answer": "A",
     "flag": "success",
-    "predicted_answer": [
-      "A",
-      "C"
-    ]
+    "predicted_answer": []
   },
   {
     "id": "LTL_dev_26",
@@ -232,10 +225,7 @@
     "question": "Go through the yellow room to the green room. Which one of the following is a possible path for the drone to follow?",
     "answer": "B",
     "flag": "success",
-    "predicted_answer": [
-      "A",
-      "B"
-    ]
+    "predicted_answer": []
   },
   {
     "id": "LTL_dev_27",
@@ -243,7 +233,7 @@
     "question": "Go to the first floor by first going to the second floor. Which one of the following is a possible path for the drone to follow?",
     "answer": "B",
     "flag": "success",
-    "predicted_answer": []
+    "predicted_answer": "B"
   },
   {
     "id": "LTL_dev_28",
@@ -252,6 +242,7 @@
     "answer": "C",
     "flag": "success",
     "predicted_answer": [
+      "A",
       "B",
       "C"
     ]
@@ -262,7 +253,7 @@
     "question": "Move to the red room then continue to the green room. Which one of the following is a possible path for the drone to follow?",
     "answer": "B",
     "flag": "success",
-    "predicted_answer": "B"
+    "predicted_answer": []
   },
   {
     "id": "LTL_dev_30",
@@ -270,10 +261,7 @@
     "question": "Always avoid the yellow room and navigate to the third floor. Which one of the following is a possible path for the drone to follow?",
     "answer": "A",
     "flag": "success",
-    "predicted_answer": [
-      "A",
-      "C"
-    ]
+    "predicted_answer": []
   },
   {
     "id": "LTL_dev_31",
@@ -281,7 +269,7 @@
     "question": "Go to the yellow room without going to landmark one. Which one of the following is a possible path for the drone to follow?",
     "answer": "C",
     "flag": "success",
-    "predicted_answer": "A"
+    "predicted_answer": []
   },
   {
     "id": "LTL_dev_32",
@@ -289,7 +277,11 @@
     "question": "Without stepping outside of the orange room, go to landmark one. Which one of the following is a possible path for the drone to follow?",
     "answer": "A",
     "flag": "success",
-    "predicted_answer": "C"
+    "predicted_answer": [
+      "A",
+      "B",
+      "C"
+    ]
   },
   {
     "id": "LTL_dev_33",
@@ -305,11 +297,7 @@
     "question": "Navigate to the third floor always avoiding the blue room. Which one of the following is a possible path for the drone to follow?",
     "answer": "B",
     "flag": "success",
-    "predicted_answer": [
-      "A",
-      "B",
-      "C"
-    ]
+    "predicted_answer": "B"
   },
   {
     "id": "LTL_dev_35",
@@ -317,15 +305,18 @@
     "question": "Go to landmark one always avoiding the orange room. Which one of the following is a possible path for the drone to follow?",
     "answer": "C",
     "flag": "success",
-    "predicted_answer": "B"
+    "predicted_answer": [
+      "B",
+      "C"
+    ]
   },
   {
     "id": "LTL_dev_36",
     "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
     "question": "Go to or through the second floor while avoiding going through the green room. Which one of the following is a possible path for the drone to follow?",
     "answer": "A",
-    "flag": "success",
-    "predicted_answer": "C"
+    "flag": "execution error",
+    "predicted_answer": "A"
   },
   {
     "id": "LTL_dev_37",
@@ -333,11 +324,7 @@
     "question": "Go to the green room without ever leaving the second floor. Which one of the following is a possible path for the drone to follow?",
     "answer": "C",
     "flag": "success",
-    "predicted_answer": [
-      "A",
-      "B",
-      "C"
-    ]
+    "predicted_answer": []
   },
   {
     "id": "LTL_dev_38",
@@ -345,7 +332,11 @@
     "question": "Go through landmark one before going to the red room. Which one of the following is a possible path for the drone to follow?",
     "answer": "B",
     "flag": "success",
-    "predicted_answer": []
+    "predicted_answer": [
+      "A",
+      "B",
+      "C"
+    ]
   },
   {
     "id": "LTL_dev_39",
@@ -360,8 +351,8 @@
     "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
     "question": "Don't go into the blue room until going to landmark one. Which one of the following is a possible path for the drone to follow?",
     "answer": "C",
-    "flag": "success",
-    "predicted_answer": "B"
+    "flag": "execution error",
+    "predicted_answer": "C"
   },
   {
     "id": "LTL_dev_41",
@@ -369,7 +360,7 @@
     "question": "Go to the second floor while always avoiding the green room. Which one of the following is a possible path for the drone to follow?",
     "answer": "B",
     "flag": "success",
-    "predicted_answer": "B"
+    "predicted_answer": []
   },
   {
     "id": "LTL_dev_42",
@@ -377,7 +368,11 @@
     "question": "Avoid the purple room until after going to the third floor. Which one of the following is a possible path for the drone to follow?",
     "answer": "C",
     "flag": "success",
-    "predicted_answer": []
+    "predicted_answer": [
+      "A",
+      "B",
+      "C"
+    ]
   },
   {
     "id": "LTL_dev_43",
@@ -385,7 +380,7 @@
     "question": "Go to the first floor and then go to the purple room. Which one of the following is a possible path for the drone to follow?",
     "answer": "B",
     "flag": "success",
-    "predicted_answer": []
+    "predicted_answer": "B"
   },
   {
     "id": "LTL_dev_44",
@@ -393,7 +388,10 @@
     "question": "Navigate to the orange room, always avoiding the green room. Which one of the following is a possible path for the drone to follow?",
     "answer": "C",
     "flag": "success",
-    "predicted_answer": []
+    "predicted_answer": [
+      "A",
+      "C"
+    ]
   },
   {
     "id": "LTL_dev_45",
@@ -401,18 +399,15 @@
     "question": "Always avoid the purple room , go to the first floor. Which one of the following is a possible path for the drone to follow?",
     "answer": "A",
     "flag": "success",
-    "predicted_answer": [
-      "A",
-      "C"
-    ]
+    "predicted_answer": []
   },
   {
     "id": "LTL_dev_46",
     "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
     "question": "Go to the orange room before going to the green room. Which one of the following is a possible path for the drone to follow?",
     "answer": "C",
-    "flag": "success",
-    "predicted_answer": []
+    "flag": "parsing error",
+    "predicted_answer": "B"
   },
   {
     "id": "LTL_dev_47",
@@ -420,7 +415,10 @@
     "question": "Go to landmark one but do not enter the green room first. Which one of the following is a possible path for the drone to follow?",
     "answer": "B",
     "flag": "success",
-    "predicted_answer": "B"
+    "predicted_answer": [
+      "A",
+      "B"
+    ]
   },
   {
     "id": "LTL_dev_48",
@@ -428,10 +426,7 @@
     "question": "Navigate to the green room always avoiding the red room. Which one of the following is a possible path for the drone to follow?",
     "answer": "A",
     "flag": "success",
-    "predicted_answer": [
-      "A",
-      "B"
-    ]
+    "predicted_answer": []
   },
   {
     "id": "LTL_dev_49",
@@ -447,6 +442,9 @@
     "question": "Go to the yellow room without going to the orange room. if you reached the yellow room, now you can go to the orange room. Which one of the following is a possible path for the drone to follow?",
     "answer": "C",
     "flag": "success",
-    "predicted_answer": "A"
+    "predicted_answer": [
+      "B",
+      "C"
+    ]
   }
 ]
