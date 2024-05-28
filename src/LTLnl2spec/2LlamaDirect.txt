@@ -1,0 +1,37 @@
+LLAMA 70 direct prompting
+G (hunger -> F eating); Equivalent
+G !(rain & sunshine); Equivalent
+G((start -> F^3 acceleration)); Incomparable
+G((student -> G(F !student))) & G(F graduated);The first formula covers the second one.
+G((exam -> F studying));The first formula is covered by the second one.
+G((night -> F sleeping)); The first formula is covered by the second one.
+G((sun & birds)); Equivalent
+G(sun) & G((birds -> !meow)); Equivalent
+G((G F passed) -> G good_air_quality); Incomparable
+G(GF loves(Mark, Stacy) -> GF loves(Stacy, Mark)); Equivalent
+G((open | accessible));The first formula covers the second one.
+G(F !childless); The first formula is covered by the second one.
+G ((!peace & !prosperity) -> F conflict);Equivalent
+G(!(happiness & sadness)) & G(happiness | sadness);Equivalent
+G(((sugar = flour) -> (taste = good) & (texture = good))); Incomparable
+G((meeting -> F room_reservation));The two formulas are incomparable.
+G((delivered -> !F return_request));The first formula covers the second one.
+G((opened -> F water_flows));The two formulas are incomparable
+G(!(practice & sleeping)); Equivalent
+G(((preheats & X beeps) -> X X aroma)); Equivalent
+G((planted -> XF bloom)); Equivalent
+G(F^4 work); Incomparable
+GF failed | X passed; Equivalent
+G(taller); Equivalent
+G((hot -> XX cold));The two formulas are incomparable.
+G(messaging | navigation | music);Equivalent
+G((alarm -> F wake_up)); Equivalent
+G(normal | (X X normal)); Equivalent
+G(F^2 !clear); Incomparable
+G(!activate | F^3 activate); Incomparable
+G(sunrise -> F birds); Equivalent
+F(water & sun); Equivalent
+F(waves) & F(seagulls); Equivalent
+G(temp = X heat); Equivalent
+G((sunny -> X(thunder U (rain | G thunder))); Equivalent
+G(party U (broken | G party));The first formula covers the second one.
