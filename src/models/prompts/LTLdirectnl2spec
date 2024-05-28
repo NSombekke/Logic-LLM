@@ -1,0 +1,26 @@
+Given a problem and a question. The task is to parse the problem into Linear Temporal Logic formulars.
+Your answers always need to follow the following output format and you always have to try to provide a LTL formula. You may repeat your answers.
+Remember that X means "next", U means "until", G means "globally", F means "eventually", which means GF means "infinitely often".
+The formula should only contain atomic propositions or operators |, &, !, ->, <->, X, U, G, F.
+------
+Problem:
+Every a is eventually followed by a e.
+Question:
+The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula.
+###
+Conclusion:
+G (a -> F e).FINISH
+------
+Problem: 
+a and b never occur at the same time but one of them holds in every time step.
+Question:
+"The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula.
+###
+Conclusion:
+G(!(a & b)) & G(a | b).FINISH
+------
+Problem:
+Every time hunger strikes, eating eventually follows.
+
+Question:
+"The task is to parse the problem into Linear Temporal Logic formulars. Translate the above natural language sentence into an LTL formula.###
