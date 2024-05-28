@@ -413,13 +413,13 @@ Table 2 displays a comparison of self-refinement. (*More results and analysis wi
 
 #### Logic-LM for LTL
 | Dataset             | Llama3-8b   | Llama3-70b |
-|---------------------|---------------|---------------|
-| Accuracy (correct/all data)  | 18 %     | 28 %  | 
-| Accuracy against all one answer data (correct/(correct+incorrect)) | 47 %     | 93 %  | 
-| No answer       | 16 (32%) | 21 (42%) | 
-| Two answers       | 10 (20%) | 8 (16%) | 
-| Three answers       | 5 (10%) | 6 (12%) | 
-| Error messages       | 1 (2%) | 3 (6%) | 
+|----------------|-----------------|-----------------|
+| Accuracy (correct/all data)  | 18% (9/50)     | 28% (14/50) | 
+| Accuracy against all one answer data (correct/(correct+incorrect)) | 47% (9/19)     | 93% (14/15)  | 
+| No answer       | 32% (16/50) | 42% (21/50) | 
+| Two answers       | 20% (10/50)| 16% (8/50) | 
+| Three answers       | 10% (5/50) | 12% (6/50) | 
+| Executable rate     | 98% (49/50) | 94% (47/50) | 
 
 ##### (1)  Evaluating the Performance of Large Language Models in NL to LTL Conversion
 By testing the NL to LTL conversion on the *nl2spec* dataset [5], we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations of such models.
