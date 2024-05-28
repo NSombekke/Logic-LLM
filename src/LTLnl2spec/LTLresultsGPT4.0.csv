@@ -18,6 +18,7 @@ Natural Language,Formula,GPT-4.0,Description, More
 "Once a happened, b won't happen again.","G (a -> X G ! b)","G(a -> G(!b))","","The first formula covers the second one, and the second formula is covered by the first one. "
 "a releases b.","(b U (b & ! a)) | G b","a R b","","incomparable"
 "a and b won't occur at the same time.","G !(a & b)","G(!(a & b))","","equivalent"
+"Whenever a holds and b holds in the next step, then c holds one step after b.","G (a && X b -> X X c)", "G (a -> X (b -> X c) ", ,Equivalent
 "Whenever a holds, b holds eventually from the next step on.","G (a -> X F b)","G(a -> F(X b))","","equivalent"
 "a holds in every fifth step.","a & G (a -> X ! a & X X ! a & X X X ! a & X X X X ! a & X X X X X a)","G(X X X X X a)","","disjoint"
 "Either a holds infinitely often or b holds in the next step.","G F a || X b","GF a | X b","","equivalent"

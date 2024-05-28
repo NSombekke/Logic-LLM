@@ -1,0 +1,36 @@
+Every a is eventually followed by a e;G (a -> F e); Equivalent
+It is never the case that a and b hold at the same time;G !(a & b); Equivalent
+Whenever a is enabled, b is enabled three steps later;G (a -> X(X(X b))); Equivalent
+e must hold everywhere until from some point on, d holds infinitely often;G (e) U (GF d).; Equivalent
+If b holds at some point, a has to hold somewhere beforehand;G (b -> F a); First covers the second.
+Whenever a holds, b holds as well;G (a -> b); Equivalent
+Both a and b hold in every time step;G (a & b); Equivalent
+a holds always and whenever b holds, c does not hold.;G (a) & G (b -> !c); Equivalent
+If it is the case that every a is eventually followed by a b, then c needs to holds infinitely often.;(G (a -> F b)) -> GF c; Equivalent
+If a holds infinitely often, then b holds infinitely often as well.;GF a -> GF b; Equivalent
+Either a or b holds infinitely often;GF a | GF b.; Equivalent
+a never holds from some point in time on.;F G (!a); Equivalent
+Whenever a and b do not hold, c holds eventually.;G (!a & !b -> F c); The first formula is covered by the second one.
+a and b never occur at the same time but one of them holds in every time step.;G (!(a & b)) & G (a | b);  Equivalent
+Whenever the inputs a and b are the same, the outputs c and d are the same.;G ((a <-> b) -> (c <-> d));  Equivalent
+a can only happen if b happend before;G (a -> F (b & !X(a))); The two formulas are incomparable.
+Once a happened, b won't happen again.;G (a -> G (!b)); The first formula covers the second
+a releases b;b R a.; Incomparable
+a and b won't occur at the same time;G !(a & b); Equivalent
+Whenever a holds and b holds in the next step, then c holds one step after b.;G (a -> X (b -> X c));Equivalent
+Whenever a holds, b holds eventually from the next step on.;G (a -> X F b); Equivalent
+a holds in every fifth step;G (a -> X X X X a); The two formulas are disjoint.
+Either a holds infinitely often or b holds in the next step;GF a | X b; Equivalent
+a will hold at all instances.;G a; Equivalent
+Whenever a holds, b must hold in the next two steps;G (a -> (X b & X X b));The first formula is covered by the second one.
+One of the following aps will hold at all instances: a,b,c;G (a | b | c); Equivalent
+If a holds b will eventually hold;G (a -> F b); Equivalent
+a must always hold, but if is exceeds, it allow two timestamps to recover; G (a | X a | X X a); The two formulas are incomparable
+not a holds at most two timestamps;G (!a -> X (!a -> X (a))); The two formulas are incomparable.
+a can only hold every three timestamps;G (a -> X (!a & X (!a & X a))); The first formula covers the second one.
+Every a is followed by a b;G (a -> X b); Equivalent
+Eventually a and b hold.;F (a & b); Equivalent
+Both a and b hold eventually.;F a & F b; The first formula covers the second one.
+It is always the case that a is the same as b in the next step.;G (a <-> X b); First covers second one
+If b holds then, in the next step, c holds until a holds or always c holds;G (b -> X (c U a | G c)); The first formula covers the second one.
+a holds until b holds or always a holds;G (a U b | G a); First covers the second. 

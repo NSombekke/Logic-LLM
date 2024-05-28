@@ -19,6 +19,7 @@ Natural Language,Formula,GPT-3,Description, More
 "a releases b.","(b U (b & ! a)) | G b","G(a -> Fb) & Fb","{'a releases b': 'G(a -> Fb) & Fb'}",The two formulas are incomparable.
 "a and b won't occur at the same time.","G !(a & b)","G(!(a & b))","{'a and b won't occur at the same time': 'G(!(a & b))'}",Equivalent
 "Whenever a holds, b holds eventually from the next step on.","G (a -> X F b)","G(a -> (X b -> X c))","{'Whenever': 'G', 'a holds': 'a', 'b holds in the next step': 'X b', 'then': '->', 'c holds one step after b': '(b -> X c)'}",The two formulas are incomparable.
+"Whenever a holds and b holds in the next step, then c holds one step after b.", ";G (a && X b -> X X c)", TO DO, ,
 "a holds in every fifth step.","a & G (a -> X ! a & X X ! a & X X X ! a & X X X X ! a & X X X X X a)","X^5 a","{'a holds in every fifth step': 'G(X^5 a)'}",The two formulas are incomparable.
 "Either a holds infinitely often or b holds in the next step.","G F a || X b","F(a) | X(b)","{'Either': 'or', 'a holds infinitely often': 'F(a)', 'b holds in the next step': 'X(b)'}","The first formula covers the second one, and the second formula covers the first one."
 "a will hold at all instances.","G (a)","G(a)","{'a will hold at all instances': 'G(a)'}",Equivalent

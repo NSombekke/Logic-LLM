@@ -40,7 +40,7 @@ class LogicInferenceEngine:
     def load_logic_programs(self):
         with open(
             os.path.join(
-                "./outputs/logic_programs",
+                "./src/outputs/logic_programs",
                 self.dataset_name,
                 f"{self.dataset_name}_{self.split}_{self.model_name}.json",
             )
@@ -118,13 +118,13 @@ def parse_args():
     parser.add_argument("--dataset_name", type=str)
     parser.add_argument("--split", type=str, default="dev")
     parser.add_argument(
-        "--save_path", type=str, default="./outputs/logic_inference"
+        "--save_path", type=str, default="./src/outputs/logic_inference"
     )
     parser.add_argument(
         "--backup_strategy", type=str, default="random", choices=["random", "LLM"]
     )
     parser.add_argument(
-        "--backup_LLM_result_path", type=str, default="./outputs/baselines"
+        "--backup_LLM_result_path", type=str, default="./src/outputs/baselines"
     )
     parser.add_argument("--model_name", type=str, default="text-davinci-003")
     parser.add_argument("--timeout", type=int, default=60)

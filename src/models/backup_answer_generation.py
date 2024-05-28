@@ -25,6 +25,8 @@ class Backup_Answer_Generator:
             return random.choice(['A', 'B', 'C'])
         elif self.dataset_name == 'AR-LSAT':
             return random.choice(['A', 'B', 'C', 'D', 'E'])
+        elif self.dataset_name == 'LTL':
+            return random.choice(['A', 'B', 'C'])
         else:
             raise ValueError(f'Invalid dataset name: {self.dataset_name}')
         
