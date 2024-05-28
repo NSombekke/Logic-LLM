@@ -275,10 +275,10 @@ When observing the output of ChatGPT, the symbolic language seems like a feasibl
 	<tr align="center">
 		<th align="left">Dataset</th>
 		<th>Standard</th>
-		<th>GoT</th>
+		<th>CoT</th>
 		<th>Logic-LM</th>
 		<th>Standard</th>
-		<th>GoT</th>
+		<th>CoT</th>
 		<th>Logic-LM</th>
 	</tr>
 	<tr align="center">
@@ -286,7 +286,7 @@ When observing the output of ChatGPT, the symbolic language seems like a feasibl
 		<td>48.80</td>
 		<td><b>81.00</b></td>
 		<td>67.40</td>
-		<td></td>
+		<td>71.20</td>
 		<td></td>
 		<td>61.60</td>
 	</tr>
@@ -295,7 +295,7 @@ When observing the output of ChatGPT, the symbolic language seems like a feasibl
 		<td>34.33</td>
 		<td><b>49.17</b></td>
 		<td>37.83</td>
-		<td></td>
+		<td>49.67</td>
 		<td></td>
 		<td>74.17</td>
 	</tr>
@@ -304,7 +304,7 @@ When observing the output of ChatGPT, the symbolic language seems like a feasibl
 		<td><b>51.96</b></td>
 		<td>51.00</td>
 		<td>36.27</td>
-		<td></td>
+		<td>61.27</td>
 		<td></td>
 		<td>57.35</td>
 	</tr>
@@ -313,7 +313,7 @@ When observing the output of ChatGPT, the symbolic language seems like a feasibl
 		<td>35.33</td>
 		<td>39.00</td>
 		<td><b>60.67</b></td>
-		<td></td>
+		<td>57.67</td>
 		<td></td>
 		<td>77.00</td>
 	</tr>
@@ -322,16 +322,16 @@ When observing the output of ChatGPT, the symbolic language seems like a feasibl
 		<td><b>24.68</b></td>
 		<td>20.80</td>
 		<td>15.15</td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td>29.00</td>
+		<td>27.27</td>
+		<td>28.57</td>
 	</tr>
 	<tr align="left">
 		<td colspan=7><b>Table 1.</b> Accuracy of standard prompting (Standard), chain-of-thought prompting (CoT), and our method (LOGICLM, without self-refinement) across five reasoning datasets using the Llama-3 model. The best results for each base LLM are highlighted.</td>
 	</tr>
 </table>
 
-Table 1 shows the results of the experiments with the open-source model. For Llama-3 8B it shows that Logic-LM only scored highest on the LogicalDeduction dataset, where it scored 60.67 compared to 35.33 and 39.00 for Standard and CoT respectively. For the other datasets Logic-LM got outperformed by either the Standard or the CoT method. *Will be completed once 70B results are in.*
+Table 1 shows the results of the experiments with the open-source model. For Llama-3 8B it shows that Logic-LM only scored highest on the LogicalDeduction dataset, where it scored 60.67 compared to 35.33 and 39.00 for Standard and CoT respectively. For the other datasets Logic-LM is outperformed by either the Standard or the CoT method. Llama-3 70B performs better than Llama-3 70B, but Logic-LM still does not achieve total superior performance compared to the baselines. However it does score significantly better on Proofwriter and LogicalDeduction than the Standard and CoT methods. Still Logic-LM gets outperformed on the other datasets, although the difference on AR-LSAT is not very significant. *Will be completed once 70B results are in.*
 
 One reason why Logic-LM performs worse than the other methods could be that the dataset on which Llama-3 was trained lacks logic problems that are written in symbolic language. According to a blog by [daily.dev](https://daily.dev/blog/meta-llama-3-everything-you-need-to-know-in-one-place) Llama-3 was trained to be better in logical problems and reasoning than Llama-2, however this training was probably mostly done in logical reasoning with natural language, but not in converting natural language logic to symbolic language logic, since that is less relevant for most users. This would explain why it does perform well with the Standard and CoT method, where the model can solve the logic with natural language, but does not perform well when having to do something with symbolic language, like converting from natural to symbolic language. Logic-LM does score high on the LogicalDeduction dataset, which might mean that Llama-3 was trained more on constraint satisfaction. Another explanation could be that it is easier for the model to convert the natural language to symbolic logic, because the symbolic formulation of constraint satisfaction logic is much simpler and more familiar to natural language compared to other logic types, making it score better.
 
