@@ -1,0 +1,352 @@
+[
+  {
+    "id": "LTL_dev_1",
+    "question": "First either go to the second floor or the red room and then go to the first floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "The question states that the drone should either go to the second floor or the red room first. Option B does not visit any of these rooms so it is incorrect. Options A visits the green room which is on the second floor but then goes to the red room which is on the first floor, violating the condition to stay on one floor at a time. The correct answer is C as the drone goes to the second floor and then moves to the purple room which is on the third floor.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_2",
+    "question": "Go to the green room after entering the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "The question asks us to go to the green room after entering the second floor. Option A does not enter the second floor so it is incorrect. Option B only visits the green room which is on the second floor but does not enter the second floor first. The correct answer is C as the drone goes to the red room and then moves to the orange room passing through the second floor.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_3",
+    "question": "Move to landmark 1 without entering the purple room. Then you may stay at landmark 1 or go to the purple room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "Option A is incorrect as it enters the purple room before going to landmark 1. Option B does not visit landmark 1 so it is also incorrect. The correct answer is C because it visits landmark 1 first and then goes to the purple room.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_4",
+    "question": "Go to the orange room but avoid landmark one. if you reached to the orange room then you can head to landmark one or stay put . Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "Option A is incorrect as it does not visit the orange room. Option B visits the orange room but also goes to Landmark One which violates the condition of avoiding Landmark One. The correct answer is C because it avoids Landmark One and stays in the Orange Room.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_5",
+    "question": "go through the third floor and navigate to the green room . Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "The drone needs to go through the third floor and navigate to the green room. Option B does not visit the third floor so it is incorrect. Options C does not visit the third floor as the red room is on the first floor. The correct answer is A as the drone goes to landmark one which is on the third floor and then to the green room which is on the second floor.",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_6",
+    "question": "always avoid the green room and navigate to the third floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "Option A and B visit the green room which violates the condition to always avoid the green room. Option C is the correct answer because it avoids the green room and ends up at the third floor as depicted in the question.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_7",
+    "question": "go through the yellow room to the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "The drone needs to go through the yellow room to the second floor. Option B does not visit the yellow room so it is incorrect. Options C does not visit the second floor as the red room is on the first floor. The correct answer is A as the drone goes to the yellow room and then to the green room which is on the second floor.",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_8",
+    "question": "go to landmark one through the first floor . Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "The drone needs to go to landmark one through the first floor. Option A does not visit landmark one so it is incorrect. Options B visits the second floor which violates the condition of going through the first floor. The correct answer is C as the drone goes to the first floor and then moves to the red room.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_9",
+    "question": "avoid the red room and go to landmark one . Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "The drone needs to avoid the red room and go to landmark one. Option A visits the red room so it is incorrect. Options B does not visit landmark one as the red room is on the first floor. The correct answer is C as the drone goes to landmark one which is on the third floor.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_10",
+    "question": "move to landmark one. don't change floors if already on the third floor . Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "The drone needs to move to landmark one. Option A is incorrect as it changes floors when already on the third floor. Options B does not change floors so it is correct. The correct answer is C as the drone goes from the purple room to the green room which is on the second floor and then moves to landmark one.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_11",
+    "question": "Go to the first floor through the purple room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "The drone needs to go to the first floor through the purple room. Option A is incorrect as it goes to the second floor which contains the green room. Option B is correct because the drone enters the purple room and then moves to the red room on the first floor. Option C is incorrect as the drone stays in the purple room which is not on the first floor.",
+    "predicted_answer": "B"
+  },
+  {
+    "id": "LTL_dev_12",
+    "question": "Go through the orange room to the red room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "The drone needs to go through the orange room to the red room. Option A does not visit the orange room so it is incorrect. Options B visits the red room first and then goes to the third floor which contains the orange room. The correct answer is C as the drone can start from either the orange or purple room on the third floor and go to the red room.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_13",
+    "question": "Go to the first floor via the red room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "The question asks us to go to the first floor via the red room. Option A is incorrect as it does not visit the red room. Option B visits the second and third floors but not the first floor so it is also incorrect. The correct answer is C because it goes from the red room which is on the first floor.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_14",
+    "question": "Navigate from the second floor to the orange room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "The drone needs to navigate from the second floor to the orange room. Option A is incorrect as it does not start at the second floor. Option B is also incorrect because the purple room is on the third floor. The correct answer is C as the drone visits the yellow room and then goes to the second floor.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_15",
+    "question": "Avoid the green room until navigating to the purple room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "The question asks us to avoid the green room until navigating to the purple room. Option A goes directly to the green room which is incorrect. Option B starts at the purple room but then flies to the green room which violates the condition of avoiding the green room. The correct answer is C as it avoids the green room and navigates to the purple room.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_16",
+    "question": "Avoid the green room until you enter the red room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "Option A visits the orange room which is not in the same floor as the red room. Option B does not visit the red room so it is incorrect. The correct answer is C because it avoids the green room until entering the red room.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_17",
+    "question": "Move to the first floor without entering the purple room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "The drone needs to go to the first floor without entering the purple room. Option A is correct as it moves directly to the red room which is on the first floor and does not visit the purple room. Options B and C are incorrect because they both visit the purple room.",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_18",
+    "question": "Go to the purple room by touching the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "The drone needs to touch the green room before going to the purple room. Option A is incorrect as it does not visit the green room. Option B visits the orange room which is on the third floor so it does not visit the green room. The correct answer is C because the drone starts in the red room, moves to the green room and then goes to the purple room.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_19",
+    "question": "Move to the first floor, travelling through landmark one. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "The question asks us to move to the first floor, travelling through landmark one. Option A is incorrect as it does not visit landmark one. Option B visits landmark one but ends up in the red room which is on the first floor and violates the condition of moving to the first floor. The correct answer is C because it moves to landmark one by passing the purple room.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_20",
+    "question": "Head to the orange room and then head to the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "The drone needs to head to the orange room and then head to the second floor. Option B stays on the third floor so it is incorrect. Options C does not visit the orange room as it goes from Landmark 1 to the red room which are both on the first floor. The correct answer is A as the drone heads to the orange room and then to the green room which is on the second floor.",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_21",
+    "question": "Go through the first floor to landmark one. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "The question asks for a path that goes through the first floor to landmark one. Option A does not visit the first floor so it is incorrect. Options B and C both go through the first floor but only option B visits landmark 1 which is on the third floor. The correct answer is B as the drone goes to the first floor and then moves to landmark 1.",
+    "predicted_answer": "B"
+  },
+  {
+    "id": "LTL_dev_22",
+    "question": "Navigate to the purple room always avoiding the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "Option A is correct because it avoids the green room and ends up at the purple room as depicted in the question. Option B visits the green room which violates the condition to always avoid the green room. Option C also visits the green room so it is incorrect.",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_23",
+    "question": "Navigate to the first floor always avoiding the purple room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "Option A is incorrect as it does not visit the first floor. Option B visits the purple room which violates the condition of always avoiding the purple room. The correct answer is C because it avoids the purple room and ends up at the first floor.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_24",
+    "question": "Move to the red room without changing floors. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "The drone needs to move to the red room without changing floors. Option A changes floors as it goes to the second floor before going to the red room which is on the first floor. Option B also changes floors as it moves from the first floor to the second floor. The correct answer is C because the drone stays on the same floor when moving to the red room.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_25",
+    "question": "Go to the first floor but do not go through the orange room first. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "The drone needs to go to the first floor but not through the orange room. Option A is incorrect as it does not visit the first floor. Option B visits the second floor which is incorrect. The correct answer is C because it goes to the purple room, then the orange room and finally the first floor.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_26",
+    "question": "Go through the yellow room to the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "The drone needs to go through the yellow room to the green room. Option A does not visit the green room so it is incorrect. Options C does not visit the yellow room as the green room is on the second floor. The correct answer is B as the drone goes to the yellow room and then to the green room which is on the second floor.",
+    "predicted_answer": "B"
+  },
+  {
+    "id": "LTL_dev_27",
+    "question": "Go to the first floor by first going to the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "The question asks for a path that goes to the first floor by first going to the second floor. Option A is incorrect as it does not visit the second floor before visiting the first floor. Options B and C are both correct answers because they go to the second floor before moving to the first floor.",
+    "predicted_answer": "B"
+  },
+  {
+    "id": "LTL_dev_28",
+    "question": "Go to landmark one before navigating to the third floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "The drone needs to go to landmark one before navigating to the third floor. Option A is incorrect as it goes to the third floor before going to landmark one. Options B is incorrect because landmark one is not on the first floor. The correct answer is C as the drone goes to the second floor and then to landmark one which is on the third floor.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_29",
+    "question": "Move to the red room then continue to the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "The drone needs to move to the red room and then continue to the green room. Option A is incorrect as it does not visit the red room. Options B and C are correct because they both visit the red room and then go to the second floor where the green room is located.",
+    "predicted_answer": "B"
+  },
+  {
+    "id": "LTL_dev_30",
+    "question": "Always avoid the yellow room and navigate to the third floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "Option A is correct because it avoids the yellow room and ends up at the third floor as depicted in the question. Option B visits the yellow room which violates the condition to always avoid the yellow room. Option C also visits the yellow room so it is incorrect.",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_31",
+    "question": "Go to the yellow room without going to landmark one. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "Option A stays on the third floor which contains Landmark One so it is incorrect. Option B moves from the yellow room directly to Landmark One which violates the condition of not going to Landmark One. The correct answer is C as it avoids the third floor and goes to the yellow room.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_32",
+    "question": "Without stepping outside of the orange room, go to landmark one. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "The orange room is on the third floor so option A is correct as it stays on the third floor. Option B does not visit the third floor which is incorrect. Option C visits the second floor but never goes to the third floor, hence it is also incorrect.",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_33",
+    "question": "Go to the first floor by first going to the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "Option A is correct because it goes to the second floor before going to the first floor. Option B does not go to the second floor and option C does not go to the first floor.",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_34",
+    "question": "Navigate to the third floor always avoiding the blue room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "Option A and C visit the blue room which violates the condition to always avoid the blue room. Option B is the correct answer because it avoids the blue room and ends up at the third floor as depicted in the question.",
+    "predicted_answer": "B"
+  },
+  {
+    "id": "LTL_dev_35",
+    "question": "Go to landmark one always avoiding the orange room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "Option A is incorrect as it does not go to Landmark One. Option B visits the orange room which violates the condition of always avoiding the orange room. The correct answer is C because it goes to Landmark One and avoids the orange room.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_36",
+    "question": "Go to or through the second floor while avoiding going through the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "The drone needs to go to or through the second floor while avoiding going through the green room. Option A is incorrect as it does not visit the second floor. Option B visits the green room which violates the condition of avoiding the green room. The correct answer is C because it avoids the green room and stays on the first floor.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_37",
+    "question": "Go to the green room without ever leaving the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "The drone needs to go to the green room without ever leaving the second floor. Option A visits the purple room which is not on the second floor so it is incorrect. Option B does not visit the green room as it stays on the first and third floors. The correct answer is C because the drone remains in the green room the whole time.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_38",
+    "question": "Go through landmark one before going to the red room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "The drone needs to go through landmark one before going to the red room. Option A does not visit landmark one so it is incorrect. Options B and C do not visit the red room as they remain at landmark one. The correct answer is A as the drone goes to the yellow or blue room which are on the first floor.",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_39",
+    "question": "Go through landmark one to the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "The drone needs to go through landmark one to the second floor. Option A does not visit the second floor so it is incorrect. Options B and C do not visit landmark one as it is on the third floor. The correct answer is B as the drone goes to the green room which is on the second floor.",
+    "predicted_answer": "B"
+  },
+  {
+    "id": "LTL_dev_40",
+    "question": "Don't go into the blue room until going to landmark one. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "The drone needs to not go into the blue room until going to landmark one. Option A is incorrect as it goes into the blue room before visiting landmark one. Options B does not visit the blue room at all so it is also incorrect. The correct answer is C as the drone visits landmark one and then enters the blue room.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_41",
+    "question": "Go to the second floor while always avoiding the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "The question asks us to avoid the green room. Option A visits the green room so it is incorrect. Options B and C do not visit the green room but option B does not end up at the second floor as the orange room is on the third floor. The correct answer is C because it avoids the green room and ends up at the second floor.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_42",
+    "question": "Avoid the purple room until after going to the third floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "Option A visits the purple room before going to the third floor which violates the condition. Option B does not visit the purple room but it also does not go to the third floor so it is incorrect. The correct answer is C as it avoids the purple room until after going to the third floor.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_43",
+    "question": "Go to the first floor and then go to the purple room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "The drone needs to go to the first floor and then go to the purple room. Option A is incorrect as it does not visit the first floor. Option B visits the first floor but does not go to the purple room afterwards. The correct answer is C because the drone goes to the purple room which is on the third floor and then goes to either the red or yellow room which are both on the first floor.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_44",
+    "question": "Navigate to the orange room, always avoiding the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "Option A visits the green room which violates the condition of always avoiding the green room. Option B does not visit the orange room so it is incorrect. The correct answer is C as the drone can go through either the yellow or red room and then move to the orange room while passing the second floor.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_45",
+    "question": "Always avoid the purple room , go to the first floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "Option A visits the first floor which is correct. However, it also visits the green room which violates the condition of always avoiding the purple room. Option B does not visit the first floor so it is incorrect. The correct answer is C as it avoids the purple room and ends up at the yellow room on the first floor.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_46",
+    "question": "Go to the orange room before going to the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "The drone needs to visit the orange room before visiting the green room. Option A visits the green room first so it is incorrect. Option B does not visit the orange room at all, so it is also incorrect. The correct answer is C as the drone starts in the purple room and then goes to the orange room before going down to the second floor where the green room is located.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_47",
+    "question": "Go to landmark one but do not enter the green room first. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "The question asks for a path that goes to landmark one but does not enter the green room first. Option A is incorrect as it enters the green room before going to landmark one. Option B is also incorrect because it visits the green room after visiting landmark one. The correct answer is C as it goes to the third floor where landmark one is located and avoids entering the green room.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_48",
+    "question": "Navigate to the green room always avoiding the red room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "Option A is incorrect as it does not avoid the red room. Option B is also incorrect because it does not visit the green room. The correct answer is C as it avoids the red room and visits the green room.",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_49",
+    "question": "Go through the orange room before going to the third floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "The drone needs to go through the orange room before going to the third floor. Option A is incorrect as it does not go to the third floor. Option C is also incorrect because it does not visit the orange room. The correct answer is B as the drone goes to the third floor and visits landmark one which is on the same floor as the orange room.",
+    "predicted_answer": "B"
+  },
+  {
+    "id": "LTL_dev_50",
+    "question": "Go to the yellow room without going to the orange room. if you reached the yellow room, now you can go to the orange room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "Option A does not visit the yellow room so it is incorrect. Option B visits the orange room before visiting the yellow room which violates the condition of going to the yellow room without going to the orange room. The correct answer is C as the drone goes to the yellow room from the third floor and then can go to the orange room.",
+    "predicted_answer": "C"
+  }
+]

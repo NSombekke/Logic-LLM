@@ -1,0 +1,352 @@
+[
+  {
+    "id": "LTL_dev_1",
+    "question": "First either go to the second floor or the red room and then go to the first floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_2",
+    "question": "Go to the green room after entering the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "B",
+    "predicted_answer": "B"
+  },
+  {
+    "id": "LTL_dev_3",
+    "question": "Move to landmark 1 without entering the purple room. Then you may stay at landmark 1 or go to the purple room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_4",
+    "question": "Go to the orange room but avoid landmark one. if you reached to the orange room then you can head to landmark one or stay put . Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_5",
+    "question": "go through the third floor and navigate to the green room . Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_6",
+    "question": "always avoid the green room and navigate to the third floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_7",
+    "question": "go through the yellow room to the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "A",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_8",
+    "question": "go to landmark one through the first floor . Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_9",
+    "question": "avoid the red room and go to landmark one . Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_10",
+    "question": "move to landmark one. don't change floors if already on the third floor . Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "B",
+    "predicted_answer": "B"
+  },
+  {
+    "id": "LTL_dev_11",
+    "question": "Go to the first floor through the purple room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_12",
+    "question": "Go through the orange room to the red room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_13",
+    "question": "Go to the first floor via the red room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_14",
+    "question": "Navigate from the second floor to the orange room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_15",
+    "question": "Avoid the green room until navigating to the purple room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_16",
+    "question": "Avoid the green room until you enter the red room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "A",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_17",
+    "question": "Move to the first floor without entering the purple room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "A",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_18",
+    "question": "Go to the purple room by touching the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_19",
+    "question": "Move to the first floor, travelling through landmark one. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_20",
+    "question": "Head to the orange room and then head to the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_21",
+    "question": "Go through the first floor to landmark one. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "B",
+    "predicted_answer": "B"
+  },
+  {
+    "id": "LTL_dev_22",
+    "question": "Navigate to the purple room always avoiding the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "A",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_23",
+    "question": "Navigate to the first floor always avoiding the purple room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "A",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_24",
+    "question": "Move to the red room without changing floors. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_25",
+    "question": "Go to the first floor but do not go through the orange room first. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "A",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_26",
+    "question": "Go through the yellow room to the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "B",
+    "predicted_answer": "B"
+  },
+  {
+    "id": "LTL_dev_27",
+    "question": "Go to the first floor by first going to the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "B",
+    "predicted_answer": "B"
+  },
+  {
+    "id": "LTL_dev_28",
+    "question": "Go to landmark one before navigating to the third floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_29",
+    "question": "Move to the red room then continue to the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_30",
+    "question": "Always avoid the yellow room and navigate to the third floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "A",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_31",
+    "question": "Go to the yellow room without going to landmark one. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_32",
+    "question": "Without stepping outside of the orange room, go to landmark one. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "A",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_33",
+    "question": "Go to the first floor by first going to the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "B",
+    "predicted_answer": "B"
+  },
+  {
+    "id": "LTL_dev_34",
+    "question": "Navigate to the third floor always avoiding the blue room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "B",
+    "predicted_answer": "B"
+  },
+  {
+    "id": "LTL_dev_35",
+    "question": "Go to landmark one always avoiding the orange room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_36",
+    "question": "Go to or through the second floor while avoiding going through the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "A",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_37",
+    "question": "Go to the green room without ever leaving the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_38",
+    "question": "Go through landmark one before going to the red room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "B",
+    "predicted_answer": "B"
+  },
+  {
+    "id": "LTL_dev_39",
+    "question": "Go through landmark one to the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "A",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_40",
+    "question": "Don't go into the blue room until going to landmark one. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "B",
+    "predicted_answer": "B"
+  },
+  {
+    "id": "LTL_dev_41",
+    "question": "Go to the second floor while always avoiding the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "B",
+    "predicted_answer": "B"
+  },
+  {
+    "id": "LTL_dev_42",
+    "question": "Avoid the purple room until after going to the third floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "B",
+    "predicted_answer": "B"
+  },
+  {
+    "id": "LTL_dev_43",
+    "question": "Go to the first floor and then go to the purple room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_44",
+    "question": "Navigate to the orange room, always avoiding the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_45",
+    "question": "Always avoid the purple room , go to the first floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "A",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_46",
+    "question": "Go to the orange room before going to the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_47",
+    "question": "Go to landmark one but do not enter the green room first. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "predicted_reasoning": "C",
+    "predicted_answer": "C"
+  },
+  {
+    "id": "LTL_dev_48",
+    "question": "Navigate to the green room always avoiding the red room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "A",
+    "predicted_answer": "A"
+  },
+  {
+    "id": "LTL_dev_49",
+    "question": "Go through the orange room before going to the third floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "predicted_reasoning": "B",
+    "predicted_answer": "B"
+  },
+  {
+    "id": "LTL_dev_50",
+    "question": "Go to the yellow room without going to the orange room. if you reached the yellow room, now you can go to the orange room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "predicted_reasoning": "A",
+    "predicted_answer": "A"
+  }
+]

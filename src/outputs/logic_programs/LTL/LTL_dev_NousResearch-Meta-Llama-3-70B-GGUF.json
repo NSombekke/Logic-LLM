@@ -1,0 +1,702 @@
+[
+  {
+    "id": "LTL_dev_1",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "First either go to the second floor or the red room and then go to the first floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "options": [
+      "A) First go to the green room and then move the red room",
+      "B) First go to the third floor and stay there",
+      "C) Go to the second floor and then move to the purple room"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  \nfinally  ( or  ( finally  ( the second floor  ) , finally  ( the red room  )  ) & finally  ( the first floor  ) )\n# raw LTL formula of the question:\nF  ( F  ( second_ floor  ) | F  ( red_room  ) ) & F  ( first_floor  )\n# Options\n[{'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': True, 'red_ room': True, 'yellow_ room': False, 'second_ floor': False, 'green_ room': False, 'third_ floor': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (A)\n[{'first_ floor': False, 'red_ room': False, 'yellow_ room': False, 'second_ floor': False, 'green_ room': False, 'third_ floor': True, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'red_ room': False, 'yellow_ room': False, 'second_ floor': False, 'green_ room': False, 'third_ floor': True, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}]  ::: (B)\n[{'first_ floor': False, 'red_ room': False, 'yellow_ room': False, 'second_ floor': True, 'green_ room': False, 'third_ floor': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'red_ room': False, 'yellow_ room': False, 'second_ floor': False, 'green_ room': False, 'third_ floor': True, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_2",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the green room after entering the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "options": [
+      "A) Go to the purple room and then move to the second floor",
+      "B) Only visit the green room",
+      "C) Go to the red room and then move to the orange room passing the second floor"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  \nfinally  ( and  ( the second floor  , finally  ( the green room  )  )  )\n# raw LTL formula of the question:\nF  ( second_ floor & F  ( green_ room  )  )\n# Options\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  :::  (A)\n[{'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  :::  (B)\n[{'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': True, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': True, 'landmark_1': False}]  :::  (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_3",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Move to landmark 1 without entering the purple room. Then you may stay at landmark 1 or go to the purple room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "options": [
+      "A) Enter the purple room and then go to landmark one",
+      "B) Go to the purple room without entering landmark one",
+      "C) Go to the third floor passing landmark one and then go to the purple room"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  not  ( the purple room ) until  ( or  ( finally  ( landmark 1 ) , finally  ( the purple room )  )  )\n# raw LTL formula of the question: \n! purple_room U  ( F  ( landmark_1  | F  ( purple_room  )  )  )\n# Options\n[{'first_loor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': True, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': True}]  ::: (A)\n[{'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': True, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': True, 'orange_room': False, 'landmark_1': False}]  ::: (B)\n[{'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': True}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': True, 'orange_room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_4",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the orange room but avoid landmark one. if you reached to the orange room then you can head to landmark one or stay put . Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "options": [
+      "A) Go to the orange room and then move to the green room",
+      "B) Go to landmark one and then move to the orange room and stay there",
+      "C) Go to the orange room and stay there"
+    ],
+    "raw_logic_programs": [
+      "canonical formular of the question:\nfinally  ( or  ( and  ( the orange room  , not  ( landmark 1  )  )  , and  ( finally  ( landmark 1  )  , always  ( the orange room  )  )  )  )\n# raw LTL formula of the question: \nF  ( orange_room  &  ! landmark_1  | F  ( landmark_1  )  & G  ( orange_room  )  )\n# Options\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': True, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (A)\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': True, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': True, 'landmark_1': True}]  ::: (B)\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': True, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_5",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "go through the third floor and navigate to the green room . Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "options": [
+      "A) Go to landmark one passing the third floor and then move to the green room",
+      "B) Go inside the red room and then move to the green room",
+      "C) From the second floor go to the green room and stay there"
+    ],
+    "raw_logic_programs": [
+      "canonical formular of the question:\nfinally  ( and  ( the third floor  , finally  ( the green room  )  )  )\n# raw LTL formula of the question: \nF  ( third_ floor & F  ( green_room  )  )\n# Options\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': True}, {'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (A)\n[{'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': True, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (B)\n[{'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_6",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "always avoid the green room and navigate to the third floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "options": [
+      "A) From the third floor go to the green room and stay there",
+      "B) Go inside the red room and then move to the green room",
+      "C) Go to the second floor passing the yellow room and then go to the third floor"
+    ],
+    "raw_logic_programs": [
+      "canonical formular of the question:\nfinally  ( and  ( the third floor , not  ( the green room ) ) )\n# raw LTL formula of the question: F  ( third_ floor & ! green_room )\n# Options\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (A)\n[{'first_ floor': True, 'red_ room': True, 'yellow_ room': False, 'second_ floor': False, 'green_ room': False, 'third_ floor': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'red_ room': False, 'yellow_ room': False, 'second_ floor': True, 'green_ room': True, 'third_ floor': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (B)\n[{'first_ floor': True, 'red_ room': False, 'yellow_ room': True, 'second_ floor': False, 'green_ room': False, 'third_ floor': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'red_ room': False, 'yellow_ room': False, 'second_ floor': True, 'green_ room': False, 'third_ floor': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'red_ room': False, 'yellow_ room': False, 'second_ floor': False, 'green_ room': False, 'third_ floor': True, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_7",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "go through the yellow room to the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "options": [
+      "A) From the third floor go to the yellow room then move to the green room",
+      "B) Visit the second floor after going to the red room",
+      "C) Go to the red room and finally go to the yellow room"
+    ],
+    "raw_logic_programs": [
+      "canonical formular of the question:\nfinally  (and  (the yellow room , finally  (the second floor ) ))\n# raw LTL formula of the question: F  (yellow_room & F  (second_1floor ) )\n# Options\n[{'first_1floor': False, 'second_1floor': False, 'third_1floor': True, 'red_1room': False, 'yellow_1room': False, 'green_1room': False, 'purple_1room': True, 'orange_1room': False, 'landmark_11': False}, {'first_1floor': True, 'second_1floor': False, 'third_1floor': False, 'red_1room': False, 'yellow_1room': True, 'green_1room': False, 'purple_1room': False, 'orange_1room': False, 'landmark_11': False}, {'first_1floor': False, 'second_1floor': True, 'third_1floor': False, 'red_1room': False, 'yellow_1room': False, 'green_1room': True, 'purple_1room': False, 'orange_1room': False, 'landmark_11': False}]  ::: (A)\n[{'first_1floor': True, 'red_1room': True, 'yellow_1room': False, 'second_1floor': False, 'green_1room': False, 'third_1floor': False, 'purple_1room': False, 'orange_1room': False, 'landmark_11': False}, {'first_1floor': False, 'red_1room': False, 'yellow_1room': False, 'second_1floor': True, 'green_1room': False, 'third_1floor': False, 'purple_1room': False, 'orange_1room': False, 'landmark_11': False}]  ::: (B)\n[{'first_1floor': True, 'red_1room': True, 'yellow_1room': False, 'second_1floor': False, 'green_1room': False, 'third_1floor': False, 'purple_1room': False, 'orange_1room': False, 'landmark_11': False}, {'first_1floor': False, 'red_1room': False, 'yellow_1room': False, 'second_1floor': True, 'green_1room': False, 'third_1floor': False, 'purple_1room': False, 'orange_1room': False, 'landmark_11': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_8",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "go to landmark one through the first floor . Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "options": [
+      "A) First visit the green room and then go to the yellow room",
+      "B) After visiting the green room, go to landmark one and visit the purple room",
+      "C) Go to the first floor and then move the red room"
+    ],
+    "raw_logic_programs": [
+      "canonical formular of the question:\nfinally  (and  (the first floor , finally  (landmark 1 ) ))\n# raw LTL formula of the question: F  (first_ floor & F  (landmark_1 ) )\n# Options\n[{'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': False, 'yellow_ room': True, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (A)\n[{'first_ floor': False, 'red_ room': False, 'yellow_ room': False, 'second_ floor': True, 'green_ room': True, 'third_ floor': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'red_ room': False, 'yellow_ room': False, 'second_ floor': False, 'green_ room': False, 'third_ floor': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': True}, {'first_ floor': False, 'red_ room': False, 'yellow_ room': False, 'second_ floor': False, 'green_ room': False, 'third_ floor': True, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}]  ::: (B)\n[{'first_ floor': True, 'red_ room': False, 'yellow_ room': False, 'second_ floor': False, 'green_ room': False, 'third_ floor': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': True, 'red_ room': True, 'yellow_ room': False, 'second_ floor': True, 'green_ room': False, 'third_ floor': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_9",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "avoid the red room and go to landmark one . Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "options": [
+      "A) Go to the red room and finally go to the yellow room",
+      "B) From the purple room go to landmark one and finally visit the red room",
+      "C) From the first floor go to landmark one"
+    ],
+    "raw_logic_programs": [
+      "canonical formular of the question:\nfinally  ( and  ( landmark 1  , not  ( the red room  )  ) )\n# raw LTL formula of the question: \nF  ( landmark_1 & !red_room  )\n# Options\n[{'first_ floor': True, 'second_floor': False, 'third_floor': False, 'red_room': True, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': True, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}]  ::: (A)\n[{'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': True, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': True}, {'first_floor': True, 'second_floor': False, 'third_floor': False, 'red_room': True, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}]  ::: (B)\n[{'first_floor': True, 'second_floor': False, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': True}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_10",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "move to landmark one. don't change floors if already on the third floor . Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "options": [
+      "A) From the third floor go to the yellow room and finally go to landmark one",
+      "B) Go to landmark one from the purple room",
+      "C) Ftom the purple room go to the green room and then go to landmark one"
+    ],
+    "raw_logic_programs": [
+      "canonical formular of the question:\nfinally  ( landmark 1 ) &  ( if  ( the third floor )  then always  ( the third floor ) )\n# raw LTL formula of the question: \nF  ( landmark_1 ) &  ( third_floor -> G  ( third_ floor ))\n# Options\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': True, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': True}]  ::: (A)\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': True}]  ::: (B)\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': True}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_11",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the first floor through the purple room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "options": [
+      "A) Enter the purple room, then go to the green room",
+      "B) From the purple room, go to the red room",
+      "C) Stay in the purple room"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  finally  ( and  ( the first floor  , finally  ( the purple room  )  )  )\n# raw LTL formula of the question: F  ( first_ floor  & F  ( purple_room  )  )\n# Options\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (A)\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': True, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (B)\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_12",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go through the orange room to the red room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "options": [
+      "A) Go to the second floor",
+      "B) Fly to the red room and then move to the third floor",
+      "C) From either the orange room or the purple room, fly to the red room"
+    ],
+    "raw_logic_programs": [
+      "canonical formular of the question:\nfinally  ( and  ( the orange room  , finally  ( the red room  )  )  )\n# raw LTL formula of the question: \nF  ( orange_room  & F  ( red_room  )  )\n# Options\n[{'first_ floor ': False, 'second_ floor ': True, 'third_ floor ': False, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': True, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}]  ::: (A)\n[{'first_ floor ': True, 'second_ floor ': False, 'third_ floor ': False, 'red_ room ': True, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}, {'first_ floor ': False, 'second_ floor ': False, 'third_ floor ': True, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': True, 'landmark_1': False}]  ::: (B)\n[{'first_ floor ': False, 'second_ floor ': False, 'third_ floor ': True, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': True, 'orange_ room ': False, 'landmark_1': False}, {'first_ floor ': False, 'second_ floor ': False, 'third_ floor ': True, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': True, 'landmark_1': False}, {'first_ floor ': True, 'second_ floor ': False, 'third_ floor ': False, 'red_ room ': True, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_13",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the first floor via the red room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "options": [
+      "A) Stay on the second floor or third floor",
+      "B) Move down from the purple room to the green room",
+      "C) Go from the red room to the yellow room "
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  \nfinally  ( and  ( the first floor  , finally  ( the red room  )  )  )\n# raw LTL formula of the question:\nF  ( first_ floor  & F  ( red_room  )  )\n# Options\n[{'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  :::  (A)\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  :::  (B)\n[{'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': True, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': False, 'yellow_ room': True, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  :::  (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_14",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Navigate from the second floor to the orange room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "options": [
+      "A) Go to via the green room to the orange room",
+      "B) Go straight to the purple room",
+      "C) Visit the yellow room and go to the second floor"
+    ],
+    "raw_logic_programs": [
+      "canonical formular of the question:\nfinally  ( and  ( the second floor  , finally  ( the orange room  )  )  )\n# raw LTL formula of the question: \nF  ( second_ floor & F  ( orange_ room  )  )\n# Options\n[{'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': True, 'landmark_1': False}]  ::: (A)\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}]  ::: (B)\n[{'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': False, 'yellow_ room': True, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_15",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Avoid the green room until navigating to the purple room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "options": [
+      "A) Go straight to the green room",
+      "B) Start in the purple room and fly to the green room",
+      "C) Fly to the green room via the orange room"
+    ],
+    "raw_logic_programs": [
+      "canonical formular of the question:\nuntil (not (the green room), finally (the purple room))\n# raw LTL formula of the question: \n! green_room U F purple_room\n# Options\n[{'first_loor': False,  'second_floor': True,  'third_floor': False,  'red_room': False,  'yellow_room': False,  'green_room': True,  'purple_room': False,  'orange_room': False,  'landmark_1': False}] ::: (A)\n[{'first_loor': False,  'second_floor': False,  'third_floor': True,  'red_room': False,  'yellow_room': False,  'green_room': False,  'purple_room': True,  'orange_room': False,  'landmark_1': False}, {'first_loor': False,  'second_floor': True,  'third_floor': False,  'red_room': False,  'yellow_room': False,  'green_room': True,  'purple_room': False,  'orange_room': False,  'landmark_1': False}] ::: (B)\n[{'first_loor': False,  'second_floor': False,  'third_floor': True,  'red_room': False,  'yellow_room': False,  'green_room': False,  'purple_room': False,  'orange_room': True,  'landmark_1': False}, {'first_loor': False,  'second_floor': True,  'third_floor': False,  'red_room': False,  'yellow_room': False,  'green_room': True,  'purple_room': False,  'orange_room': False,  'landmark_1': False}] ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_16",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Avoid the green room until you enter the red room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "options": [
+      "A) Passing the red room, go to the orange room",
+      "B) Move down from the green room to the yellow room",
+      "C) Stay on the second floor and go to the green room"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  \nuntil (the red room , not (the green room ))\n# raw LTL formula of the question:\nred_room U ! green_room\n# Options\n[{'first_loor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': True, 'landmark_1': False}, {'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': True, 'landmark_1': False}]  ::: (A)\n[{'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': True, 'second_floor': False, 'third_floor': False, 'red_room': False, 'yellow_room': True, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}]  ::: (B)\n[{'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_17",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Move to the first floor without entering the purple room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "options": [
+      "A) Move straight to the red room",
+      "B) Fly from the orange room to the green room",
+      "C) Via the purple room, move to the orange room"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  \nfinally  ( and  ( the first floor  , not  ( the purple room  )  )  )\n# raw LTL formula of the question:\nF  ( first_ floor  &  ! purple_room  )\n# Options\n[{'first_ floor': True, 'red_ room': True, 'yellow_ room': False, 'second_ floor': False, 'green_ room': False, 'third_ floor': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  :::  (A)\n[{'first_ floor': False, 'red_ room': False, 'yellow_ room': False, 'second_ floor': False, 'green_ room': False, 'third_ floor': True, 'purple_ room': False, 'orange_ room': True, 'landmark_1': False}, {'first_ floor': False, 'red_ room': False, 'yellow_ room': False, 'second_ floor': True, 'green_ room': True, 'third_ floor': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  :::  (B)\n[{'first_ floor': False, 'red_ room': False, 'yellow_ room': False, 'second_ floor': False, 'green_ room': False, 'third_ floor': True, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'red_ room': False, 'yellow_ room': False, 'second_ floor': False, 'green_ room': False, 'third_ floor': True, 'purple_ room': False, 'orange_ room': True, 'landmark_1': False}]  :::  (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_18",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the purple room by touching the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "options": [
+      "A) Stay on the third floor",
+      "B) Fly to the orange room passing the first floor",
+      "C) Start in the red room, move the the green room, and then go to the purple room"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  \nfinally  ( and  ( the purple room  , finally  ( the green room  )  )  )\n# raw LTL formula of the question:\nF  ( purple_room  & F  ( green_room  )  )\n# Options\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}]  ::: (A)\n[{'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (B)\n[{'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': True, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_19",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Move to the first floor, travelling through landmark one. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "options": [
+      "A) Go straight to the yellow room",
+      "B) Fly via the purple room and passing landmark one to the red room",
+      "C) Move to landmark one by passing the purple room"
+    ],
+    "raw_logic_programs": [
+      "canonical formular of the question:\nfinally  ( and  ( the first floor  , finally  ( landmark 1  )  ) )\n# raw LTL formula of the question: \nF  ( first_ floor & F  ( landmark_1  ) )\n# Options\n[{'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': False, 'yellow_ room': True, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (A)\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': True}, {'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': True, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (B)\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': True}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_20",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Head to the orange room and then head to the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "options": [
+      "A) From the purple room, fly to the orange room and lastly fly to the green room",
+      "B) Stay on the third floor",
+      "C) Pass landmark one and then go to the red room"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  \nfinally  ( and  ( the orange room  , finally  ( the second floor  )  )  )\n# raw LTL formula of the question:\nF  ( orange_room & F  ( second_ floor  )  )\n# Options\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': True, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (A)\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}]  ::: (B)\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': True}, {'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': True, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_21",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go through the first floor to landmark one. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "options": [
+      "A) First go to the second floor and then move to landmark 1",
+      "B) First go to the first floor and then move to landmark 1",
+      "C) Go to the first floor and then move to the second floor"
+    ],
+    "raw_logic_programs": [
+      "canonical formular of the question:\nfinally (and (the first floor, finally (landmark one)))\n# raw LTL formula of the question: F (first_floor & F (landmark_1))\n# Options\n[{'first_': False, 'second_': True, 'third_': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_one': False}, {'first_': False, 'second_': False, 'third_': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_one': True}] ::: (A)\n[{'first_': True, 'second_': False, 'third_': False, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_one': False}, {'first_': False, 'second_': False, 'third_': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_one': True}] ::: (B)\n[{'first_': True, 'second_': False, 'third_': False, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_one': False}, {'first_': False, 'second_': True, 'third_': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_one': False}] ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_22",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Navigate to the purple room always avoiding the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "options": [
+      "A) First go to the first floor and then move to the third floor and then move to the purple room",
+      "B) First go to the second floor and then move to the green room and then move to the third floor and then move to the purple room",
+      "C) First go to the third floor and then move to the second floor and then move to the green room and then move to the purple room"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  always avoid the green room and navigate to the purple room. Which one of the following is a possible path for the drone to follow?\n# raw LTL formula of the question:\nG (!green_room) & F (purple_room)\n# Options\n[{'first_ floor': True, 'second_floor': False, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': True, 'orange_room': False, 'landmark_1': False}]  ::: (A)\n[{'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': True, 'orange_room': False, 'landmark_1': False}]  ::: (B)\n[{'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': True, 'orange_room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_23",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Navigate to the first floor always avoiding the purple room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "options": [
+      "A) First go to the third floor and then move to the second floor and then move to the first floor",
+      "B) First go to the second floor and then move to the third floor and then move to the purple room and then move to the first floor",
+      "C) First go to the the purple room and then move to the first floor"
+    ],
+    "raw_logic_programs": [
+      "canonical formular of the question:  finally  ( and  ( the first floor  , always  ( not  ( the purple room  )  )  )  )\n# raw LTL formula of the question:\nF  ( first_1  & G  ! purple_room  )\n# Options\n[{'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': True, 'second_floor': False, 'third_floor': False, 'red_room': False, 'yellow_room': True, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}]  ::: (A)\n[{'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': True, 'orange_room': False, 'landmark_1': False}, {'first_floor': True, 'second_floor': False, 'third_floor': False, 'red_room': False, 'yellow_room': True, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}]  ::: (B)\n[{'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': True, 'orange_room': False, 'landmark_1': False}, {'first_floor': True, 'second_floor': False, 'third_floor': False, 'red_room': False, 'yellow_room': True, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_24",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Move to the red room without changing floors. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "options": [
+      "A) First go to the second floor and then move to the red room",
+      "B) First go to the red room and then move to the second floor",
+      "C) First go to the first floor and then move to the red room"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  finally  ( the red room )\n# raw LTL formula of the question: F  ( red_room )\n# Options\n[{'first_': False, 'second_': True, 'third_': False, 'red_': False, 'yellow_': False, 'green_': True, 'purple_': False, 'orange_': False, 'landmark_1': False}, {'first_': True, 'second_': False, 'third_': False, 'red_': True, 'yellow_': False, 'green_': False, 'purple_': False, 'orange_': False, 'landmark_1': False}]  ::: (A)\n[{'first_': True, 'second_': False, 'third_': False, 'red_': True, 'yellow_': False, 'green_': False, 'purple_': False, 'orange_': False, 'landmark_1': False}, {'first_': False, 'second_': True, 'third_': False, 'red_': False, 'yellow_': False, 'green_': True, 'purple_': False, 'orange_': False, 'landmark_1': False}]  ::: (B)\n[{'first_': True, 'second_': False, 'third_': False, 'red_': False, 'yellow_': False, 'green_': False, 'purple_': False, 'orange_': False, 'landmark_1': False}, {'first_': True, 'second_': False, 'third_': False, 'red_': True, 'yellow_': False, 'green_': False, 'purple_': False, 'orange_': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_25",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the first floor but do not go through the orange room first. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "options": [
+      "A) First go to the second floor and then move to first floor",
+      "B) First go to the green room and then move to the third floor",
+      "C) First go to the purple room and then move to the orange room and then move to the first floor"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  finally (the first floor & not (finally (the orange room)))\n# raw LTL formula of the question: F(first_floor & !F(orange_room))\n# Options\n[{'first_': False, 'second_': True, 'third_': False, 'red_': False, 'yellow_': False, 'green_': True, 'purple_': False, 'orange_': False, 'landmark_1': False}, {'first_': True, 'second_': False, 'third_': False, 'red_': False, 'yellow_': True, 'green_': False, 'purple_': False, 'orange_': False, 'landmark_1': False}] ::: (A)\n[{'first_': False, 'second_': True, 'third_': False, 'red_': False, 'yellow_': False, 'green_': True, 'purple_': False, 'orange_': False, 'landmark_1': False}, {'first_': False, 'second_': False, 'third_': True, 'red_': False, 'yellow_': False, 'green_': False, 'purple_': True, 'orange_': False, 'landmark_1': False}] ::: (B)\n[{'first_': False, 'second_': False, 'third_': True, 'red_': False, 'yellow_': False, 'green_': False, 'purple_': True, 'orange_': False, 'landmark_1': False}, {'first_': False, 'second_': False, 'third_': True, 'red_': False, 'yellow_': False, 'green_': False, 'purple_': False, 'orange_': True, 'landmark_1': False}, {'first_': True, 'second_': False, 'third_': False, 'red_': False, 'yellow_': True, 'green_': False, 'purple_': False, 'orange_': False, 'landmark_1': False}] ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_26",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go through the yellow room to the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "options": [
+      "A) First go to the first floor and then move to the yellow room and then move to the third floor and then move to the orange room",
+      "B) First go to the yellow room and then move to the green room",
+      "C) First go to the second floor and then move to the green room"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  finally (and (the yellow room, finally (the green room)))\n# raw LTL formula of the question: F(yellow_room & F(green_room))\n# Options\n[{'first_': True, 'second_': False, 'third_': False, 'red_': False, 'yellow_': False, 'green_': False, 'purple_': False, 'orange_': False, 'landmark_1': False}, {'first_': True, 'second_': False, 'third_': False, 'red_': False, 'yellow_': True, 'green_': False, 'purple_': False, 'orange_': False, 'landmark_1': False}, {'first_': False, 'second_': False, 'third_': True, 'red_': False, 'yellow_': False, 'green_': False, 'purple_': False, 'orange_': True, 'landmark_1': False}]  ::: (A)\n[{'first_': True, 'second_': False, 'third_': False, 'red_': False, 'yellow_': True, 'green_': False, 'purple_': False, 'orange_': False, 'landmark_1': False}, {'first_': False, 'second_': True, 'third_': False, 'red_': False, 'yellow_': False, 'green_': True, 'purple_': False, 'orange_': False, 'landmark_1': False}]  ::: (B)\n[{'first_': False, 'second_': True, 'third_': False, 'red_': False, 'yellow_': False, 'green_': True, 'purple_': False, 'orange_': False, 'landmark_1': False}, {'first_': False, 'second_': True, 'third_': False, 'red_': False, 'yellow_': False, 'green_': True, 'purple_': False, 'orange_': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_27",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the first floor by first going to the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "options": [
+      "A) First go to the first floor and then move to the second floor",
+      "B) First go to the second floor and then move to the first floor",
+      "C) First go to the third floor and then move to the first floor"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  finally  ( and  ( the second floor  , finally  ( the first floor  )  )  )\n# raw LTL formula of the question: F  ( second_ floor & F  ( first_ floor  )  )\n# Options\n[{'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': True, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (A)\n[{'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': False, 'yellow_ room': True, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (B)\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': False, 'yellow_ room': True, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_28",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to landmark one before navigating to the third floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "options": [
+      "A) First go to the third floor and then move to landmark 1",
+      "B) First go to the first floor and then move to landmark 1",
+      "C) First go to the second floor and then move to landmark 1 and then move to the third floor"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  \nfinally (and (landmark 1, finally (the third floor)))\n# raw LTL formula of the question:\nF (landmark_1 & F (third_ floor))\n# Options\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': True}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': True}]  ::: (A)\n[{'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': True}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': True}]  ::: (B)\n[{'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': True}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': True}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_29",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Move to the red room then continue to the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "options": [
+      "A) First go to the second floor and then move to the red room and then move to the green room",
+      "B) First go to the first floor and then move to the red room and then move to the second floor and then move the green room",
+      "C) First go to the third floor and then move to the red room and then move to the green room"
+    ],
+    "raw_logic_programs": [
+      "canonical formular of the question:  finally  ( and  ( the red room  , finally  ( the green room  )  )  )\n# raw LTL formula of the question:\nF  ( red_room  & F  ( green_room  )  )\n# Options\n[{'first_ floor ': False, 'second_ floor ': True, 'third_ floor ': False, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}, {'first_ floor ': False, 'second_ floor ': False, 'third_ floor ': True, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}, {'first_ floor ': True, 'second_ floor ': False, 'third_ floor ': False, 'red_ room ': True, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}]  :::  (A)\n[{'first_ floor ': True, 'second_ floor ': False, 'third_ floor ': False, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}, {'first_ floor ': True, 'second_ floor ': False, 'third_ floor ': False, 'red_ room ': True, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}, {'first_ floor ': False, 'second_ floor ': True, 'third_ floor ': False, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': True, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}]  :::  (B)\n[{'first_ floor ': False, 'second_ floor ': False, 'third_ floor ': True, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}, {'first_ floor ': False, 'second_ floor ': False, 'third_ floor ': True, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}, {'first_ floor ': False, 'second_ floor ': False, 'third_ floor ': True, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}]  :::  (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_30",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Always avoid the yellow room and navigate to the third floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "options": [
+      "A) First go to the second floor and then move to the third floor",
+      "B) First go to the first floor and then move to the yellow room and then move to the third floor",
+      "C) First go to the third floor and then move to the yellow room"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  always avoid the yellow room and navigate to the third floor. Which one of the following is a possible path for the drone to follow?\n# raw LTL formula of the question: G (!yellow_room & F (third_floor))\n# Options\n[{'first_': False, 'second_': True, 'third_': False, 'red_': False, 'yellow_': False, 'green_': True, 'purple_': False, 'orange_': False, 'landmark_1': False}, {'first_': False, 'second_': False, 'third_': True, 'red_': False, 'yellow_': False, 'green_': False, 'purple_': True, 'orange_': False, 'landmark_1': False}]  ::: (A)\n[{'first_': True, 'second_': False, 'third_': False, 'red_': False, 'yellow_': False, 'green_': False, 'purple_': False, 'orange_': False, 'landmark_1': False}, {'first_': True, 'second_': False, 'third_': False, 'red_': False, 'yellow_': True, 'green_': False, 'purple_': False, 'orange_': False, 'landmark_1': False}, {'first_': False, 'second_': False, 'third_': True, 'red_': False, 'yellow_': False, 'green_': False, 'purple_': True, 'orange_': False, 'landmark_1': False}]  ::: (B)\n[{'first_': False, 'second_': False, 'third_': True, 'red_': False, 'yellow_': False, 'green_': False, 'purple_': True, 'orange_': False, 'landmark_1': False}, {'first_': True, 'second_': False, 'third_': False, 'red_': False, 'yellow_': True, 'green_': False, 'purple_': False, 'orange_': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_31",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the yellow room without going to landmark one. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "options": [
+      "A) Stay on the third floor.",
+      "B) Move from the yellow room directly to landmark one.",
+      "C) Avoid the third floor, and move to the yellow room. "
+    ],
+    "raw_logic_programs": [
+      "canonical formular of the question:\nfinally  ( and  ( the yellow room  , not  ( finally  ( landmark 1  )  )  )  )\n# raw LTL formula of the question: \nF  ( yellow_room  &  ! F  ( landmark_1  )  )\n# Options\n[{'first_ floor ': False, 'second_ floor ': False, 'third_ floor ': True, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': True, 'orange_ room ': False, 'landmark_1': False}, {'first_ floor ': False, 'second_ floor ': False, 'third_ floor ': True, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': True, 'orange_ room ': False, 'landmark_1': False}]  ::: (A)\n[{'first_ floor ': True, 'second_ floor ': False, 'third_ floor ': False, 'red_ room ': False, 'yellow_ room ': True, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}, {'first_ floor ': False, 'second_ floor ': False, 'third_ floor ': True, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': True}]  ::: (B)\n[{'first_ floor ': True, 'second_ floor ': False, 'third_ floor ': False, 'red_ room ': False, 'yellow_ room ': True, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_32",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Without stepping outside of the orange room, go to landmark one. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "options": [
+      "A) Always stay on the third floor",
+      "B) Never move to the third floor and eventually go to the red room.",
+      "C) You are on the first floor untill you move to the second floor."
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  not  ( finally  ( landmark 1  ) )\n# raw LTL formula of the question: ! F  ( landmark_1  )\n# Options\n[{'first_loor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': True, 'landmark_1': False}] ::: (A)\n[{'first_floor': True, 'second_floor': False, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': True, 'second_floor': False, 'third_floor': False, 'red_room': True, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}] ::: (B)\n[{'first_floor': True, 'second_floor': False, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_1': False}] ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_33",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the first floor by first going to the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "options": [
+      "A) Before you reach the first floor you stop by the second floor.",
+      "B) Move rooms on the first floor but remain on the floor.",
+      "C) Move directly to the third floor without passing through the blue room."
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  finally  ( and  ( the first floor  , finally  ( the second floor  )  ) )\n# raw LTL formula of the question: F  ( first_ floor & F  ( second_floor  ) )\n# Options\n[{'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': True, 'red_ room': False, 'yellow_ room': True, 'second_ floor': False, 'green_ room': False, 'third_ floor': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (A)\n[{'first_ floor': True, 'red_ room': True, 'yellow_ room': False, 'second_ floor': False, 'green_ room': False, 'third_ floor': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': True, 'red_ room': False, 'yellow_ room': True, 'second_ floor': False, 'green_ room': False, 'third_ floor': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (B)\n[{'first_ floor': False, 'red_ room': False, 'yellow_ room': False, 'second_ floor': True, 'green_ room': False, 'third_ floor': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'red_ room': False, 'yellow_ room': False, 'second_ floor': False, 'green_ room': False, 'third_ floor': True, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_34",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Navigate to the third floor always avoiding the blue room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "options": [
+      "A) Either go to the red room or to the yellow room before visiting the blue room.",
+      "B) Visit the purple room or not the orange room by never entering the blue room.",
+      "C) From the green room fly towards the yellow roon passing the blue room."
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  always  ( and  ( the third floor  , not  ( the blue room  )  )  )\n# raw LTL formula of the question: G  ( third_ floor & !blue_room  )\n# Options\n[{'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': True, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (A)\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': True, 'landmark_1': False}]  ::: (B)\n[{'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': False, 'yellow_ room': True, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_35",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to landmark one always avoiding the orange room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "options": [
+      "A) Stay away from landmark one and avoid the orange room altogether",
+      "B) Pass through the orange room briefly and then proceed to landmark one.",
+      "C) Reach landmark one directly without entering the orange room."
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  \nfinally  ( and  ( landmark 1  , not  ( the orange room  )  )  )\n# raw LTL formula of the question:\nF  ( landmark_1 & !orange_room  )\n# Options\n[{'first_loor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': True, 'orange_room': False, 'landmark_1': False}]  ::: (A)\n[{'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': True, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': True}]  ::: (B)\n[{'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': True}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': True}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_36",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to or through the second floor while avoiding going through the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "options": [
+      "A) Reach the first floor directly after visiting the second floor, without passing through the green room.",
+      "B) Pass through the green room briefly before moving to the second floor.",
+      "C) Skip the second floor entirely and stay on the first floor."
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  or  ( finally  ( the second floor  ) , until  ( not  ( the green room  )  , finally  ( the second floor  )  ) )\n# raw LTL formula of the question: F  ( second_ floor  | U  ( ! green_room  , F  ( second_floor  )  ) )\n# Options\n[{'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (A)\n[{'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (B)\n[{'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_37",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the green room without ever leaving the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "options": [
+      "A) Swing by the purple room after entering the green room.",
+      "B) You are on the third fllor or on the second floor untill you are on the first floor.",
+      "C) Remain in the green room the whole time."
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  and ( always ( not ( or ( the first floor , the third floor ) ) ) , finally ( the green room ) )\n# raw LTL formula of the question: G (! (first_loor | third_floor)) & F (green_room)\n# Options\n[{'first_loor': False, 'second_loor': True, 'third_loor': False, 'red_oom': False, 'yellow_oom': False, 'green_oom': True, 'purple_oom': False, 'orange_oom': False, 'landmark_one': False}, {'first_loor': False, 'second_loor': False, 'third_loor': True, 'red_oom': False, 'yellow_oom': False, 'green_oom': False, 'purple_oom': True, 'orange_oom': False, 'landmark_one': False}] ::: (A)\n[{'first_loor': False, 'second_loor': True, 'third_loor': False, 'red_oom': False, 'yellow_oom': False, 'green_oom': False, 'purple_oom': False, 'orange_oom': False, 'landmark_one': False}, {'first_loor': True, 'second_loor': False, 'third_loor': False, 'red_oom': False, 'yellow_oom': False, 'green_oom': False, 'purple_oom': False, 'orange_oom': False, 'landmark_one': False}] ::: (B)\n[{'first_loor': False, 'second_loor': True, 'third_loor': False, 'red_oom': False, 'yellow_oom': False, 'green_oom': True, 'purple_oom': False, 'orange_oom': False, 'landmark_one': False}, {'first_loor': False, 'second_loor': True, 'third_loor': False, 'red_oom': False, 'yellow_oom': False, 'green_oom': True, 'purple_oom': False, 'orange_oom': False, 'landmark_one': False}] ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_38",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go through landmark one before going to the red room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "options": [
+      "A) Go to the yellow room or to the blue room and visit no other landmark and no other room.",
+      "B) Remain at landmark one untill you go to the red room on the first floor. ",
+      "C) Remain at landmark one untill you go to the purple room and stay there."
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  finally  ( or  ( landmark 1  , and  ( not  ( other landmarks  )  , and  ( not  ( other rooms  )  , or  ( yellow_room  , blue_room  )  )  )  )  )\n# raw LTL formula of the question: F  ( landmark_1  |  ( ! other_landmarks  &  ( ! other_rooms  &  ( yellow_room  | blue_room  )  )  )  )\n# Options\n[{'first_loor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': True, 'second_floor': False, 'third_floor': False, 'red_room': False, 'yellow_room': True, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}]  ::: (A)\n[{'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': True}, {'first_floor': True, 'second_floor': False, 'third_floor': False, 'red_room': True, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}]  ::: (B)\n[{'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': True}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': True, 'orange_room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_39",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go through landmark one to the second floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "options": [
+      "A) On your way from the orange room to the yellow room sweep by the landmark one.",
+      "B) On your way from the green room to the red room pass through the blue room, don't enter the third floor.",
+      "C) Avoid the third floor altogether."
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  and ( finally ( the second floor ) , finally ( landmark 1 ) )\n# raw LTL formula of the question: F ( second_ floor & F ( landmark_1 ))\n# Options\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': True, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': True}, {'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': False, 'yellow_ room': True, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (A)\n[{'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': True, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (B)\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': True, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_40",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Don't go into the blue room until going to landmark one. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "options": [
+      "A) From the blue room move to landmark one and then into the blue room again.",
+      "B) From the blue room move to the landmark one.",
+      "C) From the purple room go to landmark one and then into the blue room."
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  until  ( landmark 1 , not  ( the blue room ) )\n# raw LTL formula of the question: U  ( landmark_1 , ! blue_room  )\n# Options\n[{'first_loor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': True}, {'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}]  ::: (A)\n[{'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': True}]  ::: (B)\n[{'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': True, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': True}, {'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_41",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the second floor while always avoiding the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "options": [
+      "A) Go to the yellow room then go to the green room",
+      "B) First move to the orange room and then move down one floor",
+      "C) First go to the orange room and then move to the purple room"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  \nfinally ( and ( second_floor , always ( not ( green_room ) ) ) )\n# raw LTL formula of the question:\nF ( second_floor & G ( ! green_room ) )\n# Options\n[{'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': False, 'yellow_ room': True, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (A)\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': True, 'landmark_1': False}, {'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (B)\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': True, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_42",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Avoid the purple room until after going to the third floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "options": [
+      "A) Starting from the purple room move to landmark one and then stay at the third floor",
+      "B) From the first floor move down one floor and visit the green room",
+      "C) First move to the orange room and then go to the purple room"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  \nuntil (the third floor, not (the purple room))\n# raw LTL formula of the question:\nthird_ floor U !purple_room\n# Options\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': True}] ::: (A)\n[{'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}] ::: (B)\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': True, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}] ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_43",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the first floor and then go to the purple room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "options": [
+      "A) Starting from the green room move to the purple room after visiting the orange room",
+      "B) Move from the red room to the yellow room and go the the purple room afterwards",
+      "C) First go to the purple room and then go to the red or yellow room"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  finally (and (the first floor, finally (the purple room)))\n# raw LTL formula of the question: F (first_ floor & F (purple_room))\n# Options\n[{'first_ floor': False, 'second_ floor': True, 'third_ floor': False, 'red_ room': False, 'yellow_ room': False, 'green_ room': True, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': True, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}]  ::: (A)\n[{'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': True, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': False, 'yellow_ room': True, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}]  ::: (B)\n[{'first_ floor': False, 'second_ floor': False, 'third_ floor': True, 'red_ room': False, 'yellow_ room': False, 'green_ room': False, 'purple_ room': True, 'orange_ room': False, 'landmark_1': False}, {'first_ floor': True, 'second_ floor': False, 'third_ floor': False, 'red_ room': True, 'yellow_ room': False, 'green_ room': False, 'purple_ room': False, 'orange_ room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_44",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Navigate to the orange room, always avoiding the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "options": [
+      "A) From the orange room go to the green room after going through the yellow room",
+      "B) First go to the yellow room and then move to the purple froom afterwards",
+      "C) Go from the yellow or red room to the orange room while passing the second floor"
+    ],
+    "raw_logic_programs": [
+      "canonical formular of the question:  finally  ( and  ( the orange room  , always  ( not  ( the green room  )  )  )  )\n# raw LTL formula of the question:\nF  ( orange_room  & G  ( ! green_room  )  )\n# Options\n[{'first_loor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': True, 'second_floor': False, 'third_floor': False, 'red_room': False, 'yellow_room': True, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': True, 'landmark_1': False}]  ::: (A)\n[{'first_floor': True, 'second_floor': False, 'third_floor': False, 'red_room': False, 'yellow_room': True, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': True, 'orange_room': False, 'landmark_1': False}]  ::: (B)\n[{'first_floor': True, 'second_floor': False, 'third_floor': False, 'red_room': False, 'yellow_room': True, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': True, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_45",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Always avoid the purple room , go to the first floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "options": [
+      "A) Move to the red room after visiting the green room or the third floor",
+      "B) Go up one floor from the green room and go to the orange room",
+      "C) From the second floor move to the purple room and then go to the yellow room"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  always avoid the purple room , go to the first floor. Which one of the following is a possible path for the drone to follow?\n# raw LTL formula of the question: \nG (!purple_room) & F (first_floor)\n# Options\n[{'first_loor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}]  ::: (A)\n[{'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': True, 'landmark_1': False}]  ::: (B)\n[{'first_floor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': True, 'orange_room': False, 'landmark_1': False}, {'first_floor': True, 'second_floor': False, 'third_floor': False, 'red_room': False, 'yellow_room': True, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_46",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the orange room before going to the green room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "options": [
+      "A) Start in the green room and move to the orange room after going to landmark one",
+      "B) From the third floor move to the second floor and go into the green room",
+      "C) Starting in the purple room move to the orange room and go down to the green room"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  finally  ( and  ( the orange room  , before  ( the green room  )  )  )\n# raw LTL formula of the question: F  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ( orange_room  & X  ( ! green_room U  ("
+    ]
+  },
+  {
+    "id": "LTL_dev_47",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to landmark one but do not enter the green room first. Which one of the following is a possible path for the drone to follow?",
+    "answer": "B",
+    "options": [
+      "A) Start on the second floor and go to landmark one after going to the green room",
+      "B) First visit landmark one and then move to the green room",
+      "C) After going to the third floor go to the yellow room"
+    ],
+    "raw_logic_programs": [
+      "canonical formular of the question:\nfinally  ( landmark 1 ) & not  ( finally  ( the green room ) )\n# raw LTL formula of the question: \nF  ( landmark_1 ) & ! F  ( green_room )\n# Options\n[{'first_ floor ': False, 'second_ floor ': True, 'third_ floor ': False, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': True, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}, {'first_ floor ': False, 'second_ floor ': False, 'third_ floor ': True, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': True}]  ::: (A)\n[{'first_ floor ': False, 'second_ floor ': False, 'third_ floor ': True, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': True}, {'first_ floor ': False, 'second_ floor ': True, 'third_ floor ': False, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': True, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}]  ::: (B)\n[{'first_ floor ': False, 'second_ floor ': False, 'third_ floor ': True, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}, {'first_ floor ': True, 'second_ floor ': False, 'third_ floor ': False, 'red_ room ': False, 'yellow_ room ': True, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_48",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Navigate to the green room always avoiding the red room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "options": [
+      "A) From the first floor move to the second floor and go into the green room",
+      "B) Move to landmark one and go into the purple room or the second floor",
+      "C) First move from the first floor to the red room and go towards the green room afterwards"
+    ],
+    "raw_logic_programs": [
+      "canonical formular of the question:  finally  ( and  ( the green room  , not  ( the red room  )  )  )\n# raw LTL formula of the question:\nF  ( green_room  &  ! red_room  )\n# Options\n[{'first_ floor ': True, 'second_ floor ': False, 'third_ floor ': False, 'red_ room ': False, 'yellow_ room ': True, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}, {'first_ floor ': False, 'second_ floor ': True, 'third_ floor ': False, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': True, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}]  :::  (A)\n[{'first_ floor ': False, 'second_ floor ': False, 'third_ floor ': True, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': True}, {'first_ floor ': False, 'second_ floor ': False, 'third_ floor ': True, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': True, 'orange_ room ': False, 'landmark_1': False}]  :::  (B)\n[{'first_ floor ': True, 'second_ floor ': False, 'third_ floor ': False, 'red_ room ': True, 'yellow_ room ': False, 'green_ room ': False, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}, {'first_ floor ': False, 'second_ floor ': True, 'third_ floor ': False, 'red_ room ': False, 'yellow_ room ': False, 'green_ room ': True, 'purple_ room ': False, 'orange_ room ': False, 'landmark_1': False}]  :::  (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_49",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go through the orange room before going to the third floor. Which one of the following is a possible path for the drone to follow?",
+    "answer": "A",
+    "options": [
+      "A) Start at the orange room and stay on the same floor",
+      "B) Move to the third floor and visit landmark one before going to the orange room",
+      "C) From the yellow room go to the green room without going to the orange room"
+    ],
+    "raw_logic_programs": [
+      "canonical formular of the question:\nfinally (and (the orange room, finally (the third floor)))\n# raw LTL formula of the question: F (orange_room & F (third_floor))\n# Options\n[{'first_': False, 'second_': False, 'third_': True, 'red_': False, 'yellow_': False, 'green_': False, 'purple_': False, 'orange_': True, 'landmark_1': False}] ::: (A)\n[{'first_': False, 'second_': False, 'third_': True, 'red_': False, 'yellow_': False, 'green_': False, 'purple_': False, 'orange_': False, 'landmark_1': True}, {'first_': False, 'second_': False, 'third_': True, 'red_': False, 'yellow_': False, 'green_': False, 'purple_': False, 'orange_': True, 'landmark_1': False}] ::: (B)\n[{'first_': True, 'red_': False, 'yellow_': True, 'second_': False, 'green_': False, 'third_': False, 'purple_': False, 'orange_': False, 'landmark_1': False}, {'first_': False, 'red_': False, 'yellow_': False, 'second_': True, 'green_': True, 'third_': False, 'purple_': False, 'orange_': False, 'landmark_1': False}] ::: (C)"
+    ]
+  },
+  {
+    "id": "LTL_dev_50",
+    "context": "Our environment is a gridworld with 3 floors, each consisting of rooms made up of grid cells. Each floor has distinct rooms: the first floor contains a red room and a yellow room, the second floor contains a green room, and the third floor includes a purple room, an orange room, and Landmark one. All three floors are connected by a blue room, which is present on each floor. The drone's movement is limited to one floor and not more than one room at a timestep within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.",
+    "question": "Go to the yellow room without going to the orange room. if you reached the yellow room, now you can go to the orange room. Which one of the following is a possible path for the drone to follow?",
+    "answer": "C",
+    "options": [
+      "A) Move from the green room to the red room or go to the red room directly",
+      "B) Go to the yellow room from the orange room and then move back to the orange room",
+      "C) From the third floor move into the yellow room after going into the purple room"
+    ],
+    "raw_logic_programs": [
+      "# canonical formular of the question:  ( until  ( not  ( the orange room  )  , finally  ( the yellow room  )  )  & if  ( the yellow room  , then  ( finally  ( the orange room  )  )  )  )\n# raw LTL formula of the question: \n( ! orange_room U F yellow_room  )  &  ( yellow_room -> F orange_room  )\n# Options\n[{'first_loor': False, 'second_floor': True, 'third_floor': False, 'red_room': False, 'yellow_room': False, 'green_room': True, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': True, 'second_floor': False, 'third_floor': False, 'red_room': True, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}]  ::: (A)\n[{'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': True, 'landmark_1': False}, {'first_floor': True, 'second_floor': False, 'third_floor': False, 'red_room': False, 'yellow_room': True, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}, {'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': False, 'orange_room': True, 'landmark_1': False}]  ::: (B)\n[{'first_floor': False, 'second_floor': False, 'third_floor': True, 'red_room': False, 'yellow_room': False, 'green_room': False, 'purple_room': True, 'orange_room': False, 'landmark_1': False}, {'first_floor': True, 'second_floor': False, 'third_floor': False, 'red_room': False, 'yellow_room': True, 'green_room': False, 'purple_room': False, 'orange_room': False, 'landmark_1': False}]  ::: (C)"
+    ]
+  }
+]

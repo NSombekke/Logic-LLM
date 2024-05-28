@@ -1,0 +1,37 @@
+#!/bin/bash
+
+#SBATCH --partition=gpu
+#SBATCH --gpus=2
+#SBATCH --job-name=LTL_Logic_program
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=18
+#SBATCH --time=6:00:00
+#SBATCH --output=./slurm_output/slurm_output_%A.out
+
+module purge
+module load 2023
+module load Anaconda3/2023.07-2
+module load PyTorch/2.1.2-foss-2023a-CUDA-12.1.1
+source activate DL
+
+cd $HOME/Logic-LLM/
+
+MODEL_NAME="NousResearch/Meta-Llama-3-70B-GGUF"
+Q_TYPE="Q4_K_M"
+
+API_KEY="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"
+DATASET_NAMES=("LTL")
+
+for dataset_name in "${DATASET_NAMES[@]}"
+do
+    echo "Running logic program for $dataset_name with $MODEL_NAME model"
+    python src/models/logic_program.py \
+        --api_key "$API_KEY" \
+        --dataset_name "$dataset_name" \
+        --framework "huggingface" \
+        --split dev \
+        --model_name "$MODEL_NAME" \
+        --is_GGUF \
+        --Q_type "$Q_TYPE" \
+        --max_new_tokens 4096
+done
