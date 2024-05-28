@@ -110,14 +110,14 @@ G \varphi & \quad \text{Always}
 $$
 
 
-In the context of planning, LTL formulas ($\phi$) are constructed over a set of atomic propositions ($P$). The semantics of an LTL formula $\varphi$ is given with respect to an execution trace $\sigma = (s_0, s_1, ..., s_n)$. We consider only LTL over finite traces, which is commonly called $LTL_f$, however, the semantics may descrive an execution traces of infinite length. For $0 \leq i \leq n$, through induction one can define if $\phi$ is true at instant $i$ (written $w, i \models \phi$) as:
+In the context of planning, LTL formulas ($\varphi$) are constructed over a set of atomic propositions ($P$). The semantics of an LTL formula $\varphi$ is given with respect to an execution trace $\sigma = (s_0, s_1, ..., s_n)$. We consider only LTL over finite traces, which is commonly called $LTL_f$, however, the semantics may descrive an execution traces of infinite length. For $0 \leq i \leq n$, through induction one can define if $\varphi$ is true at instant $i$ (written $w, i \models \varphi$) as:
 
 - $w, i \models p$ iff $p \in L(w_0)$
-- $w, i \models \neg \phi$ iff $w, i \not\models \phi$
-- $w, i \models \phi_1 \land \phi_2$ iff $w, i \models \phi_1$ and $w, i \models \phi_2$
-- $w, i \models X \phi$ iff $i < n$ and $w, i+1 \models \phi$
-- $w, i \models F \phi$ iff $\exists j \geq i$ such that $w, j \models \phi$
-- $w, i \models \phi_1 \mathcal{U} \phi_2$ iff there exists a $j$ with $i \le j \le n$ s.t. $w, j \models \phi_2$ and for all $i \le k < j$, $w, k \models \phi_1$
+- $w, i \models \neg \varphi$ iff $w, i \not\models \varphi$
+- $w, i \models \varphi_1 \land \varphi_2$ iff $w, i \models \varphi_1$ and $w, i \models \varphi_2$
+- $w, i \models X \varphi$ iff $i < n$ and $w, i+1 \models \varphi$
+- $w, i \models F \varphi$ iff $\exists j \geq i$ such that $w, j \models \varphi$
+- $w, i \models \varphi_1 \mathcal{U} \varphi_2$ iff there exists a $j$ with $i \le j \le n$ s.t. $w, j \models \varphi_2$ and for all $i \le k < j$, $w, k \models \varphi_1$
 
 
 
