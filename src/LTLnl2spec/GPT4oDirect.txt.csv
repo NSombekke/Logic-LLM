@@ -33,6 +33,6 @@ Natural Language,Formula,GPT-4.0, More
 "Both a and b hold eventually.","F a & F b",,
 "It is always the case that a is the same as b in the next step.","G (a <-> X b)",,
 "If b holds then, in the next step, c holds until a holds or always c holds.","b -> X ((c U a) || G c)",,
-"a holds until b holds or always a holds.", "(a U b) || G a", "a U b | G a", "", "equivalent"
-"One of the following aps will hold at all instances: a,b,c.", "G (a | b | c)", "G(a | b | c)", "", "equivalent"
+"a holds until b holds or always a holds.", "(a U b) || G a", ,
+"One of the following aps will hold at all instances: a,b,c.", "G (a | b | c)",,
 
