@@ -18,7 +18,7 @@ a can only happen if b happend before;(! a) U b; G (a -> F b); The two formulas 
 Once a happened, b won't happen again.;G (a -> X G ! b); G (a -> !F b); The first formula covers the second one.
 a releases b;(b U (b & ! a)) | G b; G (a -> XF b); The two formulas are incomparable.
 a and b won't occur at the same time;G !(a & b); G !(a & b); Equivalent
-Whenever a holds and b holds in the next step, then c holds one step after b.;G (a && X b -> X X c); G (a & XF b -> XF XF c)
+Whenever a holds and b holds in the next step, then c holds one step after b.;G (a && X b -> X X c); G (a & XF b -> XF XF c); The two formulas are incomparable
 Whenever a holds, b holds eventually from the next step on.;G (a -> X F b); G (a -> XF F b); The two formulas are incomparable
 a holds in every fifth step.;a && G (a -> X ! a && X X ! a && X X X ! a && X X X X ! a && X X X X X a); G (a <-> XXXXF a);The two formulas are disjoint
 Either a holds infinitely often or b holds in the next step.;G F a || X b; GF a | XF b; The first formula is covered by the second one
