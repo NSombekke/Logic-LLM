@@ -139,7 +139,7 @@ For illustration, consider the following Natural language commands $\mu$, and th
       <td><img src="misc/img/pipeline.jpg" width=800></td>
   </tr>
   <tr align="left">
-    <td colspan=2><b>Figure 2.</b>  Pipeline: Converting Natural Language to Linear Temporal Logic for Multiple Choice Answering. (TODO dit plaatje klopt vlgs mij niet, de multiple choice antwoorden zijn vragen nml?</td>
+    <td colspan=2><b>Figure 2.</b>  Pipeline: Converting Natural Language to Linear Temporal Logic for Multiple Choice Answering.</td>
   </tr>
 </table>
 
