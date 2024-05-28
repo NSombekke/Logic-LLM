@@ -103,11 +103,11 @@ For illustration, consider the following Natural language commands $\mu$, and th
 #### Prompt Engineering
 Since Large language models are predominantly trained on natural language, they may struggle converting natural language directly into Linear Temporal Logic (LTL) formulas. The syntax of LTL (e.g. X, U, and F) is quite different from typical natural language constructs. To address this distribution shift, a study by Pan et al. [1] proposes creating a *canonical* representation that aligns more closely with natural language [8]. For the same reason Cosler et al. [5] prompt the LLM to turn $\mu$ into an intermediate *canoncial form*, shown as *sub-translations*, before mapping the the sentence into an LTL formula [5]. Each translation accompanies a translation dictionary in canonical form, through which th LLM is asked to explain its steps. We will use their prompting technique. 
 
-The outline below encapsulates our prompt setup, comprising three main sections — (1) LTL specification for the conversion of Natural Language to LTL, (2) the conversion of multiple choice options to traces, and (3) few-shot examples. All in all, the prompt serves as a structured framework for generating LTL formulas and traces from natural language inputs.
+The outline below encapsulates our prompt setup, comprising three main sections — (1) LTL specification for the conversion of Natural Language to LTL, (2) the conversion of multiple choice options to runs, and (3) few-shot examples. All in all, the prompt serves as a structured framework for generating LTL formulas and runs from natural language inputs.
 
 >**Prompt**
 >
->Given a context, question and options. The task is to first parse the question into a canonical formular and then from this formula to raw LTL formula. Also the options need to parsed into traces.
+>Given a context, question and options. The task is to first parse the question into a canonical formular and then from this formula to raw LTL formula. Also the options need to parsed into runs.
 Below an explanaition is given of all the input you will recieve and what you should do with it.
 >
 >**Context**: Declares the scene in which the question needs to be answered. Use this knowledge to parse the question and the options.
@@ -120,7 +120,7 @@ Below an explanaition is given of all the input you will recieve and what you sh
 >
 >*The formula should only contain atomic propositions or operators ||, &, !, U, G, F.*
 >
->***Options**: The options need to be parsed into traces. These traces need to be a list ([]) containing dictionaries for each timestep ({}). In each dictionary the state of the corresponding timestep is given.*
+>***Options**: The options need to be parsed into runs. These runs need to be a list ([]) containing dictionaries for each timestep ({}). In each dictionary the state of the corresponding timestep is given.*
 >
 >[Few shot examples]
 >
@@ -139,7 +139,7 @@ Below an explanaition is given of all the input you will recieve and what you sh
 ### <a name="ltl">Symbolic Reasoner</a>
 After the problem formulator has translated the natural language question into LTL and options into runs, we pass them to the logical reasoner (Figure 2, step 2). This reasoner checks for the validity of runs, verifying whether a given run satisfies the specified LTL formula. Runs are either accepted or rejected based on their compliance with the LTL formula, and consequently, the model is able to select one of the multiple-choice answers. 
 
-The LTL formula is first converted to a Deterministic Finite State Automaton (DFA), next the DFA and the runs are passed to a Büchi automatom (Figure 3). This is a theoretical machine that either accepts or rejects inputs (further details in Appendix B). To derive the LTL formulas associated Deterministic Finite State Automaton (DFA) $M_{\phi}$  we employ a Python module. We integrated the [*Flloat*](https://pypi.org/project/flloat/) Python library to translate LTL formulas (in CNF form) with finite-trace semantics into a minimal Deterministic Finite State Automaton (DFA) using MONA [3] (TODO wat is mona?). This conversion is guaranteed by Theorem 1. The resultigng  DFA ($M_{\phi}$) encapsulates the temporal constraints specified by the LTL formula, enabling efficient reasoning over finite runs.  Therefore the DFA and the runs are passed to the aforementioned Büchi automaton, which determines if a run is satisfiable within the corresponding LTL formula. The trace-based satisfiability reasoning enables the framework's capability to address temporal aspects of logical reasoning problems.
+The LTL formula is first converted to a Deterministic Finite State Automaton (DFA), next the DFA and the runs are passed to a Büchi automatom (Figure 3). This is a theoretical machine that either accepts or rejects inputs (further details in Appendix B). To derive the LTL formulas associated Deterministic Finite State Automaton (DFA) $M_{\phi}$  we employ a Python module. We integrated the [*Flloat*](https://pypi.org/project/flloat/) Python library to translate LTL formulas (in CNF form) with finite-trace (runs) semantics into a minimal Deterministic Finite State Automaton (DFA) using MONA [3] (TODO wat is mona?). This conversion is guaranteed by Theorem 1. The resultigng  DFA ($M_{\phi}$) encapsulates the temporal constraints specified by the LTL formula, enabling efficient reasoning over finite runs.  Therefore the DFA and the runs are passed to the aforementioned Büchi automaton, which determines if a run is satisfiable within the corresponding LTL formula. The run-based satisfiability reasoning enables the framework's capability to address temporal aspects of logical reasoning problems.
 
 **Theorem 1** [Vardi and Wolper, 1994 [10]]: For any LTL formula $\psi$, a Büchi automaton $M_{\psi}$ can be constructed, having a number of states that is at most exponential in the length of $\psi$.  The language of $M_{\psi}$, denoted as $L(M_{\psi})$, encompasses the set of models of $\psi$.
 
@@ -462,10 +462,10 @@ The second type of ambiguity is illustrated by the following. _Whenever a holds,
 - To mitigate these ambiguities, the *nl2spec* [5] specifies sub-clauses. How to adjust prompt to improve results. **TODO**
 
 
-##### (2) Effectiveness of trace geneation
+##### (2) Effectiveness of run geneation
 
 - We plan to measure the accuracy of these conversions over a variety of LTL formulae.
-- We will investigate how trace generation is affected by the **Context** of the drone planning domain.
+- We will investigate how run generation is affected by the **Context** of the drone planning domain.
 
 - We aim to compare our results to results using GPT-3 or Rasa (Their source 3).
 - Which model can handle unstructured natural language better?
@@ -749,8 +749,8 @@ Linguistics: Human Language Technologies
 
 LTL's semantics can effectively capture command specifications in the temporal domain. Formulas in LTL over the set of atomic propositions ($P$) adhere to the grammar below. For example, to express the statement "A cat never sleeps" in LTL, you would write $G \neg sleep$ in temporal logic. In this formula, the $G$  operator (Globally) indicates that the property it precedes must hold at all times in the future, and the $\neg$ operator (Negation) indicates that the "sleep" property does not hold. These temporal operators may be summarized as follows:
 
-* **Eventually** ($F \varphi$): $\varphi$ will hold at some point in the trace.
-* **Always** ($G \varphi$): $\varphi$ holds at every time step in the trace.
+* **Eventually** ($F \varphi$): $\varphi$ will hold at some point in the run.
+* **Always** ($G \varphi$): $\varphi$ holds at every time step in the run.
 * **Until** ($\varphi \mathcal{U} \psi$): $\varphi$ holds continuously until $\psi$ holds.
 * **Next** ($X \varphi$): $\varphi$ holds at the next time step.
 
@@ -770,7 +770,7 @@ G \varphi & \quad \text{Always}
 $$
 
 
-In the context of planning, LTL formulas ($\varphi$) are constructed over a set of atomic propositions ($P$). The semantics of an LTL formula $\varphi$ is given with respect to an execution trace $\sigma = (s_0, s_1, ..., s_n)$. We consider only LTL over finite traces, which is commonly called $LTL_f$, however, the semantics may descrive an execution traces of infinite length. For $0 \leq i \leq n$, through induction one can define if $\varphi$ is true at instant $i$ (written $w, i \models \varphi$) as:
+In the context of planning, LTL formulas ($\varphi$) are constructed over a set of atomic propositions ($P$). The semantics of an LTL formula $\varphi$ is given with respect to an execution run $\sigma = (s_0, s_1, ..., s_n)$. We consider only LTL over finite traces (runs), which is commonly called $LTL_f$, however, the semantics may descrive an execution runs of infinite length. For $0 \leq i \leq n$, through induction one can define if $\varphi$ is true at instant $i$ (written $w, i \models \varphi$) as:
 
 - $w, i \models p$ iff $p \in L(w_0)$
 - $w, i \models \neg \varphi$ iff $w, i \not\models \varphi$
@@ -796,7 +796,7 @@ A word **w** is accepted by an automaton ($M_{\psi}$) if its run $\rho$ meets th
 
 $L(M_{\psi}) = \\{ w \in \Sigma^{w} | w \text{ is accepted by}  M_{\psi} \\}$
 
-For each subplan $q_i$ of the run, the language function $L$ assigns a symbol $\sigma \in \Sigma$. These symbols collectively form a word **w** representing the sequence of symbols observed along the trace. This word **w** is then evaluated against the acceptance conditions of the DBA $M_{\psi}$. The language $L(M_{\psi})$ defines a set of infinite runs that the DFA can recognize. If **w** satisfies these acceptance conditions, then the finite run $\rho_{\psi}$ satisfies the LTL formula. Finite runs $\rho_{\psi}$ satisfiy the LTL if the word $ **w** = L(q_0)L(q_1)...L(q_n)$ is acceptable in $L(M_{\psi})$. 
+For each subplan $q_i$ of the run, the language function $L$ assigns a symbol $\sigma \in \Sigma$. These symbols collectively form a word **w** representing the sequence of symbols observed along the run. This word **w** is then evaluated against the acceptance conditions of the DBA $M_{\psi}$. The language $L(M_{\psi})$ defines a set of infinite runs that the DFA can recognize. If **w** satisfies these acceptance conditions, then the finite run $\rho_{\psi}$ satisfies the LTL formula. Finite runs $\rho_{\psi}$ satisfiy the LTL if the word $ **w** = L(q_0)L(q_1)...L(q_n)$ is acceptable in $L(M_{\psi})$. 
 
 ### TODO (dingen die ik nu heb weggehaald maar miss nog moeten blijven?)
 The addition of a context in the prompt is not always necessary for correct LTL generation as the LLM is expected to infer when predictes have a mutex (mutually exclusive) conditions (e.g. the predicates sleeping and eating can not hold at the same time). However, we are utilizing a drone planning dataset that contains spefic constraints, such as the impossibility of the drone simultaneously occupying the third floor and a particular room on the first floor. Therefore prompts enriched with a context are utilized in this study.
