@@ -6,6 +6,7 @@ from os.path import join
 import os
 import ast
 
+
 class LTL_program:
     def __init__(self, logic_program: str, dataset_name=str) -> None:
         self.logic_program = logic_program
@@ -13,8 +14,12 @@ class LTL_program:
         self.dataset_name = dataset_name
 
     def parse_logic_program(self):
-        lines = [x for x in self.logic_program.splitlines() if not x.strip() == ""]
-        raw_start_index = lines.index("# raw LTL formula of the question: ")
+        lines = [
+            x.strip() for x in self.logic_program.splitlines() if not x.strip() == ""
+        ]
+        print(self.logic_program)
+        print(lines)
+        raw_start_index = lines.index("# raw LTL formula of the question:")
         option_start_index = lines.index("# Options")
 
         self.raw_formula = lines[raw_start_index + 1 : option_start_index]
@@ -39,6 +44,7 @@ class LTL_program:
 
         for option in self.options:
             try:
+                print('trying...')
                 option = ast.literal_eval(option)
                 parsed_formula.truth(option, 0)
                 self.answers.append(parsed_formula.truth(option, 0))
