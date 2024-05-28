@@ -110,14 +110,14 @@ G \varphi & \quad \text{Always}
 $$
 
 
-In the context of planning, LTL formulas ($\psi$) are constructed over a set of atomic propositions ($P$). The semantics of an LTL formula $\varphi$ is given with respect to an execution trace $\sigma = (s_0, s_1, ..., s_n)$. We consider only LTL over finite traces, which is commonly called $LTL_f$, however, the semantics may descrive an execution traces of infinite length. For $0 \leq i \leq n$, through induction one can define if $\psi$ is true at instant $i$ (written $w, i \models \psi$) as:
+In the context of planning, LTL formulas ($\phi$) are constructed over a set of atomic propositions ($P$). The semantics of an LTL formula $\varphi$ is given with respect to an execution trace $\sigma = (s_0, s_1, ..., s_n)$. We consider only LTL over finite traces, which is commonly called $LTL_f$, however, the semantics may descrive an execution traces of infinite length. For $0 \leq i \leq n$, through induction one can define if $\phi$ is true at instant $i$ (written $w, i \models \phi$) as:
 
 - $w, i \models p$ iff $p \in L(w_0)$
-- $w, i \models \neg \psi$ iff $w, i \not\models \psi$
-- $w, i \models \psi_1 \land \psi_2$ iff $w, i \models \psi_1$ and $w, i \models \psi_2$
-- $w, i \models X \psi$ iff $i < n$ and $w, i+1 \models \psi$
-- $w, i \models F \psi$ iff $\exists j \geq i$ such that $w, j \models \psi$
-- $w, i \models \psi_1 \mathcal{U} \psi_2$ iff there exists a $j$ with $i \le j \le n$ s.t. $w, j \models \psi_2$ and for all $i \le k < j$, $w, k \models \psi_1$
+- $w, i \models \neg \phi$ iff $w, i \not\models \phi$
+- $w, i \models \phi_1 \land \phi_2$ iff $w, i \models \phi_1$ and $w, i \models \phi_2$
+- $w, i \models X \phi$ iff $i < n$ and $w, i+1 \models \phi$
+- $w, i \models F \phi$ iff $\exists j \geq i$ such that $w, j \models \phi$
+- $w, i \models \phi_1 \mathcal{U} \phi_2$ iff there exists a $j$ with $i \le j \le n$ s.t. $w, j \models \phi_2$ and for all $i \le k < j$, $w, k \models \phi_1$
 
 
 
