@@ -17,8 +17,6 @@ class LTL_program:
         lines = [
             x.strip() for x in self.logic_program.splitlines() if not x.strip() == ""
         ]
-        print(self.logic_program)
-        print(lines)
         raw_start_index = lines.index("# raw LTL formula of the question:")
         option_start_index = lines.index("# Options")
 
