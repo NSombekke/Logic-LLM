@@ -37,26 +37,30 @@ class LTL_program:
         return True
 
     def execute_program(self):
-        parser = LTLfParser()
-        formula = f"{self.raw_formula[0]}"
-        parsed_formula = parser(formula)
-        self.answers = []
+        try:
+            parser = LTLfParser()
+            formula = f"{self.raw_formula[0]}"
+            parsed_formula = parser(formula)
+            self.answers = []
 
-        for option in self.options:
-            try:
-                print('trying...')
-                option = ast.literal_eval(option)
-                parsed_formula.truth(option, 0)
-                self.answers.append(parsed_formula.truth(option, 0))
-            except Exception as e:
-                self.answers.append(False)
+            for option in self.options:
+                try:
+                    option = ast.literal_eval(option)
+                    parsed_formula.truth(option, 0)
+                    self.answers.append(parsed_formula.truth(option, 0))
+                except Exception as e:
+                    self.answers.append(False)
 
-        if self.answers.count(True) == 0:
-            return self.answers, "Error: No option is correct"
-        elif self.answers.count(True) > 1:
-            return self.answers, "Error: More than one option is correct"
+            if self.answers.count(True) == 0:
+                return self.answers, "Error: No option is correct"
+            elif self.answers.count(True) > 1:
+                return self.answers, "Error: More than one option is correct"
+            
+            return self.answers, ""
+        
+        except Exception as e:
+            return None, e
 
-        return self.answers, ""
 
     def answer_mapping(self, answers):
         mapping = {0: "A", 1: "B", 2: "C"}
