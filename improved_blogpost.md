@@ -449,14 +449,14 @@ By testing the NL to LTL conversion on the *nl2spec* dataset [5], we seek to und
 
 **Accuracies Over Test Sets (Counting the Number of Exact Matches Between Formulae)**
 
-| Dataset             | GPT-4.0 (CoT)     | GPT-3 (CoT)    |  GPT-3 (direct) | Llama3-70b-instruct (CoT)     |Llama3-70b-instruct (direct)     |
+| Dataset             | GPT-4.0 (CoT)     | GPT-3 (CoT)     | Llama3-70b-instruct (CoT) |
 |---------------------|---------------|---------------|--------------|--------------|--------------|
-| nl2spec original    | 22/36 (61.11%)      | 17/36 (47.22%)  | X/36 (%)   | 23/36 (63.88%)     |16/36 (44.44%)     |
-| nl2spec in NL       | 26/36 (72.22%) | 17/36 (47.22%) | X/36 (%)| 19/36 (52.77%)     | 20/36 55.55(%) |
+| nl2spec original    | 22/36 (61.11%)      | 17/36 (47.22%)   | 23/36 (63.88%) |
+| nl2spec in NL       | 26/36 (72.22%) | 17/36 (47.22%) | 19/36 (52.77%)  |  
 
 *For intersecting Büchi automata, we use the following [spot](https://spot.lre.epita.fr/app/) model checking software.*
 
-
+|16/36 (44.44%)     |Llama3-70b-instruct (direct) |
 
 The results presented in the table above demonstrate the effectiveness of using Large Language Models (LLMs) to parse natural language into Linear Temporal Logic (LTL) formulas. Notably, the "nl2spec original" approach, which works directly with predefined predicates, outperforms the "nl2spec in NL" approach, which extracts predicates from natural language sentences. This improvement can be attributed to the fact that predefined predicates provide a clear and concise representation of the relevant information, allowing the LLM to focus on understanding the relationships between them and generating the correct LTL formula. This suggests that LLMs, particularly Llama3-70b, are better suited for parsing predefined predicates rather than natural language. This gap in performance highlights the challenges of natural language processing and the need for further research in this area.
 
