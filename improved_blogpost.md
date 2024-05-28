@@ -155,26 +155,11 @@ The addition of a context in the prompt is not always necessary for correct LTL 
 
 After the problem formulator has translated the natural language question into LTL and options into runs, we pass them to the logical reasoner (Figure 1, step 2). This reasoner checks for the validity of runs, verifying whether a given run satisfies the specified LTL formula. Runs are either accepted or rejected based on their compliance with the LTL formula, and consequently, the model is able to select one of the multiple-choice answers. 
 
-We employ a Python module to derive its associated Deterministic Finite State Automaton $M_{\phi}$. We integrate the [*Flloat*](https://pypi.org/project/flloat/) Python library to translate LTL formulas (in CNF form) with finite-trace semantics into a minimal Deterministic Finite State Automaton (DFA) using MONA [3] (TODO wat is mona?). This conversion is guaranteed by Theorem 1. The resultigng  DFA ($M_{\phi}$) encapsulates the temporal constraints specified by the LTL formula, enabling efficient reasoning over finite traces. The trace-based satisfiability reasoning enhances the framework's capability to address temporal aspects of logical reasoning problems.
+We employ a Python module to derive its associated Deterministic Finite State Automaton (DFA) $M_{\phi}$. We integrate the [*Flloat*](https://pypi.org/project/flloat/) Python library to translate LTL formulas (in CNF form) with finite-trace semantics into a minimal Deterministic Finite State Automaton (DFA) using MONA [3] (TODO wat is mona?). This conversion is guaranteed by Theorem 1. The resultigng  DFA ($M_{\phi}$) encapsulates the temporal constraints specified by the LTL formula, enabling efficient reasoning over finite traces. The trace-based satisfiability reasoning enhances the framework's capability to address temporal aspects of logical reasoning problems.
 
 **Theorem 1** [Vardi and Wolper, 1994 [10]]: For any LTL formula $\psi$, a Büchi automaton $M_{\psi}$ can be constructed, having a number of states that is at most exponential in the length of $\psi$.  The language of $M_{\psi}$, denoted as $L(M_{\psi})$, encompasses the set of models of $\psi$.
 
-The input words **w** of the Büchi automaton ($M_{\psi}$) can be infinite sequences $\sigma_0 \sigma_1 ... \sigma_n \in \Sigma^{w}$ [7]. A *run* of the automaton $(M_{\psi})$ on the word  **w** is sequence of states $\rho = q_0q_1q_2...$, where each state is a set of propositions. The initial state is $q_0$ and subsequent states are defined throught the transition function $q_{i+1} = \Delta(q_i,\sigma_i)$. The language of the automaton $M_{\psi}$ ($L(M_{\psi})$), is a set of *words* characterized by the presence of an accepting run. In this case each accepting run is a valid sequence of states that holds in the automaton. 
 
-<!--(TODO add ref)-->
-**Definition 1: (Büchi automaton)**: A deterministic Büchi automaton (DBA) is a tuple $M = (Q, \sum, \Delta, Q_0, F)$ where:
-- $Q$ is a finite set of automaton states,
-- $\Sigma$ is a finite alphabet of the automaton ($|\Sigma| = 2^{|P|}$),
-- $\Delta : Q \times \sum  \rightarrow 2^{Q}$ is the transition function,
-- $q_0 \subseteq Q$ is the set of initial stats
-- $F \subseteq Q$ is the set of accepting states.
-
-A word **w** is accepted by an automaton ($M_{\psi}$) if its run $\rho$ meets the condition $\lim(\rho) \cap F \neq \emptyset$. Meaning that that the run reaches at least one accepting state in **F**. 
-
-
-$L(M_{\psi}) = \\{ w \in \Sigma^{w} | w \text{ is accepted by}  M_{\psi} \\}$
-
-For each subplan $q_i$ of the run, the language function $L$ assigns a symbol $\sigma \in \Sigma$. These symbols collectively form a word **w** representing the sequence of symbols observed along the trace. This word **w** is then evaluated against the acceptance conditions of the DBA $M_{\psi}$. The language $L(M_{\psi})$ defines a set of infinite runs that the DFA can recognize. If **w** satisfies these acceptance conditions, then the finite run $\rho_{\psi}$ satisfies the LTL formula. Finite runs $\rho_{\psi}$ satisfiy the LTL if the word $ **w** = L(q_0)L(q_1)...L(q_n)$ is acceptable in $L(M_{\psi})$. 
 
 Step 5 in Figure 2 shows an example output of runs corresponding to options (A) and (B). In this step, the generated runs are evaluated against the associated Deterministic Finite Automaton $M_{\psi}$ to determine their validity.
 
@@ -801,3 +786,20 @@ In the context of planning, LTL formulas ($\varphi$) are constructed over a set 
 - $w, i \models \varphi_1 \mathcal{U} \varphi_2$ iff there exists a $j$ with $i \le j \le n$ s.t. $w, j \models \varphi_2$ and for all $i \le k < j$, $w, k \models \varphi_1$
 
 
+### Appenix B: Symbolic solver for LTL
+The input words **w** of the Büchi automaton ($M_{\psi}$) can be infinite sequences $\sigma_0 \sigma_1 ... \sigma_n \in \Sigma^{w}$ [7]. A *run* of the automaton $(M_{\psi})$ on the word  **w** is sequence of states $\rho = q_0q_1q_2...$, where each state is a set of propositions. The initial state is $q_0$ and subsequent states are defined throught the transition function $q_{i+1} = \Delta(q_i,\sigma_i)$. The language of the automaton $M_{\psi}$ ($L(M_{\psi})$), is a set of *words* characterized by the presence of an accepting run. In this case each accepting run is a valid sequence of states that holds in the automaton. 
+
+<!--(TODO add ref)-->
+**Definition 1: (Büchi automaton)**: A deterministic Büchi automaton (DBA) is a tuple $M = (Q, \sum, \Delta, Q_0, F)$ where:
+- $Q$ is a finite set of automaton states,
+- $\Sigma$ is a finite alphabet of the automaton ($|\Sigma| = 2^{|P|}$),
+- $\Delta : Q \times \sum  \rightarrow 2^{Q}$ is the transition function,
+- $q_0 \subseteq Q$ is the set of initial stats
+- $F \subseteq Q$ is the set of accepting states.
+
+A word **w** is accepted by an automaton ($M_{\psi}$) if its run $\rho$ meets the condition $\lim(\rho) \cap F \neq \emptyset$. Meaning that that the run reaches at least one accepting state in **F**. 
+
+
+$L(M_{\psi}) = \\{ w \in \Sigma^{w} | w \text{ is accepted by}  M_{\psi} \\}$
+
+For each subplan $q_i$ of the run, the language function $L$ assigns a symbol $\sigma \in \Sigma$. These symbols collectively form a word **w** representing the sequence of symbols observed along the trace. This word **w** is then evaluated against the acceptance conditions of the DBA $M_{\psi}$. The language $L(M_{\psi})$ defines a set of infinite runs that the DFA can recognize. If **w** satisfies these acceptance conditions, then the finite run $\rho_{\psi}$ satisfies the LTL formula. Finite runs $\rho_{\psi}$ satisfiy the LTL if the word $ **w** = L(q_0)L(q_1)...L(q_n)$ is acceptable in $L(M_{\psi})$. 
