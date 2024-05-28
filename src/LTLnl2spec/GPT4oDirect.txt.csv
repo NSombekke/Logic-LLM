@@ -1,8 +1,8 @@
 Natural Language,Formula,GPT-4.0, More
 "Every a is eventually followed by an e.","G(a -> F e)",G (a -> F e),equivalent
 "It is never the case that a and b hold at the same time.","G(!(a & b))", G(!(a & b)),equivalent
-"Whenever a is enabled, b is enabled three steps later.","G(a -> X (X (X b)))",G(a -> X(X(X b))),
-"e must hold everywhere until from some point on, d holds infinitely often.","e U (G (F d))",G(e) U GF(d),
+"Whenever a is enabled, b is enabled three steps later.","G(a -> X (X (X b)))",G(a -> X(X(X b))),e
+"e must hold everywhere until from some point on, d holds infinitely often.","e U (G (F d))",G(e) U GF(d),e
 "If b holds at some point, a has to hold somewhere beforehand.","(F b) -> (!b U (a & !b))",G(b -> F(a)),
 "Whenever a holds, b holds as well.","G(a -> b)",G(a -> b),e
 "Both a and b hold in every time step.","G (a & b)",,e
@@ -18,7 +18,7 @@ Natural Language,Formula,GPT-4.0, More
 "Once a happened, b won't happen again.","G (a -> X G ! b)",G(a -> G(!b)),
 "a releases b.","(b U (b & ! a)) | G b",b R a,
 "a and b won't occur at the same time.","G !(a & b)",G(!(a & b)),e
-"Whenever a holds and b holds in the next step, then c holds one step after b.","G (a && X b -> X X c)",G(a & X(b) -> X(X(c))),
+"Whenever a holds and b holds in the next step, then c holds one step after b.","G (a && X b -> X X c)",G(a & X(b) -> X(X(c))),e
 "Whenever a holds, b holds eventually from the next step on.","G (a -> X F b)",G(a -> X(F b)),e
 "a holds in every fifth step.","a & G (a -> X ! a & X X ! a & X X X ! a & X X X X ! a & X X X X X a)",G(a -> X(X(X(X(X a))))),
 "Either a holds infinitely often or b holds in the next step.","G F a || X b",GF(a) | G(X b),
