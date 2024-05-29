@@ -514,17 +514,10 @@ Researchers have proposed mitigating these ambiguities by specifying sub-clauses
 	</tr>
 </table>
 
-our study represents an exploration into a novel methodology that combines natural language to LTL conversion and trace generation through prompting—a methodology not previously attempted, to the best of our knowledge. Notably, unlike previous approaches that rely on trajectory planners fed with LTL expressions, we introduce the predefined environment directly into the multiple-choice questions in natural language format, under the context section of the prompt. Future investigations could encompass a comprehensive evaluation of conversion accuracy across diverse LTL formulae, along with an in-depth analysis of how contextual factors within the planning domain influence run generation. An exploration into whether the LLMs can infer abstract relationships, such as associating rooms with floors, will provide valuable insights into their reasoning capabilities at abstracted levels.
+Our study represents an exploration into a novel methodology that combines natural language to LTL conversion and trace generation through prompting—a methodology not previously attempted, to the best of our knowledge. Notably, unlike previous approaches that rely on trajectory planners fed with LTL expressions, we introduce the predefined environment directly into the multiple-choice questions in natural language format, under the context section of the prompt. Future investigations could encompass a comprehensive evaluation of conversion accuracy across diverse LTL formulae, along with an in-depth analysis of how contextual factors within the planning domain influence run generation. An exploration into whether the LLMs can infer abstract relationships, such as associating rooms with floors, will provide valuable insights into their reasoning capabilities at abstracted levels.
 
+Regarding the question of whether LLMs can infer that rooms belong to floors, this line of inquiry delves into abstract reasoning levels. The results from the multiple-choice options in the planning domain demonstrate that while ambiguity may hinder exact matches, it can facilitate effective executions in certain instances—wherein the generated answer aligns with the intended outcome, even if the LTL formula of the test set does not match exactly.
 
-- We plan to measure the accuracy of these conversions over a variety of LTL formulae.
-- We aim to compare our results to results using GPT-3 or Rasa (Their source 3).
-- Which model can handle unstructured natural language better?
-- Mention how the few-shot prompting affect the results
-- 
-- Can the LLM infer that rooms belong to floors? (reasoning at abstracted levels)
-
-The results from the multiple choice options in the *planning domain* show that the ambiguity observed in (1) might prevent exact matches, but it enables effective executions in some cases. (i.e. generates the right answer, but the LTL formula of the test set is not an exact match)
 
 
 
