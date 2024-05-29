@@ -228,7 +228,7 @@ When observing the output of ChatGPT, the symbolic language seems like a feasibl
 
 
 
-### <a name="general results">LLama as an open-source LLM for Logic-LM *drone planning*</a>
+### <a name="general results">LLama as an open-source LLM for Logic-LM </a>
 <table align="center">
 	<tr align="center">
 		<th align="left"></th>
@@ -411,7 +411,7 @@ Table 2 displays a comparison of self-refinement. (*More results and analysis wi
 
 ### <a name="LTL results">LTL extension</a>
 
-#### Logic-LM for LTL
+#### Logic-LM for LTL *drone planning*
 | Dataset             | Llama3-8b   | Llama3-70b |
 |----------------|-----------------|-----------------|
 | Accuracy (correct/all data)  | 18% (9/50)     | 28% (14/50) | 
