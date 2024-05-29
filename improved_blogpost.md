@@ -294,7 +294,7 @@ When observing the output of ChatGPT, the symbolic language seems like a feasibl
 		<td>28.57</td>
 	</tr>
 	<tr align="left">
-		<td colspan=7><b>Table 3.</b> Accuracy of standard prompting (Standard), chain-of-thought prompting (CoT), and our method (LOGICLM, without self-refinement) across five reasoning datasets using the Llama-3 model. The best results for each base LLM are highlighted.</td>
+		<td colspan=7><b>Table 3.</b> Accuracy of standard prompting (Standard), chain-of-thought prompting (CoT), and our method (Logic-LM, without self-refinement) across five reasoning datasets using the Llama-3 model. The best results for each base LLM are highlighted.</td>
 	</tr>
 </table>
 
