@@ -464,7 +464,7 @@ By testing the NL to LTL conversion on the *nl2spec* dataset [5], we seek to und
 <table align="center">
     <tr align="center">
         <th>Dataset</th>
-        <th>GPT-4.0 </th>
+        <th>GPT-4.o </th>
         <th>GPT-3 </th>
         <th>Llama3-70b-instruct </th>
     </tr>
@@ -492,7 +492,7 @@ By testing the NL to LTL conversion on the *nl2spec* dataset [5], we seek to und
 
 |16/36 (44.44%)     |Llama3-70b-instruct (direct) |
 
-The results presented in the table above demonstrate the effectiveness of using Large Language Models (LLMs) to parse natural language into Linear Temporal Logic (LTL) formulas. Notably, the "nl2spec original" approach, which works directly with predefined predicates, outperforms the "nl2spec in NL" approach, which extracts predicates from natural language sentences. This improvement can be attributed to the fact that predefined predicates provide a clear and concise representation of the relevant information, allowing the LLM to focus on understanding the relationships between them and generating the correct LTL formula. This suggests that LLMs, particularly Llama3-70b, are better suited for parsing predefined predicates rather than natural language. This gap in performance highlights the challenges of natural language processing and the need for further research in this area.
+The results presented in the table above demonstrate the effectiveness of using LLMs to parse natural language into LTL formulas. Notably, the "nl2spec original" approach, which works directly with predefined predicates, outperforms the "nl2spec in NL" approach, which extracts predicates from natural language sentences. This improvement can be attributed to the fact that predefined predicates provide a clear and concise representation of the relevant information, allowing the LLM to focus on understanding the relationships between them and generating the correct LTL formula. This suggests that LLMs, particularly Llama3-70b, are better suited for parsing predefined predicates rather than natural language. This gap in performance highlights the challenges of natural language processing and the need for further research in this area.
 
 On the other hand, GPT-3.5 performs similarly on both sets, indicating that it is more robust in handling natural language inputs. This is likely due to its training on a vast amount of text data, which enables it to better understand the nuances of natural language. Our results show that GPT-4.o significantly outperforms GPT-3.5 in translating natural language to LTL formulas, achieving an accuracy rate of 72.2% (26 out of 36) compared to 47.22% (17 out of 36) for GPT-3.5. This suggests that GPT-4.o has enhanced capabilities in understanding and processing natural language semantics, making it a more reliable tool for complex logical conversions. Interestingly, GPT-4.o performs poorer on predefined propositions (23/36) compared to NL (26/36) , which may indicate that it is more geared towards handling natural language inputs rather than structured data. 
 
