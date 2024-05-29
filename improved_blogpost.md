@@ -412,53 +412,7 @@ Table 4 displays a comparison of self-refinement. (*More results and analysis wi
 
 ### <a name="LTL results">LTL extension</a>
 
-#### Logic-LM for LTL
-
-
-<table align="center">
-	<tr align="center">
-		<th>Accuracy on drone planning dataset</th>
-		<th>Llama3-8b</th>
-		<th>Llama3-70b</th>
-	</tr>
-	<tr align="center">
-		<td>Accuracy (correct/all data)</td>
-		<td>18% (9/50)</td>
-		<td>28% (14/50)</td>
-	</tr>
-	<tr align="center">
-		<td>Accuracy against all one answer data (correct/(correct+incorrect))</td>
-		<td>47% (9/19)</td>
-		<td>93% (14/15)</td>
-	</tr>
-	<tr align="center">
-		<td>No answer</td>
-		<td>32% (16/50)</td>
-		<td>42% (21/50)</td>
-	</tr>
-	<tr align="center">
-		<td>Two answers</td>
-		<td>20% (10/50)</td>
-		<td>16% (8/50)</td>
-	</tr>
-	<tr align="center">
-		<td>Three answers</td>
-		<td>10% (5/50)</td>
-		<td>12% (6/50)</td>
-	</tr>
-	<tr align="center">
-		<td>Executable rate</td>
-		<td>98% (49/50)</td>
-		<td>94% (47/50)</td>
-	</tr>
-	<tr align="left">
-		<td colspan="3"><b>Table 5:</b> TO DO</td>
-	</tr>
-</table>
-
-
-
-##### (1)  Evaluating the Performance of Large Language Models in NL to LTL Conversion
+#### (1)  Evaluating the Performance of Large Language Models in NL to LTL Conversion
 By testing the NL to LTL conversion on the *nl2spec* dataset [5], we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations of such models.
 
 <table align="center">
@@ -521,7 +475,50 @@ The second type of ambiguity is illustrated by the following. _Whenever a holds,
 - To mitigate these ambiguities, the *nl2spec* [5] specifies sub-clauses. How to adjust prompt to improve results. **TODO**
 
 
-##### (2) Effectiveness of run geneation
+#### (2) Effectiveness of run geneation
+
+
+<table align="center">
+	<tr align="center">
+		<th>Accuracy on drone planning dataset</th>
+		<th>Llama3-8b</th>
+		<th>Llama3-70b</th>
+	</tr>
+	<tr align="center">
+		<td>Accuracy (correct/all data)</td>
+		<td>18% (9/50)</td>
+		<td>28% (14/50)</td>
+	</tr>
+	<tr align="center">
+		<td>Accuracy against all one answer data (correct/(correct+incorrect))</td>
+		<td>47% (9/19)</td>
+		<td>93% (14/15)</td>
+	</tr>
+	<tr align="center">
+		<td>No answer</td>
+		<td>32% (16/50)</td>
+		<td>42% (21/50)</td>
+	</tr>
+	<tr align="center">
+		<td>Two answers</td>
+		<td>20% (10/50)</td>
+		<td>16% (8/50)</td>
+	</tr>
+	<tr align="center">
+		<td>Three answers</td>
+		<td>10% (5/50)</td>
+		<td>12% (6/50)</td>
+	</tr>
+	<tr align="center">
+		<td>Executable rate</td>
+		<td>98% (49/50)</td>
+		<td>94% (47/50)</td>
+	</tr>
+	<tr align="left">
+		<td colspan="3"><b>Table 5:</b> TO DO</td>
+	</tr>
+</table>
+
 
 - We plan to measure the accuracy of these conversions over a variety of LTL formulae.
 - We will investigate how run generation is affected by the **Context** of the drone planning domain.
