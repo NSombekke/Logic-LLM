@@ -436,7 +436,7 @@ By testing the NL to LTL conversion on the *nl2spec* dataset , we seek to unders
     </tr>
     <tr align="left">
         <td colspan="4">
-            <b>Table 6:</b> Accuracies Over Test Sets using <a href = "https://github.com/NSombekke/Logic-LLM/blob/main/src/models/prompts/LTLCoTnl2spec.txt">CoT</a> (Counting the Number of Exact Matches Between Formulae) 
+            <b>Table 5:</b> Accuracies Over Test Sets using <a href = "https://github.com/NSombekke/Logic-LLM/blob/main/src/models/prompts/LTLCoTnl2spec.txt">CoT</a> (Counting the Number of Exact Matches Between Formulae) 
             <br><i>For intersecting Büchi automata, we use the following 
             <a href="https://spot.lre.epita.fr/app/">spot</a> model checking software.<i>
         </td>
@@ -445,7 +445,7 @@ By testing the NL to LTL conversion on the *nl2spec* dataset , we seek to unders
 
 Our results reveal a notable discrepancy in the performance of Llama3-70b-instruct when employing direct prompting versus Chain of Thought (CoT) prompting for NL to LTL conversion. Impressively, while CoT prompting yielded satisfactory results, with an accuracy of 23/36 (63.88%), direct prompting fell notably short, achieving only 44.44% (16 out of 36). This stark difference underscores the critical role structured prompting techniques play in enhancing the efficacy of LLMs for intricate tasks like logical formula conversion.
 
-The results presented in table 6 demonstrate the effectiveness of using LLMs to parse natural language into LTL formulas. Notably, the *nl2spec original* approach, which works directly with predefined predicates, outperforms the *nl2spec in NL* approach, which extracts predicates from natural language sentences. This improvement can be attributed to the fact that predefined predicates provide a clear and concise representation of the relevant information, allowing the LLM to focus on understanding the relationships between them and generating the correct LTL formula. This suggests that LLMs, particularly Llama3-70b, are better suited for parsing predefined predicates rather than natural language. This gap in performance highlights the challenges of natural language processing and the need for further research in this area.
+The results presented in table 5 demonstrate the effectiveness of using LLMs to parse natural language into LTL formulas. Notably, the *nl2spec original* approach, which works directly with predefined predicates, outperforms the *nl2spec in NL* approach, which extracts predicates from natural language sentences. This improvement can be attributed to the fact that predefined predicates provide a clear and concise representation of the relevant information, allowing the LLM to focus on understanding the relationships between them and generating the correct LTL formula. This suggests that LLMs, particularly Llama3-70b, are better suited for parsing predefined predicates rather than natural language. This gap in performance highlights the challenges of natural language processing and the need for further research in this area.
 
 On the other hand, GPT-3.5 performs similarly on both sets, but performs worst overall. Our results show that GPT-4.o (72.22%) significantly outperforms GPT-3.5 (47.22%) in translating natural language to LTL formulas. This suggests that GPT-4.o has enhanced capabilities in understanding and processing natural language semantics, making it a more reliable tool for complex logical conversions. Interestingly, GPT-4.o performs poorer on predefined propositions (23/36) compared to NL (26/36) , which may indicate that it is more geared towards handling natural language inputs rather than structured data. 
 
@@ -510,7 +510,7 @@ Researchers have proposed mitigating these ambiguities by specifying sub-clauses
 		<td>94% (47/50)</td>
 	</tr>
 	<tr align="left">
-		<td colspan="3"><b>Table 5:</b> TO DO</td>
+		<td colspan="3"><b>Table 6:</b> TO DO</td>
 	</tr>
 </table>
 
