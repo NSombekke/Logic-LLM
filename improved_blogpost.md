@@ -482,7 +482,7 @@ By testing the NL to LTL conversion on the *nl2spec* dataset [5], we seek to und
     </tr>
     <tr align="left">
         <td colspan="4">
-            <b>Table 6:</b> Accuracies Over Test Sets using [CoT](https://github.com/NSombekke/Logic-LLM/blob/main/src/models/prompts/LTLCoTnl2spec.txt) (Counting the Number of Exact Matches Between Formulae) 
+            <b>Table 6:</b> Accuracies Over Test Sets using <a href = "https://github.com/NSombekke/Logic-LLM/blob/main/src/models/prompts/LTLCoTnl2spec.txt">CoT</a> (Counting the Number of Exact Matches Between Formulae) 
             <br><i>For intersecting Büchi automata, we use the following 
             <a href="https://spot.lre.epita.fr/app/">spot</a> model checking software.<i>
         </td>
