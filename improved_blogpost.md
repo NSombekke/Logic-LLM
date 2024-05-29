@@ -481,19 +481,11 @@ By testing the NL to LTL conversion on the *nl2spec* dataset [5], we seek to und
         <td>19/36 (52.77%)</td>
     </tr>
     <tr align="left">
-        <td colspan="4"><b>Table 6:</b> Accuracies Over Test Sets (Counting the Number of Exact Matches Between Formulae)</td>
+        <td colspan="4"><b>Table 6:</b> Accuracies Over Test Sets (Counting the Number of Exact Matches Between Formulae) *For intersecting Büchi automata, we use the following [spot](https://spot.lre.epita.fr/app/) model checking software.*
+</td>
     </tr>
 </table>
 
-
-**Accuracies Over Test Sets (Counting the Number of Exact Matches Between Formulae)**
-
-| Dataset             | GPT-4.0 (CoT)     | GPT-3 (CoT)     | Llama3-70b-instruct (CoT) |
-|---------------------|---------------|---------------|--------------|
-| nl2spec original    | 23/36 (63.88%)      | 18/36 (50.00%)   | 23/36 (63.88%) |
-| nl2spec in NL       | 26/36 (72.22%) | 17/36 (47.22%) | 19/36 (52.77%)  |  
-
-*For intersecting Büchi automata, we use the following [spot](https://spot.lre.epita.fr/app/) model checking software.*
 
 |16/36 (44.44%)     |Llama3-70b-instruct (direct) |
 
