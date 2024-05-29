@@ -228,7 +228,7 @@ When observing the output of ChatGPT, the symbolic language seems like a feasibl
 
 
 
-### <a name="general results">LLama as an open-source LLM for Logic-LM</a>
+### <a name="general results">LLama as an open-source LLM for Logic-LM *drone planning*</a>
 <table align="center">
 	<tr align="center">
 		<th align="left"></th>
