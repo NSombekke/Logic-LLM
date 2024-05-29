@@ -407,17 +407,17 @@ Comparing these results to the GPT model results from the original paper [1], we
 		<td colspan=7><b>Table 4.</b> Comparison of self-refinement on small and large LLama-3 models</td>
 	</tr>
 </table>
+
 Table 4 displays a comparison of self-refinement. (*More results and analysis will follow in final version*)
 
 ### <a name="LTL results">LTL extension</a>
 
-#### Logic-LM for LTL *drone planning*
-
+#### Logic-LM for LTL
 
 
 <table align="center">
 	<tr align="center">
-		<th>Dataset</th>
+		<th>Accuracy on *drone planning* dataset</th>
 		<th>Llama3-8b</th>
 		<th>Llama3-70b</th>
 	</tr>
@@ -452,18 +452,11 @@ Table 4 displays a comparison of self-refinement. (*More results and analysis wi
 		<td>94% (47/50)</td>
 	</tr>
 	<tr align="left">
-		<td colspan="3"><b>Table 5:</b> Comparison of self-refinement on small and large Llama-3 models</td>
+		<td colspan="3"><b>Table 5:</b> TO DO</td>
 	</tr>
 </table>
 
-| Dataset             | Llama3-8b   | Llama3-70b |
-|----------------|-----------------|-----------------|
-| Accuracy (correct/all data)  | 18% (9/50)     | 28% (14/50) | 
-| Accuracy against all one answer data (correct/(correct+incorrect)) | 47% (9/19)     | 93% (14/15)  | 
-| No answer       | 32% (16/50) | 42% (21/50) | 
-| Two answers       | 20% (10/50)| 16% (8/50) | 
-| Three answers       | 10% (5/50) | 12% (6/50) | 
-| Executable rate     | 98% (49/50) | 94% (47/50) | 
+
 
 ##### (1)  Evaluating the Performance of Large Language Models in NL to LTL Conversion
 By testing the NL to LTL conversion on the *nl2spec* dataset [5], we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations of such models.
