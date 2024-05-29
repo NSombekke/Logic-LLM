@@ -417,7 +417,7 @@ Table 4 displays a comparison of self-refinement. (*More results and analysis wi
 
 <table align="center">
 	<tr align="center">
-		<th>Accuracy on *drone planning* dataset</th>
+		<th>Accuracy on drone planning dataset</th>
 		<th>Llama3-8b</th>
 		<th>Llama3-70b</th>
 	</tr>
