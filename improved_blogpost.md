@@ -469,7 +469,7 @@ The second type of ambiguity is illustrated by the following. _Whenever a holds,
 > 
 > $D_{\psi}$: {'Whenever': '->', 'the food is hot': 'hot', 'the food is cold': 'cold', 'in the next two steps': 'X(X(cold))'}
 
-Researchers have proposed mitigating these ambiguities by specifying sub-clauses in the prompt, as demonstrated in nl2spec [5], which can significantly improve results by providing clearer instructions for the model to follow.
+Researchers have proposed mitigating these ambiguities by specifying sub-clauses, as demonstrated in nl2spec [5], which can significantly improve results by providing clearer instructions for the model to follow.
 
 #### (2) Effectiveness of run geneation
 
