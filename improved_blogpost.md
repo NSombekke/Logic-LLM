@@ -464,9 +464,9 @@ By testing the NL to LTL conversion on the *nl2spec* dataset [5], we seek to und
 <table align="center">
     <tr align="center">
         <th>Dataset</th>
-        <th>GPT-4.0 (CoT)</th>
-        <th>GPT-3 (CoT)</th>
-        <th>Llama3-70b-instruct (CoT)</th>
+        <th>GPT-4.0 </th>
+        <th>GPT-3 </th>
+        <th>Llama3-70b-instruct </th>
     </tr>
     <tr align="center">
         <td>nl2spec original</td>
@@ -482,7 +482,7 @@ By testing the NL to LTL conversion on the *nl2spec* dataset [5], we seek to und
     </tr>
     <tr align="left">
         <td colspan="4">
-            <b>Table 6:</b> Accuracies Over Test Sets (Counting the Number of Exact Matches Between Formulae) 
+            <b>Table 6:</b> Accuracies Over Test Sets using [CoT](https://github.com/NSombekke/Logic-LLM/blob/main/src/models/prompts/LTLCoTnl2spec.txt) (Counting the Number of Exact Matches Between Formulae) 
             <br><i>For intersecting Büchi automata, we use the following 
             <a href="https://spot.lre.epita.fr/app/">spot</a> model checking software.<i>
         </td>
