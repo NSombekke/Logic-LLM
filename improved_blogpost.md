@@ -460,9 +460,7 @@ As pointed out by Cosler et al. [5], their dataset contains two types of ambigui
 > 
 > $D_{\psi}$: {"The party is on": "p", "until": "U", "the speaker is broken": "s", "or": "|", "always the party is on": "G p", "The party is on until the speaker is broken or always the party is on": "p U (s | G p)"}
 
-As both are plausible translations depending on the interpretation of the sentence, the example shows how the conversion is not as straight forward. 
-
-The second type of ambiguity is illustrated by the following. _Whenever a holds, b must hold in the next two steps_, mapped to $G (a \rightarrow (b | X b))$. However, it could also be translated as $G((a \rightarrow X(X(b))))$ as this depends on the interpretation of the semantic meaning. The two formulas are incomparable, GPT4.o returns the latter interpretation:
+As both are plausible translations depending on the interpretation of the sentence, the example shows how the conversion is not as straight forward. The second type of ambiguity is illustrated by the following. _Whenever a holds, b must hold in the next two steps_, mapped to $G (a \rightarrow (b | X b))$. However, it could also be translated as $G((a \rightarrow X(X(b))))$ as this depends on the interpretation of the semantic meaning. The two formulas are incomparable, GPT4.o returns the latter interpretation:
 
 > **$\mu:$ "Whenever the food is hot, the food is cold in the next two steps."**
 > 
