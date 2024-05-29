@@ -507,13 +507,16 @@ As pointed out by Cosler et al. [5], their dataset contains two types of ambigui
 
 As both are plausible translations depending on the interpretation of the sentence, the example shows how the conversion is not as straight forward. 
 
-The second type of ambiguity is illustrated by the following. _Whenever a holds, b must hold in the next two steps_, mapped to $G (a \rightarrow (b | X b))$. However, it could also be translated as $G((a \rightarrow X(X(b))))$ as this depends on the interpretation of the semantic meaning. GPT4.o returns the latter interpretation:
+The second type of ambiguity is illustrated by the following. _Whenever a holds, b must hold in the next two steps_, mapped to $G (a \rightarrow (b | X b))$. However, it could also be translated as $G((a \rightarrow X(X(b))))$ as this depends on the interpretation of the semantic meaning. The two formulas are incomparable, GPT4.o returns the latter interpretation:
 
 > **$\mu:$ "Whenever the food is hot, the food is cold in the next two steps."**
 > 
 > $\psi_{\mu}$: $G(hot -> X(X(cold)))$
 > 
 > $D_{\psi}$: {'Whenever': '->', 'the food is hot': 'hot', 'the food is cold': 'cold', 'in the next two steps': 'X(X(cold))'}
+
+
+
 
 - To mitigate these ambiguities, the *nl2spec* [5] specifies sub-clauses. How to adjust prompt to improve results. **TODO**
 
