@@ -171,7 +171,7 @@ We test the parsing on two datasets. The first dataset derived from the *drone p
 
 The first dataset will be used to test both the initial conversion and the subsequent generation of runs, while the second dataset will be used to test solely the initial conversion from natural language to LTL.
 
-## <a name="results">Results</a>
+## <a name="results">Results and analysis</a>
 
 ### <a name="reproducibility results">Reproducibility</a>
 <table align="center">
@@ -251,10 +251,10 @@ When observing the output of ChatGPT, the symbolic language seems like a feasibl
 	<tr align="center">
 		<td align="left">ProntoQA</td>
 		<td>48.80</td>
-		<td><b>81.00</b></td>
+		<td>81.00</td>
 		<td>67.40</td>
 		<td>71.20</td>
-		<td></td>
+		<td><b>89.20</b></td>
 		<td>61.60</td>
 	</tr>
 	<tr align="center">
@@ -263,7 +263,7 @@ When observing the output of ChatGPT, the symbolic language seems like a feasibl
 		<td><b>49.17</b></td>
 		<td>37.83</td>
 		<td>49.67</td>
-		<td></td>
+		<td>61.33</td>
 		<td>74.17</td>
 	</tr>
 	<tr align="center">
@@ -281,7 +281,7 @@ When observing the output of ChatGPT, the symbolic language seems like a feasibl
 		<td>39.00</td>
 		<td><b>60.67</b></td>
 		<td>57.67</td>
-		<td></td>
+		<td>49.00</td>
 		<td>77.00</td>
 	</tr>
 	<tr align="center">
@@ -293,8 +293,17 @@ When observing the output of ChatGPT, the symbolic language seems like a feasibl
 		<td>27.27</td>
 		<td>28.57</td>
 	</tr>
+		<tr align="center">
+		<td align="left">LTL</td>
+		<td>68.00</td>
+		<td>44.00</td>
+		<td>18.00</td>
+		<td><b>76.00</b></td>
+		<td>62.00</td>
+		<td>28.00</td>
+	</tr>
 	<tr align="left">
-		<td colspan=7><b>Table 3.</b> Accuracy of standard prompting (Standard), chain-of-thought prompting (CoT), and our method (Logic-LM, without self-refinement) across five reasoning datasets using the Llama-3 model. The best results for each base LLM are highlighted.</td>
+		<td colspan=7><b>Table 3.</b> Accuracy of standard prompting (Standard), chain-of-thought prompting (CoT), and our method (Logic-LM, without self-refinement) across five reasoning datasets using the Llama-3 model. The best results for each base dataset are highlighted. Additionally the results of the LTL extension are shown. (TODO missende waarden)</td>
 	</tr>
 </table>
 
@@ -413,6 +422,53 @@ Table 4 displays a comparison of self-refinement. (*More results and analysis wi
 ### <a name="LTL results">LTL extension</a>
 
 #### (1) Perfomance Logic-LM for LTL
+<!--<table align="center">
+  <tr>
+    <th>Metric</th>
+    <th>Llama-3-8B</th>
+    <th>Llama-3-70B</th>
+  </tr>
+  <tr>
+    <td>Standard</td>
+    <td><b>68.00</b></td>
+    <td><b>76.00</b></td>
+  </tr>
+  <tr>
+    <td>CoT</td>
+    <td>44.00</td>
+    <td>62.00</td>
+  </tr>
+  <tr>
+    <td>Logic-LM</td>
+    <td>18.00</td>
+    <td>28.00</td>
+  </tr>
+  <tr>
+    <td>Exec-rate of Logic-LM</td>
+    <td>66.00</td>
+    <td>52.00</td>
+  </tr>
+  <tr>
+    <td>Exec-acc of Logic-LM</td>
+    <td>72.73</td>
+    <td>100.00</td>
+  </tr>
+	<tr align="left">
+		<td colspan="3"><b>Table 6: </b>LTL analysis: Accuracies for Standard, CoT and Logic-LM on LTL (drone planning dataset) with two Llama-3 models; And the corresponding executable rates.</td>
+	</tr>
+</table>-->
+Our study delves into the integration of Linear Temporal Logic (LTL) within the Logic-LM framework. This process involves translating natural language into LTL formulas and runs, and then applying a Büchi automaton (symbolic solver) to these formulas.
+
+Table 3 showcases the results of this extension alongside baseline methods and the logics from Pan et al. [1]. For both Llama-3 models, the standard method achieves the best performance. As anticipated, the larger Llama-3-70B model consistently outperforms the Llama-3-8B model across all methods. Notably, Logic-LM demonstrates the poorest performance.
+
+A more detailed analysis of Logic-LM for LTL is provided in Table 7, revealing potential reasons for its low accuracy. The primary issue seems to be that multiple or no answers are considered correct simultaneously, which should not happen. This problem could arise from incorrect translation of natural language into the corresponding LTL formulas (as discussed in the next section) or from inaccuracies in the translation to runs. Additionally, it is important to note that the dataset was partially manually created, which could have introduced further errors.
+
+When we examine the accuracy for questions that yielded exactly one correct answer, the results are 47% and 93% for the 8B and 70B models, respectively. Comparing these results to the baselines, we see that the Llama-8B Logic-LM outperforms CoT, and the Llama-70B outperforms all methods. This observation suggests that improvements in the prompt or the refiner could help the model overcome current limitations, providing a promising starting point for future research.
+
+Comparing LTL against other the logical reasoning tasks (Table 3), we observe that the standard method performs relatively very well on LTL, while CoT shows medium performance and Logic-LM performs poorly. It is important to note that the differences in performance between the methods are much smaller within the other logical reasoning datasets, which may again be attributed to the translation inaccuracies of the model.
+
+Future investigations could encompass a comprehensive evaluation of conversion accuracy across diverse LTL formulae, along with an in-depth analysis of how contextual factors within the planning domain influence run generation. An exploration into whether the LLMs can infer abstract relationships, such as associating rooms with floors, will provide valuable insights into their reasoning capabilities at abstracted levels.
+
 
 <table align="center">
 	<tr align="center">
@@ -451,13 +507,19 @@ Table 4 displays a comparison of self-refinement. (*More results and analysis wi
 		<td>94% (47/50)</td>
 	</tr>
 	<tr align="left">
-		<td colspan="3"><b>Table 6: </b>Analysis of Logic-LM results for LTL on the drone planning dataset. The table shows the overall accuracy of correct predictions across the entire dataset, followed by the accuracy when considering only the questions that yielded exactly one correct answer. Additionally, it presents the percentage of questions that resulted in either fewer than one or more than one correct answer, indicating faulty predictions.</td>
+		<td colspan="3"><b>Table 7: </b>Analysis of Logic-LM results for LTL on the drone planning dataset. The table shows the overall accuracy of correct predictions across the entire dataset, followed by the accuracy when considering only the questions that yielded exactly one correct answer. Additionally, it presents the percentage of questions that resulted in either fewer than one or more than one correct answer, indicating faulty predictions.</td>
 	</tr>
 </table>
 
-Our study represents an exploration into a novel methodology that combines natural language to LTL conversion and trace generation through prompting—a methodology not previously attempted, to the best of our knowledge. Notably, unlike previous approaches that rely on trajectory planners fed with LTL expressions, we introduce the predefined environment directly into the multiple-choice questions in natural language format, under the context section of the prompt. Future investigations could encompass a comprehensive evaluation of conversion accuracy across diverse LTL formulae, along with an in-depth analysis of how contextual factors within the planning domain influence run generation. An exploration into whether the LLMs can infer abstract relationships, such as associating rooms with floors, will provide valuable insights into their reasoning capabilities at abstracted levels.
 
-Regarding the question of whether LLMs can infer that rooms belong to floors, this line of inquiry delves into abstract reasoning levels. The results from the multiple-choice options in the planning domain demonstrate that while ambiguity may hinder exact matches, it can facilitate effective executions in certain instances—wherein the generated answer aligns with the intended outcome, even if the LTL formula of the test set does not match exactly.
+
+
+
+
+
+<!--Our study represents an exploration into a novel methodology that combines natural language to LTL conversion and trace generation through prompting—a methodology not previously attempted, to the best of our knowledge. Notably, unlike previous approaches that rely on trajectory planners fed with LTL expressions, we introduce the predefined environment directly into the multiple-choice questions in natural language format, under the context section of the prompt. Future investigations could encompass a comprehensive evaluation of conversion accuracy across diverse LTL formulae, along with an in-depth analysis of how contextual factors within the planning domain influence run generation. An exploration into whether the LLMs can infer abstract relationships, such as associating rooms with floors, will provide valuable insights into their reasoning capabilities at abstracted levels.-->
+
+<!--Regarding the question of whether LLMs can infer that rooms belong to floors, this line of inquiry delves into abstract reasoning levels. The results from the multiple-choice options in the planning domain demonstrate that while ambiguity may hinder exact matches, it can facilitate effective executions in certain instances—wherein the generated answer aligns with the intended outcome, even if the LTL formula of the test set does not match exactly.-->
 
 #### (2)  Evaluating the Performance of Large Language Models in NL to LTL Conversion
 By testing the NL to LTL conversion on the *nl2spec* dataset , we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations of such models.
