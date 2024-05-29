@@ -465,7 +465,7 @@ By testing the NL to LTL conversion on the *nl2spec* dataset [5], we seek to und
     <tr align="center">
         <th>Dataset</th>
         <th>GPT-4.o </th>
-        <th>GPT-3 </th>
+        <th>GPT-3.5 </th>
         <th>Llama3-70b-instruct </th>
     </tr>
     <tr align="center">
