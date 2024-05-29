@@ -75,7 +75,7 @@ class Model_Baseline:
 
     def reasoning_graph_generation(self):
         # load raw dataset
-        raw_dataset = self.load_raw_dataset(self.split)[:1]
+        raw_dataset = self.load_raw_dataset(self.split)
         print(f"Loaded {len(raw_dataset)} examples from {self.split} split.")
 
         # load in-context examples

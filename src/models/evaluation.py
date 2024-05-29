@@ -98,6 +98,11 @@ def evaluate_QA(QA_results):
     count = 0
     for sample in QA_results:
         gold_answer = sample["answer"].replace("(", "").replace(")", "").strip()
+        if isinstance(sample["predicted_answer"], list):
+            if gold_answer in sample["predicted_answer"]:
+                total_em += 1.0
+            count += 1
+            continue
         answer_str = (
             sample["predicted_answer"].strip()
             if sample["predicted_answer"] is not None
@@ -156,7 +161,7 @@ def parse_args():
 
 if __name__ == "__main__":
     args = parse_args()
-    result_path = f"./outputs/logic_inference"
+    result_path = f"./src/outputs/logic_inference"
     model_name = args.model_name.replace("/", "-")
     result_file = os.path.join(
         result_path,

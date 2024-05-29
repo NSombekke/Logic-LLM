@@ -159,7 +159,7 @@ def parse_args():
     parser.add_argument("--model_name", type=str)
     parser.add_argument("--mode", type=str)
     parser.add_argument("--split", type=str, default="dev")
-    parser.add_argument("--result_path", type=str, default="./outputs/baselines/")
+    parser.add_argument("--result_path", type=str, default="./src/outputs/baselines/")
     args = parser.parse_args()
     return args
 

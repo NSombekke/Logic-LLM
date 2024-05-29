@@ -16,7 +16,9 @@ class LTL_program:
     def parse_logic_program(self):
         try:
             lines = [
-                x.strip() for x in self.logic_program.splitlines() if not x.strip() == ""
+                x.strip()
+                for x in self.logic_program.splitlines()
+                if not x.strip() == ""
             ]
             raw_start_index = lines.index("# raw LTL formula of the question:")
             option_start_index = lines.index("# Options")
@@ -53,7 +55,7 @@ class LTL_program:
                     self.answers.append(False)
 
             if self.answers.count(True) == 0:
-                return self.answers, "Error: No option is correct"
+                return None, "Error: No option is correct"
             elif self.answers.count(True) > 1:
                 return self.answers, "Error: More than one option is correct"
 

@@ -29,7 +29,8 @@ The correct option is: A
 Context:
 [[CONTEXT]]
 
-Question: [[QUESTION]]
+Question: 
+[[QUESTION]]
 
 Options:
 [[OPTIONS]]
