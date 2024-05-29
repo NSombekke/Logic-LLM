@@ -583,7 +583,7 @@ Furthermore we extended Logic-LM to work with LTL. On this logic type Logic-LM h
 
 ## Authors' Contributions
 *example*
-- Rens: Wrote part of introduction, results and conclusion about the open-source model.
+- Rens: Wrote part of introduction, open-source model results and conclusion.
 - Roos: ...
 - Niels: Implemented the code for Llama models and LTL, acquired all results.
 - Sacha: Implemented LTL, wrote introduction and parts of LTL and the results, revised and structured blogpost.
