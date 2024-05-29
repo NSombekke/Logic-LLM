@@ -412,7 +412,54 @@ Table 4 displays a comparison of self-refinement. (*More results and analysis wi
 
 ### <a name="LTL results">LTL extension</a>
 
-#### (1)  Evaluating the Performance of Large Language Models in NL to LTL Conversion
+#### (1) Perfomance Logic-LM for LTL
+
+<table align="center">
+	<tr align="center">
+		<th>Accuracy on drone planning dataset</th>
+		<th>Llama3-8b</th>
+		<th>Llama3-70b</th>
+	</tr>
+	<tr align="center">
+		<td>Accuracy (correct/all data)</td>
+		<td>18% (9/50)</td>
+		<td>28% (14/50)</td>
+	</tr>
+	<tr align="center">
+		<td>Accuracy against all one answer data (correct/(correct+incorrect))</td>
+		<td>47% (9/19)</td>
+		<td>93% (14/15)</td>
+	</tr>
+	<tr align="center">
+		<td>No answer</td>
+		<td>32% (16/50)</td>
+		<td>42% (21/50)</td>
+	</tr>
+	<tr align="center">
+		<td>Two answers</td>
+		<td>20% (10/50)</td>
+		<td>16% (8/50)</td>
+	</tr>
+	<tr align="center">
+		<td>Three answers</td>
+		<td>10% (5/50)</td>
+		<td>12% (6/50)</td>
+	</tr>
+	<tr align="center">
+		<td>Executable rate</td>
+		<td>98% (49/50)</td>
+		<td>94% (47/50)</td>
+	</tr>
+	<tr align="left">
+		<td colspan="3"><b>Table 6: </b>Analysis of Logic-LM results for LTL on the drone planning dataset. The table shows the overall accuracy of correct predictions across the entire dataset, followed by the accuracy when considering only the questions that yielded exactly one correct answer. Additionally, it presents the percentage of questions that resulted in either fewer than one or more than one correct answer, indicating faulty predictions.</td>
+	</tr>
+</table>
+
+Our study represents an exploration into a novel methodology that combines natural language to LTL conversion and trace generation through prompting—a methodology not previously attempted, to the best of our knowledge. Notably, unlike previous approaches that rely on trajectory planners fed with LTL expressions, we introduce the predefined environment directly into the multiple-choice questions in natural language format, under the context section of the prompt. Future investigations could encompass a comprehensive evaluation of conversion accuracy across diverse LTL formulae, along with an in-depth analysis of how contextual factors within the planning domain influence run generation. An exploration into whether the LLMs can infer abstract relationships, such as associating rooms with floors, will provide valuable insights into their reasoning capabilities at abstracted levels.
+
+Regarding the question of whether LLMs can infer that rooms belong to floors, this line of inquiry delves into abstract reasoning levels. The results from the multiple-choice options in the planning domain demonstrate that while ambiguity may hinder exact matches, it can facilitate effective executions in certain instances—wherein the generated answer aligns with the intended outcome, even if the LTL formula of the test set does not match exactly.
+
+#### (2)  Evaluating the Performance of Large Language Models in NL to LTL Conversion
 By testing the NL to LTL conversion on the *nl2spec* dataset , we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations of such models.
 
 <table align="center">
@@ -470,52 +517,7 @@ As both are plausible translations depending on the interpretation of the senten
 
 Researchers have proposed mitigating these ambiguities by specifying sub-clauses, which can significantly improve results by providing clearer instructions for the model to follow [5].
 
-#### (2) Effectiveness of run generation
 
-<table align="center">
-	<tr align="center">
-		<th>Accuracy on drone planning dataset</th>
-		<th>Llama3-8b</th>
-		<th>Llama3-70b</th>
-	</tr>
-	<tr align="center">
-		<td>Accuracy (correct/all data)</td>
-		<td>18% (9/50)</td>
-		<td>28% (14/50)</td>
-	</tr>
-	<tr align="center">
-		<td>Accuracy against all one answer data (correct/(correct+incorrect))</td>
-		<td>47% (9/19)</td>
-		<td>93% (14/15)</td>
-	</tr>
-	<tr align="center">
-		<td>No answer</td>
-		<td>32% (16/50)</td>
-		<td>42% (21/50)</td>
-	</tr>
-	<tr align="center">
-		<td>Two answers</td>
-		<td>20% (10/50)</td>
-		<td>16% (8/50)</td>
-	</tr>
-	<tr align="center">
-		<td>Three answers</td>
-		<td>10% (5/50)</td>
-		<td>12% (6/50)</td>
-	</tr>
-	<tr align="center">
-		<td>Executable rate</td>
-		<td>98% (49/50)</td>
-		<td>94% (47/50)</td>
-	</tr>
-	<tr align="left">
-		<td colspan="3"><b>Table 6:</b> TO DO</td>
-	</tr>
-</table>
-
-Our study represents an exploration into a novel methodology that combines natural language to LTL conversion and trace generation through prompting—a methodology not previously attempted, to the best of our knowledge. Notably, unlike previous approaches that rely on trajectory planners fed with LTL expressions, we introduce the predefined environment directly into the multiple-choice questions in natural language format, under the context section of the prompt. Future investigations could encompass a comprehensive evaluation of conversion accuracy across diverse LTL formulae, along with an in-depth analysis of how contextual factors within the planning domain influence run generation. An exploration into whether the LLMs can infer abstract relationships, such as associating rooms with floors, will provide valuable insights into their reasoning capabilities at abstracted levels.
-
-Regarding the question of whether LLMs can infer that rooms belong to floors, this line of inquiry delves into abstract reasoning levels. The results from the multiple-choice options in the planning domain demonstrate that while ambiguity may hinder exact matches, it can facilitate effective executions in certain instances—wherein the generated answer aligns with the intended outcome, even if the LTL formula of the test set does not match exactly.
 
 
 
