@@ -581,8 +581,8 @@ Using Llama-3 8B we observed that the performance of Logic-LM is significantly w
 *example*
 - Rens: ...
 - Roos: ...
-- Niels: ...
-- Sacha: Implemeted LTL, dataset creation, revised the blogpost.
+- Niels: Implemented the code for Llama models and LTL, acquired all results.
+- Sacha: Implemented LTL, dataset creation, revised the blogpost.
 - AnneLouise: Researched the implementation of LTL, added two test sets for LTL.
 
 ## Bibliography
