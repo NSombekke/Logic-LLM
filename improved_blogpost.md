@@ -470,8 +470,7 @@ As both are plausible translations depending on the interpretation of the senten
 
 Researchers have proposed mitigating these ambiguities by specifying sub-clauses, which can significantly improve results by providing clearer instructions for the model to follow [5].
 
-#### (2) Effectiveness of run geneation
-
+#### (2) Effectiveness of run generation
 
 <table align="center">
 	<tr align="center">
