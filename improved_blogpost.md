@@ -404,14 +404,58 @@ Comparing these results to the GPT model results from the original paper [1], we
 		<td></td>
 	</tr>
 	<tr align="left">
-		<td colspan=7><b>Table 2.</b> Comparison of self-refinement on small and large LLama-3 models</td>
+		<td colspan=7><b>Table 4.</b> Comparison of self-refinement on small and large LLama-3 models</td>
 	</tr>
 </table>
-Table 2 displays a comparison of self-refinement. (*More results and analysis will follow in final version*)
+Table 4 displays a comparison of self-refinement. (*More results and analysis will follow in final version*)
 
 ### <a name="LTL results">LTL extension</a>
 
 #### Logic-LM for LTL *drone planning*
+
+
+
+<table align="center">
+	<tr align="center">
+		<th>Dataset</th>
+		<th>Llama3-8b</th>
+		<th>Llama3-70b</th>
+	</tr>
+	<tr align="center">
+		<td>Accuracy (correct/all data)</td>
+		<td>18% (9/50)</td>
+		<td>28% (14/50)</td>
+	</tr>
+	<tr align="center">
+		<td>Accuracy against all one answer data (correct/(correct+incorrect))</td>
+		<td>47% (9/19)</td>
+		<td>93% (14/15)</td>
+	</tr>
+	<tr align="center">
+		<td>No answer</td>
+		<td>32% (16/50)</td>
+		<td>42% (21/50)</td>
+	</tr>
+	<tr align="center">
+		<td>Two answers</td>
+		<td>20% (10/50)</td>
+		<td>16% (8/50)</td>
+	</tr>
+	<tr align="center">
+		<td>Three answers</td>
+		<td>10% (5/50)</td>
+		<td>12% (6/50)</td>
+	</tr>
+	<tr align="center">
+		<td>Executable rate</td>
+		<td>98% (49/50)</td>
+		<td>94% (47/50)</td>
+	</tr>
+	<tr align="left">
+		<td colspan="3"><b>Table 5:</b> Comparison of self-refinement on small and large Llama-3 models</td>
+	</tr>
+</table>
+
 | Dataset             | Llama3-8b   | Llama3-70b |
 |----------------|-----------------|-----------------|
 | Accuracy (correct/all data)  | 18% (9/50)     | 28% (14/50) | 
