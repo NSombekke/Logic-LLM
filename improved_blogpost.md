@@ -461,6 +461,31 @@ Table 4 displays a comparison of self-refinement. (*More results and analysis wi
 ##### (1)  Evaluating the Performance of Large Language Models in NL to LTL Conversion
 By testing the NL to LTL conversion on the *nl2spec* dataset [5], we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations of such models.
 
+<table align="center">
+    <tr align="center">
+        <th>Dataset</th>
+        <th>GPT-4.0 (CoT)</th>
+        <th>GPT-3 (CoT)</th>
+        <th>Llama3-70b-instruct (CoT)</th>
+    </tr>
+    <tr align="center">
+        <td>nl2spec original</td>
+        <td>23/36 (63.88%)</td>
+        <td>18/36 (50.00%)</td>
+        <td>23/36 (63.88%)</td>
+    </tr>
+    <tr align="center">
+        <td>nl2spec in NL</td>
+        <td>26/36 (72.22%)</td>
+        <td>17/36 (47.22%)</td>
+        <td>19/36 (52.77%)</td>
+    </tr>
+    <tr align="left">
+        <td colspan="4"><b>Table 6:</b> Accuracies Over Test Sets (Counting the Number of Exact Matches Between Formulae)</td>
+    </tr>
+</table>
+
+
 **Accuracies Over Test Sets (Counting the Number of Exact Matches Between Formulae)**
 
 | Dataset             | GPT-4.0 (CoT)     | GPT-3 (CoT)     | Llama3-70b-instruct (CoT) |
