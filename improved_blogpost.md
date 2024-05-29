@@ -461,9 +461,9 @@ Our study delves into the integration of Linear Temporal Logic (LTL) within the 
 
 Table 3 showcases the results of this extension alongside baseline methods and the logics from Pan et al. [1]. For both Llama-3 models, the standard method achieves the best performance. As anticipated, the larger Llama-3-70B model consistently outperforms the Llama-3-8B model across all methods. Notably, Logic-LM demonstrates the poorest performance.
 
-A more detailed analysis of Logic-LM for LTL is provided in Table 7, revealing potential reasons for its low accuracy. The primary issue seems to be that multiple or no answers are considered correct simultaneously, which should not happen. This problem could arise from incorrect translation of natural language into the corresponding LTL formulas (as discussed in the next section) or from inaccuracies in the translation to runs. Additionally, it is important to note that the dataset was partially manually created, which could have introduced further errors.
+A more detailed analysis of Logic-LM for LTL is provided in Table 5, revealing potential reasons for its low accuracy. The primary issue seems to be that multiple or no answers are considered correct simultaneously, which should not happen. This problem could arise from incorrect translation of natural language into the corresponding LTL formulas (as discussed in the next section) or from inaccuracies in the translation to runs. Additionally, it is important to note that the dataset was partially manually created, which could have introduced further errors.
 
-When we examine the accuracy for questions that yielded exactly one correct answer, the results are 47% and 93% for the 8B and 70B models, respectively. Comparing these results to the baselines, we see that the Llama-8B Logic-LM outperforms CoT, and the Llama-70B outperforms all methods. This observation suggests that improvements in the prompt or the refiner could help the model overcome current limitations, providing a promising starting point for future research.
+When we examine the accuracy for questions that yielded exactly one correct answer, the results are 47% and 93% for the 8B and 70B models, respectively (Table 5). Comparing these results to the baselines, we see that the Llama-8B Logic-LM outperforms CoT, and the Llama-70B outperforms all methods. This observation suggests that improvements in the prompt or the refiner could help the model overcome current limitations, providing a promising starting point for future research.
 
 Comparing LTL against other the logical reasoning tasks (Table 3), we observe that the standard method performs relatively very well on LTL, while CoT shows medium performance and Logic-LM performs poorly. It is important to note that the differences in performance between the methods are much smaller within the other logical reasoning datasets, which may again be attributed to the translation inaccuracies of the model.
 
@@ -507,7 +507,7 @@ Future investigations could encompass a comprehensive evaluation of conversion a
 		<td>94% (47/50)</td>
 	</tr>
 	<tr align="left">
-		<td colspan="3"><b>Table 7: </b>Analysis of Logic-LM results for LTL on the drone planning dataset. The table shows the overall accuracy of correct predictions across the entire dataset, followed by the accuracy when considering only the questions that yielded exactly one correct answer. Additionally, it presents the percentage of questions that resulted in either fewer than one or more than one correct answer, indicating faulty predictions.</td>
+		<td colspan="3"><b>Table 5: </b>Analysis of Logic-LM results for LTL on the drone planning dataset. The table shows the overall accuracy of correct predictions across the entire dataset, followed by the accuracy when considering only the questions that yielded exactly one correct answer. Additionally, it presents the percentage of questions that resulted in either fewer than one or more than one correct answer, indicating faulty predictions.</td>
 	</tr>
 </table>
 
@@ -545,7 +545,7 @@ By testing the NL to LTL conversion on the *nl2spec* dataset , we seek to unders
     </tr>
     <tr align="left">
         <td colspan="4">
-            <b>Table 5:</b> Accuracies Over Test Sets using <a href = "https://github.com/NSombekke/Logic-LLM/blob/main/src/models/prompts/LTLCoTnl2spec.txt">CoT</a> (Counting the Number of Exact Matches Between Formulae) 
+            <b>Table 6:</b> Accuracies Over Test Sets using <a href = "https://github.com/NSombekke/Logic-LLM/blob/main/src/models/prompts/LTLCoTnl2spec.txt">CoT</a> (Counting the Number of Exact Matches Between Formulae) 
             <br><i>For intersecting Büchi automata, we use the following 
             <a href="https://spot.lre.epita.fr/app/">spot</a> model checking software.<i>
         </td>
@@ -554,7 +554,7 @@ By testing the NL to LTL conversion on the *nl2spec* dataset , we seek to unders
 
 Our results reveal a notable discrepancy in the performance of Llama3-70b-instruct when employing direct prompting versus Chain of Thought (CoT) prompting for NL to LTL conversion. Impressively, while CoT prompting yielded satisfactory results, with an accuracy of 23/36 (63.88%), direct prompting fell notably short, achieving only 44.44% (16 out of 36). This stark difference underscores the critical role structured prompting techniques play in enhancing the efficacy of LLMs for intricate tasks like logical formula conversion.
 
-The results presented in table 5 demonstrate the effectiveness of using LLMs to parse natural language into LTL formulas. Notably, the *nl2spec original* approach, which works directly with predefined predicates, outperforms the *nl2spec in NL* approach, which extracts predicates from natural language sentences. This improvement can be attributed to the fact that predefined predicates provide a clear and concise representation of the relevant information, allowing the LLM to focus on understanding the relationships between them and generating the correct LTL formula. This suggests that LLMs, particularly Llama3-70b, are better suited for parsing predefined predicates rather than natural language. This gap in performance highlights the challenges of natural language processing and the need for further research in this area.
+The results presented in table 6 demonstrate the effectiveness of using LLMs to parse natural language into LTL formulas. Notably, the *nl2spec original* approach, which works directly with predefined predicates, outperforms the *nl2spec in NL* approach, which extracts predicates from natural language sentences. This improvement can be attributed to the fact that predefined predicates provide a clear and concise representation of the relevant information, allowing the LLM to focus on understanding the relationships between them and generating the correct LTL formula. This suggests that LLMs, particularly Llama3-70b, are better suited for parsing predefined predicates rather than natural language. This gap in performance highlights the challenges of natural language processing and the need for further research in this area.
 
 On the other hand, GPT-3.5 performs similarly on both sets, but performs worst overall. Our results show that GPT-4.o (72.22%) significantly outperforms GPT-3.5 (47.22%) in translating natural language to LTL formulas. This suggests that GPT-4.o has enhanced capabilities in understanding and processing natural language semantics, making it a more reliable tool for complex logical conversions. Interestingly, GPT-4.o performs poorer on predefined propositions (23/36) compared to NL (26/36) , which may indicate that it is more geared towards handling natural language inputs rather than structured data. 
 
@@ -689,7 +689,7 @@ Using Llama-3 8B we observed that the performance of Logic-LM is significantly w
 - Rens: ...
 - Roos: ...
 - Niels: Implemented the code for Llama models and LTL, acquired all results.
-- Sacha: Implemented LTL, dataset creation, revised the blogpost.
+- Sacha: Implemented LTL, wrote introduction and parts of LTL and the results, revised and structured blogpost.
 - AnneLouise: Researched the implementation of LTL, added two test sets for LTL, result analysis.
 
 ## Bibliography
