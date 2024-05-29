@@ -177,10 +177,10 @@ The first dataset will be used to test both the initial conversion and the subse
 <table align="center">
 	<tr align="center">
     	<th>Dataset</th>
-    	<th>Overall accuracy (of original paper)</th>
-    	<th>Overall accuracy (of 10 examples)</th>
-    	<th>Executable rate (of 10 examples)</th>
-    	<th>Executable accuracy (of 10 examples)</th>
+    	<th>Overall accuracy (original paper)</th>
+    	<th>Overall accuracy (10 examples)</th>
+    	<th>Executable rate (10 examples)</th>
+    	<th>Executable accuracy (10 examples)</th>
 	</tr>
 		<tr align="center">
     	<td>ProntoQA</td>
