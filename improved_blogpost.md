@@ -468,7 +468,7 @@ As both are plausible translations depending on the interpretation of the senten
 > 
 > $D_{\psi}$: {'Whenever': '->', 'the food is hot': 'hot', 'the food is cold': 'cold', 'in the next two steps': 'X(X(cold))'}
 
-Researchers have proposed mitigating these ambiguities by specifying sub-clauses, as demonstrated in nl2spec [5], which can significantly improve results by providing clearer instructions for the model to follow.
+Researchers have proposed mitigating these ambiguities by specifying sub-clauses, which can significantly improve results by providing clearer instructions for the model to follow [5].
 
 #### (2) Effectiveness of run geneation
 
