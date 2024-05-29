@@ -264,7 +264,7 @@ When observing the output of ChatGPT, the symbolic language seems like a feasibl
 		<td>37.83</td>
 		<td>49.67</td>
 		<td>61.33</td>
-		<td>74.17</td>
+		<td><b>74.17</b></td>
 	</tr>
 	<tr align="center">
 		<td align="left">FOLIO</td>
@@ -282,20 +282,20 @@ When observing the output of ChatGPT, the symbolic language seems like a feasibl
 		<td><b>60.67</b></td>
 		<td>57.67</td>
 		<td>49.00</td>
-		<td>77.00</td>
+		<td><b>77.00</b></td>
 	</tr>
 	<tr align="center">
 		<td align="left">AR-LSAT</td>
 		<td><b>24.68</b></td>
 		<td>20.80</td>
 		<td>15.15</td>
-		<td>29.00</td>
+		<td><b>29.00</b></td>
 		<td>27.27</td>
 		<td>28.57</td>
 	</tr>
 		<tr align="center">
 		<td align="left">LTL</td>
-		<td>68.00</td>
+		<td><b>68.00</b></td>
 		<td>44.00</td>
 		<td>18.00</td>
 		<td><b>76.00</b></td>
@@ -307,11 +307,11 @@ When observing the output of ChatGPT, the symbolic language seems like a feasibl
 	</tr>
 </table>
 
-Table 3 shows the results of the experiments with the open-source model. For Llama-3 8B it shows that Logic-LM only scored highest on the LogicalDeduction dataset, where it scored 60.67 compared to 35.33 and 39.00 for Standard and CoT respectively. For the other datasets Logic-LM is outperformed by either the Standard or the CoT method. Llama-3 70B performs better than Llama-3 70B, but Logic-LM still does not achieve total superior performance compared to the baselines. However it does score significantly better on Proofwriter and LogicalDeduction than the Standard and CoT methods. Still Logic-LM gets outperformed on the other datasets, although the difference on AR-LSAT is not very significant. *Will be completed once 70B results are in.*
+Table 3 shows the results of the experiments with the open-source model. For Llama-3 8B it shows that Logic-LM only scored highest on the LogicalDeduction dataset, where it scored 60.67 compared to 35.33 and 39.00 for Standard and CoT respectively. For the other datasets Logic-LM is outperformed by either the Standard or the CoT method. Llama-3 70B performs better than Llama-3 70B, but Logic-LM still does not achieve total superior performance compared to the baselines. However it does score significantly better on Proofwriter and LogicalDeduction than the Standard and CoT methods. Still Logic-LM gets outperformed on the other datasets, although the difference on AR-LSAT is not very large. 
 
-One reason why Logic-LM performs worse than the other methods could be that the dataset on which Llama-3 was trained lacks logic problems that are written in symbolic language. According to a blog by [daily.dev](https://daily.dev/blog/meta-llama-3-everything-you-need-to-know-in-one-place) Llama-3 was trained to be better in logical problems and reasoning than Llama-2, however this training was probably mostly done in logical reasoning with natural language, but not in converting natural language logic to symbolic language logic, since that is less relevant for most users. This would explain why it does perform well with the Standard and CoT method, where the model can solve the logic with natural language, but does not perform well when having to do something with symbolic language, like converting from natural to symbolic language. Logic-LM does score high on the LogicalDeduction dataset, which might mean that Llama-3 was trained more on constraint satisfaction. Another explanation could be that it is easier for the model to convert the natural language to symbolic logic, because the symbolic formulation of constraint satisfaction logic is much simpler and more familiar to natural language compared to other logic types, making it score better.
+One reason why Logic-LM performs worse than the other methods could be that the dataset on which Llama-3 was trained lacks logic problems that are written in symbolic language. According to a blog by [daily.dev](https://daily.dev/blog/meta-llama-3-everything-you-need-to-know-in-one-place) Llama-3 was trained to be better in logical problems and reasoning than Llama-2, however this training was probably mostly done in logical reasoning with natural language, but not in converting natural language logic to symbolic language logic, since that is less relevant for most users. This would explain why it does perform well with the Standard and CoT method, where the model can solve the logic with natural language, but does not perform well when having to do something with symbolic language, like converting from natural to symbolic language. Logic-LM does score high on the LogicalDeduction dataset, which might mean that Llama-3 was trained more on constraint satisfaction. Another explanation for high performance on LogicalDeduction could be that it is easier for the model to convert the natural language to symbolic logic, because the symbolic formulation of constraint satisfaction logic is much simpler and more familiar to natural language compared to other logic types, making it achieve a higher score.
 
-Comparing these results to the GPT model results from the original paper [1], we observe that the 8B version of Llama-3 generally performs worse than the GPT models. Logic-LM has significantly lower scores compared to all GPT models for the Proofwriter, FOLIO and AR-LSAT dataset and slightly lower scores for the LogicalDeduction dataset. Only on the PrOntoQA Llama-3 8B achieved a higher score than gpt-3.5-turbo, while still having worse scores when using the other GPT models. For the Standard and CoT method we observe similar performance to gpt-3.5-turbo while also being outperformed by the other GPT models. The 70B version however does achieve more similar scores as the OpenAI models. While still being outperformed by GPT-4 on all datasets, it does score higher than ChatGPT and GPT-3.5 on some datasets. It outperforms ChatGPT on all datasets except FOLIO and outperforms GPT 3.5 on both Proofwriter and LogicalDeduction. Llama-3 70B's better performance compared to the 8B version was to be expected, since Llama-3 70B is significantly larger and also performs better in Meta's own [benchmarks](https://ai.meta.com/blog/meta-llama-3/). Taking this into account, it is noteworthy that the 8B version outperforms the 70B version on ProtoQA, achieving a score of 67.40 versus the 61.60 from 70B. (*More results and analysis will follow in final version*)
+Comparing these results to the GPT model results from the original paper [1], we observe that the 8B version of Llama-3 generally performs worse than the GPT models. Logic-LM has significantly lower scores compared to all GPT models for the Proofwriter, FOLIO and AR-LSAT dataset and slightly lower scores for the LogicalDeduction dataset. Only on the PrOntoQA Llama-3 8B achieved a higher score than gpt-3.5-turbo, while still having worse scores when using the other GPT models. For the Standard and CoT method we observe similar performance to gpt-3.5-turbo while also being outperformed by the other GPT models. The 70B version however does achieve more similar scores as the OpenAI models. While still being outperformed by GPT-4 on all datasets, it does score higher than ChatGPT and GPT-3.5 on some datasets. It outperforms ChatGPT on all datasets except FOLIO and outperforms GPT 3.5 on both Proofwriter and LogicalDeduction. Llama-3 70B's better performance compared to the 8B version was to be expected, since Llama-3 70B is significantly larger and also performs better in Meta's own [benchmarks](https://ai.meta.com/blog/meta-llama-3/). Taking this into account, it is noteworthy that the 8B version outperforms the 70B version on ProtoQA, achieving a score of 67.40 versus the 61.60 from 70B.
 
 
 ### <a name="LTL results">LTL extension</a>
@@ -576,12 +576,14 @@ without self-refinement) on five reasoning datasets. The best results within eac
 ## <a name="conclusion">Conclusion</a>
 Our experiments show that it is possible to use Logic-LM with open-source language models. However the achieved performance with the used SoTA open-source language model (Llama-3) is shown to be lower than the performance of the closed-source GPT models. The 8B version of Llama-3  generally performed worse than all GPT models, while the 70B version scored more similarly to GPT 3.5, beating ChatGPT while losing to GPT 4.0. It should be noted that once better open-source models become available, they could perform equally as good or better than closed-source models, since the achieved performance is evidently related to the used language model. Using this extension it would be easy to switch open-source models, making it easier to use new higher-performing models in the future.
 
-Using Llama-3 8B we observed that the performance of Logic-LM is significantly worse than the Standard and CoT methods, except on the LogicalDeduction dataset, where Logic-LM performed slightly better. This contradicts the findings of the original authors, since they found Logic-LM to outperform the other 2 methods on almost all datasets with all three GPT models. This is likely due to a difference in the ability of the model to . Moreover the difference could lead to wrong input for the logic solvers, making them unable to correctly solve the problems. (*More analysis will follow in final version*)
+Using Llama-3 8B we observed that the performance of Logic-LM is significantly worse than the Standard and CoT methods, except on the LogicalDeduction dataset, where Logic-LM performed slightly better. With Llama-3 the results of Logic-LM were a little better, but Logic-LM still did not achieve superior performance compared to the baselines. This contradicts the findings of the original authors, since they found Logic-LM to outperform the other 2 methods on almost all datasets with all three GPT models. This is likely due to a difference in the ability of the model to convert natural language logic into symbolic logic, making the reasoners unable to correctly solve the problems. 
+
+Furthermore we extended Logic-LM to work with LTL. On this logic type Logic-LM had lower performance than the benchmark methods on both Llama-3 versions, while the Standard method performed best. It is likely that an improvement in the prompt or self-refinement could boost performance of Logic-LM for this logic. Comparing the ability of Llama-3 to convert NL into LTL, it was found that GPT 4.o is significantly better in converting NL than Llama-3. Llama-3 70B had a reasonably high accuracy with predefined predicates and achieved much lower accuracy when converting NL. This means that with Llama-3 it is better to use predefined predicates than NL. GPT 4.o on the other hand performed even higher on NL compared to predefined predicates, making it the preferred model for converting NL to LTL.
 
 
 ## Authors' Contributions
 *example*
-- Rens: ...
+- Rens: Wrote part of introduction, results and conclusion about the open-source model.
 - Roos: ...
 - Niels: Implemented the code for Llama models and LTL, acquired all results.
 - Sacha: Implemented LTL, wrote introduction and parts of LTL and the results, revised and structured blogpost.
