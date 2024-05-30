@@ -1,4 +1,4 @@
-LLAMA 70 direct prompting
+LLAMA3-70b direct prompting
 G (hunger -> F eating); Equivalent
 G !(rain & sunshine); Equivalent
 G((start -> F^3 acceleration)); Incomparable
