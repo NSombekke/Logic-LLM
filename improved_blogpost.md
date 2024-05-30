@@ -103,7 +103,7 @@ For illustration, consider the following Natural language commands $\mu$, and th
 #### Prompt Engineering
 Since Large language models are predominantly trained on natural language, they may struggle converting natural language directly into Linear Temporal Logic (LTL) formulas. The syntax of LTL (e.g. X, U, and F) is quite different from typical natural language constructs. To address this distribution shift, a study by Pan et al. [1] proposes creating a *canonical* representation that aligns more closely with natural language [8]. For the same reason Cosler et al.  prompt the LLM to turn $\mu$ into an intermediate *canoncial form*, shown as *sub-translations*, before mapping the the sentence into an LTL formula . Each translation accompanies a translation dictionary in canonical form, through which th LLM is asked to explain its steps. We will use their prompting technique. 
 
-The outline below encapsulates our prompt setup, comprising three main sections — (1) LTL specification for the conversion of Natural Language to LTL, (2) the conversion of multiple choice options to runs, and (3) few-shot examples. All in all, the prompt serves as a structured framework for generating LTL formulas and runs from natural language inputs.
+The outline below encapsulates our prompt setup, comprising four main sections — (1) an explanation of the prompt along with the context (detailed in Appendix B), (2) LTL specification for the conversion of Natural Language to LTL, (3) the conversion of multiple choice options to runs, and (4) few-shot examples. All in all, the prompt serves as a structured framework for generating LTL formulas and runs from natural language inputs.
 
 >**Prompt**
 >
@@ -139,7 +139,7 @@ Below an explanaition is given of all the input you will recieve and what you sh
 ### <a name="ltl">Symbolic Reasoner</a>
 After the problem formulator has translated the natural language question into LTL and options into runs, we pass them to the logical reasoner. This reasoner checks for the validity of runs, verifying whether a given run satisfies the specified LTL formula. Runs are either accepted or rejected based on their compliance with the LTL formula, and consequently, the model is able to select one of the multiple-choice answers. 
 
-The LTL formula is first converted to a Deterministic Finite State Automaton (DFA), next the runs are passed to the Büchi automatom (Figure 3). This is a theoretical machine that either accepts or rejects inputs (further details in Appendix B). To derive the LTL formulas associated DFA we employ a Python module. We integrated the [*Flloat*](https://pypi.org/project/flloat/) Python library to translate LTL formulas (in CNF form) with finite-trace (runs) semantics into a minimal DFA [3]. This conversion is guaranteed by Theorem 1. The resulting  DFA ($M_{\phi}$) encapsulates the temporal constraints specified by the LTL formula, enabling efficient reasoning over finite runs.  Therefore the DFA and the runs are passed to the aforementioned Büchi automaton, which determines if a run is satisfiable within the corresponding LTL formula. The run-based satisfiability reasoning enables the framework's capability to address temporal aspects of logical reasoning problems.
+The LTL formula is first converted to a Deterministic Finite State Automaton (DFA), next the runs are passed to the Büchi automatom (Figure 3). This is a theoretical machine that either accepts or rejects inputs (further details in Appendix C). To derive the LTL formulas associated DFA we employ a Python module. We integrated the [*Flloat*](https://pypi.org/project/flloat/) Python library to translate LTL formulas (in CNF form) with finite-trace (runs) semantics into a minimal DFA [3]. This conversion is guaranteed by Theorem 1. The resulting  DFA ($M_{\phi}$) encapsulates the temporal constraints specified by the LTL formula, enabling efficient reasoning over finite runs.  Therefore the DFA and the runs are passed to the aforementioned Büchi automaton, which determines if a run is satisfiable within the corresponding LTL formula. The run-based satisfiability reasoning enables the framework's capability to address temporal aspects of logical reasoning problems.
 
 **Theorem 1 [Vardi and Wolper, 1994]**: For any LTL formula $\psi$, a Büchi automaton $M_{\psi}$ can be constructed, having a number of states that is at most exponential in the length of $\psi$.  The language of $M_{\psi}$, denoted as $L(M_{\psi})$, encompasses the set of models of $\psi$ [10].
 
@@ -269,7 +269,7 @@ When observing the output of ChatGPT, the symbolic language seems like a feasibl
 		<td>51.00</td>
 		<td>36.27</td>
 		<td>61.27</td>
-		<td></td>
+		<td>66.18</td>
 		<td>57.35</td>
 	</tr>
 	<tr align="center">
@@ -300,7 +300,7 @@ When observing the output of ChatGPT, the symbolic language seems like a feasibl
 		<td>28.00</td>
 	</tr>
 	<tr align="left">
-		<td colspan=7><b>Table 3.</b> Accuracy of standard prompting (Standard), chain-of-thought prompting (CoT), and our method (Logic-LM, without self-refinement) across five reasoning datasets using the Llama-3 model. The best results for each base dataset are highlighted. Additionally the results of the LTL extension are shown. (TODO missende waarden)</td>
+		<td colspan=7><b>Table 3.</b> Accuracy of standard prompting (Standard), chain-of-thought prompting (CoT), and our method (Logic-LM, without self-refinement) across five reasoning datasets using the Llama-3 model. The best results for each base dataset are highlighted. Additionally the results of the LTL extension are shown.</td>
 	</tr>
 </table>
 
@@ -775,8 +775,24 @@ In the context of planning, LTL formulas ($\varphi$) are constructed over a set 
 - $w, i \models F \varphi$ iff $\exists j \geq i$ such that $w, j \models \varphi$
 - $w, i \models \varphi_1 \mathcal{U} \varphi_2$ iff there exists a $j$ with $i \le j \le n$ s.t. $w, j \models \varphi_2$ and for all $i \le k < j$, $w, k \models \varphi_1$
 
+### Appendix B: context in the prompt
+The addition of a context in the prompt is not always necessary for correct LTL generation as the LLM is expected to infer when predictes have a mutex (mutually exclusive) conditions (e.g. the predicates sleeping and eating can not hold at the same time). However, we are utilizing a drone planning dataset that contains spefic constraints, such as the impossibility of the drone simultaneously occupying the third floor and a particular room on the first floor. Therefore prompts enriched with a context are utilized in this study.
 
-### Appenix B: Symbolic solver for LTL
+> **Context**:
+>  *Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second  floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1.* *The drone’s movement is limited to one floor and not more than one  room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.*
+> 
+> **Question:**
+> Always avoid the green room and navigate to the third floor. Which one of the following is a possible path for the drone to follow?
+> 
+> **Options:**
+> 
+> (A) From the third floor go to the green room and stay there,
+> 
+> (B) Go inside the red room and then move to the green room,
+> 
+> (C) Go to the second floor passing the yellow room and then go to the third floor
+
+### Appenix C: Symbolic solver for LTL
 The input words **w** of the Büchi automaton ($M_{\psi}$) can be infinite sequences $\sigma_0 \sigma_1 ... \sigma_n \in \Sigma^{w}$ [7]. A *run* of the automaton $(M_{\psi})$ on the word  **w** is sequence of states $\rho = q_0q_1q_2...$, where each state is a set of propositions. The initial state is $q_0$ and subsequent states are defined throught the transition function $q_{i+1} = \Delta(q_i,\sigma_i)$. The language of the automaton $M_{\psi}$ ($L(M_{\psi})$), is a set of *words* characterized by the presence of an accepting run. In this case each accepting run is a valid sequence of states that holds in the automaton. 
 
 <!--(TODO add ref)-->
@@ -794,19 +810,4 @@ $L(M_{\psi}) = \\{ w \in \Sigma^{w} | w \text{ is accepted by}  M_{\psi} \\}$
 
 For each subplan $q_i$ of the run, the language function $L$ assigns a symbol $\sigma \in \Sigma$. These symbols collectively form a word **w** representing the sequence of symbols observed along the run. This word **w** is then evaluated against the acceptance conditions of the DBA $M_{\psi}$. The language $L(M_{\psi})$ defines a set of infinite runs that the DFA can recognize. If **w** satisfies these acceptance conditions, then the finite run $\rho_{\psi}$ satisfies the LTL formula. Finite runs $\rho_{\psi}$ satisfiy the LTL if the word $ **w** = L(q_0)L(q_1)...L(q_n)$ is acceptable in $L(M_{\psi})$. 
 
-### TODO (dingen die ik nu heb weggehaald maar miss nog moeten blijven?)
-The addition of a context in the prompt is not always necessary for correct LTL generation as the LLM is expected to infer when predictes have a mutex (mutually exclusive) conditions (e.g. the predicates sleeping and eating can not hold at the same time). However, we are utilizing a drone planning dataset that contains spefic constraints, such as the impossibility of the drone simultaneously occupying the third floor and a particular room on the first floor. Therefore prompts enriched with a context are utilized in this study.
 
-> **Context**:
->  *Our environment consists of grid-based rooms across multiple floors. Each floor features distinct rooms: the first floor has a red room and a yellow room, the second  floor has a green room, and the third floor includes a purple room, an orange room, and Landmark 1.* *The drone’s movement is limited to one floor and not more than one  room at a time within this structured environment. This setup is crucial for guiding effective planning and decision-making processes within the context of our problem.*
-> 
-> **Question:**
-> Always avoid the green room and navigate to the third floor. Which one of the following is a possible path for the drone to follow?
-> 
-> **Options:**
-> 
-> (A) From the third floor go to the green room and stay there,
-> 
-> (B) Go inside the red room and then move to the green room,
-> 
-> (C) Go to the second floor passing the yellow room and then go to the third floor
