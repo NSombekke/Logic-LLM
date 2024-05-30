@@ -422,7 +422,7 @@ Future investigations could encompass a comprehensive evaluation of conversion a
 
 <!--Regarding the question of whether LLMs can infer that rooms belong to floors, this line of inquiry delves into abstract reasoning levels. The results from the multiple-choice options in the planning domain demonstrate that while ambiguity may hinder exact matches, it can facilitate effective executions in certain instances—wherein the generated answer aligns with the intended outcome, even if the LTL formula of the test set does not match exactly.-->
 
-#### (2)  Evaluating the Performance of Large Language Models in NL to LTL Conversion
+#### (2)  Evaluating NL to LTL Conversion
 By testing the NL to LTL conversion on the *nl2spec* dataset , we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations.
 
 <table align="center">
