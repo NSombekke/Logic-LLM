@@ -31,6 +31,7 @@ The datasets we used are preprocessed and stored in the `./data` folder. We eval
 - [FOLIO](https://github.com/Yale-LILY/FOLIO): First-Order Logic reasoning dataset. We use the entire FOLIO test set for evaluation, consisting of 204 examples.
 - [LogicalDeduction](https://github.com/google/BIG-bench/tree/main/bigbench/benchmark_tasks/logical_deduction): Constraint Satisfaction Problems (CSPs). We use the full test set consisting of 300 examples.
 - [AR-LSAT](https://github.com/zhongwanjun/AR-LSAT): Analytical Reasoning (AR) problems, containing all analytical logic reasoning questions from the Law School Admission Test from 1991 to 2016. We use the test set which has 230 multiple-choice questions. 
+- [Drone Planning](https://github.com/UM-ARM-Lab/Efficient-Eng-2-LTL/tree/main/datasets/drone-planning): Linear time Temporal Logic (LTL) problems, this dataset contains drone planning related reasoning questions. We use a self-made dev set containing 50 multiple-choice questions. 
 
 ## Baselines
 
