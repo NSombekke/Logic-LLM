@@ -32,7 +32,12 @@ The datasets we used are preprocessed and stored in the `./data` folder. We eval
 - [ProofWriter](https://allenai.org/data/proofwriter): Deductive resoning dataset. We use the depth-5 subset of the OWA version. To reduce overall experimentation costs, we randomly sample 600 examples in the test set and ensure a balanced label distribution.
 - [FOLIO](https://github.com/Yale-LILY/FOLIO): First-Order Logic reasoning dataset. We use the entire FOLIO test set for evaluation, consisting of 204 examples.
 - [LogicalDeduction](https://github.com/google/BIG-bench/tree/main/bigbench/benchmark_tasks/logical_deduction): Constraint Satisfaction Problems (CSPs). We use the full test set consisting of 300 examples.
+<<<<<<< HEAD
 - [AR-LSAT](https://github.com/zhongwanjun/AR-LSAT): Analytical Reasoning (AR) problems, containing all analytical logic reasoning questions from the Law School Admission Test from 1991 to 2016. We use the test set which has 230 multiple-choice questions.
+=======
+- [AR-LSAT](https://github.com/zhongwanjun/AR-LSAT): Analytical Reasoning (AR) problems, containing all analytical logic reasoning questions from the Law School Admission Test from 1991 to 2016. We use the test set which has 230 multiple-choice questions. 
+- [Drone Planning](https://github.com/UM-ARM-Lab/Efficient-Eng-2-LTL/tree/main/datasets/drone-planning): Linear time Temporal Logic (LTL) problems, this dataset contains drone planning related reasoning questions. We use a self-made dev set containing 50 multiple-choice questions. 
+>>>>>>> 80bc38f32f7ead46dea3e38a3e532800216fa366
 
 ## Baselines
 
