@@ -144,6 +144,8 @@ The LTL formula is first converted to a Deterministic Finite State Automaton (DF
 **Theorem 1 [Vardi and Wolper, 1994]**: For any LTL formula $\psi$, a Büchi automaton $M_{\psi}$ can be constructed, having a number of states that is at most exponential in the length of $\psi$.  The language of $M_{\psi}$, denoted as $L(M_{\psi})$, encompasses the set of models of $\psi$ [10].
 
 ### Experiments
+We aim to evaluate how well LLMs performs the conversion task from natural language to LTL in cases where it needs to generalize from few examples (few-shot learning). The evaluation consists of two stages: the conversion of the natural language command into LTL, and the subsequent conversion of the multiple choice options (each formlated in natural language) into runs. 
+
 #### (1) Logic-LM for LTL
 We evaluate Logic-LM LTL extension on a dataset derived from commands in the *drone planning* domain, adapted from [8]. This environment is a 3D grid world that consists of three floors, six rooms, and a single landmark (Figure 4). We created a test set of 50 entries with each three multiple-choice options from their natural language descriptions and corresponding LTL formulas. Mirroring the original paper, we evaluate the Logic-LM LTL extension against the same baselines [14]. 
 
@@ -157,9 +159,7 @@ We evaluate Logic-LM LTL extension on a dataset derived from commands in the *dr
 </table> 
 
 #### (2) NL to LTL Conversion
-We aim to evaluate how well LLMs performs the conversion task from natural language to LTL in cases where it needs to generalize from few examples (few-shot learning). The evaluation consists of two stages: (1) the conversion of the natural language command into LTL, and (2) the subsequent conversion of the multiple choice options (each formlated in natural language) into runs. 
-
-We test the parsing on two datasets. The first dataset derived from the *drone planning* domain, which is priorly discussed and used for the Logic-LM LTL extension evaluation [8]. The second dataset consists of 36 benchmark intances crafted by experts in the nl2spec study . Each of these examples has been selected by LTL experts to cover a variety of ambiguities and complexities. We use their formatted intances.(*[nl2spec original](https://github.com/realChrisHahn2/nl2spec/blob/main/datasets/expert_LTL_dataset.txt)*) In addition, we have replaced the propositions a,b,c,d to create more realistic sentences in natural language (*[nl2spec in NL](https://github.com/NSombekke/Logic-LLM/blob/main/src/LTLnl2spec/LTL2resultsGPT3.csv)*). For example:
+We test the conversion of NL to LTL on two datasets. The first dataset derived from the *drone planning* domain, which is priorly discussed and used for the Logic-LM LTL extension evaluation [8]. The second dataset consists of 36 benchmark intances crafted by experts in the nl2spec study . Each of these examples has been selected by LTL experts to cover a variety of ambiguities and complexities. We use their formatted intances.(*[nl2spec original](https://github.com/realChrisHahn2/nl2spec/blob/main/datasets/expert_LTL_dataset.txt)*) In addition, we have replaced the propositions a,b,c,d to create more realistic sentences in natural language (*[nl2spec in NL](https://github.com/NSombekke/Logic-LLM/blob/main/src/LTLnl2spec/LTL2resultsGPT3.csv)*). For example:
 
 > $\mu:$ Every meal is eventually followed by dessert. $\leftrightarrow$ G(meal -> F dessert).
 > 
