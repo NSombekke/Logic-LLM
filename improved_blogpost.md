@@ -1,11 +1,13 @@
 # Logic-LM integrated with Llama-3 and Linear Temporal Logic
 
 ### Authors: Niels Sombekke, AnneLouise de Boer, Roos Hutter, Rens Baas, Sacha Buijs
+
 ---
 
 In this blogpost, we explore, reproduce, and build upon the findings from the paper [LOGIC-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning](https://arxiv.org/abs/2305.12295). This paper presents a novel framework, Logic-LM, which integrates Large Language Models (LLMs) with symbolic solvers to improve logical problem-solving.
 
 The objective of this blogpost are:
+
 1. Reproducing the results of the original paper to investigate its reproducibility.
 2. Making Logic-LM open-source to enhance accessibility.
 3. Extending Logic-LM by integrating Linear Temporal Logic.
@@ -13,6 +15,7 @@ The objective of this blogpost are:
 ---
 
 ## Introduction
+
 Logic-LM is a novel framework, proposed by Pan et al. [1], that combines Large Language Models (LLMs) and Symbolic Solvers for reasoning tasks. Leveraging the translative power of LLMs, they counterbalance potential inaccuracies in reasoning by employing Symbolic Solvers [2].
 Recent advancements in adapting Large Language Models (LLMs) for logical reasoning tasks can be categorized into two main approaches: fine-tuning and in-context learning. Fine-tuning methods optimize LLMs' reasoning ability through specialized training modules [11], [12], [13], while in-context learning designs prompts to elicit step-by-step reasoning. Chain-of-Thought prompting [14], [15] is an example of in-context learning, in which explanations are generated before the final answer. While these methods operate directly over natural language, the Logic-LM framework stands out by utilizing symbolic language for reasoning, transferring complex tasks to external symbolic solvers while leveraging LLMs for problem formulation. Unlike prior neuro-symbolic methods [16], [17], [18], [19], [20], [21], which often require specialized modules and suffer from optimization challenges, the Logic-LM framework integrates modern LLMs with symbolic logic without the need for complex module designs, offering a more generalizable solution. Additionally, this work explores tool-augmented LLMs, extending their capabilities beyond language comprehension by integrating external tools for improved performance on logical reasoning tasks. While auto-formalization has been widely applied in mathematical reasoning [22], [23], [24], [25], Pan et al. [1] pioneer its extension to a broader range of logical reasoning tasks, bridging the gap between natural language understanding and formal logic with modern LLMs.
 
@@ -25,25 +28,24 @@ Recent advancements in adapting Large Language Models (LLMs) for logical reasoni
   </tr>
 </table>
 
-The Logic-LM decomposes a logical reasoning problem into three stages: *Problem Formulation*, *Symbolic Reasoning*, and *Result Interpretation* (Figure 1). The *Problem Formulation* prompts an LLM to translate a natural language problem into symbolic language, utilizing the few-shot generalization ability of LLMs. The LLM is provided with instructions about the grammar of the symbolic language alongside in-context examples. Specifically, four different symbolic formulations are used to cover four common types of logical reasoning problems: deductive reasoning, firstorder logic reasoning, constraint satisfaction problem, and analytical reasoning (Table 1). Afterwards, in the *Symbolic Reasoning* stage, external solvers perform inference on the symbolic representation. Based on the problem type a different solver is used. The *Result Interpreter* explains the output of the solver and maps it to the correct answer. Moreover, a self-refinement module is introduced which improves accuracy by iteratively revising symbolic formulations using error messages from the solvers. This module instructs the LLM to refine incorrect logical forms by prompting it with the erroneous logic form, the solver’s error message, and a set of demonstrations showing common error cases and remedies.
+The Logic-LM decomposes a logical reasoning problem into three stages: _Problem Formulation_, _Symbolic Reasoning_, and _Result Interpretation_ (Figure 1). The _Problem Formulation_ prompts an LLM to translate a natural language problem into symbolic language, utilizing the few-shot generalization ability of LLMs. The LLM is provided with instructions about the grammar of the symbolic language alongside in-context examples. Specifically, four different symbolic formulations are used to cover four common types of logical reasoning problems: deductive reasoning, firstorder logic reasoning, constraint satisfaction problem, and analytical reasoning (Table 1). Afterwards, in the _Symbolic Reasoning_ stage, external solvers perform inference on the symbolic representation. Based on the problem type a different solver is used. The _Result Interpreter_ explains the output of the solver and maps it to the correct answer. Moreover, a self-refinement module is introduced which improves accuracy by iteratively revising symbolic formulations using error messages from the solvers. This module instructs the LLM to refine incorrect logical forms by prompting it with the erroneous logic form, the solver’s error message, and a set of demonstrations showing common error cases and remedies.
 
-| Problem                | Formulation | NL Sentence                                                                 |            Symbolic Formulation                                     |                Solver                  |      Dataset       |      
-|------------------------|-------------|-----------------------------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|-------------------|
-| Deductive Reasoning    | LP          | If the circuit is complete and the circuit has the light bulb then the light bulb is glowing. | Complete(Circuit, True) ∧ Has(Circuit, LightBulb) → Glowing(LightBulb, True) | Pyke              | ProntoQA, ProofWriter |
-| First-Order Logic      | FOL         | A Czech person wrote a book in 1946.                                        | ∃x₂∃x₁(Czech(x₁) ∧ Author(x₂, x₁) ∧ Book(x₂) ∧ Publish(x₂, 1946)) | Prover9           | FOLIO                 |
-| Constraint Satisfaction| CSP         | On a shelf, there are five books. The blue book is to the right of the yellow book. | blue_book ∈ {1, 2, 3, 4, 5} yellow_book ∈ {1, 2, 3, 4, 5} blue_book > yellow_book | python-constraint | LogicalDeduction      |
-| Analytical Reasoning   | SAT         | Xena and exactly three other technicians repair radios                      | repairs(Xena, radios) ∧ Count([t:technicians], t ≠ Xena ∧ repairs(t, radios)) == 3 | Z3                | AR-LSAT               |
-| Temporal reasoning  | LTL         | Go through the red room to the second floor.                    |F(red_room ∧ F (second_floor)) | Büchi Automaton                | Drone Planning             |
+| Problem                 | Formulation | NL Sentence                                                                                   | Symbolic Formulation                                                               | Solver            | Dataset               |
+| ----------------------- | ----------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ----------------- | --------------------- |
+| Deductive Reasoning     | LP          | If the circuit is complete and the circuit has the light bulb then the light bulb is glowing. | Complete(Circuit, True) ∧ Has(Circuit, LightBulb) → Glowing(LightBulb, True)       | Pyke              | ProntoQA, ProofWriter |
+| First-Order Logic       | FOL         | A Czech person wrote a book in 1946.                                                          | ∃x₂∃x₁(Czech(x₁) ∧ Author(x₂, x₁) ∧ Book(x₂) ∧ Publish(x₂, 1946))                  | Prover9           | FOLIO                 |
+| Constraint Satisfaction | CSP         | On a shelf, there are five books. The blue book is to the right of the yellow book.           | blue_book ∈ {1, 2, 3, 4, 5} yellow_book ∈ {1, 2, 3, 4, 5} blue_book > yellow_book  | python-constraint | LogicalDeduction      |
+| Analytical Reasoning    | SAT         | Xena and exactly three other technicians repair radios                                        | repairs(Xena, radios) ∧ Count([t:technicians], t ≠ Xena ∧ repairs(t, radios)) == 3 | Z3                | AR-LSAT               |
+| Temporal reasoning      | LTL         | Go through the red room to the second floor.                                                  | F(red_room ∧ F (second_floor))                                                     | Büchi Automaton   | Drone Planning        |
 
 **Table 1**: A summary of the symbolic formulations and symbolic solvers we use for categories of logical reasoning in our study.
 
-
-The performance of three GPT models serving as underlying models for the Problem Formulator of Logic-LM (ChatGPT, GPT-3.5, and GPT-4) is evaluated against two baselines: 1) Standard LLMs, which leverage in-context learning to directly answer the question; and 2) Chain-of-Thought (CoT) [14], which adopts a step-by-step problem-solving approach. The performance is evaluated across five logical reasoning datasets. *PrOntoQA* [26] offers synthetic challenges for deductive reasoning, with the hardest 5-hop subset tested. *ProofWriter* [27] presents problems in a more natural language form under the open-world assumption, focusing on different levels of reasoning depth, with the depth-5 subset chosen for evaluation. *FOLIO* [28], a challenging expert-written dataset, demands complex first-order logic reasoning. *LogicalDeduction* [29] from BigBench and *AR-LSAT* [30] present real-world scenarios and analytical logic reasoning questions, respectively. Additionally, the effect of the refiner is researched by investigating the accuracy and the executable rates on the FOLIO dataset across different rounds of self refinement. 
+The performance of three GPT models serving as underlying models for the Problem Formulator of Logic-LM (ChatGPT, GPT-3.5, and GPT-4) is evaluated against two baselines: 1) Standard LLMs, which leverage in-context learning to directly answer the question; and 2) Chain-of-Thought (CoT) [14], which adopts a step-by-step problem-solving approach. The performance is evaluated across five logical reasoning datasets. _PrOntoQA_ [26] offers synthetic challenges for deductive reasoning, with the hardest 5-hop subset tested. _ProofWriter_ [27] presents problems in a more natural language form under the open-world assumption, focusing on different levels of reasoning depth, with the depth-5 subset chosen for evaluation. _FOLIO_ [28], a challenging expert-written dataset, demands complex first-order logic reasoning. _LogicalDeduction_ [29] from BigBench and _AR-LSAT_ [30] present real-world scenarios and analytical logic reasoning questions, respectively. Additionally, the effect of the refiner is researched by investigating the accuracy and the executable rates on the FOLIO dataset across different rounds of self refinement.
 
 Pan et al. [1] present three main results. First, LOGIC-LM notably outperforms standard LLMs and Chain-of-Thought (CoT) across various datasets, showcasing the advantage of integrating LLMs with external symbolic solvers for logical reasoning. Second, GPT-4 exhibits superior performance compared to GPT-3.5, especially in standard prompting. Logic-LM further improves GPT-4 24.98% and 10.44% for standard prompting and CoT prompting, respectively. Third, while CoT generally enhances LLM performance, its benefits vary across datasets, with less substantial or negative effects seen in certain scenarios. Additionally, the effectiveness of problem formulation, the robustness of reasoning, and the impact of self-refinement, highlight both the successes and challenges encountered in these areas.
 
-
 ## <a name="reasons">Reasons for extension</a>
+
 As outlined in the introduction, the Logic-LM framework is tested on three LLMs: ChatGPT, GPT-3.5, and GPT-4. However, due to their closed-source nature, these models suffer from limited transparency, customization options, and opportunities for collaboration. Therefore, integrating open-source LLMs into the Logic-LM framework would be beneficial, as it increases accessibility, usability and flexibility. For this first extension, we included two versions of the state-of-the-art model Llama-3.
 
 The authors of Logic-LM pointed out a crucial constraint, stating that “the model’s applicability is inherently bounded by the expressiveness of the symbolic solver” [1]. Currently, the framework utilizes only four distinct symbolic solvers, restricting its scope to four specific types of logical reasoning problems. The current solvers in Logic-LM do not facilitate reasoning about temporal aspects, which limits the model's applicability in scenarios where time-based reasoning is essential. Therefore we opted to include Linear Temporal Logic into the framework. LTL allows for the encoding of formulas about the future of paths, enabling the framework to handle tasks that require an understanding of temporal sequences and future events. By integrating LTL into the Logic-LM framework, we can extend its functionality to encompass temporal logic reasoning, thus broadening its applicability and making it a more powerful tool for a variety of logical reasoning tasks.
@@ -56,24 +58,25 @@ In summary, our contributions are threefold:
 2. Making Logic-LM open-source to enhance accessibility.
 3. Extending Logic-LM by integrating Linear Temporal Logic.
 
-
 ## Reproducing the original results
-For the first stage of the Logic-LM framework, the *Problem Formulation*, a natural language problem is translated into symbolic language. The authors of Logic-LM employed three closed-source LLMs (ChatGPT, GPT-3.5, and GPT-4), whereas our extension involves the open-source LLM Llama-3. In an attempt to reproduce their results, we utilized the [web version of ChatGPT](https://chat.openai.com/) (gpt-3.5-turbo) which is publicly accessible for manual query-based messaging. 
 
-For this reproducibility experiment, we manually queried ChatGPT ten times for each symbolic language. The input consisted of the prompt, which includes instructions about the grammar of the symbolic language and in-context examples, and a new problem and question. After the *Problem Formulation* stage, the same setup as the original paper is used for the *Symbolic Reasoning* and *Result Interpretation* stages. 
+For the first stage of the Logic-LM framework, the _Problem Formulation_, a natural language problem is translated into symbolic language. The authors of Logic-LM employed three closed-source LLMs (ChatGPT, GPT-3.5, and GPT-4), whereas our extension involves the open-source LLM Llama-3. In an attempt to reproduce their results, we utilized the [web version of ChatGPT](https://chat.openai.com/) (gpt-3.5-turbo) which is publicly accessible for manual query-based messaging.
+
+For this reproducibility experiment, we manually queried ChatGPT ten times for each symbolic language. The input consisted of the prompt, which includes instructions about the grammar of the symbolic language and in-context examples, and a new problem and question. After the _Problem Formulation_ stage, the same setup as the original paper is used for the _Symbolic Reasoning_ and _Result Interpretation_ stages.
 
 ## <a name="open_source">Extension: Open-source models</a>
-Our first extension is making Logic-LM work with open-source language models, instead of closed-source models like ChatGPT. To make the application as flexible as possible, this was applied by using models from the [Huggingface library](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct). Two versions of the current state-of-the-art open-source model Llama-3 have been utilized. First, the smaller 8B version of the model is implemented and evaluated to see how well Logic-LM performs with a lower resource model. Additionally, the larger version of Llama-3 (70B) is utilized to extend Logic-LM, which is expected to outperform the 8B variant due to its significantly larger size. Both models are be compared with the GPT models used by the original author to see how SoTA open-source models compare to closed-source models. 
+
+Our first extension is making Logic-LM work with open-source language models, instead of closed-source models like ChatGPT. To make the application as flexible as possible, this was applied by using models from the [Huggingface library](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct). Two versions of the current state-of-the-art open-source model Llama-3 have been utilized. First, the smaller 8B version of the model is implemented and evaluated to see how well Logic-LM performs with a lower resource model. Additionally, the larger version of Llama-3 (70B) is utilized to extend Logic-LM, which is expected to outperform the 8B variant due to its significantly larger size. Both models are be compared with the GPT models used by the original author to see how SoTA open-source models compare to closed-source models.
 
 ### Experiments
-Following the methodology of the original paper, we evaluate the two Llama3 models on five common logical reasoning datasets. The models are compaired against two baselines 1) Standard LLMs; and 2) Chain-of-Thought (CoT) [14]. Follwing Pan et al. [1], we ensure fair comparisons by using the same in-context examples for all models. For reproducibility, we set the temperature to 0 and select the highest-probability response from the LLMs. We evaluate model performance based on the accuracy of selecting the correct answer from multiple-choice questions. Additionally, we the research the effect of the refiner on the two Llama-3 models by investigating the accuracy and the executable rates on the FOLIO dataset across different rounds of self refinement. 
 
+Following the methodology of the original paper, we evaluate the two Llama3 models on five common logical reasoning datasets. The models are compaired against two baselines 1) Standard LLMs; and 2) Chain-of-Thought (CoT) [14]. Follwing Pan et al. [1], we ensure fair comparisons by using the same in-context examples for all models. For reproducibility, we set the temperature to 0 and select the highest-probability response from the LLMs. We evaluate model performance based on the accuracy of selecting the correct answer from multiple-choice questions. Additionally, we the research the effect of the refiner on the two Llama-3 models by investigating the accuracy and the executable rates on the FOLIO dataset across different rounds of self refinement.
 
 ## <a name="ltl">Extension: Linear Temporal Logic</a>
+
 In addition to standard propositional logic, we extend the Logic-LLM by introducing Linear-time Temporal Logic (LTL), which enables the expression of properties that hold over time-based trajectories. This extension is particularly useful in robotics and automated planning, where paths must comply with temporal constraints [9]. The sematics of LTL are shown in Appendix A.
 
 The integration of Linear Temporal Logic (LTL) in Logic-LM involves several components, as illustrated in Figure 2. The input problem consists of a context, a question, and three multiple-choice options. The context sets the environment for answering the question. The problem formulator translates the question and options into logic formulas suitable for the solver. Specifically, the question is first converted into an easier canonical LTL representation, and then into the raw LTL formula. The options are translated into runs. The symbolic reasoner then evaluates each run to determine if it satisfies the LTL formula using a Büchi automaton. These results are passed to the result interpreter, which generates the answer. We will test and evaluate this extension based on a drone planning scenario [8]. Additionally, we perform an experiment evaluating the performance of three LLMs in converting natural language to LTL and runs. Further details are provided in the following sections.
-
 
 <table align="center">
   <tr align="center">
@@ -82,9 +85,7 @@ The integration of Linear Temporal Logic (LTL) in Logic-LM involves several comp
   <tr align="left">
     <td colspan=2><b>Figure 2.</b> Overview of the Logic-LM model extended for LTL, which consists of three modules: (1) Problem Formulator generates a LTL formula and runs for the input question and options respectively with LLMs via in-context learning (2) Symbolic Reasoner performs logical inference on the formulated problem via a Büchi automaton, and (3) Result Interpreter interprets the symbolic answer.</td>
   </tr>
-</table> 
-
-
+</table>
 
 ### Problem Formulator
 
@@ -93,39 +94,35 @@ We utilize two Llama-3 models to convert natural language into Linear Temporal L
 For illustration, consider the following Natural language commands $\mu$, and their corresponding LTL formula $\psi_{\mu}$, and explanation dictionary $(D_{\psi})$ generated by a LLM
 
 > **$\mu:$ "Always avoid the green room and navigate to the third floor."**
-> 
+>
 > $\psi_{\mu}$: $G( \neg greenroom) \land F thirdfloor$
-> 
+>
 > $D_{\psi}$: {"Always avoid the green room": "G(¬greenroom)","Navigate to the third floor": "F thirdfloor"}
 
-
-
 #### Prompt Engineering
-Since Large language models are predominantly trained on natural language, they may struggle converting natural language directly into Linear Temporal Logic (LTL) formulas. The syntax of LTL (e.g. X, U, and F) is quite different from typical natural language constructs. To address this distribution shift, a study by Pan et al. [1] proposes creating a *canonical* representation that aligns more closely with natural language [8]. For the same reason Cosler et al.  prompt the LLM to turn $\mu$ into an intermediate *canoncial form*, shown as *sub-translations*, before mapping the the sentence into an LTL formula . Each translation accompanies a translation dictionary in canonical form, through which th LLM is asked to explain its steps. We will use their prompting technique. 
+
+Since Large language models are predominantly trained on natural language, they may struggle converting natural language directly into Linear Temporal Logic (LTL) formulas. The syntax of LTL (e.g. X, U, and F) is quite different from typical natural language constructs. To address this distribution shift, a study by Pan et al. [1] proposes creating a _canonical_ representation that aligns more closely with natural language [8]. For the same reason Cosler et al. prompt the LLM to turn $\mu$ into an intermediate _canoncial form_, shown as _sub-translations_, before mapping the the sentence into an LTL formula . Each translation accompanies a translation dictionary in canonical form, through which th LLM is asked to explain its steps. We will use their prompting technique.
 
 The outline below encapsulates our prompt setup, comprising four main sections — (1) an explanation of the prompt along with the context (detailed in Appendix B), (2) LTL specification for the conversion of Natural Language to LTL, (3) the conversion of multiple choice options to runs, and (4) few-shot examples. All in all, the prompt serves as a structured framework for generating LTL formulas and runs from natural language inputs.
 
->**Prompt**
+> **Prompt**
 >
->Given a context, question and options. The task is to first parse the question into a canonical formular and then from this formula to raw LTL formula. Also the options need to parsed into runs.
-Below an explanaition is given of all the input you will recieve and what you should do with it.
+> Given a context, question and options. The task is to first parse the question into a canonical formular and then from this formula to raw LTL formula. Also the options need to parsed into runs.
+> Below an explanaition is given of all the input you will recieve and what you should do with it.
 >
->**Context**: Declares the scene in which the question needs to be answered. Use this knowledge to parse the question and the options.
+> **Context**: Declares the scene in which the question needs to be answered. Use this knowledge to parse the question and the options.
 >
->***Question**: Contains the question that needs to be answered. The task is to parse the question into a canonical formula and then based on the canonical formular to a raw LTL formula.*
+> **\*Question**: Contains the question that needs to be answered. The task is to parse the question into a canonical formula and then based on the canonical formular to a raw LTL formula.\*
 >
->*Your raw LTL formula answers always need to follow the following output format and you always have to try to provide a LTL formula. You may repeat your answers.*
+> _Your raw LTL formula answers always need to follow the following output format and you always have to try to provide a LTL formula. You may repeat your answers._
 >
->*Remember that U means "until", G means "globally", F means "eventually", which means GF means "infinitely often".*
+> _Remember that U means "until", G means "globally", F means "eventually", which means GF means "infinitely often"._
 >
->*The formula should only contain atomic propositions or operators ||, &, !, U, G, F.*
+> _The formula should only contain atomic propositions or operators ||, &, !, U, G, F._
 >
->***Options**: The options need to be parsed into runs. These runs need to be a list ([]) containing dictionaries for each timestep ({}). In each dictionary the state of the corresponding timestep is given.*
+> **\*Options**: The options need to be parsed into runs. These runs need to be a list ([]) containing dictionaries for each timestep ({}). In each dictionary the state of the corresponding timestep is given.\*
 >
->[Few shot examples]
->
->
-
+> [Few shot examples]
 
 <table align="center">
   <tr align="center">
@@ -137,17 +134,20 @@ Below an explanaition is given of all the input you will recieve and what you sh
 </table>
 
 ### <a name="ltl">Symbolic Reasoner</a>
-After the problem formulator has translated the natural language question into LTL and options into runs, we pass them to the logical reasoner. This reasoner checks for the validity of runs, verifying whether a given run satisfies the specified LTL formula. Runs are either accepted or rejected based on their compliance with the LTL formula, and consequently, the model is able to select one of the multiple-choice answers. 
 
-The LTL formula is first converted to a Deterministic Finite State Automaton (DFA), next the runs are passed to the Büchi automatom (Figure 3). This is a theoretical machine that either accepts or rejects inputs (further details in Appendix C). To derive the LTL formulas associated DFA we employ a Python module. We integrated the [*Flloat*](https://pypi.org/project/flloat/) Python library to translate LTL formulas (in CNF form) with finite-trace (runs) semantics into a minimal DFA [3]. This conversion is guaranteed by Theorem 1. The resulting  DFA ($M_{\phi}$) encapsulates the temporal constraints specified by the LTL formula, enabling efficient reasoning over finite runs.  Therefore the DFA and the runs are passed to the aforementioned Büchi automaton, which determines if a run is satisfiable within the corresponding LTL formula. The run-based satisfiability reasoning enables the framework's capability to address temporal aspects of logical reasoning problems.
+After the problem formulator has translated the natural language question into LTL and options into runs, we pass them to the logical reasoner. This reasoner checks for the validity of runs, verifying whether a given run satisfies the specified LTL formula. Runs are either accepted or rejected based on their compliance with the LTL formula, and consequently, the model is able to select one of the multiple-choice answers.
 
-**Theorem 1 [Vardi and Wolper, 1994]**: For any LTL formula $\psi$, a Büchi automaton $M_{\psi}$ can be constructed, having a number of states that is at most exponential in the length of $\psi$.  The language of $M_{\psi}$, denoted as $L(M_{\psi})$, encompasses the set of models of $\psi$ [10].
+The LTL formula is first converted to a Deterministic Finite State Automaton (DFA), next the runs are passed to the Büchi automatom (Figure 3). This is a theoretical machine that either accepts or rejects inputs (further details in Appendix B). To derive the LTL formulas associated DFA we employ a Python module. We integrated the [*Flloat*](https://pypi.org/project/flloat/) Python library to translate LTL formulas (in CNF form) with finite-trace (runs) semantics into a minimal DFA [3]. This conversion is guaranteed by Theorem 1. The resulting  DFA ($M_{\phi}$) encapsulates the temporal constraints specified by the LTL formula, enabling efficient reasoning over finite runs.  Therefore the DFA and the runs are passed to the aforementioned Büchi automaton, which determines if a run is satisfiable within the corresponding LTL formula. The run-based satisfiability reasoning enables the framework's capability to address temporal aspects of logical reasoning problems.
+
+**Theorem 1 [Vardi and Wolper, 1994]**: For any LTL formula $\psi$, a Büchi automaton $M_{\psi}$ can be constructed, having a number of states that is at most exponential in the length of $\psi$. The language of $M_{\psi}$, denoted as $L(M_{\psi})$, encompasses the set of models of $\psi$ [10].
 
 ### Experiments
+
 Evaluation comprises two stages: converting commands to LTL and then converting multiple-choice options (expressed in natural language) to runs. The first dataset tests both initial conversion and run generation, while the second dataset exclusively tests NL-to-LTL conversion.
 
 #### (1) Logic-LM for LTL
-We evaluate Logic-LM LTL extension on a dataset derived from commands in the *drone planning* domain, adapted from [8]. This environment is a 3D grid world that consists of three floors, six rooms, and a single landmark (Figure 4). We created a test set of 50 entries with each three multiple-choice options from their natural language descriptions and corresponding LTL formulas. Mirroring the original paper, we evaluate the Logic-LM LTL extension against the same baselines [14]. 
+
+We evaluate Logic-LM LTL extension on a dataset derived from commands in the _drone planning_ domain, adapted from [8]. This environment is a 3D grid world that consists of three floors, six rooms, and a single landmark (Figure 4). We created a test set of 50 entries with each three multiple-choice options from their natural language descriptions and corresponding LTL formulas. Mirroring the original paper, we evaluate the Logic-LM LTL extension against the same baselines [14].
 
 <table align="center">
   <tr align="center">
@@ -156,21 +156,20 @@ We evaluate Logic-LM LTL extension on a dataset derived from commands in the *dr
   <tr align="left">
     <td colspan=2><b>Figure 4.</b> Planning domain for the drone navigation. Figure by [8].</td>
   </tr>
-</table> 
+</table>
 
 #### (2) NL to LTL Conversion
-We test the conversion of NL to LTL on two datasets. The first dataset derived from the *drone planning* domain, which is priorly discussed and used for the Logic-LM LTL extension evaluation [8]. The second dataset consists of 36 benchmark intances crafted by experts in the nl2spec study. Each of these examples has been selected by LTL experts to cover a variety of ambiguities and complexities. We use their formatted intances.(*[nl2spec original](https://github.com/realChrisHahn2/nl2spec/blob/main/datasets/expert_LTL_dataset.txt)*) In addition, we have replaced the propositions a,b,c,d to create more realistic sentences in natural language (*[nl2spec in NL](https://github.com/NSombekke/Logic-LLM/blob/main/src/LTLnl2spec/LTL2resultsGPT3.csv)*). For example:
+
+We test the conversion of NL to LTL on two datasets. The first dataset derived from the _drone planning_ domain, which is priorly discussed and used for the Logic-LM LTL extension evaluation [8]. The second dataset consists of 36 benchmark intances crafted by experts in the nl2spec study. Each of these examples has been selected by LTL experts to cover a variety of ambiguities and complexities. We use their formatted intances.(_[nl2spec original](https://github.com/realChrisHahn2/nl2spec/blob/main/datasets/expert_LTL_dataset.txt)_) In addition, we have replaced the propositions a,b,c,d to create more realistic sentences in natural language (_[nl2spec in NL](https://github.com/NSombekke/Logic-LLM/blob/main/src/LTLnl2spec/LTL2resultsGPT3.csv)_). For example:
 
 > $\mu:$ Every meal is eventually followed by dessert. $\leftrightarrow$ G(meal -> F dessert).
-> 
+>
 > $\mu:$ Whenever a car starts, the engine revs three steps later. $\leftrightarrow$ G(car_starts -> X X X engine_revs).
-
-
-
 
 ## <a name="results">Results and analysis</a>
 
 ### <a name="reproducibility results">Reproducibility</a>
+
 <table align="center">
 	<tr align="center">
     	<th>Dataset</th>
@@ -218,14 +217,12 @@ We test the conversion of NL to LTL on two datasets. The first dataset derived f
    	 <td colspan=7><b>Table 2.</b> Results of Logic-LM (without self-refinement) with Chat-GPT (gpt-3.5-turbo).</td>
 </table>
 
-To investigate the reproducibility of the original Logic-LM paper, we manually queried ChatGPT with the prompts and new problems and questions. As notable in Table 2, the overall accuracy of the ten examples is significantly lower than that of the original paper. However, this is likely due to the difference in number of examples, as the original paper tested on 200-600 examples for each symbolic language dataset and our selection might have accidentally included poor examples. Additionally, an interesting observation is the very low executable rate of the PrOntoQA dataset (in the original paper, GPT-3.5 and GPT-4 had 99.4% and 100.0% executable rate, respectively). Disregarding this, a similar trend in the scores is noticeable. Specifically, the AR-LSAT dataset with analytical logic reasoning questions has the lowest accuracy, while the others have a similar, more than double the amount of accuracy. 
+To investigate the reproducibility of the original Logic-LM paper, we manually queried ChatGPT with the prompts and new problems and questions. As notable in Table 2, the overall accuracy of the ten examples is significantly lower than that of the original paper. However, this is likely due to the difference in number of examples, as the original paper tested on 200-600 examples for each symbolic language dataset and our selection might have accidentally included poor examples. Additionally, an interesting observation is the very low executable rate of the PrOntoQA dataset (in the original paper, GPT-3.5 and GPT-4 had 99.4% and 100.0% executable rate, respectively). Disregarding this, a similar trend in the scores is noticeable. Specifically, the AR-LSAT dataset with analytical logic reasoning questions has the lowest accuracy, while the others have a similar, more than double the amount of accuracy.
 
 When observing the output of ChatGPT, the symbolic language seems like a feasible translation of the natural language problems, only differing slightly with those of the original paper. Thus we can conclude successful reproducibility.
 
-
-
-
 ### <a name="general results">LLama as an open-source LLM for Logic-LM </a>
+
 <table align="center">
 	<tr align="center">
 		<th align="left"></th>
@@ -304,22 +301,22 @@ When observing the output of ChatGPT, the symbolic language seems like a feasibl
 	</tr>
 </table>
 
-Table 3 shows the results of the experiments with the open-source model. For Llama-3 8B it shows that Logic-LM only scored highest on the LogicalDeduction dataset (60.67), compared to Standard (35.33) and CoT (39.00). For the other datasets Logic-LM is outperformed by either the Standard or the CoT method. 
+Table 3 shows the results of the experiments with the open-source model. For Llama-3 8B it shows that Logic-LM only scored highest on the LogicalDeduction dataset (60.67), compared to Standard (35.33) and CoT (39.00). For the other datasets Logic-LM is outperformed by either the Standard or the CoT method.
 
-Llama-3 70B outperforms Llama-3 8B, but Logic-LM still does not achieve total superior performance compared to the baselines. However, it does score significantly better on Proofwriter and LogicalDeduction than the Standard and CoT methods. Still Logic-LM gets outperformed on the other datasets, although the difference on AR-LSAT is not very large. 
+Llama-3 70B outperforms Llama-3 8B, but Logic-LM still does not achieve total superior performance compared to the baselines. However, it does score significantly better on Proofwriter and LogicalDeduction than the Standard and CoT methods. Still Logic-LM gets outperformed on the other datasets, although the difference on AR-LSAT is not very large.
 
 One reason for Logic-LM's comparatively lower performance could be the dataset used to train Llama-3, which may lack symbolic language logic problems. According to a blog by [daily.dev](https://daily.dev/blog/meta-llama-3-everything-you-need-to-know-in-one-place), while Llama-3 was trained to excel in logical problems and reasoning compared to Llama-2, this training likely focused more on logical reasoning with natural language rather than converting it into symbolic language logic. Consequently, Logic-LM performs well with the Standard and CoT methods, where natural language logic is employed, but struggles when dealing with symbolic language tasks like converting from natural to symbolic logic.
 
 Logic-LM does score high on the LogicalDeduction dataset, which might mean that Llama-3 was trained more on constraint satisfaction. Another explanation for the high performance on LogicalDeduction could be that it is easier for the model to convert the natural language to symbolic logic, because the symbolic formulation of constraint satisfaction logic is much simpler and more familiar to natural language compared to other logic types, making it achieve a higher score.
 
-Comparing these results to the GPT model results from the original paper [1], we observe that the 8B version of Llama-3 generally performs worse than the GPT models. Logic-LM has significantly lower scores compared to all GPT models for the Proofwriter, FOLIO and AR-LSAT dataset and slightly lower scores for the LogicalDeduction dataset. Only on the PrOntoQA Llama-3 8B achieved a higher score than gpt-3.5-turbo, while still having worse scores when using the other GPT models. For the Standard and CoT method we observe similar performance to gpt-3.5-turbo while also being outperformed by the other GPT models. 
+Comparing these results to the GPT model results from the original paper [1], we observe that the 8B version of Llama-3 generally performs worse than the GPT models. Logic-LM has significantly lower scores compared to all GPT models for the Proofwriter, FOLIO and AR-LSAT dataset and slightly lower scores for the LogicalDeduction dataset. Only on the PrOntoQA Llama-3 8B achieved a higher score than gpt-3.5-turbo, while still having worse scores when using the other GPT models. For the Standard and CoT method we observe similar performance to gpt-3.5-turbo while also being outperformed by the other GPT models.
 
 The 70B version however does achieve more similar scores as the OpenAI models. While still being outperformed by GPT-4 on all datasets, it does score higher than ChatGPT and GPT-3.5 on some datasets. It outperforms ChatGPT on all datasets except FOLIO and outperforms GPT 3.5 on both Proofwriter and LogicalDeduction. Llama-3 70B's better performance compared to the 8B version was to be expected, since Llama-3 70B is significantly larger and also performs better in Meta's own [benchmarks](https://ai.meta.com/blog/meta-llama-3/). Taking this into account, it is noteworthy that the 8B version outperforms the 70B version on ProtoQA, achieving a score of 67.40 versus the 61.60 from 70B.
-
 
 ### <a name="LTL results">LTL extension</a>
 
 #### (1) Perfomance Logic-LM for LTL
+
 <!--<table align="center">
   <tr>
     <th>Metric</th>
@@ -355,6 +352,7 @@ The 70B version however does achieve more similar scores as the OpenAI models. W
 		<td colspan="3"><b>Table 6: </b>LTL analysis: Accuracies for Standard, CoT and Logic-LM on LTL (drone planning dataset) with two Llama-3 models; And the corresponding executable rates.</td>
 	</tr>
 </table>-->
+
 Our study delves into the integration of Linear Temporal Logic (LTL) within the Logic-LM framework. This process involves translating natural language into LTL formulas and runs, and then applying a Büchi automaton (symbolic solver) to these formulas.
 
 Table 3 showcases the results of this extension alongside baseline methods and the logics from Pan et al. [1]. For both Llama-3 models, the standard method achieves the best performance. As anticipated, the larger Llama-3-70B model consistently outperforms the Llama-3-8B model across all methods. Notably, Logic-LM demonstrates the poorest performance.
@@ -366,7 +364,6 @@ When we examine the accuracy for questions that yielded exactly one correct answ
 Comparing LTL against other the logical reasoning tasks (Table 3), we observe that the standard method performs relatively very well on LTL, while CoT shows medium performance and Logic-LM performs poorly. It is important to note that the differences in performance between the methods are much smaller within the other logical reasoning datasets, which may again be attributed to the translation inaccuracies of the model.
 
 Future investigations could encompass a comprehensive evaluation of conversion accuracy across diverse LTL formulae, along with an in-depth analysis of how contextual factors within the planning domain influence run generation. An exploration into whether the LLMs can infer abstract relationships, such as associating rooms with floors, will provide valuable insights into their reasoning capabilities at abstracted levels.
-
 
 <table align="center">
 	<tr align="center">
@@ -409,18 +406,13 @@ Future investigations could encompass a comprehensive evaluation of conversion a
 	</tr>
 </table>
 
-
-
-
-
-
-
 <!--Our study represents an exploration into a novel methodology that combines natural language to LTL conversion and trace generation through prompting—a methodology not previously attempted, to the best of our knowledge. Notably, unlike previous approaches that rely on trajectory planners fed with LTL expressions, we introduce the predefined environment directly into the multiple-choice questions in natural language format, under the context section of the prompt. Future investigations could encompass a comprehensive evaluation of conversion accuracy across diverse LTL formulae, along with an in-depth analysis of how contextual factors within the planning domain influence run generation. An exploration into whether the LLMs can infer abstract relationships, such as associating rooms with floors, will provide valuable insights into their reasoning capabilities at abstracted levels.-->
 
 <!--Regarding the question of whether LLMs can infer that rooms belong to floors, this line of inquiry delves into abstract reasoning levels. The results from the multiple-choice options in the planning domain demonstrate that while ambiguity may hinder exact matches, it can facilitate effective executions in certain instances—wherein the generated answer aligns with the intended outcome, even if the LTL formula of the test set does not match exactly.-->
 
-#### (2)  Evaluating NL to LTL Conversion
-By testing the NL to LTL conversion on the *nl2spec* dataset , we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations.
+#### (2) Evaluating NL to LTL Conversion
+
+By testing the NL to LTL conversion on the _nl2spec_ dataset , we seek to understand how well the LLM can handle the translation from natural language to LTL at various levels of complexities, and to provide insights into potential areas for improvement in future iterations.
 
 <table align="center">
     <tr align="center">
@@ -451,26 +443,22 @@ By testing the NL to LTL conversion on the *nl2spec* dataset , we seek to unders
 </table>
 
 Our results reveal a notable discrepancy in the performance of Llama3-70b-instruct for NL to LTL conversion using different prompting techniques. CoT prompting achieved an accuracy of 63.88% (23/36), while direct prompting only reached 44.44% (16/36). This stark difference underscores the critical role of structured prompting in enhancing LLM efficacy for complex tasks like logical formula conversion.
-		    
-The results in Table 6 demonstrate the effectiveness of using LLMs to parse natural language into LTL formulas. Our results show that GPT-4.0 (72.22%) significantly outperforms GPT-3.5 (47.22%) in translating natural language to LTL formulas, indicating enhanced capabilities in processing semantics. Interestingly, GPT-4.0 performs worse on predefined propositions (23/36) compared to NL (26/36), suggesting it is more geared towards handling natural language inputs than structured data. Conversely, GPT-3.5 performs similarly on both sets but is the worst overall. For Llama3-70b, the *original nl2spec* approach, which works with predefined predicates, outperforms the *nl2spec in NL* approach, which extracts predicates from natural language. Predefined predicates provide a clear representation, allowing the LLM to focus on relationships and generate correct LTL formulas.
+  
+The results in Table 6 demonstrate the effectiveness of using LLMs to parse natural language into LTL formulas. Our results show that GPT-4.0 (72.22%) significantly outperforms GPT-3.5 (47.22%) in translating natural language to LTL formulas, indicating enhanced capabilities in processing semantics. Interestingly, GPT-4.0 performs worse on predefined propositions (23/36) compared to NL (26/36), suggesting it is more geared towards handling natural language inputs than structured data. Conversely, GPT-3.5 performs similarly on both sets but is the worst overall. For Llama3-70b, the _original nl2spec_ approach, which works with predefined predicates, outperforms the _nl2spec in NL_ approach, which extracts predicates from natural language. Predefined predicates provide a clear representation, allowing the LLM to focus on relationships and generate correct LTL formulas.
 
-LLMs are often not entirely incorrect; the formulas generated by GPT-3.5 tend to be less restrictive and more general, occasionally covering the expert's formula without being an exact match. For example, when interpreting the statement *We work every fifth day*, GPT-4.o returns: $G (\text{work} \rightarrow X(\neg \text{work} \land X(\neg \text{work} \land X(\neg \text{work} \land X(\neg \text{work} \land X(\text{work}))))))$, which precisely captures the pattern of working every fifth day. In contrast, GPT-3.5 generates a more general formula: $G (\text{work} \rightarrow X X X X X \text{work})$. This difference demonstrates GPT-4.o's superior ability to capture more complex and specific temporal patterns, providing a more detailed logical representation. 
+LLMs are often not entirely incorrect; the formulas generated by GPT-3.5 tend to be less restrictive and more general, occasionally covering the expert's formula without being an exact match. For example, when interpreting the statement _We work every fifth day_, GPT-4.o returns: $G (\text{work} \rightarrow X(\neg \text{work} \land X(\neg \text{work} \land X(\neg \text{work} \land X(\neg \text{work} \land X(\text{work}))))))$, which precisely captures the pattern of working every fifth day. In contrast, GPT-3.5 generates a more general formula: $G (\text{work} \rightarrow X X X X X \text{work})$. This difference demonstrates GPT-4.o's superior ability to capture more complex and specific temporal patterns, providing a more detailed logical representation.
 
 ###### Ambiguity
-As pointed out by Cosler et al. [5], natural language can be inherently ambiguous. For instance, consider the structural limitations of natural language due to operator precedence. Take the sentence: _a holds until b holds or always a holds_.  Human experts initially translated this to $(a U b) | G a$. However, GPT-3.5 returns $a U (b | G a)$. Both translations are plausible depending on the interpretation of the sentence. This example illustrates the complexity and potential challenges in converting natural language statements into formal expressions.
+
+As pointed out by Cosler et al. [5], natural language can be inherently ambiguous. For instance, consider the structural limitations of natural language due to operator precedence. Take the sentence: _a holds until b holds or always a holds_. Human experts initially translated this to $(a U b) | G a$. However, GPT-3.5 returns $a U (b | G a)$. Both translations are plausible depending on the interpretation of the sentence. This example illustrates the complexity and potential challenges in converting natural language statements into formal expressions.
 
 > **$\mu:$ "Whenever the food is hot, the food is cold in the next two steps."**
-> 
+>
 > $\psi_{\mu}$: $G(hot -> X(X(cold)))$
-> 
+>
 > $D_{\psi}$: {'Whenever': '->', 'the food is hot': 'hot', 'the food is cold': 'cold', 'in the next two steps': 'X(X(cold))'}
 
-
-The second type of ambiguity stems from semantic ambiguities within natural language, and is illustrated by the following. _Whenever a holds, b must hold in the next two steps_, mapped to $G (a \rightarrow (b | X b))$.  However, it could also be translated as $G((a \rightarrow X(X(b))))$. The correct translation depends on the interpretation of the semantic meaning. The two formulas are incomparable, and GPT-4.0 returns the latter interpretation. Researchers suggest specifying sub-clauses to improve results by providing clearer instructions for the model, offering promising avenues for future research [5].
-
-
-
-
+The second type of ambiguity stems from semantic ambiguities within natural language, and is illustrated by the following. _Whenever a holds, b must hold in the next two steps_, mapped to $G (a \rightarrow (b | X b))$. However, it could also be translated as $G((a \rightarrow X(X(b))))$. The correct translation depends on the interpretation of the semantic meaning. The two formulas are incomparable, and GPT-4.0 returns the latter interpretation. Researchers suggest specifying sub-clauses to improve results by providing clearer instructions for the model, offering promising avenues for future research [5].
 
 <table align="center">
   <tr align="center">
@@ -562,19 +550,18 @@ The second type of ambiguity stems from semantic ambiguities within natural lang
 without self-refinement) on five reasoning datasets. The best results within each base LLM are highlighted.</td>
 </table>
 
-
-
-
 ## <a name="conclusion">Conclusion</a>
-Our experiments show that it is possible to use Logic-LM with open-source language models. However the achieved performance with the used SoTA open-source language model (Llama-3) is shown to be lower than the performance of the closed-source GPT models. The 8B version of Llama-3  generally performed worse than all GPT models, while the 70B version scored more similarly to GPT 3.5, beating ChatGPT while losing to GPT 4.0. It should be noted that once better open-source models become available, they could perform equally as good or better than closed-source models, since the achieved performance is evidently related to the used language model. Using this extension it would be easy to switch open-source models, making it easier to use new higher-performing models in the future.
 
-Using Llama-3 8B we observed that the performance of Logic-LM is significantly worse than the Standard and CoT methods, except on the LogicalDeduction dataset, where Logic-LM performed slightly better. With Llama-3 the results of Logic-LM were a little better, but Logic-LM still did not achieve superior performance compared to the baselines. This contradicts the findings of the original authors, since they found Logic-LM to outperform the other 2 methods on almost all datasets with all three GPT models. This is likely due to a difference in the ability of the model to convert natural language logic into symbolic logic, making the reasoners unable to correctly solve the problems. 
+Our experiments show that it is possible to use Logic-LM with open-source language models. However the achieved performance with the used SoTA open-source language model (Llama-3) is shown to be lower than the performance of the closed-source GPT models. The 8B version of Llama-3 generally performed worse than all GPT models, while the 70B version scored more similarly to GPT 3.5, beating ChatGPT while losing to GPT 4.0. It should be noted that once better open-source models become available, they could perform equally as good or better than closed-source models, since the achieved performance is evidently related to the used language model. Using this extension it would be easy to switch open-source models, making it easier to use new higher-performing models in the future.
+
+Using Llama-3 8B we observed that the performance of Logic-LM is significantly worse than the Standard and CoT methods, except on the LogicalDeduction dataset, where Logic-LM performed slightly better. With Llama-3 the results of Logic-LM were a little better, but Logic-LM still did not achieve superior performance compared to the baselines. This contradicts the findings of the original authors, since they found Logic-LM to outperform the other 2 methods on almost all datasets with all three GPT models. This is likely due to a difference in the ability of the model to convert natural language logic into symbolic logic, making the reasoners unable to correctly solve the problems.
 
 Furthermore we extended Logic-LM to work with LTL. On this logic type Logic-LM had lower performance than the benchmark methods on both Llama-3 versions, while the Standard method performed best. It is likely that an improvement in the prompt or self-refinement could boost performance of Logic-LM for this logic. Comparing the ability of Llama-3 to convert NL into LTL, it was found that GPT 4.o is significantly better in converting NL than Llama-3. Llama-3 70B had a reasonably high accuracy with predefined predicates and achieved much lower accuracy when converting NL. This means that with Llama-3 it is better to use predefined predicates than NL. GPT 4.o on the other hand performed even higher on NL compared to predefined predicates, making it the preferred model for converting NL to LTL.
 
-
 ## Authors' Contributions
-*example*
+
+_example_
+
 - Rens: Wrote part of introduction, open-source model results and conclusion.
 - Roos: ...
 - Niels: Implemented the code for Llama models and LTL, acquired all results.
@@ -599,9 +586,9 @@ Furthermore we extended Logic-LM to work with LTL. On this logic type Logic-LM h
 
 [8] J. Pan, G. Chou, and D. Berenson, "Data-Efficient Learning of Natural Language to Linear Temporal Logic Translators for Robot Task Specification," arXiv preprint arXiv:2303.08006, 2023.
 
-[9] C. Wang, C. Ross, Y.-L. Kuo, B. Katz, and A. Barbu, "Learning a natural-language to LTL executable semantic parser for grounded robotics," *CoRR*, vol. abs/2008.03277, 2020. [Online]. Available: https://arxiv.org/abs/2008.03277
+[9] C. Wang, C. Ross, Y.-L. Kuo, B. Katz, and A. Barbu, "Learning a natural-language to LTL executable semantic parser for grounded robotics," _CoRR_, vol. abs/2008.03277, 2020. [Online]. Available: https://arxiv.org/abs/2008.03277
 
-[10] M. Y. Vardi and P. Wolper, "Reasoning about Infinite Computations," *Information and Computation*, vol. 115, no. 1, pp. 1-37, 1994. [Online]. Available: https://doi.org/10.1006/inco.1994.1092.
+[10] M. Y. Vardi and P. Wolper, "Reasoning about Infinite Computations," _Information and Computation_, vol. 115, no. 1, pp. 1-37, 1994. [Online]. Available: https://doi.org/10.1006/inco.1994.1092.
 
 [11] Peter Clark, Oyvind Tafjord, and Kyle Richardson. 2020. Transformers as soft reasoners over language. In Proceedings of the 29th International Joint Conference on Artificial Intelligence (IJCAI), pages 3882–3890.
 
@@ -641,8 +628,7 @@ The Journal of Artificial Intelligence (AIJ),
 298:103504.
 
 [19] Le-Wen Cai, Wang-Zhou Dai, Yu-Xuan Huang, Yu-
-Feng Li, Stephen H. Muggleton, and Yuan Jiang.
-2021. Abductive learning with ground knowledge
+Feng Li, Stephen H. Muggleton, and Yuan Jiang. 2021. Abductive learning with ground knowledge
 base. In Proceedings of the 30th International Joint
 Conference on Artificial Intelligence (IJCAI), pages
 1815–1821.
@@ -739,16 +725,16 @@ American Chapter of the Association for Computational
 Linguistics: Human Language Technologies
 (NAACL-HLT), pages 2306–2319.
 
-
 ## Appendix
+
 ### Appenix A: Semantics of LTL
 
-LTL's semantics can effectively capture command specifications in the temporal domain. Formulas in LTL over the set of atomic propositions ($P$) adhere to the grammar below. For example, to express the statement "A cat never sleeps" in LTL, you would write $G \neg sleep$ in temporal logic. In this formula, the $G$  operator (Globally) indicates that the property it precedes must hold at all times in the future, and the $\neg$ operator (Negation) indicates that the "sleep" property does not hold. These temporal operators may be summarized as follows:
+LTL's semantics can effectively capture command specifications in the temporal domain. Formulas in LTL over the set of atomic propositions ($P$) adhere to the grammar below. For example, to express the statement "A cat never sleeps" in LTL, you would write $G \neg sleep$ in temporal logic. In this formula, the $G$ operator (Globally) indicates that the property it precedes must hold at all times in the future, and the $\neg$ operator (Negation) indicates that the "sleep" property does not hold. These temporal operators may be summarized as follows:
 
-* **Eventually** ($F \varphi$): $\varphi$ will hold at some point in the run.
-* **Always** ($G \varphi$): $\varphi$ holds at every time step in the run.
-* **Until** ($\varphi \mathcal{U} \psi$): $\varphi$ holds continuously until $\psi$ holds.
-* **Next** ($X \varphi$): $\varphi$ holds at the next time step.
+- **Eventually** ($F \varphi$): $\varphi$ will hold at some point in the run.
+- **Always** ($G \varphi$): $\varphi$ holds at every time step in the run.
+- **Until** ($\varphi \mathcal{U} \psi$): $\varphi$ holds continuously until $\psi$ holds.
+- **Next** ($X \varphi$): $\varphi$ holds at the next time step.
 
 $$
 \begin{align*}
@@ -765,7 +751,6 @@ G \varphi & \quad \text{Always}
 \end{align*}
 $$
 
-
 In the context of planning, LTL formulas ($\varphi$) are constructed over a set of atomic propositions ($P$). The semantics of an LTL formula $\varphi$ is given with respect to an execution run $\sigma = (s_0, s_1, ..., s_n)$. We consider only LTL over finite traces (runs), which is commonly called $LTL_f$, however, the semantics may descrive an execution runs of infinite length. For $0 \leq i \leq n$, through induction one can define if $\varphi$ is true at instant $i$ (written $w, i \models \varphi$) as:
 
 - $w, i \models p$ iff $p \in L(w_0)$
@@ -775,7 +760,27 @@ In the context of planning, LTL formulas ($\varphi$) are constructed over a set 
 - $w, i \models F \varphi$ iff $\exists j \geq i$ such that $w, j \models \varphi$
 - $w, i \models \varphi_1 \mathcal{U} \varphi_2$ iff there exists a $j$ with $i \le j \le n$ s.t. $w, j \models \varphi_2$ and for all $i \le k < j$, $w, k \models \varphi_1$
 
-### Appendix B: context in the prompt
+
+### Appenix B: Symbolic solver for LTL
+The input words **w** of the Büchi automaton ($M_{\psi}$) can be infinite sequences $\sigma_0 \sigma_1 ... \sigma_n \in \Sigma^{w}$ [7]. A *run* of the automaton $(M_{\psi})$ on the word  **w** is sequence of states $\rho = q_0q_1q_2...$, where each state is a set of propositions. The initial state is $q_0$ and subsequent states are defined throught the transition function $q_{i+1} = \Delta(q_i,\sigma_i)$. The language of the automaton $M_{\psi}$ ($L(M_{\psi})$), is a set of *words* characterized by the presence of an accepting run. In this case each accepting run is a valid sequence of states that holds in the automaton. 
+
+<!--(TODO add ref)-->
+
+**Definition 1: (Büchi automaton)**: A deterministic Büchi automaton (DBA) is a tuple $M = (Q, \sum, \Delta, Q_0, F)$ where:
+
+- $Q$ is a finite set of automaton states,
+- $\Sigma$ is a finite alphabet of the automaton ($|\Sigma| = 2^{|P|}$),
+- $\Delta : Q \times \sum  \rightarrow 2^{Q}$ is the transition function,
+- $q_0 \subseteq Q$ is the set of initial stats
+- $F \subseteq Q$ is the set of accepting states.
+
+A word **w** is accepted by an automaton ($M_{\psi}$) if its run $\rho$ meets the condition $\lim(\rho) \cap F \neq \emptyset$. Meaning that that the run reaches at least one accepting state in **F**.
+
+$L(M_{\psi}) = \\{ w \in \Sigma^{w} | w \text{ is accepted by}  M_{\psi} \\}$
+
+For each subplan $q_i$ of the run, the language function $L$ assigns a symbol $\sigma \in \Sigma$. These symbols collectively form a word **w** representing the sequence of symbols observed along the run. This word **w** is then evaluated against the acceptance conditions of the DBA $M_{\psi}$. The language $L(M_{\psi})$ defines a set of infinite runs that the DFA can recognize. If **w** satisfies these acceptance conditions, then the finite run $\rho_{\psi}$ satisfies the LTL formula. Finite runs $\rho_{\psi}$ satisfiy the LTL if the word $ **w** = L(q*0)L(q_1)...L(q_n)$ is acceptable in $L(M*{\psi})$.
+
+### TODO (dingen die ik nu heb weggehaald maar miss nog moeten blijven?)
 The addition of a context in the prompt is not always necessary for correct LTL generation as the LLM is expected to infer when predictes have a mutex (mutually exclusive) conditions (e.g. the predicates sleeping and eating can not hold at the same time). However, we are utilizing a drone planning dataset that contains spefic constraints, such as the impossibility of the drone simultaneously occupying the third floor and a particular room on the first floor. Therefore prompts enriched with a context are utilized in this study.
 
 > **Context**:
@@ -791,23 +796,3 @@ The addition of a context in the prompt is not always necessary for correct LTL 
 > (B) Go inside the red room and then move to the green room,
 > 
 > (C) Go to the second floor passing the yellow room and then go to the third floor
-
-### Appenix C: Symbolic solver for LTL
-The input words **w** of the Büchi automaton ($M_{\psi}$) can be infinite sequences $\sigma_0 \sigma_1 ... \sigma_n \in \Sigma^{w}$ [7]. A *run* of the automaton $(M_{\psi})$ on the word  **w** is sequence of states $\rho = q_0q_1q_2...$, where each state is a set of propositions. The initial state is $q_0$ and subsequent states are defined throught the transition function $q_{i+1} = \Delta(q_i,\sigma_i)$. The language of the automaton $M_{\psi}$ ($L(M_{\psi})$), is a set of *words* characterized by the presence of an accepting run. In this case each accepting run is a valid sequence of states that holds in the automaton. 
-
-<!--(TODO add ref)-->
-**Definition 1: (Büchi automaton)**: A deterministic Büchi automaton (DBA) is a tuple $M = (Q, \sum, \Delta, Q_0, F)$ where:
-- $Q$ is a finite set of automaton states,
-- $\Sigma$ is a finite alphabet of the automaton ($|\Sigma| = 2^{|P|}$),
-- $\Delta : Q \times \sum  \rightarrow 2^{Q}$ is the transition function,
-- $q_0 \subseteq Q$ is the set of initial stats
-- $F \subseteq Q$ is the set of accepting states.
-
-A word **w** is accepted by an automaton ($M_{\psi}$) if its run $\rho$ meets the condition $\lim(\rho) \cap F \neq \emptyset$. Meaning that that the run reaches at least one accepting state in **F**. 
-
-
-$L(M_{\psi}) = \\{ w \in \Sigma^{w} | w \text{ is accepted by}  M_{\psi} \\}$
-
-For each subplan $q_i$ of the run, the language function $L$ assigns a symbol $\sigma \in \Sigma$. These symbols collectively form a word **w** representing the sequence of symbols observed along the run. This word **w** is then evaluated against the acceptance conditions of the DBA $M_{\psi}$. The language $L(M_{\psi})$ defines a set of infinite runs that the DFA can recognize. If **w** satisfies these acceptance conditions, then the finite run $\rho_{\psi}$ satisfies the LTL formula. Finite runs $\rho_{\psi}$ satisfiy the LTL if the word $ **w** = L(q_0)L(q_1)...L(q_n)$ is acceptable in $L(M_{\psi})$. 
-
-
