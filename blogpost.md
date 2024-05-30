@@ -563,7 +563,7 @@ Furthermore we extended Logic-LM to work with LTL. On this logic type Logic-LM h
 _example_
 
 - Rens: Wrote part of introduction, open-source model results and conclusion.
-- Roos: ...
+- Roos: Conducted and wrote the reproducibility experiment, obtained parts of LTL results, wrote reasons for extension and revised blogpost.
 - Niels: Implemented the code for Llama models and LTL, acquired all results.
 - Sacha: Implemented LTL, wrote introduction and parts of LTL and the results, revised and structured blogpost.
 - AnneLouise: Researched and tested the implementation of LTL, including the addition of two new test sets, result analysis."
