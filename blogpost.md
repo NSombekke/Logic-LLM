@@ -219,7 +219,7 @@ We test the conversion of NL to LTL on two datasets. The first dataset derived f
 
 To investigate the reproducibility of the original Logic-LM paper, we manually queried ChatGPT with the prompts and new problems and questions. As notable in Table 2, the overall accuracy of the ten examples is significantly lower than that of the original paper. However, this is likely due to the difference in number of examples, as the original paper tested on 200-600 examples for each symbolic language dataset and our selection might have accidentally included poor examples. Additionally, an interesting observation is the very low executable rate of the PrOntoQA dataset (in the original paper, GPT-3.5 and GPT-4 had 99.4% and 100.0% executable rate, respectively). Disregarding this, a similar trend in the scores is noticeable. Specifically, the AR-LSAT dataset with analytical logic reasoning questions has the lowest accuracy, while the others have a similar, more than double the amount of accuracy.
 
-When observing the output of ChatGPT, the symbolic language seems like a feasible translation of the NL problems, only differing slightly with those of the original paper. Thus we can conclude successful reproducibility.
+When observing the output of ChatGPT, the translation of NL problems to symbolic language seems feasible, only differing slightly with the results of the original paper. However, due to our very limited resources and the costs associated with the OpenAI API, we were unable to fully replicate the authors’ results.
 
 ### <a name="general results">LLama as an open-source LLM for Logic-LM </a>
 
