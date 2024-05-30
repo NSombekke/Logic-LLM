@@ -144,7 +144,7 @@ The LTL formula is first converted to a Deterministic Finite State Automaton (DF
 **Theorem 1 [Vardi and Wolper, 1994]**: For any LTL formula $\psi$, a Büchi automaton $M_{\psi}$ can be constructed, having a number of states that is at most exponential in the length of $\psi$.  The language of $M_{\psi}$, denoted as $L(M_{\psi})$, encompasses the set of models of $\psi$ [10].
 
 ### Experiments
-We assess LLMs' ability in converting natural language to LTL, focusing on few-shot learning scenarios. Evaluation comprises two stages: converting commands to LTL and then converting multiple-choice options (expressed in natural language) to runs. The first dataset tests both initial conversion and run generation, while the second dataset exclusively tests NL-to-LTL conversion.
+Evaluation comprises two stages: converting commands to LTL and then converting multiple-choice options (expressed in natural language) to runs. The first dataset tests both initial conversion and run generation, while the second dataset exclusively tests NL-to-LTL conversion.
 
 #### (1) Logic-LM for LTL
 We evaluate Logic-LM LTL extension on a dataset derived from commands in the *drone planning* domain, adapted from [8]. This environment is a 3D grid world that consists of three floors, six rooms, and a single landmark (Figure 4). We created a test set of 50 entries with each three multiple-choice options from their natural language descriptions and corresponding LTL formulas. Mirroring the original paper, we evaluate the Logic-LM LTL extension against the same baselines [14]. 
