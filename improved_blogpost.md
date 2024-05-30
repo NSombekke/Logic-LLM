@@ -269,7 +269,7 @@ When observing the output of ChatGPT, the symbolic language seems like a feasibl
 		<td>51.00</td>
 		<td>36.27</td>
 		<td>61.27</td>
-		<td></td>
+		<td><b>66.18</b></td>
 		<td>57.35</td>
 	</tr>
 	<tr align="center">
