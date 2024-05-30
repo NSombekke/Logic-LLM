@@ -450,7 +450,6 @@ By testing the NL to LTL conversion on the *nl2spec* dataset , we seek to unders
     </tr>
 </table>
 
-      
 Our results reveal a notable discrepancy in the performance of Llama3-70b-instruct for NL to LTL conversion using different prompting techniques. CoT prompting achieved an accuracy of 63.88% (23/36), while direct prompting only reached 44.44% (16/36). This stark difference underscores the critical role of structured prompting in enhancing LLM efficacy for complex tasks like logical formula conversion.
 		    
 The results in Table 6 demonstrate the effectiveness of using LLMs to parse natural language into LTL formulas. Our results show that GPT-4.0 (72.22%) significantly outperforms GPT-3.5 (47.22%) in translating natural language to LTL formulas, indicating enhanced capabilities in processing semantics. Interestingly, GPT-4.0 performs worse on predefined propositions (23/36) compared to NL (26/36), suggesting it is more geared towards handling natural language inputs than structured data. Conversely, GPT-3.5 performs similarly on both sets but is the worst overall. For Llama3-70b, the *original nl2spec* approach, which works with predefined predicates, outperforms the *nl2spec in NL* approach, which extracts predicates from natural language. Predefined predicates provide a clear representation, allowing the LLM to focus on relationships and generate correct LTL formulas.
