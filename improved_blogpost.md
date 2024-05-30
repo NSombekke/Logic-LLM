@@ -577,7 +577,7 @@ Furthermore we extended Logic-LM to work with LTL. On this logic type Logic-LM h
 - Roos: ...
 - Niels: Implemented the code for Llama models and LTL, acquired all results.
 - Sacha: Implemented LTL, wrote introduction and parts of LTL and the results, revised and structured blogpost.
-- AnneLouise: Researched the implementation of LTL, added two test sets for LTL, result analysis.
+- AnneLouise: Researched and tested the implementation of LTL, including the addition of two new test sets, result analysis."
 
 ## Bibliography
 
